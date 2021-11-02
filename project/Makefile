@@ -10,8 +10,8 @@ start:
 	docker start scapp-fe
 run:
 	docker run -d -p 3000:80 --name scapp-fe lingi2145/scapp-fe-release:v1.0
-	docker run -d -p 3001:80 --name scapp-be chlohest/back-end
-	docker run -d -p 3002:80 --name storage chlohest/storage
+	docker run -d -p 3002:80 --name scapp-be chlohest/back-end
+	docker run -d -p 3001:5984 --name storage chlohest/storage
 remove:
 	docker rm scapp-fe
 	docker rm scapp-be
