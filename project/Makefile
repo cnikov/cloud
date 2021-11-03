@@ -11,7 +11,7 @@ start:
 run:
 	docker run -d -p 3001:5984 --name users-db -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=admin users-db
 	docker run -d -p 3002:80 --name scapp-be --link users-db scapp-be
-	docker run -d -p 3000:80 --name scapp-fe -e REACT_APP_AUTH_SERVICE="http://192.168.51.100:3002" scapp-fe
+	docker run -d -p 3000:80 --name scapp-fe -e REACT_APP_AUTH_SERVICE_URL='http://192.168.51.100:3002' scapp-fe
 remove:
 	docker rm scapp-fe
 	docker rm scapp-be
