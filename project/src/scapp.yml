@@ -15,6 +15,19 @@ services:     # list all services for your application
         # restart if something went wrong
         condition: on-failure
     networks: [ "scapp-net" ]
+  
+  # server that listens HTTP requests
+  users-daemon:
+    image: scapp-be:latest
+    # link both services (same effect of option --link in docker run)
+    depends_on: [ "users-db" ]
+    # expose port number 3002 of host running this service
+    ports: [ "3002:80" ]
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks: [ "scapp-net" ]
   front-end:
     # image name
     image: scapp-fe:latest
@@ -26,18 +39,6 @@ services:     # list all services for your application
       replicas: 1
       restart_policy:
         # restart if something went wrong
-        condition: on-failure
-    networks: [ "scapp-net" ]
-  # server that listens HTTP requests
-  users-daemon:
-    image: scapp-be:latest
-    # link both services (same effect of option --link in docker run)
-    depends_on: [ "users-db" ]
-    # expose port number 3002 of host running this service
-    ports: [ "3002:80" ]
-    deploy:
-      replicas: 1
-      restart_policy:
         condition: on-failure
     networks: [ "scapp-net" ]
   # Docker GUI for swarms
