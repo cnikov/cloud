@@ -18,9 +18,8 @@ services:     # list all services for your application
     users-db:
     # image name
     image: scapp-fe:latest
-    environment: 
-      -COUCHDB_USER=admin
-      -COUCHDB_PASSWORD=admin
+    environment:
+      - REACT_APP_AUTH_SERVICE_URL='http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002'
     ports: ["3001:5984"]
     deploy:
       # deploy only one instance of this service
