@@ -5,8 +5,8 @@ services:     # list all services for your application
     # image name
     image: users-db:latest
     environment: 
-      -COUCHDB_USER=admin
-      -COUCHDB_PASSWORD=admin
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=admin
     ports: ["3001:5984"]
     deploy:
       # deploy only one instance of this service
