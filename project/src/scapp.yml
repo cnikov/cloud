@@ -15,7 +15,7 @@ services:     # list all services for your application
         # restart if something went wrong
         condition: on-failure
     networks: [ "scapp-net" ]
-    front-end:
+  front-end:
     # image name
     image: scapp-fe:latest
     environment:
