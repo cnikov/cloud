@@ -3,7 +3,24 @@ services:     # list all services for your application
   # database of users
   users-db:
     # image name
-    image: kv-storage-system:latest
+    image: users-db:latest
+    environment: 
+      -COUCHDB_USER=admin
+      -COUCHDB_PASSWORD=admin
+    ports: ["3001:5984"]
+    deploy:
+      # deploy only one instance of this service
+      replicas: 1
+      restart_policy:
+        # restart if something went wrong
+        condition: on-failure
+    networks: [ "scapp-net" ]
+    users-db:
+    # image name
+    image: scapp-fe:latest
+    environment: 
+      -COUCHDB_USER=admin
+      -COUCHDB_PASSWORD=admin
     ports: ["3001:5984"]
     deploy:
       # deploy only one instance of this service
@@ -14,11 +31,11 @@ services:     # list all services for your application
     networks: [ "scapp-net" ]
   # server that listens HTTP requests
   users-daemon:
-    image: auth-service:latest
+    image: scapp-be:latest
     # link both services (same effect of option --link in docker run)
     depends_on: [ "users-db" ]
-    # expose port number 3000 of host running this service
-    ports: [ "3000:80" ]
+    # expose port number 3002 of host running this service
+    ports: [ "3002:80" ]
     deploy:
       replicas: 1
       restart_policy:
