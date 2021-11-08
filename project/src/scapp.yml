@@ -31,7 +31,8 @@ services:     # list all services for your application
   front-end:
     # image name
     image: scapp-fe:latest
-    environment: [ "REACT_APP_AUTH_SERVICE_URL='http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002'" ]
+    environment:
+      REACT_APP_AUTH_SERVICE_URL: ${REACT_APP_AUTH_SERVICE_URL:-http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002}
     ports: ["3000:80"]
     deploy:
       # deploy only one instance of this service
