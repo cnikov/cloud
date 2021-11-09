@@ -113,7 +113,7 @@ class App extends Component {
           }} />
           <Route exact path='/' render={() => {
             if (authenticated) {
-              if (window.localStorage.getItem('username').trim() ==='admin') {
+              if (JSON.parse(window.localStorage.getItem('username')) ==='admin') {
                 return <Redirect to='/admin' />
               } else {
                 return <Redirect to='/login' />
