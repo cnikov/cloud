@@ -70,5 +70,5 @@ function getUser (usrName, passw) {
 module.exports = {
   createUser,
   getUser,
-  getKart
+  //getKart
 }
