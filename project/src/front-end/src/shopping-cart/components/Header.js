@@ -1,3 +1,28 @@
+import axios from "axios";
+import React from "react";
+class Header extends React.Componen {
+  state = {
+    persons: [],
+  };
+  testfunc() {
+
+    axios.get('http://cloud-romtourpe.westeurope.cloudapp.azure.com:3001/users').then(res => {
+      this.setState({ persons: res.data });
+    });
+  }
+  render() {
+    return (
+      <ul>
+        {this.state.persons.map(person => <li>{person.name}</li>)}
+      </ul>
+    )
+  }
+
+}
+
+
+
+
 // /* eslint-disable*/
 // import React, { Component } from 'react';
 // import CartScrollBar from './CartScrollBar';
