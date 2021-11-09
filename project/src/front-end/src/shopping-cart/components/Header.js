@@ -111,6 +111,12 @@ class Header extends Component{
 								<button
 									className={this.props.authenticated ? "disable-button" : "search-button"}
 									onClick={(e) => {this.setAuthStatus(e, false, false, true)}}
+        >Admin</button>
+              <h3 className='blank-space'/>
+                  <button
+                    className={this.props.authenticated ? "disable-button" : "ko-button"}
+                    onClick={(e) => {this.setAuthStatus(e, false, true, false)}}
+
         >Sign in</button>
 								<h3 className='blank-space'/>
 								<button
