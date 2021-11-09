@@ -4,7 +4,10 @@ import Products from './components/Products'
 import QuickView from './components/QuickView'
 import Checkout from './components/Checkout'
 import LocalPurchases from '../interfaces/LocalPurchases'
+
 const PurchasesService = LocalPurchases
+var kart = require('nano')(process.env.DB_URL_KART)
+
 
 class ShoppingCartApp extends Component {
   componentWillMount () {
@@ -81,6 +84,7 @@ class ShoppingCartApp extends Component {
       })
     } else {
       myCart.push(chosenProduct)
+
     }
     this.setState({
       cart: myCart,

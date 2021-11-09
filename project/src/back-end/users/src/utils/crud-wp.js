@@ -2,16 +2,22 @@ const bcrypt = require('bcryptjs')
 const tku = require('./en-de-coders')
 
 var users = require('nano')(process.env.DB_URL)
+var kart =  require('nano')(process.env.DB_URL_KART)
+
 
 function equalPassws (usrPass, usrDbPass) {
   return bcrypt.compareSync(usrPass, usrDbPass)
 }
 
+
 function createUser (usrName, passw) {
+	var kart_id= Math.random().toString(36).slice(2);
   return new Promise((resolve, reject) => {
     users.insert(
       // 1st argument of nano.insert()
-      { 'passw': bcrypt.hashSync(passw, bcrypt.genSaltSync()) },
+      { 'passw': bcrypt.hashSync(passw, bcrypt.genSaltSync()),   
+        'kart-id': kart_id,
+ },
       usrName, // 2nd argument of nano.insert()
       // callback to execute once the request to the DB is complete
       (error, success) => {
@@ -24,6 +30,11 @@ function createUser (usrName, passw) {
         }
       }
     )
+kart.insert({
+	'kart-id':kart_id,
+	'items':""
+})
+
   })
 }
 
@@ -41,8 +52,22 @@ function getUser (usrName, passw) {
     })
   })
 }
+// function getKart (usrName) {
+//   return new Promise((resolve, reject) => {
+//     kart.get("databaseName", "some_document_id").then(({data, headers, status}) => {
+//       // data is json response
+//       // headers is an object with all response headers
+//       // status is statusCode number
+//   }, err => {
+//       // either request error occured
+//       // ...or err.code=EDOCMISSING if document is missing
+//       // ...or err.code=EUNKNOWN if statusCode is unexpected
+//   });})
+//   })
+// }
 
 module.exports = {
   createUser,
-  getUser
+  getUser,
+  //getKart
 }

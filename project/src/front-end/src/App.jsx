@@ -18,6 +18,7 @@ class App extends Component {
       showRegis: false,
       authenticated: false,
       showLogin: false,
+      showAdm: false,
       saved: [],
       flashMessages: [],
       isAuthenticated: false,
@@ -70,19 +71,20 @@ class App extends Component {
   }
   logoutUser (e) {
     e.preventDefault()
-    this.setAuthStatus(false, false, false)
+    this.setAuthStatus(false, false, false,false)
     this.props.history.push('/')
     this.createFlashMessage('You are now logged out')
   }
-  setAuthStatus (auth, showRegis, showLogin) {
+  setAuthStatus (auth, showRegis, showLogin,showAdm) {
     this.setState({
       showRegis: showRegis,
       authenticated: auth,
-      showLogin: showLogin
+      showLogin: showLogin,
+      showAdm: showAdm
     })
   }
   render () {
-    const { flashMessages, showRegis, authenticated, showLogin, products } = this.state
+    const { flashMessages, showRegis, authenticated, showLogin,showAdm,products } = this.state
     return (
       <div >
         <FlashMessages
@@ -111,10 +113,14 @@ class App extends Component {
           }} />
           <Route exact path='/' render={() => {
             if (authenticated) {
-              if (window.localStorage.getItem('username') === 'admin') {
-                return <Redirect to='/admin' />
-              } else {
-                return <ShoppingCartApp
+              if (JSON.parse(window.localStorage.getItem('username')) ==='admin') {
+                return <AdminForm
+              products={products}
+              createFlashMessage={this.createFlashMessage}
+              setAuthStatus={this.setAuthStatus}
+              logoutUser={this.logoutUser}
+              />} else {
+                  return <ShoppingCartApp
                   setAuthStatus={this.setAuthStatus}
                   authenticated={authenticated}
                   logoutUser={this.logoutUser} />
@@ -123,7 +129,9 @@ class App extends Component {
               return <Redirect to='/register' />
             } else if (showLogin) {
               return <Redirect to='/login' />
-            } else {
+            }else if(showAdm){
+              return <Redirect to='/admin' />
+            }else {
               return <ShoppingCartApp
                 setAuthStatus={this.setAuthStatus}
                 authenticated={authenticated} />

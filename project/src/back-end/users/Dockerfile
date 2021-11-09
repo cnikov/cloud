@@ -24,10 +24,12 @@ ENV WITH_PERSISTENT_DATA Y
 ENV DB_HOST users-db
 # database name
 ENV DB_NAME users
+ENV DB_NAME_KART shopping_kart
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
 ENV ADMIN_NAME admin
 ENV ADMIN_PASSW admin
 ENV DB_URL http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST}:5984/${DB_NAME}
+ENV DB_URL_KART http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST}:5984/${DB_NAME_KART}
 
 # we now use an script to deploy the authentication service
 CMD source boot-in-order.sh
