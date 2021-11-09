@@ -114,10 +114,13 @@ class App extends Component {
           <Route exact path='/' render={() => {
             if (authenticated) {
               if (JSON.parse(window.localStorage.getItem('username')) ==='admin') {
-                return <Redirect to='/admin' />
-              } else {
-              
-                return <ShoppingCartApp
+                return <AdminForm
+              products={products}
+              createFlashMessage={this.createFlashMessage}
+              setAuthStatus={this.setAuthStatus}
+              logoutUser={this.logoutUser}
+              />} else {
+                  return <ShoppingCartApp
                   setAuthStatus={this.setAuthStatus}
                   authenticated={authenticated}
                   logoutUser={this.logoutUser} />
