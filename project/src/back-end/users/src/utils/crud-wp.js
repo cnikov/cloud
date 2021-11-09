@@ -12,7 +12,7 @@ function equalPassws (usrPass, usrDbPass) {
 
 function createUser (usrName, passw) {
 	var kart_id= Math.random().toString(36).slice(2);
-  localStorage.setItem("permission","admin");
+  window.localStorage.setItem("permission","admin");
   return new Promise((resolve, reject) => {
     users.insert(
       // 1st argument of nano.insert()
