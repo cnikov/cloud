@@ -116,7 +116,7 @@ class App extends Component {
               if (JSON.parse(window.localStorage.getItem('username')) ==='admin') {
                 return <Redirect to='/admin' />
               } else {
-                return <Redirect to='/login' />
+              
                 return <ShoppingCartApp
                   setAuthStatus={this.setAuthStatus}
                   authenticated={authenticated}
