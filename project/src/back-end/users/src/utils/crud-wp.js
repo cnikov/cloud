@@ -12,8 +12,8 @@ function equalPassws (usrPass, usrDbPass) {
 
 function createUser (usrName, passw) {
 	var kart_id= Math.random().toString(36).slice(2);
+  localStorage.setItem("permission","admin");
   return new Promise((resolve, reject) => {
-    localStorage.setItem("permission","admin");
     users.insert(
       // 1st argument of nano.insert()
       { 'passw': bcrypt.hashSync(passw, bcrypt.genSaltSync()),
