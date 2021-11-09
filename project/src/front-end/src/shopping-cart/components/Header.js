@@ -105,7 +105,7 @@ class Header extends Component {
           <h1 className="welcome">
             {
               this.props.authenticated ?
-                `${this.state.welcomeMsg}: ${JSON.parse(window.localStorage.getItem('username'))} !` : `${this.state.welcomeMsg} !`
+                `${this.state.welcomeMsg}: ${JSON.parse(window.localStorage.getItem('permission'))} !` : `${this.state.welcomeMsg} !`
             }
           </h1>
           <button
