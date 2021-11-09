@@ -60,9 +60,9 @@ class Header extends Component {
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClickOutside.bind(this), true);
   }
-  setAuthStatus(e, auth, showRegis, showLogin) {
+  setAuthStatus(e, auth, showRegis, showLogin,showAdm) {
     e.preventDefault()
-    this.props.setAuthStatus(auth, showRegis, showLogin)
+    this.props.setAuthStatus(auth, showRegis, showLogin,showAdm)
   }
   logoutUser(e) {
     e.preventDefault();
@@ -109,22 +109,23 @@ class Header extends Component {
             }
           </h1>
           <button
-            className={this.props.authenticated ? "disable-button" : "search-button"}
-            onClick={(e) => { this.setAuthStatus(e, false, false, true) }}
+            
+            onClick={(e) => { this.setAuthStatus(e, false, false, false,true) }}
           >Admin</button>
           <h3 className='blank-space' />
           <button
-            onClick={(e) => { this.context.router.push("/admin") }}
+            className={this.props.authenticated ? "disable-button" : "search-button"}
+            onClick={(e) => { this.setAuthStatus(e, false, false, true,false) }}
 
           >Sign in</button>
           <h3 className='blank-space' />
           <button
             className={this.props.authenticated ? "disable-button" : "ko-button"}
-            onClick={(e) => { this.setAuthStatus(e, false, true, false) }}
+            onClick={(e) => { this.setAuthStatus(e, false, true, false,false) }}
           >Sign up</button>
           <h3 className='blank-space' />
           <button onClick={(e) => {
-            this.setAuthStatus(e, false, false, false);
+            this.setAuthStatus(e, false, false, false,false);
             this.logoutUser(e);
           }}
             className={this.props.authenticated ? 'btn btn-primary' : 'disable-button'}
