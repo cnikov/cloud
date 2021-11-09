@@ -36,7 +36,6 @@ class AuthenticationService {
         axios.get(`${url}/user/${data.username}/${data.password}`) // Perform an HTTP GET rquest to a url.
             .then((res) => {
                 window.localStorage.setItem('authToken', JSON.stringify(res.data.token))
-                window.localStorage.setItem('permission', JSON.stringify(res.data.permission))
                 this.setAuthStatus(true)
                 this.onSucc(`Welcome back [${data.username}]!`)
                 this.changeRoute('/')
