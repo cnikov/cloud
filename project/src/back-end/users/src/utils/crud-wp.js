@@ -1,15 +1,17 @@
 const bcrypt = require('bcryptjs')
 const tku = require('./en-de-coders')
 
-var users = require('nano')(process.env.DB_URL_USER)
+var users = require('nano')(process.env.DB_URL)
 var kart =  require('nano')(process.env.DB_URL_KART)
-var kart_id = Math.random().toString(36).slice(2)
+
 
 function equalPassws (usrPass, usrDbPass) {
   return bcrypt.compareSync(usrPass, usrDbPass)
 }
 
+
 function createUser (usrName, passw) {
+	var kart_id= Math.random().toString(36).slice(2);
   return new Promise((resolve, reject) => {
     users.insert(
       // 1st argument of nano.insert()
@@ -30,18 +32,10 @@ function createUser (usrName, passw) {
       }
     )
 kart.insert({
-'kart-id': kart_id,
-'items': ""
-}
-	    (error, success) => {
-        if (success) {
-        } else {
-          reject(
-            new Error(`In the creation of user (${usrName}). Reason: ${error.reason}.`)
-          )
-        }
-      }
-)
+	'kart-id':kart_id,
+	'items':""
+})
+
   })
 }
 
@@ -59,8 +53,20 @@ function getUser (usrName, passw) {
     })
   })
 }
+function getKart (usrName) {
+  return new Promise((resolve, reject) => {
+    kart.get(kart-id, (error, success) => {
+      if (success) {
+        kart.get(kart-id)
+      } else {
+        reject(new Error(`To fetch kart-id of user (${usrName}). Reason: ${error.reason}.`))
+      }
+    })
+  })
+}
 
 module.exports = {
   createUser,
-  getUser
+  getUser,
+  getKart
 }

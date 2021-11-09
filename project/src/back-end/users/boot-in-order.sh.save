@@ -11,7 +11,7 @@
 #     (name, authentication information of administrator, etc).
 #       OPTIONS: ---
 #  REQUIREMENTS: This script makes use of the environment variables DB_NAME and
-#     DB_URL, be sure that such variables were defined before running this script.
+#     DB_URL, be sure that such vari ables were defined before running this script.
 #          BUGS: ---
 #         NOTES: ---
 #        AUTHOR: Raziel Carvajal-Gomez (), raziel.carvajal@uclouvain.be
@@ -27,11 +27,6 @@ if [ "${WITH_PERSISTENT_DATA}" != "" ]; then
     sleep 2
   done
   echo "DB (${DB_NAME}) was created!"
- until curl --request PUT ${DB_URL_KART} ; do
-    echo -e "\t DB (${DB_NAME_KART}) wasn't created - trying again later..."
-    sleep 2
-  done
-  echo "DB (${DB_NAME_KART}) was created!"
 fi
 echo "Start users service..."
 npm start
