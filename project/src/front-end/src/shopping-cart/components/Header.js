@@ -108,10 +108,10 @@ class Header extends Component {
                 `${this.state.welcomeMsg}: ${JSON.parse(window.localStorage.getItem('username'))} !` : `${this.state.welcomeMsg} !`
             }
           </h1>
-          <button
+          {/* <button
             className={this.props.authenticated ? 'btn btn-primary' : 'disable-button'}
             onClick={(e) => { this.setAuthStatus(e, false, false, false,true) }}
-          >Admin</button>
+          >Admin</button> */}
           <h3 className='blank-space' />
           <button
           

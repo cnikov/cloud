@@ -16,7 +16,6 @@ function createUser (usrName, passw) {
     users.insert(
       // 1st argument of nano.insert()
       { 'passw': bcrypt.hashSync(passw, bcrypt.genSaltSync()),   
-        'permission': "user",
         'kart-id': kart_id,
  },
       usrName, // 2nd argument of nano.insert()
