@@ -11,7 +11,10 @@ function createUser (usrName, passw) {
   return new Promise((resolve, reject) => {
     users.insert(
       // 1st argument of nano.insert()
-      { 'passw': bcrypt.hashSync(passw, bcrypt.genSaltSync()) },
+      { 'passw': bcrypt.hashSync(passw, bcrypt.genSaltSync()),
+	'permission': "user",
+	'kart-id': Math.random().toString(36).slice(2),
+ },
       usrName, // 2nd argument of nano.insert()
       // callback to execute once the request to the DB is complete
       (error, success) => {
