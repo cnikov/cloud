@@ -10,10 +10,11 @@ var kart = require('nano')(process.env.DB_URL_KART)
 
 
 class ShoppingCartApp extends Component {
-  componentWillMount () {
-    this.initialiseState(true)
+
+  componentWillMount() {
+    this.initialiseStacte(true)
   }
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.handleCategory = this.handleCategory.bind(this)
     this.handleAddToCart = this.handleAddToCart.bind(this)
@@ -26,7 +27,7 @@ class ShoppingCartApp extends Component {
     this.endCheckout = this.endCheckout.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
   }
-  initialiseState (firstCall) {
+  initialiseState(firstCall) {
     if (firstCall) {
       this.state = {
         products: [],
@@ -67,12 +68,12 @@ class ShoppingCartApp extends Component {
     this.state.purService.fetchHistory()
   }
 
-  handleCategory (event) { // Filter by Category
+  handleCategory(event) { // Filter by Category
     this.setState({ category: event.target.value })
     console.log(this.state.category)
   }
 
-  handleAddToCart (chosenProduct) { // Add to Cart
+  handleAddToCart(chosenProduct) { // Add to Cart
     let myCart = this.state.cart
     let productID = chosenProduct.id
     let productQty = chosenProduct.quantity
@@ -97,7 +98,7 @@ class ShoppingCartApp extends Component {
     this.sumTotalAmount(this.state.cart)
   }
 
-  handleRemoveProduct (id, e) {
+  handleRemoveProduct(id, e) {
     let cart = this.state.cart
     let index = cart.findIndex(x => x.id === id)
     cart.splice(index, 1)
@@ -109,14 +110,14 @@ class ShoppingCartApp extends Component {
     e.preventDefault()
   }
 
-  checkProduct (productID) {
+  checkProduct(productID) {
     let cart = this.state.cart
     return cart.some(function (item) {
       return item.id === productID
     })
   }
 
-  sumTotalItems () {
+  sumTotalItems() {
     let total = 0
     let cart = this.state.cart
     total = cart.length
@@ -125,7 +126,7 @@ class ShoppingCartApp extends Component {
     })
   }
 
-  sumTotalAmount () {
+  sumTotalAmount() {
     let total = 0
     let cart = this.state.cart
     for (var i = 0; i < cart.length; i++) {
@@ -137,25 +138,25 @@ class ShoppingCartApp extends Component {
     })
   }
 
-  openModal (product) { // Open Modal
+  openModal(product) { // Open Modal
     this.setState({
       quickViewProduct: product,
       modalActive: true
     })
   }
 
-  closeModal () { // Close Modal
+  closeModal() { // Close Modal
     this.setState({
       modalActive: false
     })
   }
 
-  handleCheckout (e) {
+  handleCheckout(e) {
     e.preventDefault()
     this.setState({ doCheckout: true })
   }
 
-  endCheckout () {
+  endCheckout() {
     console.log('END of CHECKOUT')
     this.initialiseState(false)
     // TODO
@@ -164,45 +165,45 @@ class ShoppingCartApp extends Component {
   }
 
   /* eslint-disable */
-  render () {
-    const {doCheckout} = this.state
+  render() {
+    const { doCheckout } = this.state
     return (
       <div>
-        { doCheckout ?
+        {doCheckout ?
           <Checkout
             id={this.state.purchaseId}
             purchase={this.state.cart}
             oldPurchases={this.state.oldPurchases}
             endCheckout={this.endCheckout}
-						postPurchase={
-              (purs, items)=>{this.state.purService.postPurchase(purs, items)}
+            postPurchase={
+              (purs, items) => { this.state.purService.postPurchase(purs, items) }
             }
-					/>
-				: <div>
-					<Header
-						cartBounce={this.state.cartBounce}
-						total={this.state.totalAmount}
-						totalItems={this.state.totalItems}
-						cartItems={this.state.cart}
-						removeProduct={this.handleRemoveProduct}
-						handleCategory={this.handleCategory}
-						categoryTerm={this.state.category}
-						handleCheckout={this.handleCheckout}
-						setAuthStatus={this.props.setAuthStatus}
-						authenticated={this.props.authenticated}
-            logoutUser={this.props.logoutUser} />
-					<Products
-						productsList={this.state.products}
-						searchTerm={this.state.term}
-						addToCart={this.handleAddToCart}
-						openModal={this.openModal}
-						authenticated={this.props.authenticated} />
-					<QuickView
-						product={this.state.quickViewProduct}
-            openModal={this.state.modalActive}
-            closeModal={this.closeModal} />
-				</div>
-				}
+          />
+          : <div>
+            <Header
+              cartBounce={this.state.cartBounce}
+              total={this.state.totalAmount}
+              totalItems={this.state.totalItems}
+              cartItems={this.state.cart}
+              removeProduct={this.handleRemoveProduct}
+              handleCategory={this.handleCategory}
+              categoryTerm={this.state.category}
+              handleCheckout={this.handleCheckout}
+              setAuthStatus={this.props.setAuthStatus}
+              authenticated={this.props.authenticated}
+              logoutUser={this.props.logoutUser} />
+            <Products
+              productsList={this.state.products}
+              searchTerm={this.state.term}
+              addToCart={this.handleAddToCart}
+              openModal={this.openModal}
+              authenticated={this.props.authenticated} />
+            <QuickView
+              product={this.state.quickViewProduct}
+              openModal={this.state.modalActive}
+              closeModal={this.closeModal} />
+          </div>
+        }
       </div>
     )
   }

@@ -2,20 +2,21 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 
 class RegisterForm extends Component {
-  componentWillMount () {
+  componentWillMount() {
     this.state = {
       errors: {},
       username: '',
       password: '',
+
       cancel: false
     }
   }
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.onCancel = this.onCancel.bind(this)
   }
-  handleInputChange (event) {
+  handleInputChange(event) {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
@@ -23,7 +24,7 @@ class RegisterForm extends Component {
       [name]: value
     })
   }
-  onSubmit (event) {
+  onSubmit(event) {
     event.preventDefault()
     this.props.registerUser(this.state, (errorMessage) => {
       if (errorMessage) {
@@ -31,12 +32,12 @@ class RegisterForm extends Component {
       }
     })
   }
-  onCancel (event) {
+  onCancel(event) {
     event.preventDefault()
     this.props.setAuthStatus(false, false, false)
     this.setState({ cancel: true })
   }
-  render () {
+  render() {
     const { username, password, cancel } = this.state
     return (
       cancel ? <Redirect to='/' /> : <div className='container'>
