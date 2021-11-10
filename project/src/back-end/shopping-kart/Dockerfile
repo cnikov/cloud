@@ -8,6 +8,7 @@ ADD package.json .
 RUN npm install
 # source files of the authentication service
 ADD src src
+ADD boot-in-order.sh .
 # database name
 ENV DB_NAME shopping-kart
 # name of container running CouchDB

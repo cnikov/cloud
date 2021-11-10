@@ -31,11 +31,6 @@ function createUser(usrName, passw) {
         }
       }
     )
-    kart.insert({
-      'kart-id': kart_id,
-      'items': ""
-    })
-
   })
 }
 
