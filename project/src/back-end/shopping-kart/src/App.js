@@ -29,4 +29,4 @@ appS.get('/shop/:id', (req, res) => {
     })
 })
 
-module.exports = App
+module.exports = appS
