@@ -15,7 +15,36 @@ services:     # list all services for your application
         # restart if something went wrong
         condition: on-failure
     networks: [ "scapp-net" ]
-  
+  # database of catalog
+  users-db:
+    # image name
+    image: catalog-db:latest
+    environment: 
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=admin
+    ports: ["3003:5984"]
+    deploy:
+      # deploy only one instance of this service
+      replicas: 1
+      restart_policy:
+        # restart if something went wrong
+        condition: on-failure
+    networks: [ "scapp-net" ]
+  # database of shopping-kart
+  users-db:
+    # image name
+    image: shopping-db:latest
+    environment: 
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=admin
+    ports: ["3004:5984"]
+    deploy:
+      # deploy only one instance of this service
+      replicas: 1
+      restart_policy:
+        # restart if something went wrong
+        condition: on-failure
+    networks: [ "scapp-net" ]
   # server that listens HTTP requests
   users-daemon:
     image: scapp-be:latest
@@ -23,6 +52,30 @@ services:     # list all services for your application
     depends_on: [ "users-db" ]
     # expose port number 3002 of host running this service
     ports: [ "3002:80" ]
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks: [ "scapp-net" ]
+  # server that listens HTTP requests
+  shopping-daemon:
+    image: shopping_kart:latest
+    # link both services (same effect of option --link in docker run)
+    depends_on: [ "shopping-db" ]
+    # expose port number 3004 of host running this service
+    ports: [ "3004:80" ]
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks: [ "scapp-net" ]
+  # server that listens HTTP requests
+  catalog-daemon:
+    image: scapp-be:latest
+    # link both services (same effect of option --link in docker run)
+    depends_on: [ "catalog-db" ]
+    # expose port number 3005 of host running this service
+    ports: [ "3005:80" ]
     deploy:
       replicas: 1
       restart_policy:
@@ -41,6 +94,7 @@ services:     # list all services for your application
         # restart if something went wrong
         condition: on-failure
     networks: [ "scapp-net" ]
+  
   # Docker GUI for swarms
   visualizer:
     image: dockersamples/visualizer:stable

@@ -9,6 +9,8 @@ RUN npm install
 # source files of the authentication service
 ADD src src
 ADD boot-in-order.sh .
+# header for loggining messages
+ENV DEBUG catalog-db
 # database name
 ENV DB_NAME catalog
 # name of container running CouchDB
