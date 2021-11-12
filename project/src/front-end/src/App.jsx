@@ -29,7 +29,7 @@ class App extends Component {
       (newState) => { this.setState({ authenticated: newState }) },
       (route) => { this.props.history.push(route) }
     )
-    var products = window.localStorage.getItem('products')
+    var products = window.localStorage.getItem('products')    //a modifier pour mettre les products de la db
     this.setState({
       products: products ? JSON.parse(products) : catalog
     })

@@ -2,7 +2,7 @@
 //const log = require('debug')('users-d')
 
 const appS = express.Router()
-//const db = process.env.WITH_PERSISTENT_DATA ? require('./utils/crud-wp') : require('./utils/crud')
+const db = require('./utils/crud')
 
 appS.post('/shop', (req, res) => {
   var id = req.body.id
