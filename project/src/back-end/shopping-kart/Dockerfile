@@ -12,16 +12,14 @@ ADD boot-in-order.sh .
 # header for loggining messages
 ENV DEBUG shopping-db
 # name of container running CouchDB
-ENV DB_HOST shopping-db
+ENV DB_HOST_SK shopping-db
 # database name
-ENV DB_NAME shopping-kart
+ENV DB_NAME_SK shopping-kart
 # name of container running CouchDB
-ENV DB_HOST kart-db
+ENV DB_HOST_SK kart-db
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
 ENV ADMIN_NAME admin
 ENV ADMIN_PASSW admin
-ENV DB_URL http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST}:5984/${DB_NAME}
-ENV DB_URL_KART http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST}:5984/${DB_NAME_KART}
-
+ENV DB_URL_SK http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_SK}:5984/${DB_NAME_SK}
 # we now use an script to deploy the authentication service
 CMD source boot-in-order.sh

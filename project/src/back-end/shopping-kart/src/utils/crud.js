@@ -1,4 +1,4 @@
-var kart = require('nano')(process.env.DB_URL)
+var kart = require('nano')(process.env.DB_URL_SK)
 
 function AddToBasket(id, item) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout

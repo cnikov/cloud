@@ -20,12 +20,12 @@
 #      REVISION:  ---
 #===============================================================================
 
-echo "Wait (indefenitly) until the DB creation (name: ${DB_NAME})."
-echo "The DB URL is: ${DB_URL}"
-until curl --request PUT ${DB_URL} ; do
-  echo -e "\t DB (${DB_NAME}) wasn't created - trying again later..."
+echo "Wait (indefenitly) until the DB creation (name: ${DB_NAME_C})."
+echo "The DB URL is: ${DB_URL_C}"
+until curl --request PUT ${DB_URL_C} ; do
+  echo -e "\t DB (${DB_NAME_C}) wasn't created - trying again later..."
   sleep 2
 done
-echo "DB (${DB_NAME}) was created!"
+echo "DB (${DB_NAME_C}) was created!"
 echo "Start users service..."
 npm start
