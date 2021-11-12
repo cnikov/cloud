@@ -1,5 +1,5 @@
 var kart = require('nano')(process.env.DB_URL_C)
-
+var dbid = "b5c3b922b0c90cb73d136ccc3a0008c6"
 function AddProduct(name, price, image, category, id) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
   //lol si ca marche (aucun espoir)
@@ -36,9 +36,10 @@ function AddProduct(name, price, image, category, id) {
 
 function getProduct() {
   return new Promise((resolve, reject) => {
-    kart.get((error, success) => {
+    kart.get(dbid)
+    .then((error, success) => {
       if (success) {
-        console.log(success)
+        //console.log(success)
         resolve(success)
       } else {
         reject(new Error(`To fetch information of basket (${category}). Reason: ${error.reason}.`))
