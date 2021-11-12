@@ -2,7 +2,7 @@ const products = require('../shopping-cart/components/catalog')
 import axios from 'axios' // we use this library as HTTP client
 // you can overwrite the URI of the authentication microservice
 // with this environment variable
-const url = process.env.REACT_APP_AUTH_SERVICE_URL || 'http://localhost:3002'
+const url = process.env.REACT_APP_CATALOG || 'http://localhost:3002'
 
 class LocalPurchases {
 
