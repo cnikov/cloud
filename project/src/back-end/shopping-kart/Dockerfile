@@ -9,6 +9,7 @@ ENV PATH /usr/src/shopping_kart/node_modules/.bin:${PATH}
 ADD package.json .
 RUN npm install
 # source files of the authentication service
+ADD gulpfile.js .
 ADD src src
 ADD boot-in-order.sh .
 # header for loggining messages
