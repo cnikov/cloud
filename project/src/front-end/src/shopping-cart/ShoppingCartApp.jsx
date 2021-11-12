@@ -101,6 +101,10 @@ class ShoppingCartApp extends Component {
       cart: myCart,
       cartBounce: true
     })
+    axios.post(`${url}/shopping_kart/${myCart}`)
+          .then((res) => {
+             res.cart = cart
+          })
     setTimeout(function () {
       this.setState({ cartBounce: false })
     }.bind(this), 1000)
