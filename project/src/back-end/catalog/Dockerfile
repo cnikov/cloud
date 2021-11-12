@@ -2,6 +2,8 @@
 FROM node:6.11-alpine
 # set working directory
 WORKDIR /usr/src/catalog
+# we need CURL to verify that the key-value storage is running (see boot-in-order.sh)
+RUN apk update && apk add curl
 # let NPM packages be called anywhere within the container
 ENV PATH /usr/src/catalog/node_modules/.bin:${PATH}
 ADD package.json .
