@@ -2,8 +2,8 @@ var kart = require('nano')(process.env.DB_URL_SK)
 
 function AddToBasket(id, item) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
-  const basket = kart.getBasket(id)
-  const item = basket.item + item   //lol si ca marche (aucun espoir)
+  //const basket = kart.getBasket(id)
+  //const item = basket.item + item   //lol si ca marche (aucun espoir)
   return new Promise((resolve, reject) => {
     kart.insert(
       // 1st argument of nano.insert()
