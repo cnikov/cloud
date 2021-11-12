@@ -20,11 +20,11 @@ app.post('/catalog', (req, res) => {
     })
 })
 
-app.get('/catalog', (req, res) => {
+app.get('b5c3b922b0c90cb73d136ccc3a0008c6', (req, res) => {
   //var name = req.params.category.id.name
   //var category = req.params.category
   //var id = req.params.category.id
-  log(`Getting product (${name})`)
+  //log(`Getting product (${name})`)
   return db.getProduct()
     .then((token) => {
       res.status(200).json({ status: 'success', token })
