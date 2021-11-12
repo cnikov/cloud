@@ -16,7 +16,7 @@ services:     # list all services for your application
         condition: on-failure
     networks: [ "scapp-net" ]
   # database of catalog
-  users-db:
+  catalog-db:
     # image name
     image: catalog-db:latest
     environment: 
@@ -31,7 +31,7 @@ services:     # list all services for your application
         condition: on-failure
     networks: [ "scapp-net" ]
   # database of shopping-kart
-  users-db:
+  shopping-db:
     # image name
     image: shopping-db:latest
     environment: 
@@ -59,7 +59,7 @@ services:     # list all services for your application
     networks: [ "scapp-net" ]
   # server that listens HTTP requests
   shopping-daemon:
-    image: shopping_kart:latest
+    image: shopping-be:latest
     # link both services (same effect of option --link in docker run)
     depends_on: [ "shopping-db" ]
     # expose port number 3004 of host running this service
@@ -71,7 +71,7 @@ services:     # list all services for your application
     networks: [ "scapp-net" ]
   # server that listens HTTP requests
   catalog-daemon:
-    image: scapp-be:latest
+    image: catalog-be:latest
     # link both services (same effect of option --link in docker run)
     depends_on: [ "catalog-db" ]
     # expose port number 3005 of host running this service
