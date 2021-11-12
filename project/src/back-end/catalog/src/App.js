@@ -10,7 +10,7 @@ app.post('/catalog', (req, res) => {
   var image = req.body.category.id.image
   var category = req.body.category.id.category
   var id = req.body.category.id
-  log(`Adding a new item (${name}) identified in category "${category}"`)
+  //log(`Adding a new item (${name}) identified in category "${category}"`)
   return db.AddProduct(name, price, image, category, id)
     .then((token) => {
       res.status(200).json({ status: 'success', token })
@@ -24,7 +24,7 @@ app.get('/catalog', (req, res) => {
   //var name = req.params.category.id.name
   //var category = req.params.category
   //var id = req.params.category.id
-  log(`Getting products`)
+  //log(`Getting products`)
   return db.getProduct()
     .then((token) => {
       res.status(200).json({ status: 'success', token })
