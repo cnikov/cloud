@@ -34,11 +34,11 @@ function AddProduct(name, price, image, category, id) {
   })
 }
 
-function getProduct(id) {
+function getProduct() {
   return new Promise((resolve, reject) => {
     kart.get((error, success) => {
       if (success) {
-        resolve(id)
+        resolve(success)
       } else {
         reject(new Error(`To fetch information of basket (${category}). Reason: ${error.reason}.`))
       }
