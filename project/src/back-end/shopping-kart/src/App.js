@@ -17,7 +17,7 @@ appS.post('/shop', (req, res) => {
     })
 })
 
-app.get('/shop/:id', (req, res) => {
+appS.get('/shop/:id', (req, res) => {
   var id = req.params.id
   //log(`Getting basket (${id})`)
   return db.getBasket(id)
