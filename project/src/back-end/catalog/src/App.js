@@ -1,4 +1,4 @@
-//const express = require('express')
+const express = require('express')
 //const log = require('debug')('users-d')
 
 const app = express.Router()
