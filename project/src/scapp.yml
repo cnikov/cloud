@@ -16,7 +16,7 @@ services:     # list all services for your application
         condition: on-failure
     networks: [ "scapp-net" ]
   # database of catalog
-  users-db:
+  catalog-db:
     # image name
     image: catalog-db:latest
     environment: 
@@ -31,7 +31,7 @@ services:     # list all services for your application
         condition: on-failure
     networks: [ "scapp-net" ]
   # database of shopping-kart
-  users-db:
+  shopping-db:
     # image name
     image: shopping-db:latest
     environment: 
