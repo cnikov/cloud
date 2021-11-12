@@ -21,9 +21,9 @@ app.post('/catalog', (req, res) => {
 })
 
 app.get('/catalog', (req, res) => {
-  var name = req.params.category.id.name
-  var category = req.params.category
-  var id = req.params.category.id
+  //var name = req.params.category.id.name
+  //var category = req.params.category
+  //var id = req.params.category.id
   log(`Getting product (${name})`)
   return db.getProduct()
     .then((token) => {
