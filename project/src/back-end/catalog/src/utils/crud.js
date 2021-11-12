@@ -1,17 +1,22 @@
 var kart = require('nano')(process.env.DB_URL)
 
-function AddProduct(name, price, image, category) {
+function AddProduct(name, price, image, category, id) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
-  const basket = kart.getBasket(id)
-  const item = basket.item + item   //lol si ca marche (aucun espoir)
+  //lol si ca marche (aucun espoir)
   return new Promise((resolve, reject) => {
     kart.insert(
       // 1st argument of nano.insert()
       {
-        'name': name,
-        'price': price,
-        'image': image,
-        'category': category
+        category: {
+          id: {
+            'name': name,
+            'price': price,
+            'image': image,
+            'category': category
+          }
+
+        }
+
 
       },
       // 2nd argument of nano.insert()
@@ -29,7 +34,7 @@ function AddProduct(name, price, image, category) {
   })
 }
 
-function getProduct(name, category) {
+function getProduct(name, category, id) {
   return new Promise((resolve, reject) => {
     kart.get(category, (error, success) => {
       if (success) {

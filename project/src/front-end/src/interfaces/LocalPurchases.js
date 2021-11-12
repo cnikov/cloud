@@ -1,17 +1,30 @@
 const products = require('../shopping-cart/components/catalog')
+import axios from 'axios' // we use this library as HTTP client
+// you can overwrite the URI of the authentication microservice
+// with this environment variable
+const url = process.env.REACT_APP_AUTH_SERVICE_URL || 'http://localhost:3002'
 
 class LocalPurchases {
-  constructor () {
+
+  constructor() {
+
     window.localStorage.setItem('purchases', JSON.stringify([]))
   }
-  setHandlers (setProductsList, setPurHistory) {
+  setHandlers(setProductsList, setPurHistory) {
     this.setProducts = setProductsList
     this.setPurHistory = setPurHistory
   }
-  fetchProducts () {
-    this.setProducts(products)
+  fetchProducts() {
+    axios.get(`${url}/catalog/`)
+      .then((res) => {
+        this.setProducts(res)
+      })
+      .catch((error) => {
+        console.error(error.message)
+        onErr(`User [${data.username}] is not registered or his credentials are incorrect.`)
+      })
   }
-  fetchHistory () {
+  fetchHistory() {
     var purchases = JSON.parse(window.localStorage.getItem('purchases'))
     purchases = purchases.map((pur) => {
       pur.items = pur.items.map((i) => {
@@ -23,7 +36,7 @@ class LocalPurchases {
     })
     this.setPurHistory(purchases)
   }
-  postPurchase (p, items) {
+  postPurchase(p, items) {
     p['items'] = items
     var purchases = JSON.parse(window.localStorage.getItem('purchases'))
     purchases.push(p)

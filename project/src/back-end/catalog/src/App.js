@@ -1,16 +1,17 @@
 //const express = require('express')
 //const log = require('debug')('users-d')
 
-const appS = express.Router()
+const app = express.Router()
 const db = require('./utils/crud')
 
-appS.post('/catalog', (req, res) => {
-  var name = req.body.name
-  var price = req.body.price
-  var image = req.body.image
-  var category = req.body.category
+app.post('/catalog', (req, res) => {
+  var name = req.body.category.id.name
+  var price = req.body.category.id.price
+  var image = req.body.category.id.image
+  var category = req.body.category.id.category
+  var id = req.body.category.id
   log(`Adding a new item (${name}) identified in category "${category}"`)
-  return db.AddProduct(name, price, image, category)
+  return db.AddProduct(name, price, image, category, id)
     .then((token) => {
       res.status(200).json({ status: 'success', token })
     })
@@ -19,11 +20,12 @@ appS.post('/catalog', (req, res) => {
     })
 })
 
-app.get('/catalog/:name/:category', (req, res) => {
-  var name = req.params.name
+app.get('/catalog/:category/:id/:name', (req, res) => {
+  var name = req.params.category.id.name
   var category = req.params.category
+  var id = req.params.category.id
   log(`Getting product (${name})`)
-  return db.getProduct(name, categiry)
+  return db.getProduct(name, category, id)
     .then((token) => {
       res.status(200).json({ status: 'success', token })
     })
@@ -32,4 +34,4 @@ app.get('/catalog/:name/:category', (req, res) => {
     })
 })
 
-module.exports = App
+module.exports = app
