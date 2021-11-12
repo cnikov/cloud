@@ -25,7 +25,7 @@ app.get('/catalog', (req, res) => {
   //var category = req.params.category
   //var id = req.params.category.id
   log(`Getting products`)
-  return db.getProduct(id)
+  return db.getProduct()
     .then((token) => {
       res.status(200).json({ status: 'success', token })
     })

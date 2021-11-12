@@ -36,7 +36,7 @@ function AddProduct(name, price, image, category, id) {
 
 function getProduct(id) {
   return new Promise((resolve, reject) => {
-    kart.get(id, (error, success) => {
+    kart.get((error, success) => {
       if (success) {
         resolve(id)
       } else {
