@@ -8,8 +8,8 @@ class LocalPurchases {
 
   constructor() {
 
-    window.localStorage.setItem('purchases', JSON.stringify([]))
-  }
+    window.localStorage.setItem('purchases', JSON.stringify([]))    //mettre les purchases du dernier panier
+  } //getUser --> db user puis avec le userID appeler getBasket --> db shopping-db
   setHandlers(setProductsList, setPurHistory) {
     this.setProducts = setProductsList
     this.setPurHistory = setPurHistory
@@ -25,7 +25,7 @@ class LocalPurchases {
       })
   }
   fetchHistory() {
-    var purchases = JSON.parse(window.localStorage.getItem('purchases'))
+    var purchases = JSON.parse(window.localStorage.getItem('purchases'))   //mettre les purchases du dernier panier?
     purchases = purchases.map((pur) => {
       pur.items = pur.items.map((i) => {
         i.name = products[i.category][i.id]['name']

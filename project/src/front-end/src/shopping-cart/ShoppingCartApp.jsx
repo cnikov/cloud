@@ -4,15 +4,18 @@ import Products from './components/Products'
 import QuickView from './components/QuickView'
 import Checkout from './components/Checkout'
 import LocalPurchases from '../interfaces/LocalPurchases'
-
+import axios from 'axios' // we use this library as HTTP client
+const url = process.env.REACT_APP_SHOPKART_SERVICE_URL || 'http://localhost:3004'
 const PurchasesService = LocalPurchases
-var kart = require('nano')(process.env.DB_URL_KART)
+//var kart = require('nano')(process.env.DB_URL_KART) nano pour backend non?
+
+
 
 
 class ShoppingCartApp extends Component {
 
   componentWillMount() {
-    this.initialiseStacte(true)
+    this.initialiseState(true)
   }
   constructor(props) {
     super(props)
@@ -64,8 +67,8 @@ class ShoppingCartApp extends Component {
         oldPurchases: []
       })
     }
-    this.state.purService.fetchProducts()
-    this.state.purService.fetchHistory()
+    this.state.purService.fetchProducts()   //recherche les anciens produits dans la db (d'un ancien panier)
+    this.state.purService.fetchHistory()  
   }
 
   handleCategory(event) { // Filter by Category
@@ -77,6 +80,13 @@ class ShoppingCartApp extends Component {
     let myCart = this.state.cart
     let productID = chosenProduct.id
     let productQty = chosenProduct.quantity
+    /*axios.get(`${url}/shopping_kart/${myCart}`) // Perform an HTTP GET rquest to a url.
+            .then((res) => {
+                //window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
+                this.products = res.products
+                this.onSucc(`Welcome back [${data.username}]!`)
+                this.changeRoute('/')
+            })*/
     if (this.checkProduct(productID)) {
       let index = myCart.findIndex(x => x.id === productID)
       myCart[index].quantity = Number(myCart[index].quantity) + Number(productQty)
