@@ -14,7 +14,7 @@ ENV DEBUG catalog-db
 # database name
 ENV DB_NAME_C catalog
 # name of container running CouchDB
-ENV DB_HOST_C item-db
+ENV DB_HOST_C catalog-db
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
 ENV ADMIN_NAME admin
 ENV ADMIN_PASSW admin
