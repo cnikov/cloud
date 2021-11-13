@@ -26,6 +26,7 @@ until curl --request PUT ${DB_URL_C} ; do
   echo -e "\t DB (${DB_NAME_C}) wasn't created - trying again later..."
   sleep 2
 done
+curl -X POST --data "name=chou&price=2&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg&category=non" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
 
 echo "DB (${DB_NAME_C}) was created!"
 echo "Start users service..."
