@@ -21,14 +21,20 @@ function AddProduct(name, price, image, category, id) {
 
     //   })
     // })
-
-
-    kart.insert({
-      catalog: newdb
-
-    }, 'catalog',
-      // 2nd argument of nano.insert()
-      // callback to execute once the request to the DB is complete
+    kart.insert(
+      // 1st argument of nano.insert()
+      {
+        "catalog": {
+          category: {
+            id: {
+              'name': name,
+              'price': price,
+              'image': image,
+              'category': category
+            }
+          }
+        }
+      }, 'catalog',
       (error, success) => {
         if (success) {
           resolve(name)  //quand on fera le log, c'est ce qui va apparaitre?
