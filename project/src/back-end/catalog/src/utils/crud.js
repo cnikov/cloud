@@ -7,11 +7,13 @@ function AddProduct(name, price, image, category) {
     kart.insert(
       // 1st argument of nano.insert()
       {
+        category: {
+          'name': name,
+          'price': price,
+          'image': image,
+          'category': category
+        }
 
-        'name': name,
-        'price': price,
-        'image': image,
-        'category': category
 
 
 
