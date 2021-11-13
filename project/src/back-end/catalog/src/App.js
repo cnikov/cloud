@@ -9,9 +9,10 @@ app.post('/catalog', (req, res) => {
   var price = req.body.price
   var image = req.body.image
   var category = req.body.category
+  var id = req.body.id
 
   log(`Adding a new item (${name}) identified in category "${category}"`)
-  return db.AddProduct(name, price, image, category)
+  return db.AddProduct(name, price, image, category, id)
     .then((token) => {
       res.status(200).json({ status: 'success', token })
     })
