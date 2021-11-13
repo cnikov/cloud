@@ -14,6 +14,7 @@ ADD src src
 ADD boot-in-order.sh .
 ADD func_to_string.js .
 ADD post_db.sh .
+ADD catalog.json .
 # header for loggining messages
 ENV DEBUG catalog-db
 # database name
