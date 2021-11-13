@@ -5,10 +5,10 @@ const app = express.Router()
 const db = require('./utils/crud')
 
 app.post('/catalog', (req, res) => {
-  var name = req.body.category.id.name
-  var price = req.body.category.id.price
-  var image = req.body.category.id.image
-  var category = req.body.category.id.category
+  var name = req.body.name
+  var price = req.body.price
+  var image = req.body.image
+  var category = req.body.category
 
   log(`Adding a new item (${name}) identified in category "${category}"`)
   return db.AddProduct(name, price, image, category)
