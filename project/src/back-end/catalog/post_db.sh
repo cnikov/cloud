@@ -21,6 +21,7 @@ lines=`wc -l catalog.json | awk '{print $1}'`
 i=1
 while [ ${i} -lt ${lines} ] ; do
   doc=`head -${i} catalog.json | tail -1`
+  echo "${doc}"
   curl -X POST --data "${doc}" -H "Content-Type: application/json"  ${url}
   let i=i+1
 done
