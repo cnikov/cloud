@@ -3,28 +3,23 @@ function AddProduct(name, price, image, category, id) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
   //lol si ca marche (aucun espoir)
   return new Promise((resolve, reject) => {
-    kart.insert(
+    const db = kart.get('catalog')
+    var newdb = db.token.catalog.category.insert(
       // 1st argument of nano.insert()
       {
-        "catalog": {
-          category: {
-            id: {
-              'name': name,
-              'price': price,
-              'image': image,
-              'category': category
-            }
-
+        category: {
+          id: {
+            'name': name,
+            'price': price,
+            'image': image,
+            'category': category
           }
         }
+      })
+    kart.insert({
+      'catalog': newdb
 
-
-
-
-
-
-
-      }, 'catalog',
+    }, 'catalog',
       // 2nd argument of nano.insert()
       // callback to execute once the request to the DB is complete
       (error, success) => {
