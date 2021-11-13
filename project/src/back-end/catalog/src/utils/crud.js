@@ -17,7 +17,7 @@ function AddProduct(name, price, image, category, id) {
         }
       })
     kart.insert({
-      'catalog': newdb
+      catalog: newdb
 
     }, 'catalog',
       // 2nd argument of nano.insert()
