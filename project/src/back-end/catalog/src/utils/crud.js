@@ -4,49 +4,42 @@ function AddProduct(name, price, image, category, id) {
   //lol si ca marche (aucun espoir)
   return new Promise((resolve, reject) => {
     var catalog = 'catalog'
-    const db = kart.get(catalog, function (err, doc) {
-      updaterev = doc._rev;
-      doc.catalog.category.id['name'] = name;
-      doc.catalog.category.id['price'] = price;
-      doc.catalog.category.id['image'] = image;
-      doc.catalog.category.id['category'] = category;
-      kart.insert({
-        _rev: updaterev,
-        doc
+    //   kart.get(catalog, function (err, doc) {
+    //     doc.catalog.category.id['name'] = name;
+    //     doc.catalog.category.id['price'] = price;
+    //     doc.catalog.category.id['image'] = image;
+    //     doc.catalog.category.id['category'] = category;
+    //     kart.insert(doc, function (err, body, header) {
+    //       if (!err) {
+    //         console.log(body);
+    //         res.send('update website succeed');
+    //       }
+    //       else {
+    //         console.log(err.error);
+    //       }
+    //     })
+
+    //   })
+    // })
 
 
+    kart.insert({
+      catalog: newdb
 
-
-
-      }, catalog, function (err, body, header) {
-        if (!err) {
-          console.log(body);
-          res.send('update website succeed');
+    }, 'catalog',
+      // 2nd argument of nano.insert()
+      // callback to execute once the request to the DB is complete
+      (error, success) => {
+        if (success) {
+          resolve(name)  //quand on fera le log, c'est ce qui va apparaitre?
+        } else {
+          reject(
+            new Error(`In adding (${name}). Reason: ${error.reason}.`)
+          )
         }
-        else {
-          console.log(err.error);
-        }
-      });
-    }),)
-
-
-  //   kart.insert({
-  //     catalog: newdb
-
-  //   }, 'catalog',
-  //     // 2nd argument of nano.insert()
-  //     // callback to execute once the request to the DB is complete
-  //     (error, success) => {
-  //       if (success) {
-  //         resolve(name)  //quand on fera le log, c'est ce qui va apparaitre?
-  //       } else {
-  //         reject(
-  //           new Error(`In adding (${name}). Reason: ${error.reason}.`)
-  //         )
-  //       }
-  //     }
-  //   )
-  // })
+      }
+    )
+  })
 }
 
 function getProduct(dbid) {
