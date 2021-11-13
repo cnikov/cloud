@@ -11,7 +11,7 @@ app.post('/catalog', (req, res) => {
   var category = req.body.category.id.category
   var id = req.body.category.id
   log(`Adding a new item (${name}) identified in category "${category}"`)
-  return db.AddProduct(name, price, image, category, id)
+  return null
     .then((token) => {
       res.status(200).json({ status: 'success', token })
     })
