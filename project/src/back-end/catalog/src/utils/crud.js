@@ -17,7 +17,7 @@ function AddProduct(name, price, image, category) {
 
 
 
-      },
+      }, 'catalog',
       // 2nd argument of nano.insert()
       // callback to execute once the request to the DB is complete
       (error, success) => {
