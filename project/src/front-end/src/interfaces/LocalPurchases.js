@@ -2,7 +2,7 @@ const products = require('../shopping-cart/components/catalog')
 import axios from 'axios' // we use this library as HTTP client
 // you can overwrite the URI of the authentication microservice
 // with this environment variable
-const url = 'http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
+const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
 
 class LocalPurchases {
 
@@ -15,7 +15,8 @@ class LocalPurchases {
     this.setPurHistory = setPurHistory
   }
   fetchProducts() {
-    axios.get(`${url}/catalog/catalog`)
+    var catalog = 'catalog'
+    axios.get(`${url}/catalog/${catalog}`)
       .then((res) => {
         this.setProducts(res)
       })
