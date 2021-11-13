@@ -15,7 +15,7 @@ class LocalPurchases {
     this.setPurHistory = setPurHistory
   }
   fetchProducts() {
-    axios.get(`${url}/catalog`)
+    axios.get(`${url}/catalog/catalog`)
       .then((res) => {
         this.setProducts(res)
       })
