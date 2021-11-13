@@ -55,7 +55,7 @@ module.exports = {
 
   "_id": "catalog",
   "_rev": "1-2948f27bae25488caf96c0674f7e00da",
-  Vegetable: {
+  Vegetables: {
     1: {
       "name": "chou",
       "price": "2",
