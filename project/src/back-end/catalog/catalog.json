@@ -1,5 +1,6 @@
 {
     "_id": "catalog",
+    "_rev": "1-4f442fdd5d81d325160877a741653a6d",
     "Vegetables": {
         "1": {
             "name": "Brocolli",
@@ -9,7 +10,7 @@
         },
         "2": {
             "name": "Cauliflower",
-            "price": 6.30,
+            "price": 6.3,
             "image": "https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/cauliflower.jpg",
             "category": "Vegetables"
         }
