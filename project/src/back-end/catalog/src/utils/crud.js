@@ -40,15 +40,14 @@ function AddProduct(name, price, image, category, id) {
 
 function getProduct() {
   return new Promise((resolve, reject) => {
-    kart.get(dbid)
-      .then((error, success) => {
-        if (success) {
-          //console.log(success)
-          resolve(success)
-        } else {
-          reject(new Error(`To fetch information of basket (${category}). Reason: ${error.reason}.`))
-        }
-      })
+    kart.get(dbid, (error, success) => {
+      if (success) {
+        //console.log(success)
+        resolve(success)
+      } else {
+        reject(new Error(`To fetch information of basket (${category}). Reason: ${error.reason}.`))
+      }
+    })
   })
 }
 
