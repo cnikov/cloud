@@ -1,5 +1,4 @@
 var kart = require('nano')(process.env.DB_URL_C)
-var dbid = "b5c3b922b0c90cb73d136ccc3a0008c6"
 function AddProduct(name, price, image, category, id) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
   //lol si ca marche (aucun espoir)
@@ -7,15 +6,18 @@ function AddProduct(name, price, image, category, id) {
     kart.insert(
       // 1st argument of nano.insert()
       {
-        category: {
-          id: {
-            'name': name,
-            'price': price,
-            'image': image,
-            'category': category
-          }
+        "catalog": {
+          category: {
+            id: {
+              'name': name,
+              'price': price,
+              'image': image,
+              'category': category
+            }
 
+          }
         }
+
 
 
 
