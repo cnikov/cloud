@@ -38,7 +38,7 @@ function AddProduct(name, price, image, category, id) {
   })
 }
 
-function getProduct() {
+function getProduct(dbid) {
   return new Promise((resolve, reject) => {
     kart.get(dbid, (error, success) => {
       if (success) {
