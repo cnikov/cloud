@@ -19,7 +19,7 @@ class LocalPurchases {
 
     axios.get(`${url}/catalog/${catalog}/`)
       .then((res) => {
-        this.setProducts(res.data)
+        this.setProducts(res.data.token.catalog)
 
       })
       .catch((error) => {
