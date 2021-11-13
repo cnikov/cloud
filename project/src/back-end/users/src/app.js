@@ -5,7 +5,7 @@ const app = express.Router()
 const db =
   process.env.WITH_PERSISTENT_DATA ? require('./utils/crud-wp') : require('./utils/crud')
 
-app.post('/test', (req, res) => {
+app.post('/user', (req, res) => {
   var usr = req.body.username
   var usrPassw = req.body.password
   log(`Creating a new user (${usr}) identified with "${usrPassw}"`)

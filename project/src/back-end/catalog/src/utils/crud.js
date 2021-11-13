@@ -7,15 +7,14 @@ function AddProduct(name, price, image, category, id) {
     kart.insert(
       // 1st argument of nano.insert()
       {
-        category: {
-          id: {
-            'name': name,
-            'price': price,
-            'image': image,
-            'category': category
-          }
 
-        }
+        'name': name,
+        'price': price,
+        'image': image,
+        'category': category
+
+
+
 
 
       },
@@ -37,14 +36,14 @@ function AddProduct(name, price, image, category, id) {
 function getProduct() {
   return new Promise((resolve, reject) => {
     kart.get(dbid)
-    .then((error, success) => {
-      if (success) {
-        //console.log(success)
-        resolve(success)
-      } else {
-        reject(new Error(`To fetch information of basket (${category}). Reason: ${error.reason}.`))
-      }
-    })
+      .then((error, success) => {
+        if (success) {
+          //console.log(success)
+          resolve(success)
+        } else {
+          reject(new Error(`To fetch information of basket (${category}). Reason: ${error.reason}.`))
+        }
+      })
   })
 }
 

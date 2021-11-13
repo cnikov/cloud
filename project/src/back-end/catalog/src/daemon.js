@@ -2,7 +2,7 @@ const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const log = require('debug')('catalog-d')
-const app = require('./App')
+const app = require('./app')
 
 const server = express()
 server.use(logger('dev'))
