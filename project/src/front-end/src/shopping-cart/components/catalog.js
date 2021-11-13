@@ -1,4 +1,5 @@
 module.exports = {
+  "_id": "catalog",
   Vegetables: {
     1: {
       'name': 'Brocolli',
