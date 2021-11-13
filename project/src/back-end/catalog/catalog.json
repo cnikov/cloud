@@ -1,0 +1,17 @@
+{
+    "_id": "catalog",
+    "Vegetables": {
+        "1": {
+            "name": "Brocolli",
+            "price": 2.73,
+            "image": "https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg",
+            "category": "Vegetables"
+        },
+        "2": {
+            "name": "Cauliflower",
+            "price": 6.30,
+            "image": "https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/cauliflower.jpg",
+            "category": "Vegetables"
+        }
+    }
+}
