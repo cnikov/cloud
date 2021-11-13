@@ -45,7 +45,7 @@ function getProduct() {
         //console.log(success)
         resolve(success)
       } else {
-        reject(new Error(`To fetch information of basket (${category}). Reason: ${error.reason}.`))
+        reject(new Error(`To fetch information of basket. Reason: ${error.reason}.`))
       }
     })
   })
