@@ -30,7 +30,7 @@ echo "DB (${DB_NAME_C}) was created!"
 echo "Start users service..."
 npm start
 cd jsons
-source fill_db.sh ${DB_URL_C}
+source post_db.sh ${DB_URL_C}
 cd ..
 
 echo "Apply a formatter for each view"
