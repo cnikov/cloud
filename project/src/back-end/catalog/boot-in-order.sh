@@ -29,9 +29,8 @@ until curl --request PUT ${DB_URL_C} ; do
 echo "DB (${DB_NAME_C}) was created!"
 echo "Start users service..."
 npm start
-cd jsons
 source post_db.sh ${DB_URL_C}
-cd ..
+
 
 echo "Apply a formatter for each view"
 mkdir formatter_output
