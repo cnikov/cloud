@@ -29,7 +29,7 @@ done
 
 echo "DB (${DB_NAME_C}) was created!"
 echo "Start users service..."
-npm start
+
 source post_db.sh ${DB_URL_C}
 
 
@@ -54,3 +54,4 @@ done
 echo -e "\tDONE"
 
 echo "END OF ${0}"
+npm start
