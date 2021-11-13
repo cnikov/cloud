@@ -25,7 +25,7 @@ echo "The DB URL is: ${DB_URL_C}"
 until curl --request PUT ${DB_URL_C} ; do
   echo -e "\t DB (${DB_NAME_C}) wasn't created - trying again later..."
   sleep 2
-done
+
 echo "DB (${DB_NAME_C}) was created!"
 echo "Start users service..."
 npm start
