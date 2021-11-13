@@ -15,7 +15,7 @@ ADD boot-in-order.sh .
 # header for loggining messages
 ENV DEBUG catalog-db
 # database name
-ENV DB_NAME_C catalog
+ENV DB_NAME_C catalogs
 # name of container running CouchDB
 ENV DB_HOST_C catalog-db
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
