@@ -18,6 +18,7 @@
 #===============================================================================
 url=${1}
 lines=`wc -l catalog.json | awk '{print $1}'`
+echo "${lines}"
 i=1
 while [ ${i} -lt ${lines} ] ; do
   doc=`head -${i} catalog.json | tail -1`
