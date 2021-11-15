@@ -12,7 +12,7 @@ function AddProduct(name, price, image, category, id) {
         'category': category
       }
     }
-    const dblist = catalog.head('catalog/catalog')
+    const dblist = catalog.get('catalog')
     console.log(dblist)
     if(dblist != null){
       
