@@ -12,13 +12,15 @@ function AddProduct(name, price, image, category, id) {
         'category': category
       }
     }
-    const doc = catalog.get(id_db)
-    if(doc !=null){
+    try{const doc = catalog.get(id_db)
+    
       const doc = catalog.get(id_db)
       doc[category][id].add(new_product)
       catalog.save(doc);
-    }
-    else{
+    }catch{
+
+    
+    
       catalog.insert(
         // 1st argument of nano.insert()
         {
