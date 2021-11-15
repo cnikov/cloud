@@ -12,7 +12,7 @@ function AddProduct(name, price, image, category, id) {
         'category': category
       }
     }
-    const dblist = await catalog.list()
+    const dblist = catalog.list()
     if(dblist == null){
       const doc = catalog.get(id_db)
       doc[category.id].add(new_product)
