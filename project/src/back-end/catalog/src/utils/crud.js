@@ -12,7 +12,7 @@ function AddProduct(name, price, image, category, id) {
         'category': category
       }
     }
-    const dblist = await nano.db.list()
+    const dblist = await catalog.list()
     if(dblist == null){
       const doc = catalog.get(id_db)
       doc[category.id].add(new_product)
