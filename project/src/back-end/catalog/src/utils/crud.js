@@ -15,7 +15,7 @@ function AddProduct(name, price, image, category, id) {
       }
     }
     var catalogs = 'catalog'
-    const dblist = catalog.info(id_db)
+    const dblist = catalog.list()
     console.log(dblist)
     if(dblist != null){
       
