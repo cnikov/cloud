@@ -1,5 +1,5 @@
 const express = require('express')
-const log = require('debug')('users-d')
+const log = require('debug')('users-db')
 
 const app = express.Router()
 const db =
@@ -8,8 +8,10 @@ const db =
 app.post('/user', (req, res) => {
   var usr = req.body.username
   var usrPassw = req.body.password
+  
+  
   log(`Creating a new user (${usr}) identified with "${usrPassw}"`)
-  return db.createUser(usr, usrPassw)
+  return db.createUser(usr, usrPassw,permission)
     .then((token) => {
       res.status(200).json({ status: 'success', token })
     })

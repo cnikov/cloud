@@ -15,9 +15,7 @@ function AddProduct(name, price, image, category, id) {
       }
     }
     var catalogs = 'catalog'
-    const dblist = catalog.listAsStream()
-    .on('error', (e) => console.error('error', e))
-    .pipe(process.stdout);
+    const dblist = catalog.info()
     console.log(dblist)
     if(dblist != null){
       

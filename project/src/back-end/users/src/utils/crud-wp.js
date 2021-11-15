@@ -12,7 +12,9 @@ function equalPassws(usrPass, usrDbPass) {
 
 function createUser(usrName, passw) {
 
+
   return new Promise((resolve, reject) => {
+    
     users.insert(
       // 1st argument of nano.insert()
       {
