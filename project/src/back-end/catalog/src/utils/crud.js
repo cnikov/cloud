@@ -16,7 +16,7 @@ function AddProduct(name, price, image, category, id) {
     }
     var catalogs = 'catalog'
     const dblist = catalog.list()
-    console.log(dblist)
+    console.log("bited")
     if(dblist != null){
       
       
