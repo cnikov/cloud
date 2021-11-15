@@ -12,12 +12,15 @@ function AddProduct(name, price, image, category, id) {
         'category': category
       }
     }
-    try{
+    const dblist = await nano.db.list()
+    if(dblist == null){
       const doc = catalog.get(id_db)
       doc[category.id].add(new_product)
       catalog.destroy(id_db)
-      catalog.insert(doc)
-    }catch(error){
+      catalog.insert(doc)}
+      else{
+      
+    
       catalog.insert(
         // 1st argument of nano.insert()
         {
@@ -42,7 +45,7 @@ function AddProduct(name, price, image, category, id) {
           }
         }
       )
-    }
+      }
     //   catalog.get(catalog, function (err, doc) {
     //     doc.catalog.category.id['name'] = name;
     //     doc.catalog.category.id['price'] = price;
