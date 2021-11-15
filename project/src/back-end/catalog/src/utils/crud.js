@@ -5,7 +5,7 @@ function AddProduct(name, price, image, category, id) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
   //lol si ca marche (aucun espoir)
   return new Promise((resolve, reject) => {
-    const id_db ='catalog'
+    const id_db = 'catalog'
     const new_product = {
       id: {
         'name': name,
@@ -15,19 +15,20 @@ function AddProduct(name, price, image, category, id) {
       }
     }
     var catalogs = 'catalog'
-    const dblist = catalog.get(id_db)
-    console.log(dblist.type)
-    if(dblist != null){
-      
-      
+    const dblist = catalog.info('catalog')
+    console.log(dblist)
+    if (dblist != null) {
+
+
       const doc = catalog.get(id_db)
-      
+
       doc[category.id].add(new_product)
       catalog.destroy(id_db)
-      catalog.insert(doc)}
-      else{
-      
-    
+      catalog.insert(doc)
+    }
+    else {
+
+
       catalog.insert(
         // 1st argument of nano.insert()
         {
@@ -52,7 +53,7 @@ function AddProduct(name, price, image, category, id) {
           }
         }
       )
-      }
+    }
     //   catalog.get(catalog, function (err, doc) {
     //     doc.catalog.category.id['name'] = name;
     //     doc.catalog.category.id['price'] = price;
@@ -70,7 +71,7 @@ function AddProduct(name, price, image, category, id) {
 
     //   })
     // })
-    
+
   })
 }
 
