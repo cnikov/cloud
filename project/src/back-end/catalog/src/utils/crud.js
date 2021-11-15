@@ -1,15 +1,55 @@
-var kart = require('nano')(process.env.DB_URL_C)
+var catalog = require('nano')(process.env.DB_URL_C)
 function AddProduct(name, price, image, category, id) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
   //lol si ca marche (aucun espoir)
   return new Promise((resolve, reject) => {
-    var catalog = 'catalog'
-    //   kart.get(catalog, function (err, doc) {
+    const id_db ='catalog'
+    const new_product = {
+      id: {
+        'name': name,
+        'price': price,
+        'image': image,
+        'category': category
+      }
+    }
+    const exist = await catalog.head(id_db)
+    if(exist !=null){
+      const doc = catalog.get(id_db)
+      doc[category][id].add(new_product)
+      catalog.save(doc);
+    }
+    else{
+      catalog.insert(
+        // 1st argument of nano.insert()
+        {
+          "catalog": {
+            category: {
+              id: {
+                'name': name,
+                'price': price,
+                'image': image,
+                'category': category
+              }
+            }
+          }
+        }, 'catalog',
+        (error, success) => {
+          if (success) {
+            resolve(name)  //quand on fera le log, c'est ce qui va apparaitre?
+          } else {
+            reject(
+              new Error(`In adding (${name}). Reason: ${error.reason}.`)
+            )
+          }
+        }
+      )
+    }
+    //   catalog.get(catalog, function (err, doc) {
     //     doc.catalog.category.id['name'] = name;
     //     doc.catalog.category.id['price'] = price;
     //     doc.catalog.category.id['image'] = image;
     //     doc.catalog.category.id['category'] = category;
-    //     kart.insert(doc, function (err, body, header) {
+    //     catalog.insert(doc, function (err, body, header) {
     //       if (!err) {
     //         console.log(body);
     //         res.send('update website succeed');
@@ -21,36 +61,13 @@ function AddProduct(name, price, image, category, id) {
 
     //   })
     // })
-    kart.insert(
-      // 1st argument of nano.insert()
-      {
-        "catalog": {
-          category: {
-            id: {
-              'name': name,
-              'price': price,
-              'image': image,
-              'category': category
-            }
-          }
-        }
-      }, 'catalog',
-      (error, success) => {
-        if (success) {
-          resolve(name)  //quand on fera le log, c'est ce qui va apparaitre?
-        } else {
-          reject(
-            new Error(`In adding (${name}). Reason: ${error.reason}.`)
-          )
-        }
-      }
-    )
+    
   })
 }
 
 function getProduct(dbid) {
   return new Promise((resolve, reject) => {
-    kart.get(dbid, (error, success) => {
+    catalog.get(dbid, (error, success) => {
       if (success) {
         //console.log(success)
         resolve(success)
@@ -64,5 +81,5 @@ function getProduct(dbid) {
 module.exports = {
   AddProduct,
   getProduct,
-  //getKart
+  //getcatalog
 }
