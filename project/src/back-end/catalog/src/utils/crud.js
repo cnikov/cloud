@@ -1,4 +1,5 @@
 var catalog = require('nano')(process.env.DB_URL_C)
+var database = require('nano')('http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog')
 
 
 function AddProduct(name, price, image, category, id) {
@@ -15,7 +16,7 @@ function AddProduct(name, price, image, category, id) {
       }
     }
     var catalogs = 'catalog'
-    const dblist = catalog.catalog.info()
+    const dblist = database.info()
     console.log(dblist)
     if (dblist != null) {
 
