@@ -27,6 +27,7 @@ build:
 	cd src/back-end/catalog/; docker build -t catalog-be .
 	cd src/back-end/shopping-kart/; docker build -t shopping-be .
 add:
-	curl -X POST --data "name=chou&price=2&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg&category=non" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
+	curl -X POST --data "name=chou&price=2&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg&category=non&id=1" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
+	curl -X POST --data "name=fkgjfgklj&price=2&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg&category=non&id=2" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
 stop:
 	docker stop $$(docker ps -aq)
