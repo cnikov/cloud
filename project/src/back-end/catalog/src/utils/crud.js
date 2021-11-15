@@ -1,4 +1,4 @@
-var catalog = require('nano')(process.env.DB_URL_C).use('catalog')
+var catalog = require('nano')(process.env.DB_URL_C)
 
 
 function AddProduct(name, price, image, category, id) {
