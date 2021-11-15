@@ -19,7 +19,6 @@ function AddProduct(name, price, image, category, id) {
 
     try {
 
-      a
       const doc = catalog.get(id_db)
       console.log("hey")
       doc[category.id].add(new_product)
