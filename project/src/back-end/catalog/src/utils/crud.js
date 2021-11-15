@@ -14,8 +14,9 @@ function AddProduct(name, price, image, category, id) {
     }
     try{
       const doc = catalog.get(id_db)
-      doc[category][id].add(new_product)
-      catalog.save(doc);
+      doc[category.id].add(new_product)
+      
+      catalog.fetch(doc);
     }catch(error){
       catalog.insert(
         // 1st argument of nano.insert()
