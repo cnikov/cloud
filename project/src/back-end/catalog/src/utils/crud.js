@@ -13,8 +13,10 @@ function AddProduct(name, price, image, category, id) {
       }
     }
     const dblist = catalog.list()
-    if(dblist == null){
+    if(dblist != NULL){
+      
       const doc = catalog.get(id_db)
+      
       doc[category.id].add(new_product)
       catalog.destroy(id_db)
       catalog.insert(doc)}
