@@ -12,8 +12,8 @@ function AddProduct(name, price, image, category, id) {
         'category': category
       }
     }
-    const exist = await catalog.head(id_db)
-    if(exist !=null){
+    const doc = catalog.get(id_db)
+    if(doc !=null){
       const doc = catalog.get(id_db)
       doc[category][id].add(new_product)
       catalog.save(doc);
