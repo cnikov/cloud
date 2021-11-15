@@ -17,9 +17,9 @@ class LocalPurchases {
   fetchProducts() {
     var catalog = 'catalog'
 
-    axios.get(`${url}/catalog/${catalog}/`)
+    axios.get(`${url}/catalog/`)
       .then((res) => {
-        this.setProducts(res.data.token.catalog)
+        this.setProducts(res.data.token)
 
       })
       .catch((error) => {
