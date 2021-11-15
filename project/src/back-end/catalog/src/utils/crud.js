@@ -14,7 +14,7 @@ function AddProduct(name, price, image, category, id) {
     }
     const dblist = catalog.list()
     console.log(dblist)
-    if(dblist != NULL){
+    if(dblist != null){
       
       
       const doc = catalog.get(id_db)
