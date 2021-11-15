@@ -12,8 +12,7 @@ function AddProduct(name, price, image, category, id) {
         'category': category
       }
     }
-    try{const doc = catalog.get(id_db)
-    
+    try{
       const doc = catalog.get(id_db)
       doc[category][id].add(new_product)
       catalog.save(doc);
