@@ -16,10 +16,7 @@ function AddProduct(name, price, image, category, id) {
       const doc = catalog.get(id_db)
       doc[category][id].add(new_product)
       catalog.save(doc);
-    }catch{
-
-    
-    
+    }catch(error){
       catalog.insert(
         // 1st argument of nano.insert()
         {
