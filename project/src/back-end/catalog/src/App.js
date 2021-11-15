@@ -9,10 +9,10 @@ app.post('/catalog', (req, res) => {
   var price = req.body.price
   var image = req.body.image
   var category = req.body.category
-  var id = req.body.id
+  //var id = req.body.id
 
   log(`Adding a new item (${name}) identified in category "${category}"`)
-  return db.AddProduct(name, price, image, category, id)
+  return db.AddProduct(name, price, image, category)
     .then((token) => {
       res.status(200).json({ status: 'success', token })
     })
@@ -21,8 +21,8 @@ app.post('/catalog', (req, res) => {
     })
 })
 
-app.get('/catalog/:id', (req, res) => {
-  var dbid = req.params.id
+app.get('/catalog/:name', (req, res) => {
+  var dbid = req.params.name
 
   return db.getProduct(dbid)
     .then((token) => {
