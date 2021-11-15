@@ -1,4 +1,4 @@
-var catalog = require('nano')(process.env.DB_URL_C)
+var catalog = require('nano')(process.env.DB_URL_C).use('catalog')
 
 
 function AddProduct(name, price, image, category, id) {
@@ -15,7 +15,7 @@ function AddProduct(name, price, image, category, id) {
       }
     }
     var catalogs = 'catalog'
-    const dblist = catalog.get(`catalog/${catalogs}/`)
+    const dblist = catalog.get(`catalog/`)
     console.log(dblist)
     if(dblist != null){
       
