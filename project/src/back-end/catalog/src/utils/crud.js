@@ -6,7 +6,7 @@ function AddProduct(name, price, image, category, id) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
   //lol si ca marche (aucun espoir)
   return new Promise((resolve, reject) => {
-    const id_db = 'catalog'
+    const id_db = 'catalog/catalog'
     const new_product = {
       id: {
         'name': name,
@@ -21,7 +21,7 @@ function AddProduct(name, price, image, category, id) {
 
       const doc = catalog.get(id_db)
       console.log("hey")
-      doc[category.id].add(new_product)
+      doc.add(new_product)
       catalog.destroy(id_db)
       catalog.insert(doc)
     }
