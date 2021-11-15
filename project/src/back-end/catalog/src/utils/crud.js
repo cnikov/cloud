@@ -16,18 +16,17 @@ function AddProduct(name, price, image, category, id) {
       }
     }
     var catalogs = 'catalog'
-    const dblist = database.info()
-    console.log(dblist)
-    if (dblist != null) {
 
+    try {
 
+      a
       const doc = catalog.get(id_db)
-
+      console.log("hey")
       doc[category.id].add(new_product)
       catalog.destroy(id_db)
       catalog.insert(doc)
     }
-    else {
+    catch (exception) {
 
 
       catalog.insert(
