@@ -1,4 +1,8 @@
 var catalog = require('nano')(process.env.DB_URL_C)
+import axios from 'axios' // we use this library as HTTP client
+// you can overwrite the URI of the authentication microservice
+// with this environment variable
+const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
 function AddProduct(name, price, image, category, id) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
   //lol si ca marche (aucun espoir)
@@ -12,7 +16,8 @@ function AddProduct(name, price, image, category, id) {
         'category': category
       }
     }
-    const dblist = catalog.get('catalog')
+    var catalogs = 'catalog'
+    const dblist = axios.get(`${url}/catalog/${catalogs}/`)
     console.log(dblist)
     if(dblist != null){
       
