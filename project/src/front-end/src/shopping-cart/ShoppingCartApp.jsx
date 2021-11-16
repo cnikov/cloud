@@ -5,7 +5,7 @@ import QuickView from './components/QuickView'
 import Checkout from './components/Checkout'
 import LocalPurchases from '../interfaces/LocalPurchases'
 import axios from 'axios' // we use this library as HTTP client
-const url = process.env.REACT_APP_SHOPKART_SERVICE_URL || 'http://localhost:3004'
+const url = process.env.REACT_APP_SHOPKART_SERVICE_URL | 'http://localhost:3006'
 const PurchasesService = LocalPurchases
 
 
