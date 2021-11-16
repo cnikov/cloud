@@ -30,7 +30,7 @@ class LocalPurchases {
             var id = 1
             console.log("list")
             console.log(categories.name);
-            console.log(categories);
+            console.log(categories.category);
             var cat = categories.category
             if (fetchItem === null) {
               console.log("premier if")
@@ -47,29 +47,29 @@ class LocalPurchases {
               console.log(fetchItem)
 
             }
-            else if (fetchItem.cat === null && i !== 0) {
-              console.log("deuxieme if")
-              fetchItem.cat = {
-                [id]: {
-                  'name': categories.name,
-                  'price': categories.price,
-                  'image': categories.image,
-                  'category': categories.category
-                }
+            // else if (fetchItem.cat === null && i !== 0) {
+            //   console.log("deuxieme if")
+            //   fetchItem.cat = {
+            //     [id]: {
+            //       'name': categories.name,
+            //       'price': categories.price,
+            //       'image': categories.image,
+            //       'category': categories.category
+            //     }
 
 
-              }
-              console.log(fetchItem)
-            }
-            else {
-              console.log("troisieme if")
-              fetchItem.cat.id = {
-                'name': categories.name,
-                'price': categories.price,
-                'image': categories.image,
-                'category': categories.category
-              }
-            }
+            //   }
+            //   console.log(fetchItem)
+            // }
+            // else {
+            //   console.log("troisieme if")
+            //   fetchItem.cat.id = {
+            //     'name': categories.name,
+            //     'price': categories.price,
+            //     'image': categories.image,
+            //     'category': categories.category
+            //   }
+            // }
             id++
 
 
@@ -77,7 +77,7 @@ class LocalPurchases {
         }
 
         console.log(fetchItem);
-        this.setProducts(products)
+        this.setProducts(fetchItem)
 
       })
       .catch((error) => {
