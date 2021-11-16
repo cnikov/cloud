@@ -40,7 +40,7 @@ class ShoppingCartApp extends Component {
         term: '',
         category: '',
         cartBounce: false,
-        quickViewProduct: {}, 
+        quickViewProduct: {},
         modalActive: false,
         doCheckout: false,
         purchaseId: null,
@@ -68,8 +68,8 @@ class ShoppingCartApp extends Component {
       })
     }
     this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
-    this.state.purService.fetchHistory() 
-    this.state.myCart = axios.get(`${url}/shopping_kart/${username}`,) //finir
+    this.state.purService.fetchHistory()
+    // this.state.myCart = axios.get(`${url}/shopping_kart/${username}`,) //finir
   }
 
   handleCategory(event) { // Filter by Category
@@ -141,7 +141,7 @@ class ShoppingCartApp extends Component {
     })
   }
 
-  sumTotalAmount() {  
+  sumTotalAmount() {
     let total = 0
     let cart = this.state.cart
     for (var i = 0; i < cart.length; i++) {
