@@ -87,7 +87,6 @@ class ShoppingCartApp extends Component {
       'name': productName,
       'quantity': productQty,
       'username': username,
-      'remove': false
     }
     axios.post(`${url}/shopping-kart`, data)
       .then((res) => {
@@ -118,15 +117,12 @@ class ShoppingCartApp extends Component {
     let cart = this.state.cart
     let index = cart.findIndex(x => x.id === id)
     let productName = cart[index].name
-    let productQty = cart[index].quantity
     let username = window.localStorage.getItem('username')
     var data = {
       'name': productName,
-      'quantity': productQty,
       'username': username,
-      'remove': true
     }
-    axios.post(`${url}/shopping-kart`, data)
+    axios.delete(`${url}/shopping-kart`, data)
       .then((res) => {
         window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
       })
