@@ -25,7 +25,7 @@ class LocalPurchases {
         let fetchItem
         var finish = 0
         for (var i = 0; i < 1; i++) {
-          axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
+          await axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
             var categories = suc.data.token
 
             var id = 1
@@ -34,7 +34,7 @@ class LocalPurchases {
             console.log(categories.name);
             console.log(categories.category);
             var cat = categories.category
-            if (i === 0) {
+            if (id === 1) {
               console.log("premier if")
               fetchItem = {
                 [cat]: {
