@@ -17,7 +17,7 @@ class LocalPurchases {
   fetchProducts() {
 
 
-    axios.get(`${url}/listitem`)
+    axios.get(`${url}/catalog/chou`)
       .then((res) => {
         console.log(res.data.token.name)
 
