@@ -17,7 +17,7 @@ class LocalPurchases {
   fetchProducts() {
     var catalog = 'catalog'
 
-    axios.get(`${url}/catalog`)
+    axios.get(`${url}/catalogs`)
       .then((res) => {
         let categories = Object.keys(res)
         var newList
