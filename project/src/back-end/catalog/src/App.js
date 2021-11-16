@@ -31,8 +31,8 @@ app.post('/catalog', (req, res) => {
       res.status(409).json({ status: 'error', message: String(err) })
     })
 })
-app.get('/listitem/:id', (req, res) => {
-  var id = req.params.id
+app.get('/listitem/', (req, res) => {
+  var id = 'allItems'
   return db.GetList(id).then((token) => {
     res.status(200).json({ status: 'success', token })
   }).catch((err) => {
