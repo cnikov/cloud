@@ -1,5 +1,4 @@
 const express = require('express')
-const log = require('debug')('users-d')
 
 const app = express.Router()
 const db = require('./utils/crud')
@@ -21,7 +20,7 @@ app.post('/catalog', (req, res) => {
     })
 })
 
-app.get('/catalog/catalogs', (req, res) => {
+app.get('/catalog', (req, res) => {
 
   var dbid = res.params
   return db.getProduct(dbid)
