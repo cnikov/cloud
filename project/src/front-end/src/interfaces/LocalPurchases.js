@@ -29,10 +29,10 @@ class LocalPurchases {
         var fetchItem
 
         console.log(categories);
-        let cat = categories.category
+        const cat = categories.category
         fetchItem = {
-          cat: {
-            id: {
+          [cat]: {
+            [id]: {
               'name': categories.name,
               'price': categories.price,
               'image': categories.image,
