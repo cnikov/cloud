@@ -32,7 +32,7 @@ class LocalPurchases {
             console.log(categories.name);
             console.log(categories);
             var cat = categories.category
-            if (i === 0) {
+            if (fetchItem === null) {
               console.log("premier if")
               fetchItem = {
                 [cat]: {
@@ -47,8 +47,6 @@ class LocalPurchases {
               console.log(fetchItem)
 
             }
-
-
             else if (fetchItem.cat === null && i !== 0) {
               console.log("deuxieme if")
               fetchItem.cat = {
