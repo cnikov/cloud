@@ -109,15 +109,23 @@ catch (exception) {
 
 function getProduct(dbid) {
   return new Promise((resolve, reject) => {
-    catalog.get(dbid, (error, success) => {
-      if (success) {
-        //console.log(success)
-        resolve(success)
-      } else {
-        reject(new Error(`To fetch information of basket. Reason: ${error.reason}.`))
-      }
+    const doclist = catalog.list().then(body)
+    doclist.rows.forEach((doc) => {
+      console.log(doc)
+      resolve(doc)
+
     })
-  })
+
+    // => {
+    //     if (success) {
+    //       //console.log(success)
+    //       resolve(success)
+    //     } else {
+    //       reject(new Error(`To fetch information of basket. Reason: ${error.reason}.`))
+    //     }
+    //   })
+    // })
+  }
 }
 //catalog.get(product, (error, success) = > {
 //if(success){
