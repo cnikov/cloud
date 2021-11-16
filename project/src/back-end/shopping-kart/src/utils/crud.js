@@ -10,6 +10,7 @@ function AddToBasket(name, quantity, username) {
       if(succ){
         kart.get(username, (error, success) => {  //on recupère le panier
           if(success){  //si le panier existe deja ATTENTION AU PUSH QUI RETOURNE LA LONGUEUR !!
+            console.log(success.name)
             success.name.push(name)
             success.quantity.push(quantity)
             success.image.push(succ.image)
