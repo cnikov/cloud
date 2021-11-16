@@ -19,6 +19,7 @@ class LocalPurchases {
 
     axios.get(`${url}/catalog/chou`)
       .then((res) => {
+        console.log(res)
 
         let categories = Object.keys(res)
         var newList
