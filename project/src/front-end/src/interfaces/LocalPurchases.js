@@ -24,6 +24,7 @@ class LocalPurchases {
         let categories = Object.keys(res.data.token)
         var newList
         var id = 1
+        console.log("list")
         console.log(newList);
         for (var i = 0; i < categories.length; i++) {
           if (newList[categories.category == null]) {
