@@ -23,11 +23,13 @@ class LocalPurchases {
 
         var myList = res.data.token.list
         let fetchItem
+        var finish = 0
         for (var i = 0; i < myList.length; i++) {
           axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
             var categories = suc.data.token
 
             var id = 1
+
             console.log("list")
             console.log(categories.name);
             console.log(categories.category);
@@ -73,11 +75,18 @@ class LocalPurchases {
             // }
             id++
 
-            this.setProducts(fetchItem)
+
+            if (i == myList.length - 1) {
+              finish = 1
+            }
           })
         }
 
-        console.log(fetchItem)
+        while (finish == 0) {
+
+        }
+        this.setProducts(fetchItem)
+
 
 
 
