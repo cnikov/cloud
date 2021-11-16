@@ -9,8 +9,8 @@ function AddToBasket(name, quantity, username) {
       var new_basket
       if(succ){
         kart.get(username, (error, success) => {  //on recupère le panier
-          if(success){  //si le panier existe deja ATTENTION AU PUSH QUI RETOURNE LA LONGUEUR !!
-            console.log(success.name)
+          /*if(success){  //si le panier existe deja ATTENTION AU PUSH QUI RETOURNE LA LONGUEUR !!
+            console.log(success)
             success.name.push(name)
             success.quantity.push(quantity)
             success.image.push(succ.image)
@@ -20,7 +20,7 @@ function AddToBasket(name, quantity, username) {
               'quantity': success.quantity,
               'image': success.image
             }
-          }else{  //sinon, on crée le panier
+          }else{*/  //sinon, on crée le panier
             //var nameList = []
             //nameList.push(name)
             //var quantityList = []
@@ -31,7 +31,7 @@ function AddToBasket(name, quantity, username) {
               'name': "choux",
               'quantity': 1,
               'image': "hello"
-            }
+            //}
           }
         })
       }else{
