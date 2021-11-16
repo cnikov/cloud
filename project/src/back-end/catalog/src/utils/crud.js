@@ -30,7 +30,7 @@ function AddProduct(name, price, image, category) {
         else {
           var newList = [name]
           newDoc = {
-            'name': "allmytablles",
+            'name': "allmytables",
             'list': newList
           }
         }
