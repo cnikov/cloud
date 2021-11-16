@@ -23,14 +23,17 @@ class LocalPurchases {
         let categories = Object.keys(res)
         var newList
         var id = 1
+        console.log(newList);
         for (var i = 0; i < categories.length; i++) {
           if (newList[categories.category == null]) {
+            console.log(newList);
             var name = categories.category
             var name = [id][categories.name, categories.price, categories.image, categories.category]
             id++
             newList.push(name)
           }
           else {
+            console.log(newList);
             var list = [id][categories.name, categories.price, categories.image, categories.category]
             id++
             newList[categories.category].push(list)
