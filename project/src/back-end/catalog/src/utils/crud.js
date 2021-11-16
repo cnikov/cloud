@@ -16,7 +16,7 @@ function AddProduct(name, price, image, category) {
   return new Promise((resolve, reject) => {
     //const id_db = 'catalog/catalog'
     catalog.get(name, (error, success) => {
-      const new_product
+      var new_product
       if (success) {
         new_product = {
           //brackets pour recuperer le nom de champ et pas "name"
