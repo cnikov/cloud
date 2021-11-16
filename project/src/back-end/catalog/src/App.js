@@ -2,21 +2,20 @@ const express = require('express')
 const log = require('debug')('users-d')
 const app = express.Router()
 const db = require('./utils/crud')
-app.post('/catalog', (req, res) => {
+app.post('/catalog', (req, res) => {  //peut soit retirer soit ajouter un item a la db
   var name = req.body.name
   var price = req.body.price
   var image = req.body.image
   var category = req.body.category
-  //var id = req.body.id
-
-  log(`Adding a new item (${name}) identified in category "${category}"`)
-  return db.AddProduct(name, price, image, category)
-    .then((token) => {
-      res.status(200).json({ status: 'success', token })
-    })
-    .catch((err) => {
-      res.status(409).json({ status: 'error', message: String(err) })
-    })
+    log(`Adding a new item (${name}) identified in category "${category}"`)
+    return db.AddProduct(name, price, image, category)
+      .then((token) => {
+        res.status(200).json({ status: 'success', token })
+     })
+     .catch((err) => {
+       res.status(409).json({ status: 'error', message: String(err) })
+     })
+    
 })
 
 app.get('/catalog/:name', (req, res) => {
