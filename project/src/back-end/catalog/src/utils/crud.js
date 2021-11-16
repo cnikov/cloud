@@ -1,4 +1,4 @@
-var catalog = require('nano')(process.env.DB_URL_C)
+var database = require('nano')('http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog/catalog')
 
 
 function AddProduct(name, price, image, category) {
@@ -16,7 +16,7 @@ function AddProduct(name, price, image, category) {
   return new Promise((resolve, reject) => {
     //const id_db = 'catalog/catalog'
     catalog.get(name, (error, success) => {
-      var new_product
+      const new_product
       if (success) {
         new_product = {
           //brackets pour recuperer le nom de champ et pas "name"
@@ -49,9 +49,7 @@ function AddProduct(name, price, image, category) {
 }
 
 /*var catalogs = 'catalog'
-
 try {
-
   const doc = catalog.get(id_db)
   console.log("hey")
   doc.add(new_product)
@@ -59,8 +57,6 @@ try {
   catalog.insert(doc)
 }
 catch (exception) {
-
-
   catalog.insert(
     // 1st argument of nano.insert()
     {
@@ -100,7 +96,6 @@ catch (exception) {
 //         console.log(err.error);
 //       }
 //     })
-
 //   })
 // })
 
