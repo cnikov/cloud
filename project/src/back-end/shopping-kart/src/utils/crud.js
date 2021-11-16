@@ -6,9 +6,9 @@ function AddToBasket(name, quantity, username) {
   return new Promise((resolve, reject) => {
     catalog.get(name, (err, succ)=>{  //on récupère le catalogue  /!\ EST CE QU'IL NE FAUT PAS D'ABORD GET LE KART
       // POUR QUE LE RETURN new PROMISE SOIT CORRECT ET QU'ON NE RETOURNE PAS LE CATALOGUE ?
+      var new_basket
       if(succ){
         kart.get(username, (error, success) => {  //on recupère le panier
-          var new_basket
           if(success){  //si le panier existe deja ATTENTION AU PUSH QUI RETOURNE LA LONGUEUR !!
             success.name.push(name)
             success.quantity.push(quantity)
