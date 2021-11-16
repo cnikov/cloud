@@ -32,7 +32,7 @@ class LocalPurchases {
             console.log(categories.name);
             console.log(categories.category);
             var cat = categories.category
-            if (fetchItem === null) {
+            if (id === 1) {
               console.log("premier if")
               fetchItem = {
                 [cat]: {
