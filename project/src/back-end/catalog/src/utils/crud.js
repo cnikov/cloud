@@ -1,5 +1,4 @@
-var database = require('nano')('http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005')
-
+var catalog = require('nano')(process.env.DB_URL_C)
 
 function AddProduct(name, price, image, category) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
