@@ -151,7 +151,7 @@ catch (exception) {
 
 function getProduct(dbid) {
   return new Promise((resolve, reject) => {
-    catalog.get(dbid, (error, success) => {
+    fill.get(dbid, (error, success) => {
       if (success) {
         //console.log(success)
         resolve(success)
