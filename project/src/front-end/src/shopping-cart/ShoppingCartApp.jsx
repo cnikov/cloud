@@ -82,7 +82,7 @@ class ShoppingCartApp extends Component {
     let productName = chosenProduct.name
     let productID = chosenProduct.id
     let productQty = chosenProduct.quantity
-    let username = window.localStorage.getItem('username')
+    let username = JSON.parse(window.localStorage.getItem('username'))
     var data = {
       'name': productName,
       'quantity': productQty,
