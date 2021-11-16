@@ -11,7 +11,6 @@ function AddToBasket(name, quantity, username) {
       if(succ){
         console.log(succ)
         kart.get(username, (error, success) => {  //on recupère le panier
-          console.log(success)
           /*if(success){  //si le panier existe deja ATTENTION AU PUSH QUI RETOURNE LA LONGUEUR !!
             console.log(success)
             success.name.push(name)
@@ -36,17 +35,18 @@ function AddToBasket(name, quantity, username) {
               'image': "hello"
             //}
           }
+          kart.insert(new_basket, username, (error, suc) => {
+            if(suc){
+              resolve(username)
+            }else{
+              reject(new Error("Erreur d'ajout a la db"))
+            }
+          })
+
         })
       }else{
         reject(new Error("Erreur"))
       }
-      kart.insert(new_basket, username, (error, suc) => {
-        if(suc){
-          resolve(username)
-        }else{
-          reject(new Error("Erreur d'ajout a la db"))
-        }
-      })
     })
     
   })
