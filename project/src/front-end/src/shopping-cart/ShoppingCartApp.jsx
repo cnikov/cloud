@@ -88,6 +88,7 @@ class ShoppingCartApp extends Component {
       'quantity': productQty,
       'username': username,
     }
+    console.log(username)
     axios.post(`${url}/shopping-kart`, data)
       .then((res) => {
         window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
