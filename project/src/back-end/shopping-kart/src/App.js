@@ -4,7 +4,7 @@ const log = require('debug')('users-d')
 const appS = express.Router()
 const db = require('./utils/crud')
 
-appS.post('/shopping-kart', (req, res) => { 
+appS.post('/shopping_kart', (req, res) => { 
   var name = req.body.name
   var quantity = req.body.quantity
   var username = req.body.username
@@ -30,7 +30,7 @@ appS.post('/shopping-kart', (req, res) => {
   //log(`Adding a new item (${item}) identified in basket "${id}"`)
 })
 
-appS.get('/shopping-kart/:id', (req, res) => {  //id est le username
+appS.get('/shopping_kart/:id', (req, res) => {  //id est le username
   var id = req.params.id
   //log(`Getting basket (${id})`)
   return db.getBasket(id)
