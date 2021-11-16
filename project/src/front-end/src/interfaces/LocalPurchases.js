@@ -25,7 +25,7 @@ class LocalPurchases {
         let fetchItem
         var finish = 0
         for (var i = 0; i < 1; i++) {
-          await axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
+          axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
             var categories = suc.data.token
 
             var id = 1
