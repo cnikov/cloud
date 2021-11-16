@@ -17,7 +17,7 @@ class LocalPurchases {
   fetchProducts() {
 
 
-    axios.get(`${url}/catalog/allmytables`)
+    axios.get(`admin:admin@$cloud-romtourpe.westeurope.cloudapp.azure.com:3003/catalogs/allItems`)
       .then((res) => {
         console.log(res.data.token)
 
