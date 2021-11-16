@@ -19,7 +19,7 @@ ADD catalog.json .
 ENV DEBUG catalog-db
 # database name
 ENV DB_NAME_C catalogs
-ENV DB_NAME_F allItems
+ENV DB_NAME_F allitems
 # name of container running CouchDB
 ENV DB_HOST_C catalog-db
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
