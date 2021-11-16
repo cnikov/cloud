@@ -20,10 +20,16 @@ function AddToBasket(name, quantity, username) {
               'image_url': success.image_url
             }
           }else{  //sinon, on crée le panier
+            var nameList = []
+            nameList.push(name)
+            var quantityList = []
+            quantityList.push(quantity)
+            var imageList = []
+            imageList.push(image_url)
             new_basket = {
-              'name': [name],
-              'quantity': [quantity],
-              'image_url': [succ.image]
+              'name': nameList,
+              'quantity': quantityList,
+              'image_url': imageList
             }
           }
         })
