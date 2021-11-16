@@ -15,12 +15,12 @@ class LocalPurchases {
     this.setPurHistory = setPurHistory
   }
   fetchProducts() {
-    var catalog = 'catalog'
+
 
     axios.get(`${url}/catalog/chou`)
       .then((res) => {
 
-        let names = Object.keys(res)
+        let categories = Object.keys(res)
         var newList
         var id = 1
         for (var i = 0; i < categories.length; i++) {
