@@ -107,9 +107,9 @@ catch (exception) {
 //})
 //}
 
-function getProduct() {
+function getProduct(dbid) {
   return new Promise((resolve, reject) => {
-    catalog.get('catalog', (error, success) => {
+    catalog.get(dbid, (error, success) => {
       if (success) {
         //console.log(success)
         resolve(success)
