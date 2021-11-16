@@ -17,9 +17,10 @@ class LocalPurchases {
   fetchProducts() {
     var catalog = 'catalog'
 
-    axios.get(`${url}/catalog`)
+    axios.get(`${url}/catalog/'allItems`)
       .then((res) => {
-        let categories = Object.keys(res)
+
+        let names = Object.keys(res.token.list)
         var newList
         var id = 1
         for (var i = 0; i < categories.length; i++) {
