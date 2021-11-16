@@ -7,9 +7,11 @@ function AddToBasket(name, quantity, username) {
     catalog.get(name, (err, succ)=>{  //on récupère le catalogue  /!\ EST CE QU'IL NE FAUT PAS D'ABORD GET LE KART
       // POUR QUE LE RETURN new PROMISE SOIT CORRECT ET QU'ON NE RETOURNE PAS LE CATALOGUE ?
       var new_basket
-      console.log(succ)
+      console.log(username)
       if(succ){
+        console.log(succ)
         kart.get(username, (error, success) => {  //on recupère le panier
+          console.log(success)
           /*if(success){  //si le panier existe deja ATTENTION AU PUSH QUI RETOURNE LA LONGUEUR !!
             console.log(success)
             success.name.push(name)
