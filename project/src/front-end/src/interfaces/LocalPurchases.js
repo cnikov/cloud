@@ -48,7 +48,7 @@ class LocalPurchases {
             }
 
 
-            else if (fetchItem.cat == null && i != 0) {
+            else if (fetchItem.cat === null && i !== 0) {
               fetchItem.cat = {
                 [id]: {
                   'name': categories.name,
@@ -60,7 +60,6 @@ class LocalPurchases {
 
               }
               console.log(fetchItem)
-
             }
             else {
               fetchItem.cat.id = {
@@ -75,11 +74,6 @@ class LocalPurchases {
 
           })
         }
-
-
-
-
-
 
         console.log(fetchItem);
         this.setProducts(fetchItem)
