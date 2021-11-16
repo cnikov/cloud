@@ -14,7 +14,7 @@ class LocalPurchases {
     this.setProducts = setProductsList
     this.setPurHistory = setPurHistory
   }
-  fetchProducts() {
+  async fetchProducts() {
 
 
     axios.get(`${url}/listitem`)
@@ -47,8 +47,6 @@ class LocalPurchases {
                 }
               }
               console.log(fetchItem)
-              this.setProducts(fetchItem)
-
             }
             id++
             // else if (fetchItem.cat === null && i !== 0) {
@@ -81,6 +79,8 @@ class LocalPurchases {
               console.log("finish")
               finish = 1
             }
+          }).finally(() => {
+            this.setProducts(fetchItem)
           })
         }
 
