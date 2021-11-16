@@ -23,7 +23,7 @@ app.post('/catalog', (req, res) => {
 
 app.get('/catalog', (req, res) => {
 
-  var dbid = res.params.db_name
+  var dbid = res.params
   return db.getProduct(dbid)
     .then((token) => {
       res.status(200).json({ status: 'success', token })
