@@ -33,6 +33,7 @@ class LocalPurchases {
             console.log(categories);
             const cat = categories.category
             if (i == 0) {
+              console.log("premier if")
               fetchItem = {
                 [cat]: {
                   [id]: {
@@ -49,6 +50,7 @@ class LocalPurchases {
 
 
             else if (fetchItem.cat === null && i !== 0) {
+              console.log("deuxieme if")
               fetchItem.cat = {
                 [id]: {
                   'name': categories.name,
@@ -62,6 +64,7 @@ class LocalPurchases {
               console.log(fetchItem)
             }
             else {
+              console.log("troisieme if")
               fetchItem.cat.id = {
                 'name': categories.name,
                 'price': categories.price,
