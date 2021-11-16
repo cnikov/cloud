@@ -18,16 +18,19 @@ function AddProduct(name, price, image, category) {
       var newDoc
       catalog.get("allItems", (error, success) => {
         if (success) {
+          var newList = success.list.push(name)
           newDoc = {
             '_rev': success._rev,
-            'list': success.list.push(name)
+            'list': newList
 
           }
 
         }
+
         else {
+          var newList = [name]
           newDoc = {
-            'list': { name }
+            'list': newList
           }
         }
         const id = "allItems"
