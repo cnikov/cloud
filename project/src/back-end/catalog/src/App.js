@@ -31,6 +31,14 @@ app.post('/catalog', (req, res) => {
       res.status(409).json({ status: 'error', message: String(err) })
     })
 })
+app.get('/listitem/:id', (req, res) => {
+  var id = req.params.id
+  return db.GetList(id).then((token) => {
+    res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(404).json({ status: 'error', message: String(err) })
+  })
+})
 app.get('/catalog/:name', (req, res) => {
   var dbid = req.params.name
   return db.getProduct(dbid)

@@ -1,7 +1,18 @@
 var catalog = require('nano')(process.env.DB_URL_C)
 var fill = require('nano')(process.env.DB_URL_F)
 
-
+function GetList(dbid) {
+  return new Promise((resolve, reject) => {
+    catalog.get(dbid, (error, success) => {
+      if (success) {
+        //console.log(success)
+        resolve(success)
+      } else {
+        reject(new Error(`To fetch information of basket. Reason: ${error.reason}.`))
+      }
+    })
+  })
+}
 function FillTheList(name) {
   return new Promise((resolve, reject) => {
     var newDoc
@@ -159,6 +170,7 @@ function getProduct(dbid) {
 module.exports = {
   AddProduct,
   getProduct,
-  FillTheList
+  FillTheList,
+  GetList,
   //getcatalog
 }
