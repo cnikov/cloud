@@ -1,4 +1,30 @@
 var catalog = require('nano')(process.env.DB_URL_C)
+var fill = require('nano')(process.env.DB_URL_F)
+function FillList(name) {
+
+  var newDoc
+  fill.get("allItems", (error, success) => {
+    if (success) {
+      var newList = success.list.push(name)
+      newDoc = {
+        '_rev': success._rev,
+        'name': "allmytables",
+        'list': success.list
+      }
+
+    }
+
+    else {
+      var newList = [name]
+      newDoc = {
+        'name': "allmytables",
+        'list': newList
+      }
+    }
+    const id = "allItems"
+    fill.insert(newDoc, id)
+  })
+}
 
 function AddProduct(name, price, image, category) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
@@ -15,28 +41,7 @@ function AddProduct(name, price, image, category) {
   return new Promise((resolve, reject) => {
     //const id_db = 'catalog/catalog'
     catalog.get(name, (error, success) => {
-      var newDoc
-      catalog.get("allItems", (error, success) => {
-        if (success) {
-          var newList = success.list.push(name)
-          newDoc = {
-            '_rev': success._rev,
-            'name': "allmytables",
-            'list': success.list
-          }
 
-        }
-
-        else {
-          var newList = [name]
-          newDoc = {
-            'name': "allmytables",
-            'list': newList
-          }
-        }
-        const id = "allItems"
-        catalog.insert(newDoc, id)
-      })
       var new_product
       if (success) {
         new_product = {
