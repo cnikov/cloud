@@ -20,9 +20,10 @@ app.post('/catalog', (req, res) => {
     })
 })
 
-app.get('/catalog', (req, res) => {
+app.get('/catalog/:name', (req, res) => {
+  var dbid = req.params.name
 
-  return db.getProduct()
+  return db.getProduct(dbid)
     .then((token) => {
       res.status(200).json({ status: 'success', token })
     })
