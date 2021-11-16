@@ -27,28 +27,23 @@ class LocalPurchases {
         console.log("list")
         console.log(categories.name);
         var fetchItem
-        if (fetchItem.Vegetables == null) {
-          console.log(categories);
-          fetchItem = {
-            Vegetables: {
-              id: {
-                'name': categories.name,
-                'price': categories.price,
-                'image': categories.image,
-                'category': categories.category
-              }
+
+        console.log(categories);
+        fetchItem = {
+          Vegetables: {
+            id: {
+              'name': categories.name,
+              'price': categories.price,
+              'image': categories.image,
+              'category': categories.category
             }
           }
-
-          id++
-
         }
-        else {
-          console.log(newList);
-          var list = [id][categories.name, categories.price, categories.image, categories.category]
-          id++
-          newList[categories.category].push(list)
-        }
+
+        id++
+
+
+
 
         console.log(fetchItem);
         this.setProducts(fetchItem)
