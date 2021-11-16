@@ -68,10 +68,10 @@ function removeFromBasket(username, name){
           var newQ = succes.quantity.splice(index)
           var newURL = succes.image_url.splice(index)
           new basket = {
-              '_rev': succes._rev,
-              'name': newName,
-              'quantity': newQ,
-              'image_url': newURL
+            '_rev': succes._rev,
+            'name': newName,
+            'quantity': newQ,
+            'image_url': newURL
           }
         }
         kart.insert(new_basket, username, (error, success) => {
