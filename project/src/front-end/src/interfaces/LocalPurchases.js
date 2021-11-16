@@ -17,11 +17,11 @@ class LocalPurchases {
   fetchProducts() {
 
 
-    axios.get(`http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3003/catalogs/allItems`)
+    axios.get(`${url}/listitem`)
       .then((res) => {
-        console.log(res.data.token)
+        console.log(res.data.token.name)
 
-        var categories = res.data.token
+        var categories = res.data.token.name
         var newList
         var id = 1
         console.log("list")
