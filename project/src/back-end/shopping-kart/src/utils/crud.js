@@ -67,7 +67,7 @@ function removeFromBasket(username, name){
           var newName = succes.name.splice(index)
           var newQ = succes.quantity.splice(index)
           var newURL = succes.image_url.splice(index)
-          new_basket = {
+          var new_basket = {
             '_rev': succes._rev,
             'name': newName,
             'quantity': newQ,
