@@ -21,7 +21,7 @@ class LocalPurchases {
       .then((res) => {
         console.log(res.data.token)
 
-        let categories = res.data.token
+        let categories = JSON.parse(res.data.token)
         var newList
         var id = 1
         console.log("list")
