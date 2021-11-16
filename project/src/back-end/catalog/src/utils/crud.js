@@ -21,9 +21,8 @@ function AddProduct(name, price, image, category) {
           var newList = success.list.push(name)
           newDoc = {
             '_rev': success._rev,
-            'name': "allmytables"
+            'name': "allmytables",
             'list': success.list
-
           }
 
         }
@@ -31,6 +30,7 @@ function AddProduct(name, price, image, category) {
         else {
           var newList = [name]
           newDoc = {
+            'name': "allmytablles",
             'list': newList
           }
         }
