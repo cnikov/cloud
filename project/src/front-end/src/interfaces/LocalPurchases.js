@@ -27,8 +27,8 @@ class LocalPurchases {
         console.log("list")
         console.log(newList);
         for (var i = 0; i < categories.length; i++) {
-          if (newList[categories.category == null]) {
-            console.log(newList);
+          if (newList[categories.category] == null) {
+            console.log(categories);
             var name = categories.category
             var name = [id][categories.name, categories.price, categories.image, categories.category]
             id++
