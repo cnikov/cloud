@@ -125,7 +125,7 @@ function getProduct(dbid) {
     //     }
     //   })
     // })
-  }
+  })
 }
 //catalog.get(product, (error, success) = > {
 //if(success){
