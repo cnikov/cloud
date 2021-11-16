@@ -12,12 +12,12 @@ function AddToBasket(name, quantity, username) {
           if(success){  //si le panier existe deja ATTENTION AU PUSH QUI RETOURNE LA LONGUEUR !!
             success.name.push(name)
             success.quantity.push(quantity)
-            success.image_url.push(succ.image)
+            success.image.push(succ.image)
             new_basket = {
               '_rev': success._rev,
               'name': success.name,
               'quantity': success.quantity,
-              'image_url': success.image_url
+              'image': success.image
             }
           }else{  //sinon, on crée le panier
             var nameList = []
@@ -25,11 +25,11 @@ function AddToBasket(name, quantity, username) {
             var quantityList = []
             quantityList.push(quantity)
             var imageList = []
-            imageList.push(image_url)
+            imageList.push(succ.image)
             new_basket = {
               'name': nameList,
               'quantity': quantityList,
-              'image_url': imageList
+              'image': imageList
             }
           }
         })
@@ -66,12 +66,12 @@ function removeFromBasket(username, name){
           let index = succes.name.findIndex(x => x.name === name)
           var newName = succes.name.splice(index)
           var newQ = succes.quantity.splice(index)
-          var newURL = succes.image_url.splice(index)
+          var newURL = succes.image.splice(index)
           var new_basket = {
             '_rev': succes._rev,
             'name': newName,
             'quantity': newQ,
-            'image_url': newURL
+            'image': newURL
           }
         }
         kart.insert(new_basket, username, (error, success) => {
