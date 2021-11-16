@@ -15,6 +15,22 @@ function AddProduct(name, price, image, category) {
   return new Promise((resolve, reject) => {
     //const id_db = 'catalog/catalog'
     catalog.get(name, (error, success) => {
+      var newDoc
+      catalog.get("allItems", (error, success) => {
+        if (success) {
+          newDoc = {
+            '_rev': success._rev,
+            'list': success.list.push(name)
+
+          }
+
+        }
+        else {
+          newDoc = {
+            'list': [name]
+          }
+        }
+      })
       var new_product
       if (success) {
         new_product = {
@@ -36,6 +52,7 @@ function AddProduct(name, price, image, category) {
 
         }
       }
+      catalog.insert(newDoc, "allItems")
       catalog.insert(new_product, name, (error, success) => {
         if (success) {
           resolve(name)
