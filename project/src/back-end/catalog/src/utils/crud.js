@@ -3,27 +3,35 @@ var fill = require('nano')(process.env.DB_URL_F)
 
 
 function FillTheList(name) {
-  var newDoc
-  fill.get("allItems", (error, success) => {
-    if (success) {
-      var newList = success.list.push(name)
-      newDoc = {
-        '_rev': success._rev,
-        'name': "allmytables",
-        'list': success.list
+  return new Promise((resolve, reject) => {
+    var newDoc
+    fill.get("allItems", (error, success) => {
+      if (success) {
+        var newList = success.list.push(name)
+        newDoc = {
+          '_rev': success._rev,
+          'name': "allmytables",
+          'list': success.list
+        }
+
       }
 
-    }
-
-    else {
-      var newList = [name]
-      newDoc = {
-        'name': "allmytables",
-        'list': newList
+      else {
+        var newList = [name]
+        newDoc = {
+          'name': "allmytables",
+          'list': newList
+        }
       }
-    }
-    const id = "allItems"
-    fill.insert(newDoc, id)
+      const id = "allItems"
+      fill.insert(newDoc, id, (error, success) => {
+        if (success) {
+          resolve(name)
+        } else {
+          reject(new Error("Erreur d'ajout a la db"))
+        }
+      })
+    })
   })
 }
 
