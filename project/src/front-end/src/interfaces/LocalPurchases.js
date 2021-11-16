@@ -79,7 +79,7 @@ class LocalPurchases {
         }
 
         console.log(fetchItem);
-        this.setProducts(fetchItem)
+        this.setProducts(products)
 
       })
       .catch((error) => {
