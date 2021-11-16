@@ -21,7 +21,7 @@ app.post('/catalog', (req, res) => {
     })
 })
 
-app.get('/catalog', (req, res) => {
+app.get('/catalog/catalogs', (req, res) => {
 
   var dbid = res.params
   return db.getProduct(dbid)
