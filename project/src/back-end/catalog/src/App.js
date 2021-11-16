@@ -3,19 +3,25 @@ const log = require('debug')('users-d')
 const app = express.Router()
 const db = require('./utils/crud')
 <<<<<<< HEAD
+<<<<<<< HEAD
 app.post('/catalog', (req, res) => {  //peut soit retirer soit ajouter un item a la db
 =======
 app.post('/listitem', (req, res) => {
+=======
+>>>>>>> 3c5ae0622e99ac39b1edb25471e241601e04d28b
 
+
+
+
+app.post('/listitem', (req, res) => {
   var name = req.body.name
   log(`Adding a new item (${name}) identifie`)
 
   return db.FillTheList(name).then((token) => {
     res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(409).json({ status: 'error', message: String(err) })
   })
-    .catch((err) => {
-      res.status(409).json({ status: 'error', message: String(err) })
-    })
 })
 app.post('/catalog', (req, res) => {
 >>>>>>> d66fa47aec220184049f815912f24be2eedbf586

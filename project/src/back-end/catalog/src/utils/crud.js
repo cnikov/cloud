@@ -3,9 +3,8 @@ var fill = require('nano')(process.env.DB_URL_F)
 
 
 function FillTheList(name) {
-
   var newDoc
-  fill.get("allitems", (error, success) => {
+  fill.get("allItems", (error, success) => {
     if (success) {
       var newList = success.list.push(name)
       newDoc = {
