@@ -47,7 +47,7 @@ class LocalPurchases {
                 }
               }
               console.log(fetchItem)
-
+              this.setProducts(fetchItem)
 
             }
             // else if (fetchItem.cat === null && i !== 0) {
@@ -76,16 +76,15 @@ class LocalPurchases {
             id++
 
 
-            if (i == myList.length - 1) {
+            if (i == (myList.length - 1)) {
+              console.log("finish")
               finish = 1
             }
           })
         }
 
-        while (finish == 0) {
 
-        }
-        this.setProducts(fetchItem)
+
 
 
 
