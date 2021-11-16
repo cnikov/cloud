@@ -27,7 +27,7 @@ class LocalPurchases {
         console.log("list")
         console.log(categories.name);
         var fetchItem
-        if (fetchItem.categories.category == null) {
+        if (fetchItem.Vegetables == null) {
           console.log(categories);
           fetchItem = {
             Vegetables: {
