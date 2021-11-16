@@ -45,6 +45,7 @@ class LocalPurchases {
                 }
               }
               console.log(fetchItem)
+              this.setProducts(fetchItem)
 
             }
             // else if (fetchItem.cat === null && i !== 0) {
@@ -77,7 +78,7 @@ class LocalPurchases {
         }
 
         console.log(fetchItem);
-        this.setProducts(fetchItem)
+
 
       })
       .catch((error) => {
