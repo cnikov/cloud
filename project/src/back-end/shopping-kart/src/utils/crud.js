@@ -20,10 +20,16 @@ function AddToBasket(name, quantity, username) {
               'image_url': success.image_url
             }
           }else{  //sinon, on crée le panier
+            var nameList = []
+            nameList.push(name)
+            var quantityList = []
+            quantityList.push(quantity)
+            var imageList = []
+            imageList.push(image_url)
             new_basket = {
-              'name': [name],
-              'quantity': [quantity],
-              'image_url': [succ.image]
+              'name': nameList,
+              'quantity': quantityList,
+              'image_url': imageList
             }
           }
         })
@@ -62,10 +68,10 @@ function removeFromBasket(username, name){
           var newQ = succes.quantity.splice(index)
           var newURL = succes.image_url.splice(index)
           new basket = {
-              '_rev': succes._rev,
-              'name': newName,
-              'quantity': newQ,
-              'image_url': newURL
+            '_rev': succes._rev,
+            'name': newName,
+            'quantity': newQ,
+            'image_url': newURL
           }
         }
         kart.insert(new_basket, username, (error, success) => {
