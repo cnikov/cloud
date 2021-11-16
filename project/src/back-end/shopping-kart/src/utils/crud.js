@@ -40,8 +40,8 @@ function AddToBasket(name, quantity, username) {
       }else{
         reject(new Error("Erreur"))
       }
-      kart.insert(new_basket, username, (error, success) => {
-        if(success){
+      kart.insert(new_basket, username, (error, suc) => {
+        if(suc){
           resolve(username)
         }else{
           reject(new Error("Erreur d'ajout a la db"))
