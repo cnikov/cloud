@@ -1,5 +1,4 @@
 var catalog = require('nano')(process.env.DB_URL_C)
-var database = require('nano')('http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog/catalog')
 
 
 function AddProduct(name, price, image, category) {
@@ -110,7 +109,7 @@ catch (exception) {
 
 function getProduct() {
   return new Promise((resolve, reject) => {
-    catalog.get((error, success) => {
+    catalog.get('catalog', (error, success) => {
       if (success) {
         //console.log(success)
         resolve(success)
