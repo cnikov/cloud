@@ -24,7 +24,7 @@ class LocalPurchases {
         var myList = res.data.token.list
         let fetchItem
         var finish = 0
-        for (var i = 0; i < 1; i++) {
+        for (var i = 0; i < myList.length; i++) {
           axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
             var categories = suc.data.token
 
@@ -47,31 +47,36 @@ class LocalPurchases {
                 }
               }
               console.log(fetchItem)
+              id++
             }
-            id++
-            // else if (fetchItem.cat === null && i !== 0) {
-            //   console.log("deuxieme if")
-            //   fetchItem.cat = {
-            //     [id]: {
-            //       'name': categories.name,
-            //       'price': categories.price,
-            //       'image': categories.image,
-            //       'category': categories.category
-            //     }
+
+            else if (fetchItem.cat === null && i !== 0) {
+              console.log("deuxieme if")
+              fetchItem.cat = {
+                [id]: {
+                  'name': categories.name,
+                  'price': categories.price,
+                  'image': categories.image,
+                  'category': categories.category
+
+                }
 
 
-            //   }
-            //   console.log(fetchItem)
-            // }
-            // else {
-            //   console.log("troisieme if")
-            //   fetchItem.cat.id = {
-            //     'name': categories.name,
-            //     'price': categories.price,
-            //     'image': categories.image,
-            //     'category': categories.category
-            //   }
-            // }
+
+              }
+              id++
+              console.log(fetchItem)
+            }
+            else {
+              console.log("troisieme if")
+              fetchItem.cat.id = {
+                'name': categories.name,
+                'price': categories.price,
+                'image': categories.image,
+                'category': categories.category
+              }
+              id++
+            }
 
 
 
