@@ -19,9 +19,9 @@ class LocalPurchases {
 
     axios.get(`${url}/catalog/chou`)
       .then((res) => {
-        console.log(res)
+        console.log(res.data.token)
 
-        let categories = Object.keys(res)
+        let categories = Object.keys(res.data.token)
         var newList
         var id = 1
         console.log(newList);
