@@ -19,7 +19,24 @@ class LocalPurchases {
 
     axios.get(`${url}/catalog/chou`)
       .then((res) => {
-        this.setProducts(res.data)
+        let categories = Object.keys(res)
+        var newList
+        var id = 1
+        for (var i = 0; i < categories.length; i++) {
+          if (newList[categories.category == null]) {
+            var name = categories.category
+            var name = [id][categories.name, categories.price, categories.image, categories.category]
+            id++
+            newList.push(name)
+          }
+          else {
+            var list = [id][categories.name, categories.price, categories.image, categories.category]
+            id++
+            newList[categories.category].push(list)
+          }
+        }
+        console.log(newList);
+        this.setProducts(newList)
 
       })
       .catch((error) => {
