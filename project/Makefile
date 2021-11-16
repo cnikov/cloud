@@ -29,5 +29,8 @@ build:
 add:
 	curl -X POST --data "name=chou&price=2&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg&category=non&id=1" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
 	curl -X POST --data "name=fkgjfgklj&price=2&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg&category=non&id=2" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
+	curl -X POST --data "name=chou" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/listitem
+	curl -X POST --data "name=fkgjfgklj" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/listitem
+
 stop:
 	docker stop $$(docker ps -aq)

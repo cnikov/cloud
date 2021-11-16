@@ -15,28 +15,39 @@ class LocalPurchases {
     this.setPurHistory = setPurHistory
   }
   fetchProducts() {
-    var catalog = 'catalog'
 
-    axios.get(`${url}/catalog`)
+
+    axios.get(`http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3003/catalogs/allItems`)
       .then((res) => {
-        let categories = Object.keys(res)
+        console.log(res.data.token)
+
+        var categories = res.data.token
         var newList
         var id = 1
-        for (var i = 0; i < categories.length; i++) {
-          if (newList[categories.category == null]) {
-            var name = categories.category
-            var name = [id][categories.name, categories.price, categories.image, categories.category]
-            id++
-            newList.push(name)
-          }
-          else {
-            var list = [id][categories.name, categories.price, categories.image, categories.category]
-            id++
-            newList[categories.category].push(list)
+        console.log("list")
+        console.log(categories.name);
+        var fetchItem
+
+        console.log(categories);
+        const cat = categories.category
+        fetchItem = {
+          [cat]: {
+            [id]: {
+              'name': categories.name,
+              'price': categories.price,
+              'image': categories.image,
+              'category': categories.category
+            }
           }
         }
-        console.log(newList);
-        this.setProducts(newList)
+
+        id++
+
+
+
+
+        console.log(fetchItem);
+        this.setProducts(fetchItem)
 
       })
       .catch((error) => {

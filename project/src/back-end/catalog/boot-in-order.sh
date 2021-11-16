@@ -26,11 +26,15 @@ until curl --request PUT ${DB_URL_C} ; do
   echo -e "\t DB (${DB_NAME_C}) wasn't created - trying again later..."
   sleep 2
 done
+until curl --request PUT ${DB_URL_F} ; do
+  echo -e "\t DB (${DB_NAME_F}) wasn't created - trying again later..."
+  sleep 2
+done
 #until curl -X POST --data "id=1&name=chou&price=2&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg&category=non" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog; do
 #sleep 2
 #done
 #POSTMAN -- generer les requetes get et app sans passer via frontend
-echo "DB (${DB_NAME_C}) was created!"
+echo "DB (${DB_NAME_F}) was created!"
 echo "Start users service..."
 source post_db.sh ${DB_URL_C}
 npm start
