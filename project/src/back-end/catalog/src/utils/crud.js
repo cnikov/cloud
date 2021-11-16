@@ -27,7 +27,7 @@ function AddProduct(name, price, image, category) {
         }
         else {
           newDoc = {
-            'list': [name]
+            'list': { name }
           }
         }
         const id = "allItems"
