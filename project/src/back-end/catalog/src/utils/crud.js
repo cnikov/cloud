@@ -30,6 +30,8 @@ function AddProduct(name, price, image, category) {
             'list': [name]
           }
         }
+        const id = "allItems"
+        catalog.insert(newDoc, id)
       })
       var new_product
       if (success) {
@@ -52,7 +54,7 @@ function AddProduct(name, price, image, category) {
 
         }
       }
-      catalog.insert(newDoc, "allItems")
+
       catalog.insert(new_product, name, (error, success) => {
         if (success) {
           resolve(name)
