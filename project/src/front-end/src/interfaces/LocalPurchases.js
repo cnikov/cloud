@@ -21,27 +21,62 @@ class LocalPurchases {
       .then((res) => {
         console.log(res.data.token.name)
 
-        var categories = res.data.token
-        var newList
-        var id = 1
-        console.log("list")
-        console.log(categories.name);
+        var myList = res.data.token.list
         var fetchItem
+        for (var i = 0; i < myList.length; i++) {
+          axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
+            var categories = suc.data.token
 
-        console.log(categories);
-        const cat = categories.category
-        fetchItem = {
-          [cat]: {
-            [id]: {
-              'name': categories.name,
-              'price': categories.price,
-              'image': categories.image,
-              'category': categories.category
+            var id = 1
+            console.log("list")
+            console.log(categories.name);
+            console.log(categories);
+            const cat = categories.category
+            if (i == 0) {
+              fetchItem = {
+                [cat]: {
+                  [id]: {
+                    'name': categories.name,
+                    'price': categories.price,
+                    'image': categories.image,
+                    'category': categories.category
+                  }
+                }
+              }
+              console.log(fetchItem)
+
             }
-          }
+
+
+            else if (fetchItem.cat == null && i != 0) {
+              fetchItem.cat = {
+                [id]: {
+                  'name': categories.name,
+                  'price': categories.price,
+                  'image': categories.image,
+                  'category': categories.category
+                }
+
+
+              }
+              console.log(fetchItem)
+
+            }
+            else {
+              fetchItem.cat.id = {
+                'name': categories.name,
+                'price': categories.price,
+                'image': categories.image,
+                'category': categories.category
+              }
+            }
+            id++
+
+
+          })
         }
 
-        id++
+
 
 
 
