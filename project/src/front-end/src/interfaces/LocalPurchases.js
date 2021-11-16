@@ -25,7 +25,7 @@ class LocalPurchases {
         var newList
         var id = 1
         console.log("list")
-        console.log(categories);
+        console.log(categories.name);
         for (var i = 0; i < categories.length; i++) {
           if (newList[categories.category] == null) {
             console.log(categories);
