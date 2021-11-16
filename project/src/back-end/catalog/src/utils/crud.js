@@ -1,4 +1,4 @@
-var database = require('nano')('http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog/catalog')
+var database = require('nano')('http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog')
 
 
 function AddProduct(name, price, image, category) {
