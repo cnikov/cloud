@@ -26,23 +26,32 @@ class LocalPurchases {
         var id = 1
         console.log("list")
         console.log(categories.name);
-        for (var i = 0; i < categories.length; i++) {
-          if (newList[categories.category] == null) {
-            console.log(categories);
-            var name = categories.category
-            var name = [id][categories.name, categories.price, categories.image, categories.category]
-            id++
-            newList.push(name)
+        var fetchItem
+        if (fetchItem.categories.category == null) {
+          console.log(categories);
+          fetchItem = {
+            Vegetables: {
+              id: {
+                'name': categories.name,
+                'price': categories.price,
+                'image': categories.image,
+                'category': categories.category
+              }
+            }
           }
-          else {
-            console.log(newList);
-            var list = [id][categories.name, categories.price, categories.image, categories.category]
-            id++
-            newList[categories.category].push(list)
-          }
+
+          id++
+
         }
-        console.log(newList);
-        this.setProducts(newList)
+        else {
+          console.log(newList);
+          var list = [id][categories.name, categories.price, categories.image, categories.category]
+          id++
+          newList[categories.category].push(list)
+        }
+
+        console.log(fetchItem);
+        this.setProducts(fetchItem)
 
       })
       .catch((error) => {
