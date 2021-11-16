@@ -3,7 +3,7 @@ var fill = require('nano')(process.env.DB_URL_F)
 
 function GetList(dbid) {
   return new Promise((resolve, reject) => {
-    catalog.get(dbid, (error, success) => {
+    fill.get(dbid, (error, success) => {
       if (success) {
         //console.log(success)
         resolve(success)
@@ -151,7 +151,7 @@ catch (exception) {
 
 function getProduct(dbid) {
   return new Promise((resolve, reject) => {
-    fill.get(dbid, (error, success) => {
+    catalog.get(dbid, (error, success) => {
       if (success) {
         //console.log(success)
         resolve(success)
