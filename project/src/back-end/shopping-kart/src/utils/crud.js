@@ -1,28 +1,43 @@
 var kart = require('nano')(process.env.DB_URL_SK)
+var catalog = require('nano')(process.env.DB_URL_C)
 
-function AddToBasket(id, item) {
-  //faire un getBasket puis ajouter l'item pour ecraser le tout
-  //const basket = kart.getBasket(id)
-  //const item = basket.item + item   //lol si ca marche (aucun espoir)
+function AddToBasket(name, quantity, username) {
+
   return new Promise((resolve, reject) => {
-    kart.insert(
-      // 1st argument of nano.insert()
-      {
-        'item': item,
-
-      },
-      id, // 2nd argument of nano.insert()
-      // callback to execute once the request to the DB is complete
-      (error, success) => {
-        if (success) {
-          resolve(id)  //quand on fera le log, c'est ce qui va apparaitre?
-        } else {
-          reject(
-            new Error(`In adding (${item}). Reason: ${error.reason}.`)
-          )
-        }
+    catalog.get(name, (err, succ)=>{  //on récupère le catalogue  /!\ EST CE QU'IL NE FAUT PAS D'ABORD GET LE KART
+      // POUR QUE LE RETURN new PROMISE SOIT CORRECT ET QU'ON NE RETOURNE PAS LE CATALOGUE ?
+      if(succ){
+        kart.get(username, (error, success) => {  //on recupère le panier
+          var new_basket
+          if(success){  //si le panier existe deja 
+            new_basket = {
+              '_rev': success._rev,
+              'name': success.name.push("name"),
+              'quantity': success.quantity.push("quantity"),
+              'total_price': JSON.stringify(success.getInt("price") + succ.getInt("price")),
+              'image_url': success.image_url.push(succ.image)
+            }
+          }else{  //sinon, on crée le panier
+            new_basket = {
+              'name': [name],
+              'quantity': [quantity],
+              'total_price': JSON.stringify(succ.getInt("price")),
+              'image_url': [succ.image]
+            }
+          }
+        })
+      }else{
+        reject(new Error("Erreur"))
       }
-    )
+      kart.insert(new_basket, username, (error, success) => {
+        if(success){
+          resolve(name)
+        }else{
+          reject(new Error("Erreur d'ajout a la db"))
+        }
+      })
+    })
+    
   })
 }
 
@@ -30,7 +45,7 @@ function getBasket(id) {
   return new Promise((resolve, reject) => {
     kart.get(id, (error, success) => {
       if (success) {
-        resolve(id)
+        resolve(success)
       } else {
         reject(new Error(`To fetch information of basket (${id}). Reason: ${error.reason}.`))
       }

@@ -18,11 +18,16 @@ ENV DEBUG shopping-db
 ENV DB_HOST_SK shopping-db
 # database name
 ENV DB_NAME_SK shopping-kart
+# database name
+ENV DB_NAME_C catalogs
+# name of container running CouchDB
+ENV DB_HOST_C catalog-db
 # name of container running CouchDB
 ENV DB_HOST_SK shopping-db
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
 ENV ADMIN_NAME admin
 ENV ADMIN_PASSW admin
 ENV DB_URL_SK http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_SK}:5984/${DB_NAME_SK}
+ENV DB_URL_C http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_C}
 # we now use an script to deploy the authentication service
 CMD source boot-in-order.sh

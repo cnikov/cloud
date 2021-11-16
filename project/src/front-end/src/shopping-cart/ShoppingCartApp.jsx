@@ -7,7 +7,7 @@ import LocalPurchases from '../interfaces/LocalPurchases'
 import axios from 'axios' // we use this library as HTTP client
 const url = process.env.REACT_APP_SHOPKART_SERVICE_URL || 'http://localhost:3004'
 const PurchasesService = LocalPurchases
-//var kart = require('nano')(process.env.DB_URL_KART) nano pour backend non?
+
 
 
 
@@ -40,7 +40,7 @@ class ShoppingCartApp extends Component {
         term: '',
         category: '',
         cartBounce: false,
-        quickViewProduct: {},
+        quickViewProduct: {}, 
         modalActive: false,
         doCheckout: false,
         purchaseId: null,
@@ -67,8 +67,9 @@ class ShoppingCartApp extends Component {
         oldPurchases: []
       })
     }
-    this.state.purService.fetchProducts()   //recherche les anciens produits dans la db (d'un ancien panier)
-    this.state.purService.fetchHistory()  
+    this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
+    this.state.purService.fetchHistory() 
+    this.state.myCart = axios.get(`${url}/shopping_kart/${username}`,) //finir
   }
 
   handleCategory(event) { // Filter by Category
@@ -78,15 +79,19 @@ class ShoppingCartApp extends Component {
 
   handleAddToCart(chosenProduct) { // Add to Cart
     let myCart = this.state.cart
+    let productName = chosenProduct.name
     let productID = chosenProduct.id
     let productQty = chosenProduct.quantity
-    /*axios.get(`${url}/shopping_kart/${myCart}`) // Perform an HTTP GET rquest to a url.
-            .then((res) => {
-                //window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
-                this.products = res.products
-                this.onSucc(`Welcome back [${data.username}]!`)
-                this.changeRoute('/')
-            })*/
+    let username = window.localStorage.getItem('username')
+    var data = {
+      'name': productName,
+      'quantity': productQty,
+      'username': username,
+    }
+    axios.post(`${url}/shopping_kart`, data)
+      .then((res) => {
+        window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
+      })
     if (this.checkProduct(productID)) {
       let index = myCart.findIndex(x => x.id === productID)
       myCart[index].quantity = Number(myCart[index].quantity) + Number(productQty)
@@ -101,10 +106,6 @@ class ShoppingCartApp extends Component {
       cart: myCart,
       cartBounce: true
     })
-    axios.post(`${url}/shopping_kart/${myCart}`)
-          .then((res) => {
-             res.cart = myCart
-          })
     setTimeout(function () {
       this.setState({ cartBounce: false })
     }.bind(this), 1000)
@@ -112,7 +113,7 @@ class ShoppingCartApp extends Component {
     this.sumTotalAmount(this.state.cart)
   }
 
-  handleRemoveProduct(id, e) {
+  handleRemoveProduct(id, e) { //relier back-end
     let cart = this.state.cart
     let index = cart.findIndex(x => x.id === id)
     cart.splice(index, 1)
@@ -140,7 +141,7 @@ class ShoppingCartApp extends Component {
     })
   }
 
-  sumTotalAmount() {
+  sumTotalAmount() {  
     let total = 0
     let cart = this.state.cart
     for (var i = 0; i < cart.length; i++) {
