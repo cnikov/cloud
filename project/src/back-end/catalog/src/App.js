@@ -1,9 +1,7 @@
 const express = require('express')
 const log = require('debug')('users-d')
-
 const app = express.Router()
 const db = require('./utils/crud')
-
 app.post('/catalog', (req, res) => {
   var name = req.body.name
   var price = req.body.price
@@ -32,5 +30,4 @@ app.get('/catalog/:name', (req, res) => {
       res.status(404).json({ status: 'error', message: String(err) })
     })
 })
-
 module.exports = app
