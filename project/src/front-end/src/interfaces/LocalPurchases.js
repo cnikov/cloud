@@ -31,7 +31,7 @@ class LocalPurchases {
             console.log("list")
             console.log(categories.name);
             console.log(categories);
-            const cat = categories.category
+            var cat = categories.category
             if (i == 0) {
               console.log("premier if")
               fetchItem = {
