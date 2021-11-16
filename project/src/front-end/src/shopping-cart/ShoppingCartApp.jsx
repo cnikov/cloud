@@ -118,7 +118,7 @@ class ShoppingCartApp extends Component {
     let cart = this.state.cart
     let index = cart.findIndex(x => x.id === id)
     let productName = cart[index].name
-    let username = window.localStorage.getItem('username')
+    let username = JSON.parse(window.localStorage.getItem('username'))
     var data = {
       'name': productName,
       'username': username,
