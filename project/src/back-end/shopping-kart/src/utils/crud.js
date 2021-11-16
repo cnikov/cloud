@@ -4,6 +4,7 @@ var catalog = require('nano')(process.env.DB_URL_C)
 function AddToBasket(name, quantity, username) {
 
   return new Promise((resolve, reject) => {
+    console.log(name)
     catalog.get(name, (err, succ)=>{  //on récupère le catalogue  /!\ EST CE QU'IL NE FAUT PAS D'ABORD GET LE KART
       // POUR QUE LE RETURN new PROMISE SOIT CORRECT ET QU'ON NE RETOURNE PAS LE CATALOGUE ?
       var new_basket
