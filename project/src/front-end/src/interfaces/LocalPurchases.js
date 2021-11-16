@@ -29,8 +29,9 @@ class LocalPurchases {
         var fetchItem
 
         console.log(categories);
+        let cat = categories.category
         fetchItem = {
-          Vegetables: {
+          cat: {
             id: {
               'name': categories.name,
               'price': categories.price,
