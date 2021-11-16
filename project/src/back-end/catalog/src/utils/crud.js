@@ -1,6 +1,8 @@
 var catalog = require('nano')(process.env.DB_URL_C)
 var fill = require('nano')(process.env.DB_URL_F)
-function FillList(name) {
+
+
+function FillTheList(name) {
 
   var newDoc
   fill.get("allitems", (error, success) => {
@@ -150,5 +152,6 @@ function getProduct(dbid) {
 module.exports = {
   AddProduct,
   getProduct,
+  FillTheList
   //getcatalog
 }

@@ -5,10 +5,11 @@ const db = require('./utils/crud')
 app.post('/listitem', (req, res) => {
 
   var name = req.body.name
-  return db.FillList(name)
-    .then((token) => {
-      res.status(200).json({ status: 'success', token })
-    })
+  log(`Adding a new item (${name}) identifie`)
+
+  return db.FillTheList(name).then((token) => {
+    res.status(200).json({ status: 'success', token })
+  })
     .catch((err) => {
       res.status(409).json({ status: 'error', message: String(err) })
     })
