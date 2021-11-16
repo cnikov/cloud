@@ -89,7 +89,7 @@ class ShoppingCartApp extends Component {
       'username': username,
       'remove': false
     }
-    axios.post(`${url}/shopping_kart`, data)
+    axios.post(`${url}/shopping-kart`, data)
       .then((res) => {
         window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
       })
@@ -126,7 +126,7 @@ class ShoppingCartApp extends Component {
       'username': username,
       'remove': true
     }
-    axios.post(`${url}/shopping_kart`, data)
+    axios.post(`${url}/shopping-kart`, data)
       .then((res) => {
         window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
       })
