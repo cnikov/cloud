@@ -7,12 +7,9 @@ function AddToBasket(name, quantity, username) {
     catalog.get(name, (err, succ)=>{  //on récupère le catalogue  /!\ EST CE QU'IL NE FAUT PAS D'ABORD GET LE KART
       // POUR QUE LE RETURN new PROMISE SOIT CORRECT ET QU'ON NE RETOURNE PAS LE CATALOGUE ?
       var new_basket
-      console.log(username)
       if(succ){
-        console.log(succ)
         kart.get(username, (error, success) => {  //on recupère le panier
-          /*if(success){  //si le panier existe deja ATTENTION AU PUSH QUI RETOURNE LA LONGUEUR !!
-            console.log(success)
+          if(success){  //si le panier existe deja ATTENTION AU PUSH QUI RETOURNE LA LONGUEUR !!
             success.name.push(name)
             success.quantity.push(quantity)
             success.image.push(succ.image)
@@ -22,18 +19,18 @@ function AddToBasket(name, quantity, username) {
               'quantity': success.quantity,
               'image': success.image
             }
-          }else{*/  //sinon, on crée le panier
-            //var nameList = []
-            //nameList.push(name)
-            //var quantityList = []
-            //quantityList.push(quantity)
-            //var imageList = []
-            //imageList.push(succ.image)
+          }else{  //sinon, on crée le panier
+            var nameList = []
+            nameList.push(name)
+            var quantityList = []
+            quantityList.push(quantity)
+            var imageList = []
+            imageList.push(succ.image)
             new_basket = {
-              'name': "choux",
-              'quantity': 1,
-              'image': "hello"
-            //}
+              'name': nameList,
+              'quantity': quantityList,
+              'image': imageList
+            }
           }
           kart.insert(new_basket, username, (error, suc) => {
             if(suc){
@@ -53,6 +50,7 @@ function AddToBasket(name, quantity, username) {
 }
 
 function getBasket(username) {
+  console.log(username)
   return new Promise((resolve, reject) => {
     kart.get(username, (error, success) => {
       if (success) {
