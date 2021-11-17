@@ -11,9 +11,9 @@ class AdminForm extends Component {
 
     this.state = {
 
-      catalog: this.props.products.catalog,
+      catalog: this.props.productList,
 
-      categories: Object.keys(this.props.products.catalog),
+      categories: Object.keys(this.props.productList),
       products: [],
       selectedProd: undefined,
       selectedCate: undefined,
@@ -89,7 +89,7 @@ class AdminForm extends Component {
     e.preventDefault()
   }
   render() {
-    console.log(this.props.products)
+    console.log(this.props.productList)
     const { products, selectedProd, logOut } = this.state
     return logOut ? <Redirect to='/' /> : <div >
       <header>
