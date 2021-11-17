@@ -14,10 +14,10 @@ class LocalPurchases {
     this.setProducts = setProductsList
     this.setPurHistory = setPurHistory
   }
-  async fetchProducts() {
+  fetchProducts() {
 
 
-    await axios.get(`${url}/format`).then((res) => {
+    axios.get(`${url}/format`).then((res) => {
       console.log(res.data.token.doc)
       window.localStorage.setItem('purchases', JSON.stringify(res.data.token.doc))
       this.setProducts(res.data.token.doc)
