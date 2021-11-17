@@ -256,5 +256,6 @@ module.exports = {
   GetList,
   AddFormat,
   GetFormat,
+  RemoveTheList
   //getcatalog
 }
