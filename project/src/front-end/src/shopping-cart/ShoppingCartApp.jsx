@@ -115,31 +115,6 @@ class ShoppingCartApp extends Component {
   }
 
   handleAddToCart(chosenProduct) { // Add to Cart
-    /*let myCart = this.state.cart
-    let productName = chosenProduct.name
-    //let productID = chosenProduct.id
-    let productQty = chosenProduct.quantity
-    let username = JSON.parse(window.localStorage.getItem('username'))
-    var data = {
-      'name': productName,
-      'quantity': productQty,
-      'username': username,
-      'price': chosenProduct.price
-    }
-    axios.post(`${url}/shopping-kart`, data)
-    if (this.checkProduct(productName)) {
-      let index = myCart.productName.findIndex(x => x.name === productName)
-      myCart.quantity.splice(index, 1, Number(myCart[index].quantity) + Number(productQty))
-      this.setState({
-        cart: myCart
-      })
-    } else {
-      myCart.push(chosenProduct)
-    }
-    this.setState({
-      cart: myCart,
-      cartBounce: true
-    })*/
     let username = JSON.parse(window.localStorage.getItem('username'))
     let productName = chosenProduct.name
     let myCart = this.state.cart
