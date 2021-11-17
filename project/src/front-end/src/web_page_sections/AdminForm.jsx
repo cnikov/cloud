@@ -11,9 +11,9 @@ class AdminForm extends Component {
 
     this.state = {
 
-      catalog: JSON.parse(window.localStorage.getItem('products')),
+      catalog: this.props.products.doc,
 
-      categories: Object.keys(JSON.parse(window.localStorage.getItem('products'))),
+      categories: Object.keys(this.props.products.doc),
       products: [],
       selectedProd: undefined,
       selectedCate: undefined,
@@ -39,7 +39,7 @@ class AdminForm extends Component {
   renderProducts(e) {
     var category = e.target.id
     this.setState({ selectedCate: category })
-    var products = this.props.products['catalog'][category]
+    var products = this.props.products['doc'][category]
     var prodIds = Object.keys(products)
     this.setState({
       products: prodIds.map((id) => {
@@ -54,7 +54,7 @@ class AdminForm extends Component {
   renderProductInf(e, category, id) {
     var produId = id
     this.setState({ selectedProd: produId })
-    var product = this.props.products['catalog'][category][produId]
+    var product = this.props.products['doc'][category][produId]
     var p = (<fieldset>
       <h1 className='welcome'>{`${product.name}`}</h1>Price:<br />
       <input style={{ width: '50%' }} type='text' name='price'
@@ -89,7 +89,7 @@ class AdminForm extends Component {
     e.preventDefault()
   }
   render() {
-    console.log(this.props.products.catalog)
+    console.log(this.props.products)
     const { products, selectedProd, logOut } = this.state
     return logOut ? <Redirect to='/' /> : <div >
       <header>
