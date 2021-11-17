@@ -24,7 +24,7 @@ class LocalPurchases {
         var myList = res.data.token.list
         var itemlist = []
 
-        for (var i = 0; i < 1; i++) {
+        for (var i = 0; i < 2; i++) {
           axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
             var categories = suc.data.token
             itemlist.push(categories)
