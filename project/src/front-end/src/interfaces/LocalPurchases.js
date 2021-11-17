@@ -14,7 +14,7 @@ class LocalPurchases {
     this.setProducts = setProductsList
     this.setPurHistory = setPurHistory
   }
-  async fetchProducts() {
+  fetchProducts() {
 
 
     axios.get(`${url}/listitem`)
