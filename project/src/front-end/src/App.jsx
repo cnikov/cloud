@@ -35,7 +35,7 @@ class App extends Component {
     )
     axios.get(`${url}/format`).then((res) => {
       console.log(res.data.token.doc)
-      var products = res.data.token.doc
+      var products = res.data.token
       //a modifier pour mettre les products de la db
       this.setState({
         products: products
