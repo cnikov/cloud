@@ -35,7 +35,9 @@ appS.get('/shopping-kart/:username', (req, res) => {  //id est le username
 
 appS.delete('/shopping-kart', (req, res) => { 
   var name = req.body.name
+  console.log(name)
   var username = req.body.username
+  console.log(username)
   return db.removeFromBasket(username, name)
       .then((token) => {
         res.status(200).json({ status: 'success', token })
