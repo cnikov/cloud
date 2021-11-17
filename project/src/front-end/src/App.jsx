@@ -34,11 +34,12 @@ class App extends Component {
       (route) => { this.props.history.push(route) }
     )
     axios.get(`${url}/format`).then((res) => {
-      console.log(res.data.token)
+
       var products = res.data.token
+      console.log(products)
       //a modifier pour mettre les products de la db
       this.setState({
-        products: JSON.parse(products)
+        products: products ? JSON.parse(products) : catalog
       })
       console.log("hey")
       console.log(this.props.products)
