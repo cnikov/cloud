@@ -16,7 +16,7 @@ swarm:
 	make build
 	docker stack rm scapp
 	cd src/;  docker stack deploy -c scapp.yml scapp
-	cd src/back-end/catalog/; ./fill_db.sh
+	cd src/back-end/catalog/;chmod +x fill_db.sh; ./fill_db.sh
 remove:
 	docker rm $$(docker ps -aq)
 build:
