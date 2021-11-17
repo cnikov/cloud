@@ -73,6 +73,7 @@ class ShoppingCartApp extends Component {
     axios.get(`${url}/shopping-kart/${username}`)
       .then((res) =>{
         console.log("Hello les boss")
+        console.log(res)
         this.state.cart = res.data.token
         console.log(this.state.cart)
       })
