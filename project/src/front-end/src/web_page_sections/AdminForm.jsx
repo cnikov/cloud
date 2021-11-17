@@ -2,17 +2,17 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 
 class AdminForm extends Component {
-  componentWillMount () {
+  componentWillMount() {
     this.state = {
-      catalog: this.props.products,
-      categories: Object.keys(this.props.products),
+      catalog: this.props.products.doc,
+      categories: Object.keys(this.props.products.doc),
       products: [],
       selectedProd: undefined,
       selectedCate: undefined,
       logOut: false
     }
   }
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.renderCategories = this.renderCategories.bind(this)
     this.renderProducts = this.renderProducts.bind(this)
@@ -20,13 +20,13 @@ class AdminForm extends Component {
     this.logOut = this.logOut.bind(this)
     this.handleProductChange = this.handleProductChange.bind(this)
   }
-  renderCategories () {
+  renderCategories() {
     return this.state.categories.map((c) => {
       return (<a id={c} key={c}
         onClick={(e) => { this.renderProducts(e) }}>{c}</a>)
     })
   }
-  renderProducts (e) {
+  renderProducts(e) {
     var category = e.target.id
     this.setState({ selectedCate: category })
     var products = this.props.products[category]
@@ -41,7 +41,7 @@ class AdminForm extends Component {
       })
     })
   }
-  renderProductInf (e, category, id) {
+  renderProductInf(e, category, id) {
     var produId = id
     this.setState({ selectedProd: produId })
     var product = this.props.products[category][produId]
@@ -59,14 +59,14 @@ class AdminForm extends Component {
       selectedProd: p
     })
   }
-  handleProductChange (produId, category, tag, e) {
+  handleProductChange(produId, category, tag, e) {
     var updateState = {}
     updateState.catalog = this.state.catalog
     updateState.catalog[category][produId][tag] = e.target.value
     this.setState(updateState)
     this.renderProductInf(e, category, produId)
   }
-  logOut (e) {
+  logOut(e) {
     var products = JSON.parse(window.localStorage.getItem('products'))
     if (!products) {
       window.localStorage.setItem('products', JSON.stringify(this.state.catalog))
@@ -78,7 +78,7 @@ class AdminForm extends Component {
     })
     e.preventDefault()
   }
-  render () {
+  render() {
     const { products, selectedProd, logOut } = this.state
     return logOut ? <Redirect to='/' /> : <div >
       <header>
@@ -114,14 +114,14 @@ class AdminForm extends Component {
           <button className='btn'
             onClick={this.cancelCheckout}>Remove product</button>
           { /* eslint-disable*/}
-					<form >{
-						!selectedProd
-              ? <fieldset><h1 style={{width: '50%'}} className='welcome'>Products details</h1></fieldset>
-							: selectedProd
-					}</form>
+          <form >{
+            !selectedProd
+              ? <fieldset><h1 style={{ width: '50%' }} className='welcome'>Products details</h1></fieldset>
+              : selectedProd
+          }</form>
         </div>
       </div>
-		</div>
+    </div>
   }
 }
 
