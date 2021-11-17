@@ -31,7 +31,7 @@ function AddFormat(name, price, image, category, id) {
     var newDoc
     form.get("format", (error, success) => {
       if (success) {
-        newDoc.doc[category][id] = {
+        newDoc['doc'][category][id] = {
           'name': name,
           'price': price,
           'image': image,
