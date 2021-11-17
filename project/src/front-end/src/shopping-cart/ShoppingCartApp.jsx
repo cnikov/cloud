@@ -18,9 +18,11 @@ class ShoppingCartApp extends Component {
     let username =  "test"
     axios.get(`${url}/shopping-kart/${username}`)
       .then((res) =>{
+        console.log(res)
         this.initialiseState(false)
       })
       .catch((err) => {
+        console.log(res)
         this.initialiseState(true)
         console.log("Normal error, not yet connected")
       })
