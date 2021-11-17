@@ -78,11 +78,20 @@ function AddFormat(name, price, image, category, id) {
           'doc': success.doc
 
         }
-        newDoc['doc'][category][id] = {
+        try{newDoc['doc'][category][id] = {
           'name': name,
           'price': price,
           'image': image,
           'category': category
+        }}catch(exception){
+          newDoc['doc'][category] = {
+            [id]: {
+              'name': name,
+              'price': price,
+              'image': image,
+              'category': category
+            }
+          }
         }
       } else {
         newDoc = {
