@@ -58,9 +58,11 @@ class ShoppingCartApp extends Component {
         purService: new PurchasesService()
       }
       this.state.purService.setHandlers(
+        
         (list) => { this.setState({ products: list }) },
         (hist) => { this.setState({ oldPurchases: hist }) }
       )
+      console.log(purService)
     } else {
       console.log("mais je ne passe jamais ici")
       this.setState({
