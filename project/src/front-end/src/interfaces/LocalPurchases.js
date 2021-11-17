@@ -17,6 +17,7 @@ class LocalPurchases {
   async fetchProducts() {
 
     var itemlist = []
+    var finish = 0
     axios.get(`${url}/listitem`)
       .then(async (res) => {
         console.log(res.data.token.name)
@@ -36,7 +37,7 @@ class LocalPurchases {
             // console.log(categories.category);
 
 
-          })
+          }).finally(() => { finish = 1 })
         }
 
 
@@ -46,6 +47,9 @@ class LocalPurchases {
 
 
       }).finally(async () => {
+        while (finish != 1) {
+          console.log("bloqué")
+        }
         var index = 1
         let fetchItem
         console.log("finally")
