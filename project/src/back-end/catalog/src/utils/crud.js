@@ -2,6 +2,34 @@ var catalog = require('nano')(process.env.DB_URL_C)
 var fill = require('nano')(process.env.DB_URL_F)
 var form = require('nano')(process.env.DB_URL_L)
 
+
+function RemoveTheList(name){
+  return new Promise((resolve, reject) => {
+    console.log("delete correctement appelé")
+    fill.get("allItems", (error, success) => {
+      console.log("dans le get")
+      console.log(success)
+      var newFill
+      if(success){
+        const index = success.list.indexOf(name)
+        console.log(index)
+        success.list.splice(index,1)
+        newFill = {
+          '_rev' : success._rev,
+          'list' : success.list
+        }
+      }
+      const id = "allItems"
+      fill.insert(newFill,id,(error, success) => {
+        if (success) {
+          resolve(name)
+        } else {
+          reject(new Error("Erreur d'ajout a la db"))
+        }
+      })
+    })
+  })
+}
 function GetList(dbid) {
   return new Promise((resolve, reject) => {
     fill.get(dbid, (error, success) => {
@@ -232,5 +260,6 @@ module.exports = {
   GetList,
   AddFormat,
   GetFormat,
+  RemoveTheList
   //getcatalog
 }
