@@ -32,6 +32,7 @@ class ShoppingCartApp extends Component {
   }
   initialiseState(firstCall) {
     if (firstCall) {
+      console.log("je passe toujours par ici")
       this.state = {
         products: [],
         cart: [],
@@ -52,6 +53,7 @@ class ShoppingCartApp extends Component {
         (hist) => { this.setState({ oldPurchases: hist }) }
       )
     } else {
+      console.log("mais je ne passe jamais ici")
       this.setState({
         products: [],
         cart: [],
