@@ -44,10 +44,10 @@ class LocalPurchases {
                 fetchItem = {
                   [cat]: {
                     [index]: {
-                      'name': categories.name,
-                      'price': categories.price,
-                      'image': categories.image,
-                      'category': categories.category
+                      'name': itemlist[i].name,
+                      'price': itemlist[i].price,
+                      'image': itemlist[i].image,
+                      'category': itemlist[i].category
                     }
                   }
                 }
@@ -59,10 +59,10 @@ class LocalPurchases {
                 console.log("deuxieme if")
                 fetchItem.cat = {
                   [index]: {
-                    'name': categories.name,
-                    'price': categories.price,
-                    'image': categories.image,
-                    'category': categories.category
+                    'name': itemlist[i].name,
+                    'price': itemlist[i].price,
+                    'image': itemlist[i].image,
+                    'category': itemlist[i].category
 
                   }
 
@@ -75,10 +75,10 @@ class LocalPurchases {
               else {
                 console.log("troisieme if")
                 fetchItem.cat.index = {
-                  'name': categories.name,
-                  'price': categories.price,
-                  'image': categories.image,
-                  'category': categories.category
+                  'name': itemlist[i].name,
+                  'price': itemlist[i].price,
+                  'image': itemlist[i].image,
+                  'category': itemlist[i].category
                 }
                 index++
               }
