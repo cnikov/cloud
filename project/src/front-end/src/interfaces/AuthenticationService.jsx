@@ -19,7 +19,7 @@ class AuthenticationService {
         axios.post(`${url}/user`, data) // Perform an HTTP POST rquest to a url with the provided data.
             .then((res) => {
                 // we keep the authentication token
-                console.log(res.data.token)
+                console.log(res.data)
                 window.localStorage.setItem('authToken', JSON.stringify(res.data.token))
                 this.setAuthStatus(true)
                 this.onSucc(`Successful registration of user [${data.username}]!`)
