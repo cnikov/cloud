@@ -164,7 +164,7 @@ class ShoppingCartApp extends Component {
     let cart = this.state.cart
     for (var i = 0; i < cart.length; i++) {
       // eslint-disable-next-line
-      total += cart[i].price * parseInt(cart[i].quantity)
+      total += cart.price[i] * parseInt(cart.quantity[i])
     }
     this.setState({
       totalAmount: Number((total).toFixed(2))

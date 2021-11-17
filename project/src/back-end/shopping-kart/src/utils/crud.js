@@ -29,7 +29,7 @@ function AddToBasket(name, quantity, username, price) {
             var imageList = []
             imageList.push(succ.image)
             var priceList = []
-            price.push(succ.price)
+            priceList.push(succ.price)
             new_basket = {
               'name': nameList,
               'quantity': quantityList,
