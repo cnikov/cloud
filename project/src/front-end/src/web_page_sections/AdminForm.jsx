@@ -1,17 +1,26 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import axios from 'axios' // we use this library as HTTP client
+// you can overwrite the URI of the authentication microservice
+// with this environment variable
+const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
 
 class AdminForm extends Component {
   componentWillMount() {
-    this.state = {
-      catalog: this.props.products,
+    axios.get(`${url}/format`).then((res) => {
 
-      categories: Object.keys(this.props.products),
-      products: [],
-      selectedProd: undefined,
-      selectedCate: undefined,
-      logOut: false
+
+      this.state = {
+        catalog: res.data.token.doc,
+
+        categories: Object.keys(res.data.token.doc),
+        products: [],
+        selectedProd: undefined,
+        selectedCate: undefined,
+        logOut: false
+      }
     }
+    )
   }
   constructor(props) {
     super(props)
