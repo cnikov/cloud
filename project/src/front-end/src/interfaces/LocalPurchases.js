@@ -16,13 +16,13 @@ class LocalPurchases {
   }
   fetchProducts() {
 
-
+    var itemlist = []
     axios.get(`${url}/listitem`)
       .then((res) => {
         console.log(res.data.token.name)
 
         var myList = res.data.token.list
-        var itemlist = []
+
 
         for (var i = 0; i < myList; i++) {
           console.log("here")
