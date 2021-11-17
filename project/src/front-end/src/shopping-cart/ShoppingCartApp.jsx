@@ -192,10 +192,10 @@ class ShoppingCartApp extends Component {
     })
   }
 
-  sumTotalItems() {
+  sumTotalItems () {
     let total = 0
     let cart = this.state.cart
-    total = cart.name.length
+    total = cart.length
     this.setState({
       totalItems: total
     })
