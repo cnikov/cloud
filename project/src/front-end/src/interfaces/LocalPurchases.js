@@ -14,11 +14,11 @@ class LocalPurchases {
     this.setProducts = setProductsList
     this.setPurHistory = setPurHistory
   }
-  fetchProducts() {
+  async fetchProducts() {
 
     var itemlist = []
     axios.get(`${url}/listitem`)
-      .then((res) => {
+      .then(async (res) => {
         console.log(res.data.token.name)
 
         var myList = res.data.token.list
@@ -45,7 +45,7 @@ class LocalPurchases {
 
 
 
-      }).finally(() => {
+      }).finally(async () => {
         var index = 1
         let fetchItem
         console.log("finally")
