@@ -21,11 +21,15 @@ function AddToBasket(name, quantity, username) {
             }
           }else{  //sinon, on crée le panier
             var nameList = []
+            console.log(nameList)
             nameList.push(name)
+            console.log(nameList)
             var quantityList = []
             quantityList.push(quantity)
+            console.log(quantityList)
             var imageList = []
             imageList.push(succ.image)
+            console.log(imageList)
             new_basket = {
               'name': nameList,
               'quantity': quantityList,
