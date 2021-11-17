@@ -22,69 +22,67 @@ class LocalPurchases {
         console.log(res.data.token.name)
 
         var myList = res.data.token.list
-        let fetchItem
-        var finish = 0
-        for (var i = 0; i < 1; i++) {
+        var itemlist = []
+
+        for (var i = 0; i < myList; i++) {
           axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
             var categories = suc.data.token
+            itemlist.push(categories)
 
-            var id = 1
+            // console.log("list")
+            // console.log(categories.name);
+            // console.log(categories.category);
 
-            console.log("list")
-            console.log(categories.name);
-            console.log(categories.category);
-            var cat = categories.category
-            if (id === 1) {
-              console.log("premier if")
-              fetchItem = {
-                [cat]: {
-                  [id]: {
+
+          }).finally(() => {
+            var index = 1
+            let fetchItem
+            for (var j = 0; j < itemlist.length; j++) {
+              var cat = itemlist[i].category
+              if (index === 1) {
+                console.log("premier if")
+                fetchItem = {
+                  [cat]: {
+                    [index]: {
+                      'name': categories.name,
+                      'price': categories.price,
+                      'image': categories.image,
+                      'category': categories.category
+                    }
+                  }
+                }
+                console.log(fetchItem)
+                index++
+              }
+
+              else if (fetchItem.cat === null && index !== 1) {
+                console.log("deuxieme if")
+                fetchItem.cat = {
+                  [index]: {
                     'name': categories.name,
                     'price': categories.price,
                     'image': categories.image,
                     'category': categories.category
-                  }
-                }
-              }
-              console.log(fetchItem)
-              id++
-            }
 
-            else if (fetchItem.cat === null && id !== 0) {
-              console.log("deuxieme if")
-              fetchItem.cat = {
-                [id]: {
+                  }
+
+
+
+                }
+                index++
+                console.log(fetchItem)
+              }
+              else {
+                console.log("troisieme if")
+                fetchItem.cat.index = {
                   'name': categories.name,
                   'price': categories.price,
                   'image': categories.image,
                   'category': categories.category
-
                 }
-
-
-
+                index++
               }
-              id++
-              console.log(fetchItem)
             }
-            else {
-              console.log("troisieme if")
-              fetchItem.cat.id = {
-                'name': categories.name,
-                'price': categories.price,
-                'image': categories.image,
-                'category': categories.category
-              }
-              id++
-            }
-
-
-
-            if (i == (myList.length - 1)) {
-              console.log("finish")
-              finish = 1
-            }
-          }).finally(() => {
             this.setProducts(fetchItem)
           })
         }
