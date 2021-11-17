@@ -85,6 +85,20 @@ class ShoppingCartApp extends Component {
     let username = JSON.parse(window.localStorage.getItem('username'))
       axios.get(`${url}/shopping-kart/${username}`)
         .then((res) =>{
+          var prod = res.data.token
+          for (var i = 0; i < prod.name.length; i++){
+            let n = prod.name[i]
+            let p = prod.price[i]
+            let q = prod.quantity[i]
+            let id = prod.id[i]
+            let add = {
+              'name': n,
+              'price': p,
+              'quantity': q,
+              'id': id
+            }
+            myCart.push(add)
+          }
           console.log(res)
           this.state.cart = res.data.token
           console.log(this.state.cart)
@@ -101,7 +115,7 @@ class ShoppingCartApp extends Component {
   }
 
   handleAddToCart(chosenProduct) { // Add to Cart
-    let myCart = this.state.cart
+    /*let myCart = this.state.cart
     let productName = chosenProduct.name
     //let productID = chosenProduct.id
     let productQty = chosenProduct.quantity
@@ -116,6 +130,22 @@ class ShoppingCartApp extends Component {
     if (this.checkProduct(productName)) {
       let index = myCart.productName.findIndex(x => x.name === productName)
       myCart.quantity.splice(index, 1, Number(myCart[index].quantity) + Number(productQty))
+      this.setState({
+        cart: myCart
+      })
+    } else {
+      myCart.push(chosenProduct)
+    }
+    this.setState({
+      cart: myCart,
+      cartBounce: true
+    })*/
+    let myCart = this.state.cart
+    let productID = chosenProduct.id
+    let productQty = chosenProduct.quantity
+    if (this.checkProduct(productID)) {
+      let index = myCart.findIndex(x => x.id === productID)
+      myCart[index].quantity = Number(myCart[index].quantity) + Number(productQty)
       this.setState({
         cart: myCart
       })
@@ -176,7 +206,7 @@ class ShoppingCartApp extends Component {
     let cart = this.state.cart
     for (var i = 0; i < cart.length; i++) {
       // eslint-disable-next-line
-      total += cart.price[i] * parseInt(cart.quantity[i])
+      total += cart[i].price * parseInt(cart[i].quantity)
     }
     this.setState({
       totalAmount: Number((total).toFixed(2))
