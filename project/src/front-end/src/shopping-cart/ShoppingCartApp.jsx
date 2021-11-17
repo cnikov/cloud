@@ -97,7 +97,7 @@ class ShoppingCartApp extends Component {
               'quantity': q,
               'id': id
             }
-            myCart.push(add)
+            this.state.cart.push(add)
           }
           console.log(res)
           this.state.cart = res.data.token
