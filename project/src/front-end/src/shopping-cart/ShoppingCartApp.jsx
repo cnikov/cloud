@@ -153,12 +153,12 @@ class ShoppingCartApp extends Component {
     let index = cart.findIndex(x => x.id === id)
     let productName = cart[index].name
     let username = JSON.parse(window.localStorage.getItem('username'))
-    /*var data = {
-      'name': productName,
-      'username': username,
-    }*/
-    console.log(data)
-    axios.delete(`${url}/shopping-kart/${productName}/${username}`)
+    //var data = {
+    //  'name': productName,
+    //  'username': username,
+    //}
+    //console.log(data)
+    axios.delete(`${url}/shopping-kart/name/username`)
       .then((res) => {
         window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
       })

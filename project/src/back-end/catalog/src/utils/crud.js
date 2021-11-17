@@ -10,6 +10,10 @@ function DeleteInFormat(name) {
         catalog.get(name, (err, succ) => {
           if (succ) {
             delete success['doc'][succ.category][succ.id]
+            var size = Object.keys(success['doc'][succ.category]).length;
+            if (size == 0) {
+              delete success['doc'][succ.category]
+            }
             newDoc = {
               '_rev': success._rev,
               'doc': success.doc
@@ -54,13 +58,13 @@ function RemoveTheList(name) {
       if (success) {
         const index = success.list.indexOf(name)
         console.log(index)
-        if (index > 0) {
-          success.list.splice(index, 1)
-          newFill = {
-            '_rev': success._rev,
-            'list': success.list
-          }
+
+        success.list.splice(index, 1)
+        newFill = {
+          '_rev': success._rev,
+          'list': success.list
         }
+
 
       }
       const id = "allItems"
