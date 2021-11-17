@@ -16,106 +16,16 @@ class LocalPurchases {
   }
   async fetchProducts() {
 
-    var itemlist = []
-    var finish = 0
-    axios.get(`${url}/listitem`)
-      .then(async (res) => {
-        console.log(res.data.token.name)
 
-        var myList = res.data.token.list
-
-        const promise = new Promise((resolve, reject) => {
-          for (var i = 0; i < myList; i++) {
-            console.log("here")
-            axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
-              var categories = suc.data.token
-              console.log(categories)
-              itemlist.push(categories)
-
-              // console.log("list")
-              // console.log(categories.name);
-              // console.log(categories.category);
-
-
-            })
-          }
+    axios.get(`${url}/format`).then((res) => {
+      console.log(res.data.token.doc)
+      this.setProducts(res.data.token.doc)
+    })
 
 
 
 
 
-
-
-        })
-
-
-        promise.then(() => {
-
-          var index = 1
-          let fetchItem
-          console.log("finally")
-
-          for (var j = 0; j < itemlist.length; j++) {
-            var cat = itemlist[j].category
-            if (index === 1) {
-              console.log("premier if")
-              fetchItem = {
-                [cat]: {
-                  [index]: {
-                    'name': itemlist[j].name,
-                    'price': itemlist[j].price,
-                    'image': itemlist[j].image,
-                    'category': itemlist[j].category
-                  }
-                }
-
-
-
-              }
-
-              console.log(fetchItem)
-              index++
-            }
-
-            else if (fetchItem[cat] === null && index !== 1) {
-
-
-              console.log("deuxieme if")
-              fetchItem[cat] = {
-                [index]: {
-                  'name': itemlist[j].name,
-                  'price': itemlist[j].price,
-                  'image': itemlist[j].image,
-                  'category': itemlist[j].category
-
-                }
-
-
-
-              }
-              index++
-              console.log(fetchItem)
-            }
-            else {
-              console.log("troisieme if")
-              fetchItem[cat][index] = {
-                'name': itemlist[j].name,
-                'price': itemlist[j].price,
-                'image': itemlist[j].image,
-                'category': itemlist[j].category
-              }
-              index++
-            }
-          }
-
-          console.log(fetchItem)
-          this.setProducts(fetchItem)
-        })
-          .catch((error) => {
-            console.error(error.message)
-            //onErr(`User [${data.username}] is not registered or his credentials are incorrect.`)
-          })
-      })
   }
   fetchHistory() {
     var purchases = JSON.parse(window.localStorage.getItem('purchases'))   //mettre les purchases du dernier panier?

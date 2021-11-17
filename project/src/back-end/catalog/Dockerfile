@@ -20,6 +20,7 @@ ENV DEBUG catalog-db
 # database name
 ENV DB_NAME_C catalogs
 ENV DB_NAME_F allitems
+ENV DB_NAME_F myformat
 # name of container running CouchDB
 ENV DB_HOST_C catalog-db
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
@@ -27,6 +28,7 @@ ENV ADMIN_NAME admin
 ENV ADMIN_PASSW admin
 ENV DB_URL_C http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_C}
 ENV DB_URL_F http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_F}
+ENV DB_URL_L http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_L}
 
 # we now use an script to deploy the authentication service
 CMD source boot-in-order.sh

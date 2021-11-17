@@ -5,6 +5,18 @@ const db = require('./utils/crud')
 
 
 
+app.post('/format', (req, res) => {
+  var name = req.body.name
+  var price = req.body.price
+  var image = req.body.image
+  var category = req.body.category
+  var id = req.body.id
+  return db.AddFormat(name, price, image, category, id).then((token) => {
+    res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(409).json({ status: 'error', message: String(err) })
+  })
+})
 
 app.post('/listitem', (req, res) => {
   var name = req.body.name
@@ -30,6 +42,14 @@ app.post('/catalog', (req, res) => {
     .catch((err) => {
       res.status(409).json({ status: 'error', message: String(err) })
     })
+})
+app.get('/format', (req, res) => {
+  var id = 'format'
+  return db.GetFormat(id).then((token) => {
+    res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(404).json({ status: 'error', message: String(err) })
+  })
 })
 app.get('/listitem', (req, res) => {
   var id = 'allItems'
