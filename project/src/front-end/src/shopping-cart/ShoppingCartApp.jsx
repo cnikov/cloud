@@ -15,6 +15,7 @@ const PurchasesService = LocalPurchases
 class ShoppingCartApp extends Component {
 
   componentWillMount() {
+    let username =  JSON.parse(window.localStorage.getItem('username'))
     axios.get(`${url}/shopping-kart/${username}`)
       .then((res) =>{
         this.initialiseState(false)
