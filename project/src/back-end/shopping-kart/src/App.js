@@ -21,10 +21,10 @@ appS.post('/shopping-kart', (req, res) => {
   //log(`Adding a new item (${item}) identified in basket "${id}"`)
 })
 
-appS.get('/shopping-kart/:id', (req, res) => {  //id est le username
-  var id = req.params.id
+appS.get('/shopping-kart/:username', (req, res) => {  //id est le username
+  var username = req.params.username
   //log(`Getting basket (${id})`)
-  return db.getBasket(id)
+  return db.getBasket(username)
     .then((token) => {
       res.status(200).json({ status: 'success', token })
     })

@@ -83,7 +83,7 @@ class ShoppingCartApp extends Component {
     this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
     this.state.purService.fetchHistory()
     let username = JSON.parse(window.localStorage.getItem('username'))
-      axios.get(`${url}/shopping-kart/${username}`)
+    axios.get(`${url}/shopping-kart/${username}`)
         .then((res) =>{
           var prod = res.data.token
           for (var i = 0; i < prod.name.length; i++){
@@ -195,10 +195,10 @@ class ShoppingCartApp extends Component {
     e.preventDefault()
   }
 
-  checkProduct(productName) {
+  checkProduct(productID) {
     let cart = this.state.cart
     return cart.some(function (item) {
-      return item.name === productName
+      return item.id === productID
     })
   }
 
