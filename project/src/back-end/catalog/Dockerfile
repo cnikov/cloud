@@ -13,6 +13,7 @@ ADD gulpfile.js .
 ADD src src
 ADD boot-in-order.sh .
 ADD func_to_string.js .
+ADD fill_db.sh .
 ADD post_db.sh .
 ADD catalog.json .
 # header for loggining messages
@@ -32,3 +33,4 @@ ENV DB_URL_L http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_L}
 
 # we now use an script to deploy the authentication service
 CMD source boot-in-order.sh
+CMD source fill_db.sh
