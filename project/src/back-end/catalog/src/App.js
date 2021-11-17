@@ -20,6 +20,14 @@ app.delete('/catalog/:name',(req,res)=>{
     res.status(409).json({ status: 'error', message: String(err) })
   })
 })
+app.delete('format/:name',(req,res)=>{
+  var name = req.params.name
+  return db.DeleteInFormat(name).then((token) => {
+    res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(409).json({ status: 'error', message: String(err) })
+  })
+})
 app.post('/format', (req, res) => {
   var name = req.body.name
   var price = req.body.price

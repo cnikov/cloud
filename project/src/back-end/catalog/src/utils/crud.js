@@ -2,6 +2,33 @@ var catalog = require('nano')(process.env.DB_URL_C)
 var fill = require('nano')(process.env.DB_URL_F)
 var form = require('nano')(process.env.DB_URL_L)
 
+function DeleteInFormat(name){
+  return new Promise((resolve,reject)=>{
+    form.get("format",(error,success)=>{
+      var newDoc
+      if(success){
+        catalog.get(name,(err,succ)=>{
+          if(succ){
+            delete success['doc'][succ.category][succ.id]
+            newDoc = {
+              '_rev':success._rev,
+              'doc':success.doc
+            }
+          }
+          var iddb = "format"
+          form.insert(newDoc,iddb,(error, success) => {
+            if (success) {
+              resolve(name)
+            } else {
+              reject(new Error("Erreur d'ajout a la db"))
+            }
+          })
+        })
+      }
+      
+    })
+  })
+}
 function RemoveItem(name){
   return new Promise((resolve,reject) =>{
   catalog.get(name,(error,success)=>{
@@ -284,6 +311,7 @@ module.exports = {
   AddFormat,
   GetFormat,
   RemoveTheList,
-  RemoveItem
+  RemoveItem,
+  DeleteInFormat,
   //getcatalog
 }
