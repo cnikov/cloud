@@ -17,7 +17,7 @@ class LocalPurchases {
   async fetchProducts() {
 
 
-    axios.get(`${url}/format`).then((res) => {
+    await axios.get(`${url}/format`).then((res) => {
       console.log(res.data.token.doc)
       window.localStorage.setItem('purchases', JSON.stringify(res.data.token.doc))
       this.setProducts(res.data.token.doc)

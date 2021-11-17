@@ -2,7 +2,7 @@ var catalog = require('nano')(process.env.DB_URL_C)
 var fill = require('nano')(process.env.DB_URL_F)
 var form = require('nano')(process.env.DB_URL_L)
 
-function GetList(dbid) {
+async function GetList(dbid) {
   return new Promise((resolve, reject) => {
     fill.get(dbid, (error, success) => {
       if (success) {
@@ -14,7 +14,7 @@ function GetList(dbid) {
     })
   })
 }
-function GetFormat(dbid) {
+async function GetFormat(dbid) {
   return new Promise((resolve, reject) => {
     form.get(dbid, (error, success) => {
       if (success) {
@@ -26,7 +26,7 @@ function GetFormat(dbid) {
     })
   })
 }
-function AddFormat(name, price, image, category, id) {
+async function AddFormat(name, price, image, category, id) {
   return new Promise((resolve, reject) => {
 
     form.get("format", (error, success) => {
@@ -69,7 +69,7 @@ function AddFormat(name, price, image, category, id) {
 
   })
 }
-function FillTheList(name) {
+async function FillTheList(name) {
   return new Promise((resolve, reject) => {
     var newDoc
     fill.get("allItems", (error, success) => {
@@ -102,7 +102,7 @@ function FillTheList(name) {
   })
 }
 
-function AddProduct(name, price, image, category) {
+async function AddProduct(name, price, image, category) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
   //lol si ca marche (aucun espoir)
   //const nproduct = {
@@ -205,7 +205,7 @@ catch (exception) {
 //})
 //}
 
-function getProduct(dbid) {
+async function getProduct(dbid) {
   return new Promise((resolve, reject) => {
     catalog.get(dbid, (error, success) => {
       if (success) {
