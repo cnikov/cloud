@@ -15,7 +15,15 @@ const PurchasesService = LocalPurchases
 class ShoppingCartApp extends Component {
 
   componentWillMount() {
-    this.initialiseState(true)
+    axios.get(`${url}/shopping-kart/${username}`)
+      .then((res) =>{
+        this.initialiseState(false)
+      })
+      .catch((err) => {
+        this.initialiseState(true)
+        console.log("Normal error, not yet connected")
+      })
+    //this.initialiseState(true)
   }
   constructor(props) {
     super(props)
