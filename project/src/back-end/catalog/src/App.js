@@ -4,7 +4,14 @@ const app = express.Router()
 const db = require('./utils/crud')
 
 
-
+app.delete('/listitem:name',(req,res)=>{
+  var name = req.params.name
+  return db.RemoveTheList(name).then((token) => {
+    res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(409).json({ status: 'error', message: String(err) })
+  })
+})
 app.post('/format', (req, res) => {
   var name = req.body.name
   var price = req.body.price
