@@ -25,10 +25,15 @@ function AddToBasket(name, quantity, username, price, id) {
                 'id': success.id
               }
             }else{
+              console.log("tests sur les qtitess")
+              console.log(index)
+              console.log(qtity)
+              console.log(success.quantity[index])
+              var qtity = quantity + success.quantity[index]
               new_basket = {
                 '_rev':  success._rev,
                 'name': success.name,
-                'quantity': quantity + success.quantity[index],
+                'quantity': qtity,
                 'image': success.image,
                 'price': success.price,
                 'id': success.id
