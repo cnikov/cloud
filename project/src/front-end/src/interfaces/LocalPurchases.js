@@ -38,7 +38,7 @@ class LocalPurchases {
             var index = 1
             let fetchItem
             for (var j = 0; j < itemlist.length; j++) {
-              var cat = itemlist[i].category
+              var cat = itemlist[j].category
               if (index === 1) {
                 console.log("premier if")
                 fetchItem = {
