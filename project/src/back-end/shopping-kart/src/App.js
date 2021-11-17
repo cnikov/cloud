@@ -21,7 +21,6 @@ appS.post('/shopping-kart', (req, res) => {
 
 appS.get('/shopping-kart/:id', (req, res) => {  //id est le username
   var id = req.params.id
-  console.log(id)
   //log(`Getting basket (${id})`)
   return db.getBasket(id)
     .then((token) => {
