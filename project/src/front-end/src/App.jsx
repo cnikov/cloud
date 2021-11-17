@@ -38,10 +38,10 @@ class App extends Component {
       var products = res.data.token.doc
       //a modifier pour mettre les products de la db
       this.setState({
-
         products: products
-
       })
+      console.log("hey")
+      console.log(this.props.products)
     })
   }
   constructor(props) {
