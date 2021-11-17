@@ -24,95 +24,97 @@ class LocalPurchases {
 
         var myList = res.data.token.list
 
+        const promise = new Promise((resolve, reject) => {
+          for (var i = 0; i < myList; i++) {
+            console.log("here")
+            axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
+              var categories = suc.data.token
+              console.log(categories)
+              itemlist.push(categories)
 
-        for (var i = 0; i < myList; i++) {
-          console.log("here")
-          axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
-            var categories = suc.data.token
-            console.log(categories)
-            itemlist.push(categories)
-
-            // console.log("list")
-            // console.log(categories.name);
-            // console.log(categories.category);
-
-
-          }).finally(() => { finish = 1 })
-        }
+              // console.log("list")
+              // console.log(categories.name);
+              // console.log(categories.category);
 
 
+            })
+          }
 
 
 
 
 
-      }).finally(async () => {
-        while (finish != 1) {
-          console.log("bloqué")
-        }
-        var index = 1
-        let fetchItem
-        console.log("finally")
 
-        for (var j = 0; j < itemlist.length; j++) {
-          var cat = itemlist[j].category
-          if (index === 1) {
-            console.log("premier if")
-            fetchItem = {
-              [cat]: {
+
+        })
+
+
+        promise.then(() => {
+
+          var index = 1
+          let fetchItem
+          console.log("finally")
+
+          for (var j = 0; j < itemlist.length; j++) {
+            var cat = itemlist[j].category
+            if (index === 1) {
+              console.log("premier if")
+              fetchItem = {
+                [cat]: {
+                  [index]: {
+                    'name': itemlist[j].name,
+                    'price': itemlist[j].price,
+                    'image': itemlist[j].image,
+                    'category': itemlist[j].category
+                  }
+                }
+
+
+
+              }
+
+              console.log(fetchItem)
+              index++
+            }
+
+            else if (fetchItem[cat] === null && index !== 1) {
+
+
+              console.log("deuxieme if")
+              fetchItem[cat] = {
                 [index]: {
                   'name': itemlist[j].name,
                   'price': itemlist[j].price,
                   'image': itemlist[j].image,
                   'category': itemlist[j].category
+
                 }
+
+
+
               }
-
-
-
+              index++
+              console.log(fetchItem)
             }
-
-            console.log(fetchItem)
-            index++
-          }
-
-          else if (fetchItem[cat] === null && index !== 1) {
-
-
-            console.log("deuxieme if")
-            fetchItem[cat] = {
-              [index]: {
+            else {
+              console.log("troisieme if")
+              fetchItem[cat][index] = {
                 'name': itemlist[j].name,
                 'price': itemlist[j].price,
                 'image': itemlist[j].image,
                 'category': itemlist[j].category
-
               }
-
-
-
+              index++
             }
-            index++
-            console.log(fetchItem)
           }
-          else {
-            console.log("troisieme if")
-            fetchItem[cat][index] = {
-              'name': itemlist[j].name,
-              'price': itemlist[j].price,
-              'image': itemlist[j].image,
-              'category': itemlist[j].category
-            }
-            index++
-          }
-        }
 
-        console.log(fetchItem)
-        this.setProducts(fetchItem)
-      })
-      .catch((error) => {
-        console.error(error.message)
-        //onErr(`User [${data.username}] is not registered or his credentials are incorrect.`)
+          console.log(fetchItem)
+          this.setProducts(fetchItem)
+        })
+          .catch((error) => {
+            console.error(error.message)
+            //onErr(`User [${data.username}] is not registered or his credentials are incorrect.`)
+          })
       })
   }
   fetchHistory() {
