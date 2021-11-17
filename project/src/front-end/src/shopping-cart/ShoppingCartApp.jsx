@@ -157,6 +157,7 @@ class ShoppingCartApp extends Component {
       'name': productName,
       'username': username,
     }
+    console.log(data)
     axios.delete(`${url}/shopping-kart`, data)
       .then((res) => {
         window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
