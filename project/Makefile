@@ -17,6 +17,7 @@ swarm:
 	docker stack rm scapp
 	cd src/;  docker stack deploy -c scapp.yml scapp
 	cd src/back-end/catalog/;chmod +x fill_db.sh; ./fill_db.sh > /dev/null 2>&1
+	chmod +x add_item.sh;chmod +x remove_item.sh
 remove:
 	docker rm $$(docker ps -aq)
 build:
@@ -27,23 +28,7 @@ build:
 	cd src/back-end/users/; docker build -t scapp-be .
 	cd src/back-end/catalog/; docker build -t catalog-be .
 	cd src/back-end/shopping-kart/; docker build -t shopping-be .
-add:
-	curl -X POST --data "name=Brocolli&price=2&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg&category=Vegetable&id=1" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
-	curl -X POST --data "name=Cauliflower&price=6&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/cauliflower.jpg&category=Vegetable&id=2" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
-	curl -X POST --data "name=Cucumber&price=5.5&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/cucumber.jpg&category=Vegetable&id=3" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
-	curl -X POST --data "name=Beetroot&price=8.7&image=https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/beetroot.jpg&category=Vegetable&id=4" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
-	curl -X POST --data "name=Apple&price=2.34&image=https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/apple.jpg&category=Fruits&id=6" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
-	curl -X POST --data "name=Banana&price=1.69&image=https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/banana.jpg&category=Fruits&id=7" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
-	curl -X POST --data "name=Grapes&price=5.98&image=https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/grapes.jpg&category=Fruits&id=8" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
-	curl -X POST --data "name=Mango&price=6.80&image=https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/mango.jpg&category=Fruits&id=9" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/catalog
-	curl -X POST --data "name=Brocolli&price=2&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg&category=Vegetable&id=1" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/format
-	curl -X POST --data "name=Cauliflower&price=6&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/cauliflower.jpg&category=Vegetable&id=2" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/format
-	curl -X POST --data "name=Cucumber&price=5.5&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/cucumber.jpg&category=Vegetable&id=3" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/format
-	curl -X POST --data "name=Beetroot&price=8.7&image=https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/beetroot.jpg&category=Vegetable&id=4" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/format
-	curl -X POST --data "name=Apple&price=2.34&image=https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/apple.jpg&category=Fruits&id=6" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/format
-	curl -X POST --data "name=Banana&price=1.69&image=https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/banana.jpg&category=Fruits&id=7" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/format
-	curl -X POST --data "name=Grapes&price=5.98&image=https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/grapes.jpg&category=Fruits&id=8" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/format
-	curl -X POST --data "name=Mango&price=6.80&image=https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/mango.jpg&category=Fruits&id=9" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/format
+	
 
 stop:
 	docker stop $$(docker ps -aq)
