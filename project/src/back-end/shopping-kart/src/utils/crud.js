@@ -20,6 +20,7 @@ function AddToBasket(name, quantity, username) {
               'image': success.image
             }
           }else{  //sinon, on crée le panier
+            console.log("Je suis un trouduc")
             var nameList = []
             console.log(nameList)
             nameList.push(name)
