@@ -72,7 +72,11 @@ class ShoppingCartApp extends Component {
     let username = JSON.parse(window.localStorage.getItem('username'))
     axios.get(`${url}/shopping-kart/${username}`)
       .then((res) =>{
+        console.log("Hello les boss")
         this.state.cart = res.data.token
+      })
+      .catch((err) => {
+        console.log("trouduc")
       })
     console.log(this.state.cart)
   }
