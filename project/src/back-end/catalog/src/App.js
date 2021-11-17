@@ -4,7 +4,7 @@ const app = express.Router()
 const db = require('./utils/crud')
 
 
-app.delete('/listitem:name',(req,res)=>{
+app.delete('/listitem/:name',(req,res)=>{
   var name = req.params.name
   return db.RemoveTheList(name).then((token) => {
     res.status(200).json({ status: 'success', token })
