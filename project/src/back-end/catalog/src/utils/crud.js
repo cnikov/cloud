@@ -4,9 +4,9 @@ var form = require('nano')(process.env.DB_URL_L)
 
 function RemoveItem(name){
   return new Promise((resolve,reject) =>{
-  fill.get(name,(error,success)=>{
+  catalog.get(name,(error,success)=>{
     if(success){
-      fill.destroy(name,success._rev,(error, success) => {
+      catalog.destroy(name,success._rev,(error, success) => {
         if (success) {
           resolve(name)
         } else {
