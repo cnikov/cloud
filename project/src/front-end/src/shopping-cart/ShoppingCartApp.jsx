@@ -58,9 +58,11 @@ class ShoppingCartApp extends Component {
         purService: new PurchasesService()
       }
       this.state.purService.setHandlers(
+        
         (list) => { this.setState({ products: list }) },
         (hist) => { this.setState({ oldPurchases: hist }) }
       )
+      console.log(this.state.purService)
     } else {
       console.log("mais je ne passe jamais ici")
       this.setState({
@@ -77,7 +79,10 @@ class ShoppingCartApp extends Component {
         purchaseId: null,
         oldPurchases: []
       })
-      let username = JSON.parse(window.localStorage.getItem('username'))
+    }
+    this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
+    this.state.purService.fetchHistory()
+    let username = JSON.parse(window.localStorage.getItem('username'))
       axios.get(`${url}/shopping-kart/${username}`)
         .then((res) =>{
           console.log(res)
@@ -87,9 +92,6 @@ class ShoppingCartApp extends Component {
       .catch((err) => {
         console.log("Not yet connected")
       })
-    }
-    this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
-    this.state.purService.fetchHistory()
     //console.log(this.state.cart)
   }
 
