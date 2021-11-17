@@ -108,7 +108,6 @@ class ShoppingCartApp extends Component {
       })
     } else {
       myCart.push(chosenProduct)
-
     }
     this.setState({
       cart: myCart,
