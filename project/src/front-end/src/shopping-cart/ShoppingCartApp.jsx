@@ -62,7 +62,7 @@ class ShoppingCartApp extends Component {
         (list) => { this.setState({ products: list }) },
         (hist) => { this.setState({ oldPurchases: hist }) }
       )
-      console.log(purService)
+      console.log(this.state.purService)
     } else {
       console.log("mais je ne passe jamais ici")
       this.setState({
