@@ -24,8 +24,8 @@ class LocalPurchases {
         var myList = res.data.token.list
         let fetchItem
         var finish = 0
-        for (var i = 0; i < 1; i++) {
-          axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
+        for (var i = 0; i < myList; i++) {
+          axios.get(`${url}/catalog/${myList[i]}`).then(async (suc) => {
             var categories = suc.data.token
 
             var id = 1
@@ -50,7 +50,7 @@ class LocalPurchases {
               id++
             }
 
-            else if (fetchItem.cat === null && i !== 0) {
+            else if (fetchItem.cat === null && index !== 0) {
               console.log("deuxieme if")
               fetchItem.cat = {
                 [id]: {
