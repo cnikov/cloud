@@ -93,20 +93,17 @@ function removeFromBasket(username, name){
   return new Promise((resolve, reject) =>{
     kart.get(username, (error, succes) => {
         if(succes){
-          console.log(succes)
-          console.log(username)
-          console.log(name)
           let index = succes.name.indexOf(name)
-          var newName = succes.name.splice(index,1)
-          var newQ = succes.quantity.splice(index,1)
-          var newURL = succes.image.splice(index,1)
-          var newID = succes.id.splice(index,1)
+          succes.name.splice(index,1)
+          succes.quantity.splice(index,1)
+          succes.image.splice(index,1)
+          succes.id.splice(index,1)
           var new_basket = {
             '_rev': succes._rev,
-            'name': newName,
-            'quantity': newQ,
-            'image': newURL,
-            'id': newID
+            'name': succes.name,
+            'quantity': succes.quantity,
+            'image': succes.image,
+            'id': succes.id
           }
         }
         kart.insert(new_basket, username, (error, success) => {
