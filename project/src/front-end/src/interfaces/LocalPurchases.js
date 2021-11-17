@@ -37,7 +37,7 @@ class LocalPurchases {
           }).finally(() => {
             var index = 1
             let fetchItem
-            var catcount = 0
+
             for (var j = 0; j < itemlist.length; j++) {
               var cat = itemlist[j].category
               if (index === 1) {
@@ -61,7 +61,8 @@ class LocalPurchases {
               }
 
               else if (fetchItem.cat === null && index !== 1) {
-                catCount++
+
+
                 console.log("deuxieme if")
                 fetchItem.cat = {
                   [index]: {
