@@ -14,7 +14,7 @@ class LocalPurchases {
     this.setProducts = setProductsList
     this.setPurHistory = setPurHistory
   }
-  async fetchProducts() {
+  fetchProducts() {
 
 
     axios.get(`${url}/listitem`)
@@ -24,8 +24,8 @@ class LocalPurchases {
         var myList = res.data.token.list
         let fetchItem
         var finish = 0
-        for (var i = 0; i < myList; i++) {
-          axios.get(`${url}/catalog/${myList[i]}`).then(async (suc) => {
+        for (var i = 0; i < 1; i++) {
+          axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
             var categories = suc.data.token
 
             var id = 1
