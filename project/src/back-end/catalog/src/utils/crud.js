@@ -5,10 +5,14 @@ var form = require('nano')(process.env.DB_URL_L)
 
 function RemoveTheList(name){
   return new Promise((resolve, reject) => {
+    console.log("delete correctement appelé")
     fill.get("allItems", (error, success) => {
+      console.log("dans le get")
+      console.log(success)
       var newFill
       if(success){
         const index = success.list.indexOf(name)
+        console.log(index)
         success.list.splice(index,1)
         newFill = {
           '_rev' : success._rev,
