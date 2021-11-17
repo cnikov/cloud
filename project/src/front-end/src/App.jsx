@@ -10,9 +10,13 @@ import AuthenticationService from './interfaces/AuthenticationService'
 
 import './shopping-cart/scss/style.css'
 const catalog = require('./shopping-cart/components/catalog')
+import axios from 'axios' // we use this library as HTTP client
+// you can overwrite the URI of the authentication microservice
+// with this environment variable
+const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
 
 class App extends Component {
-  componentWillMount () {
+  componentWillMount() {
     window.localStorage.clear()
     this.state = {
       showRegis: false,
@@ -29,12 +33,16 @@ class App extends Component {
       (newState) => { this.setState({ authenticated: newState }) },
       (route) => { this.props.history.push(route) }
     )
-    var products = window.localStorage.getItem('products')    //a modifier pour mettre les products de la db
-    this.setState({
-      products: products ? JSON.parse(products) : catalog
+    axios.get(`${url}/format`).then((res) => {
+      console.log(res.data.token.doc)
+      products = res.data.token.doc
+      //a modifier pour mettre les products de la db
+      this.setState({
+        products: products ? JSON.parse(products) : catalog
+      })
     })
   }
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.logoutUser = this.logoutUser.bind(this)
     this.deleteFlashMessage = this.deleteFlashMessage.bind(this)
@@ -43,13 +51,13 @@ class App extends Component {
     this.registerUser = this.registerUser.bind(this)
     this.setAuthStatus = this.setAuthStatus.bind(this)
   }
-  createFlashMessage (text, type = 'success') {
+  createFlashMessage(text, type = 'success') {
     const message = { text, type }
     this.setState({
       flashMessages: [...this.state.flashMessages, message]
     })
   }
-  deleteFlashMessage (index) {
+  deleteFlashMessage(index) {
     if (index > 0) {
       this.setState({
         flashMessages: [
@@ -63,19 +71,19 @@ class App extends Component {
       })
     }
   }
-  registerUser (userData, callback) {
+  registerUser(userData, callback) {
     this.state.authService.registerUser(userData, callback)
   }
-  loginUser (userData, callback) {
+  loginUser(userData, callback) {
     this.state.authService.loginUser(userData, callback)
   }
-  logoutUser (e) {
+  logoutUser(e) {
     e.preventDefault()
-    this.setAuthStatus(false, false, false,false)
+    this.setAuthStatus(false, false, false, false)
     this.props.history.push('/')
     this.createFlashMessage('You are now logged out')
   }
-  setAuthStatus (auth, showRegis, showLogin,showAdm) {
+  setAuthStatus(auth, showRegis, showLogin, showAdm) {
     this.setState({
       showRegis: showRegis,
       authenticated: auth,
@@ -83,8 +91,8 @@ class App extends Component {
       showAdm: showAdm
     })
   }
-  render () {
-    const { flashMessages, showRegis, authenticated, showLogin,showAdm,products } = this.state
+  render() {
+    const { flashMessages, showRegis, authenticated, showLogin, showAdm, products } = this.state
     return (
       <div >
         <FlashMessages
@@ -113,14 +121,15 @@ class App extends Component {
           }} />
           <Route exact path='/' render={() => {
             if (authenticated) {
-              if (JSON.parse(window.localStorage.getItem('username')) ==='admin') {
+              if (JSON.parse(window.localStorage.getItem('username')) === 'admin') {
                 return <AdminForm
-              products={products}
-              createFlashMessage={this.createFlashMessage}
-              setAuthStatus={this.setAuthStatus}
-              logoutUser={this.logoutUser}
-              />} else {
-                  return <ShoppingCartApp
+                  products={products}
+                  createFlashMessage={this.createFlashMessage}
+                  setAuthStatus={this.setAuthStatus}
+                  logoutUser={this.logoutUser}
+                />
+              } else {
+                return <ShoppingCartApp
                   setAuthStatus={this.setAuthStatus}
                   authenticated={authenticated}
                   logoutUser={this.logoutUser} />
@@ -129,9 +138,9 @@ class App extends Component {
               return <Redirect to='/register' />
             } else if (showLogin) {
               return <Redirect to='/login' />
-            }else if(showAdm){
+            } else if (showAdm) {
               return <Redirect to='/admin' />
-            }else {
+            } else {
               return <ShoppingCartApp
                 setAuthStatus={this.setAuthStatus}
                 authenticated={authenticated} />
