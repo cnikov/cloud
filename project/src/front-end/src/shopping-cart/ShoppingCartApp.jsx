@@ -70,8 +70,8 @@ class ShoppingCartApp extends Component {
     this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
     this.state.purService.fetchHistory()
     let username = JSON.parse(window.localStorage.getItem('username'))
-    this.state.myCart = axios.get(`${url}/shopping-kart/${username}`) 
-    console.log(this.state.myCart)
+    this.state.cart = axios.get(`${url}/shopping-kart/${username}`) 
+    console.log(this.state.cart)
   }
 
   handleCategory(event) { // Filter by Category
