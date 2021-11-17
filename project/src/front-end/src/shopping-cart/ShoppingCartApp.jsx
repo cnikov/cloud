@@ -15,7 +15,7 @@ const PurchasesService = LocalPurchases
 class ShoppingCartApp extends Component {
 
   componentWillMount() { //gerer si un user a deja un panier ou non
-    console.log(JSON.parse(window.localStorage.getItem('username')))
+    /*console.log(JSON.parse(window.localStorage.getItem('username')))
     var user = JSON.parse(window.localStorage.getItem('username'))
     if(user == null){
       console.log("Not connected, creating an empty basket")
@@ -23,8 +23,8 @@ class ShoppingCartApp extends Component {
     }else{
       console.log("well connected, loading your basket")
       this.initialiseState(false)
-    }
-    //this.initialiseState(true)
+    }*/
+    this.initialiseState(true)
   }
   constructor(props) {
     super(props)
