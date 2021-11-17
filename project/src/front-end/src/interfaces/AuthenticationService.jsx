@@ -5,7 +5,7 @@ const url = process.env.REACT_APP_AUTH_SERVICE_URL || 'http://localhost:3002'
 
 class AuthenticationService {
     // setters
-    setHandlers (onSucc, setAuthStatus, changeRoute) {
+    setHandlers(onSucc, setAuthStatus, changeRoute) {
         this.onSucc = onSucc
         this.setAuthStatus = setAuthStatus
         this.changeRoute = changeRoute
@@ -14,7 +14,7 @@ class AuthenticationService {
     // ${data} is a JSON object with the fields
     // username=[string] and [password]. These fields
     // matches the specification of the POST call
-    registerUser (data, onErr) {
+    registerUser(data, onErr) {
         window.localStorage.setItem('username', JSON.stringify(data.username))
         axios.post(`${url}/user`, data) // Perform an HTTP POST rquest to a url with the provided data.
             .then((res) => {
@@ -32,7 +32,7 @@ class AuthenticationService {
             })
     }
     // GET /user/:username/:password
-    loginUser (data, onErr) {
+    loginUser(data, onErr) {
         window.localStorage.setItem('username', JSON.stringify(data.username))
         axios.get(`${url}/user/${data.username}/${data.password}`) // Perform an HTTP GET rquest to a url.
             .then((res) => {
