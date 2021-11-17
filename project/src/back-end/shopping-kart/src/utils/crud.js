@@ -31,10 +31,12 @@ function AddToBasket(name, quantity, username, price, id) {
               console.log(index)
               console.log(success.quantity[index])
               var qtity = quantity + success.quantity[index]
+              var qtit = []
+              qtit.push(qtity)
               new_basket = {
                 '_rev':  success._rev,
                 'name': success.name,
-                'quantity': qtity,
+                'quantity': qtit,
                 'image': success.image,
                 'price': success.price,
                 'id': success.id
