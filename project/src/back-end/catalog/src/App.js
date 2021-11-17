@@ -12,6 +12,14 @@ app.delete('/listitem/:name',(req,res)=>{
     res.status(409).json({ status: 'error', message: String(err) })
   })
 })
+app.delete('/catalog/:name',(req,res)=>{
+  var name = req.params.name
+  return db.RemoveItem(name).then((token) => {
+    res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(409).json({ status: 'error', message: String(err) })
+  })
+})
 app.post('/format', (req, res) => {
   var name = req.body.name
   var price = req.body.price
