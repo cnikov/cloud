@@ -14,7 +14,16 @@ const PurchasesService = LocalPurchases
 
 class ShoppingCartApp extends Component {
 
-  componentWillMount() {
+  componentWillMount() { //gerer si un user a deja un panier ou non
+    /*console.log(JSON.parse(window.localStorage.getItem('username')))
+    var user = JSON.parse(window.localStorage.getItem('username'))
+    if(user == null){
+      console.log("Not connected, creating an empty basket")
+      this.initialiseState(true)
+    }else{
+      console.log("well connected, loading your basket")
+      this.initialiseState(false)
+    }*/
     this.initialiseState(true)
   }
   constructor(props) {
@@ -68,20 +77,20 @@ class ShoppingCartApp extends Component {
         purchaseId: null,
         oldPurchases: []
       })
+      let username = JSON.parse(window.localStorage.getItem('username'))
+      axios.get(`${url}/shopping-kart/${username}`)
+        .then((res) =>{
+          console.log(res)
+          this.state.cart = res.data.token
+          console.log(this.state.cart)
+      })
+      .catch((err) => {
+        console.log("Not yet connected")
+      })
     }
     this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
     this.state.purService.fetchHistory()
-    let username = JSON.parse(window.localStorage.getItem('username'))
-    axios.get(`${url}/shopping-kart/${username}`)
-      .then((res) =>{
-        console.log(res)
-        this.state.cart = res.data.token
-        console.log(this.state.cart)
-      })
-      .catch((err) => {
-        console.log("Normal error, not yet connected")
-      })
-    console.log(this.state.cart)
+    //console.log(this.state.cart)
   }
 
   handleCategory(event) { // Filter by Category
