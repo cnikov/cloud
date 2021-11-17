@@ -2,7 +2,21 @@ var catalog = require('nano')(process.env.DB_URL_C)
 var fill = require('nano')(process.env.DB_URL_F)
 var form = require('nano')(process.env.DB_URL_L)
 
-
+function RemoveItem(name){
+  return new Promise((resolve,reject) =>{
+  fill.get(name,(error,success)=>{
+    if(success){
+      fill.destroy(name,success._rev,(error, success) => {
+        if (success) {
+          resolve(name)
+        } else {
+          reject(new Error("Erreur d'ajout a la db"))
+        }
+      })
+    }
+  })
+  })
+}
 function RemoveTheList(name){
   return new Promise((resolve, reject) => {
     console.log("delete correctement appelé")
@@ -64,11 +78,20 @@ function AddFormat(name, price, image, category, id) {
           'doc': success.doc
 
         }
-        newDoc['doc'][category][id] = {
+        try{newDoc['doc'][category][id] = {
           'name': name,
           'price': price,
           'image': image,
           'category': category
+        }}catch(exception){
+          newDoc['doc'][category] = {
+            [id]: {
+              'name': name,
+              'price': price,
+              'image': image,
+              'category': category
+            }
+          }
         }
       } else {
         newDoc = {
@@ -260,6 +283,7 @@ module.exports = {
   GetList,
   AddFormat,
   GetFormat,
-  RemoveTheList
+  RemoveTheList,
+  RemoveItem
   //getcatalog
 }
