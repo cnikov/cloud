@@ -11,9 +11,9 @@ class AdminForm extends Component {
 
     this.state = {
 
-      catalog: this.props.products.catalog,
+      catalog: JSON.parse(window.localStorage.getItem('products')),
 
-      categories: Object.keys(this.props.products.catalog),
+      categories: Object.keys(JSON.parse(window.localStorage.getItem('products'))),
       products: [],
       selectedProd: undefined,
       selectedCate: undefined,
