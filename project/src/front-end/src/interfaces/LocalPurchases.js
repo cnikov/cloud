@@ -50,7 +50,7 @@ class LocalPurchases {
               id++
             }
 
-            else if (fetchItem.cat === null && index !== 0) {
+            else if (fetchItem.cat === null && id !== 0) {
               console.log("deuxieme if")
               fetchItem.cat = {
                 [id]: {
