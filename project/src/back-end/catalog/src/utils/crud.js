@@ -102,7 +102,7 @@ function FillTheList(name) {
   })
 }
 
-function AddProduct(name, price, image, category) {
+function AddProduct(name, price, image, category, id) {
   //faire un getBasket puis ajouter l'item pour ecraser le tout
   //lol si ca marche (aucun espoir)
   //const nproduct = {
@@ -126,7 +126,8 @@ function AddProduct(name, price, image, category) {
           'name': name,
           'price': price,
           'image': image,
-          'category': category
+          'category': category,
+          'id': id
 
         }
       } else {
@@ -135,7 +136,8 @@ function AddProduct(name, price, image, category) {
           'name': name,
           'price': price,
           'image': image,
-          'category': category
+          'category': category,
+          'id': id
 
         }
       }

@@ -38,7 +38,9 @@ class App extends Component {
       var products = res.data.token.doc
       //a modifier pour mettre les products de la db
       this.setState({
-        products: products ? JSON.parse(products) : catalog
+
+        products: products
+
       })
     })
   }
