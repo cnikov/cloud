@@ -34,7 +34,7 @@ until curl --request PUT ${DB_URL_L} ; do
   echo -e "\t DB (${DB_NAME_L}) wasn't created - trying again later..."
   sleep 2
 done
-until wget wget --no-check-certificate --quiet \
+until wget --no-check-certificate --quiet \
   --method POST \
   --timeout=0 \
   --header 'Content-Type: application/json' \
