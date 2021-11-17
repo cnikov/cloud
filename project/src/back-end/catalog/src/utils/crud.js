@@ -10,6 +10,10 @@ function DeleteInFormat(name) {
         catalog.get(name, (err, succ) => {
           if (succ) {
             delete success['doc'][succ.category][succ.id]
+            var size = Object.keys(success['doc'][succ.category]).length;
+            if (size == 0) {
+              delete success['doc'][succ.category]
+            }
             newDoc = {
               '_rev': success._rev,
               'doc': success.doc
