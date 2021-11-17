@@ -71,4 +71,36 @@ until curl -X POST --data "name=Mango&price=6.80&image=https://res.cloudinary.co
   echo "En attente de la creation de la db"
   sleep 1
 done
+until curl -X POST --data "name=Mango" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/listitem ;do
+  echo "En attente de la creation de la db"
+  sleep 1
+done
+until curl -X POST --data "name=Grapes" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/listitem ;do
+  echo "En attente de la creation de la db"
+  sleep 1
+done
+until curl -X POST --data "name=Apple" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/listitem ;do
+  echo "En attente de la creation de la db"
+  sleep 1
+done
+until curl -X POST --data "name=Mango" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/listitem ;do
+  echo "En attente de la creation de la db"
+  sleep 1
+done
+until curl -X POST --data "name=Beetroot" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/listitem ;do
+  echo "En attente de la creation de la db"
+  sleep 1
+done
+until curl -X POST --data "name=Cauliflower" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/listitem ;do
+  echo "En attente de la creation de la db"
+  sleep 1
+done
+until curl -X POST --data "name=Cucumber" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/listitem ;do
+  echo "En attente de la creation de la db"
+  sleep 1
+done
+until curl -X POST --data "name=Brocolli" http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3005/listitem ;do
+  echo "En attente de la creation de la db"
+  sleep 1
+done
 echo "DB ça fonctionne was created!"
