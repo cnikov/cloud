@@ -74,6 +74,7 @@ class ShoppingCartApp extends Component {
       .then((res) =>{
         console.log("Hello les boss")
         this.state.cart = res.data.token
+        console.log(this.state.cart)
       })
       .catch((err) => {
         console.log("trouduc")
