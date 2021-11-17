@@ -42,7 +42,7 @@ class LocalPurchases {
               if (index === 1) {
                 console.log("premier if")
                 fetchItem = {
-                  [cat]: {
+                  [cat]: [{
                     [index]: {
                       'name': itemlist[j].name,
                       'price': itemlist[j].price,
@@ -50,7 +50,11 @@ class LocalPurchases {
                       'category': itemlist[j].category
                     }
                   }
+
+                  ]
+
                 }
+
                 console.log(fetchItem)
                 index++
               }
@@ -74,12 +78,12 @@ class LocalPurchases {
               }
               else {
                 console.log("troisieme if")
-                fetchItem.cat.index = {
+                fetchItem.cat.push(index = {
                   'name': itemlist[j].name,
                   'price': itemlist[j].price,
                   'image': itemlist[j].image,
                   'category': itemlist[j].category
-                }
+                })
                 index++
               }
             }
