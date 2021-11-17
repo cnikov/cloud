@@ -24,7 +24,7 @@ class LocalPurchases {
         var myList = res.data.token.list
         var itemlist = []
 
-        for (var i = 0; i < 2; i++) {
+        for (var i = 0; i < 1; i++) {
           axios.get(`${url}/catalog/${myList[i]}`).then((suc) => {
             var categories = suc.data.token
             itemlist.push(categories)
@@ -37,12 +37,13 @@ class LocalPurchases {
           }).finally(() => {
             var index = 1
             let fetchItem
+            var catcount = 0
             for (var j = 0; j < itemlist.length; j++) {
               var cat = itemlist[j].category
               if (index === 1) {
                 console.log("premier if")
                 fetchItem = {
-                  [cat]: [{
+                  [cat]: {
                     [index]: {
                       'name': itemlist[j].name,
                       'price': itemlist[j].price,
@@ -51,7 +52,7 @@ class LocalPurchases {
                     }
                   }
 
-                  ]
+
 
                 }
 
@@ -60,6 +61,7 @@ class LocalPurchases {
               }
 
               else if (fetchItem.cat === null && index !== 1) {
+                catCount++
                 console.log("deuxieme if")
                 fetchItem.cat = {
                   [index]: {
@@ -78,12 +80,12 @@ class LocalPurchases {
               }
               else {
                 console.log("troisieme if")
-                fetchItem.cat.push(index = {
+                fetchItem.cat.index = {
                   'name': itemlist[j].name,
                   'price': itemlist[j].price,
                   'image': itemlist[j].image,
                   'category': itemlist[j].category
-                })
+                }
                 index++
               }
             }
