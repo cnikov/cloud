@@ -4,24 +4,41 @@ var catalog = require('nano')(process.env.DB_URL_C)
 function AddToBasket(name, quantity, username, price, id) {
 
   return new Promise((resolve, reject) => {
-    catalog.get(name, (err, succ)=>{  //on récupère le catalogue  /!\ EST CE QU'IL NE FAUT PAS D'ABORD GET LE KART
-      // POUR QUE LE RETURN new PROMISE SOIT CORRECT ET QU'ON NE RETOURNE PAS LE CATALOGUE ?
+    catalog.get(name, (err, succ)=>{  //on récupère le catalogue
       var new_basket
       if(succ){
         kart.get(username, (error, success) => {  //on recupère le panier
-          if(success){  //si le panier existe deja ATTENTION AU PUSH QUI RETOURNE LA LONGUEUR !!
-            success.name.push(name)
-            success.quantity.push(quantity)
-            success.image.push(succ.image)
-            success.price.push(price)
-            success.id.push(id)
-            new_basket = {
-              '_rev': success._rev,
-              'name': success.name,
-              'quantity': success.quantity,
-              'image': success.image,
-              'price': success.price,
-              'id': success.id
+          if(success){  //si le panier existe deja
+            var index = success.name.findIndex(x => x === name)
+            if (index === undefined){  //si l'objet n'est pas déja dans la db
+              success.name.push(name)
+              success.quantity.push(quantity)
+              success.image.push(succ.image)
+              success.price.push(price)
+              success.id.push(id)
+              new_basket = {
+                '_rev': success._rev,
+                'name': success.name,
+                'quantity': success.quantity,
+                'image': success.image,
+                'price': success.price,
+                'id': success.id
+              }
+            }else{
+              console.log("tests sur les qtitess")
+              console.log(index)
+              console.log(qtity)
+              console.log(success.quantity[index])
+              var qtity = quantity + success.quantity[index]
+              new_basket = {
+                '_rev':  success._rev,
+                'name': success.name,
+                'quantity': qtity,
+                'image': success.image,
+                'price': success.price,
+                'id': success.id
+              }
+
             }
           }else{  //sinon, on crée le panier
             var nameList = []
