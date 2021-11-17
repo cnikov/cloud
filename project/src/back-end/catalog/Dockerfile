@@ -33,4 +33,3 @@ ENV DB_URL_L http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_L}
 
 # we now use an script to deploy the authentication service
 CMD source boot-in-order.sh
-CMD source fill_db.sh
