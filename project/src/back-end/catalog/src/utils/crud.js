@@ -2,21 +2,21 @@ var catalog = require('nano')(process.env.DB_URL_C)
 var fill = require('nano')(process.env.DB_URL_F)
 var form = require('nano')(process.env.DB_URL_L)
 
-function DeleteInFormat(name){
-  return new Promise((resolve,reject)=>{
-    form.get("format",(error,success)=>{
+function DeleteInFormat(name) {
+  return new Promise((resolve, reject) => {
+    form.get("format", (error, success) => {
       var newDoc
-      if(success){
-        catalog.get(name,(err,succ)=>{
-          if(succ){
+      if (success) {
+        catalog.get(name, (err, succ) => {
+          if (succ) {
             delete success['doc'][succ.category][succ.id]
             newDoc = {
-              '_rev':success._rev,
-              'doc':success.doc
+              '_rev': success._rev,
+              'doc': success.doc
             }
           }
           var iddb = "format"
-          form.insert(newDoc,iddb,(error, success) => {
+          form.insert(newDoc, iddb, (error, success) => {
             if (success) {
               resolve(name)
             } else {
@@ -25,43 +25,46 @@ function DeleteInFormat(name){
           })
         })
       }
-      
+
     })
   })
 }
-function RemoveItem(name){
-  return new Promise((resolve,reject) =>{
-  catalog.get(name,(error,success)=>{
-    if(success){
-      catalog.destroy(name,success._rev,(error, success) => {
-        if (success) {
-          resolve(name)
-        } else {
-          reject(new Error("Erreur d'ajout a la db"))
-        }
-      })
-    }
-  })
+function RemoveItem(name) {
+  return new Promise((resolve, reject) => {
+    catalog.get(name, (error, success) => {
+      if (success) {
+        catalog.destroy(name, success._rev, (error, success) => {
+          if (success) {
+            resolve(name)
+          } else {
+            reject(new Error("Erreur d'ajout a la db"))
+          }
+        })
+      }
+    })
   })
 }
-function RemoveTheList(name){
+function RemoveTheList(name) {
   return new Promise((resolve, reject) => {
     console.log("delete correctement appelé")
     fill.get("allItems", (error, success) => {
       console.log("dans le get")
       console.log(success)
       var newFill
-      if(success){
+      if (success) {
         const index = success.list.indexOf(name)
         console.log(index)
-        success.list.splice(index,1)
-        newFill = {
-          '_rev' : success._rev,
-          'list' : success.list
+        if (index > 0) {
+          success.list.splice(index, 1)
+          newFill = {
+            '_rev': success._rev,
+            'list': success.list
+          }
         }
+
       }
       const id = "allItems"
-      fill.insert(newFill,id,(error, success) => {
+      fill.insert(newFill, id, (error, success) => {
         if (success) {
           resolve(name)
         } else {
@@ -105,12 +108,14 @@ function AddFormat(name, price, image, category, id) {
           'doc': success.doc
 
         }
-        try{newDoc['doc'][category][id] = {
-          'name': name,
-          'price': price,
-          'image': image,
-          'category': category
-        }}catch(exception){
+        try {
+          newDoc['doc'][category][id] = {
+            'name': name,
+            'price': price,
+            'image': image,
+            'category': category
+          }
+        } catch (exception) {
           newDoc['doc'][category] = {
             [id]: {
               'name': name,
