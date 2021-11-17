@@ -1,7 +1,7 @@
 var kart = require('nano')(process.env.DB_URL_SK)
 var catalog = require('nano')(process.env.DB_URL_C)
 
-function AddToBasket(name, quantity, username, price) {
+function AddToBasket(name, quantity, username, price, id) {
 
   return new Promise((resolve, reject) => {
     catalog.get(name, (err, succ)=>{  //on récupère le catalogue  /!\ EST CE QU'IL NE FAUT PAS D'ABORD GET LE KART
@@ -13,13 +13,15 @@ function AddToBasket(name, quantity, username, price) {
             success.name.push(name)
             success.quantity.push(quantity)
             success.image.push(succ.image)
-            success.price.push(succ.price)
+            success.price.push(price)
+            success.id.push(id)
             new_basket = {
               '_rev': success._rev,
               'name': success.name,
               'quantity': success.quantity,
               'image': success.image,
-              'price': success.price
+              'price': success.price,
+              'id': success.id
             }
           }else{  //sinon, on crée le panier
             var nameList = []
@@ -30,11 +32,14 @@ function AddToBasket(name, quantity, username, price) {
             imageList.push(succ.image)
             var priceList = []
             priceList.push(succ.price)
+            var idList = []
+            idList.push(succ.id)
             new_basket = {
               'name': nameList,
               'quantity': quantityList,
               'image': imageList,
-              'price': priceList
+              'price': priceList,
+              'id': idList
             }
           }
           kart.insert(new_basket, username, (error, suc) => {
@@ -74,11 +79,13 @@ function removeFromBasket(username, name){
           var newName = succes.name.splice(index)
           var newQ = succes.quantity.splice(index)
           var newURL = succes.image.splice(index)
+          var newID = succes.id.splice(index)
           var new_basket = {
             '_rev': succes._rev,
             'name': newName,
             'quantity': newQ,
-            'image': newURL
+            'image': newURL,
+            'id': newID
           }
         }
         kart.insert(new_basket, username, (error, success) => {
