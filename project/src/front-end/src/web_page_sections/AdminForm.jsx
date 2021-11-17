@@ -13,11 +13,11 @@ class AdminForm extends Component {
 
       catalog: this.props.products,
 
-      categories: Object.keys(this.props.products,
-        products: [],
-        selectedProd: undefined,
-        selectedCate: undefined,
-        logOut: false
+      categories: Object.keys(this.props.products),
+      products: [],
+      selectedProd: undefined,
+      selectedCate: undefined,
+      logOut: false
     }
 
 
