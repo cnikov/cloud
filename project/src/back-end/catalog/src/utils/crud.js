@@ -1,5 +1,6 @@
 var catalog = require('nano')(process.env.DB_URL_C)
 var fill = require('nano')(process.env.DB_URL_F)
+var form = require('nano')(process.env.DB_URL_L)
 
 function GetList(dbid) {
   return new Promise((resolve, reject) => {
@@ -11,6 +12,61 @@ function GetList(dbid) {
         reject(new Error(`To fetch information of basket. Reason: ${error.reason}.`))
       }
     })
+  })
+}
+function GetFormat(dbid) {
+  return new Promise((resolve, reject) => {
+    form.get(dbid, (error, success) => {
+      if (success) {
+        //console.log(success)
+        resolve(success)
+      } else {
+        reject(new Error(`To fetch information of basket. Reason: ${error.reason}.`))
+      }
+    })
+  })
+}
+function AddFormat(name, price, image, category, id) {
+  return new Promise((resolve, reject) => {
+
+    form.get("format", (error, success) => {
+      if (success) {
+        newDoc = {
+          '_rev': success._rev,
+          'doc': success.doc
+
+        }
+        newDoc['doc'][category][id] = {
+          'name': name,
+          'price': price,
+          'image': image,
+          'category': category
+        }
+      } else {
+        newDoc = {
+          'doc': {
+            [category]: {
+              [id]: {
+                'name': name,
+                'price': price,
+                'image': image,
+                'category': category
+              }
+            }
+          }
+
+        }
+      }
+      const nid = "format"
+      form.insert(newDoc, nid, (error, success) => {
+        if (success) {
+          resolve(name)
+        } else {
+          reject(new Error("Erreur d'ajout a la db"))
+        }
+      })
+    })
+
   })
 }
 function FillTheList(name) {
@@ -172,5 +228,7 @@ module.exports = {
   getProduct,
   FillTheList,
   GetList,
+  AddFormat,
+  GetFormat,
   //getcatalog
 }
