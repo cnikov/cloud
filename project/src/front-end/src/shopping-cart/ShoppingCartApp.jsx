@@ -140,6 +140,7 @@ class ShoppingCartApp extends Component {
       cart: myCart,
       cartBounce: true
     })*/
+    let username = JSON.parse(window.localStorage.getItem('username'))
     let myCart = this.state.cart
     let productID = chosenProduct.id
     let productQty = chosenProduct.quantity
