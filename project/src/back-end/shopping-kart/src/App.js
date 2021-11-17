@@ -8,7 +8,8 @@ appS.post('/shopping-kart', (req, res) => {
   var name = req.body.name
   var quantity = req.body.quantity
   var username = req.body.username
-  return db.AddToBasket(name, quantity, username)
+  var price = req.body.price
+  return db.AddToBasket(name, quantity, username, price)
   .then((token) => {
     res.status(200).json({ status: 'success', token })
   })
