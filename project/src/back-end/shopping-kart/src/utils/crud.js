@@ -94,6 +94,8 @@ function removeFromBasket(username, name){
     kart.get(username, (error, succes) => {
         if(succes){
           console.log(succes)
+          console.log(username)
+          console.log(name)
           let index = succes.name.indexOf(name)
           var newName = succes.name.splice(index,1)
           var newQ = succes.quantity.splice(index,1)
