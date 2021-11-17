@@ -143,6 +143,14 @@ class ShoppingCartApp extends Component {
     let myCart = this.state.cart
     let productID = chosenProduct.id
     let productQty = chosenProduct.quantity
+    var data = {
+      'name': productName,
+      'quantity': productQty,
+      'username': username,
+      'price': chosenProduct.price,
+      'id': productID
+    }
+    axios.post(`${url}/shopping-kart`, data)
     if (this.checkProduct(productID)) {
       let index = myCart.findIndex(x => x.id === productID)
       myCart[index].quantity = Number(myCart[index].quantity) + Number(productQty)
