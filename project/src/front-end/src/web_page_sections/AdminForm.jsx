@@ -6,21 +6,21 @@ import axios from 'axios' // we use this library as HTTP client
 const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
 
 class AdminForm extends Component {
+
   componentWillMount() {
-    axios.get(`${url}/format`).then((res) => {
 
+    this.state = {
 
-      this.state = {
-        catalog: res.data.token.doc,
+      catalog: this.props.products.catalog,
 
-        categories: Object.keys(res.data.token.doc),
-        products: [],
-        selectedProd: undefined,
-        selectedCate: undefined,
-        logOut: false
-      }
+      categories: Object.keys(this.props.products.catalog),
+      products: [],
+      selectedProd: undefined,
+      selectedCate: undefined,
+      logOut: false
     }
-    )
+
+
   }
   constructor(props) {
     super(props)
@@ -134,6 +134,7 @@ class AdminForm extends Component {
       </div>
     </div>
   }
+
 }
 
 export default AdminForm
