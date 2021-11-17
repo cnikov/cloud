@@ -72,13 +72,12 @@ class ShoppingCartApp extends Component {
     let username = JSON.parse(window.localStorage.getItem('username'))
     axios.get(`${url}/shopping-kart/${username}`)
       .then((res) =>{
-        console.log("Hello les boss")
         console.log(res)
         this.state.cart = res.data.token
         console.log(this.state.cart)
       })
       .catch((err) => {
-        console.log("trouduc")
+        console.log("Normal error, not yet connected")
       })
     console.log(this.state.cart)
   }
@@ -90,28 +89,20 @@ class ShoppingCartApp extends Component {
 
   handleAddToCart(chosenProduct) { // Add to Cart
     let myCart = this.state.cart
-    console.log(chosenProduct)
     let productName = chosenProduct.name
-    console.log('nom du produit')
-    console.log(productName)
-    let productID = chosenProduct.id
-    console.log("id du produit")
-    console.log(productID)
+    //let productID = chosenProduct.id
     let productQty = chosenProduct.quantity
     let username = JSON.parse(window.localStorage.getItem('username'))
     var data = {
       'name': productName,
       'quantity': productQty,
       'username': username,
+      'price': chosenProduct.price
     }
-    console.log(username)
     axios.post(`${url}/shopping-kart`, data)
-    if (this.checkProduct(productID)) {
-      let index = myCart.findIndex(x => x.id === productID)
-      console.log("index du produit")
-      console.log(index)
-      console.log(myCart[index])
-      myCart[index].quantity = Number(myCart[index].quantity) + Number(productQty)
+    if (this.checkProduct(productName)) {
+      let index = myCart.productName.findIndex(x => x.name === productName)
+      myCart.quantity.splice(index, 1, Number(myCart[index].quantity) + Number(productQty))
       this.setState({
         cart: myCart
       })
@@ -152,17 +143,17 @@ class ShoppingCartApp extends Component {
     e.preventDefault()
   }
 
-  checkProduct(productID) {
+  checkProduct(productName) {
     let cart = this.state.cart
     return cart.some(function (item) {
-      return item.id === productID
+      return item.name === productName
     })
   }
 
   sumTotalItems() {
     let total = 0
     let cart = this.state.cart
-    total = cart.length
+    total = cart.name.length
     this.setState({
       totalItems: total
     })

@@ -1,7 +1,7 @@
 var kart = require('nano')(process.env.DB_URL_SK)
 var catalog = require('nano')(process.env.DB_URL_C)
 
-function AddToBasket(name, quantity, username) {
+function AddToBasket(name, quantity, username, price) {
 
   return new Promise((resolve, reject) => {
     catalog.get(name, (err, succ)=>{  //on récupère le catalogue  /!\ EST CE QU'IL NE FAUT PAS D'ABORD GET LE KART
@@ -13,11 +13,13 @@ function AddToBasket(name, quantity, username) {
             success.name.push(name)
             success.quantity.push(quantity)
             success.image.push(succ.image)
+            success.price.push(succ.price)
             new_basket = {
               '_rev': success._rev,
               'name': success.name,
               'quantity': success.quantity,
-              'image': success.image
+              'image': success.image,
+              'price': success.price
             }
           }else{  //sinon, on crée le panier
             var nameList = []
@@ -26,10 +28,13 @@ function AddToBasket(name, quantity, username) {
             quantityList.push(quantity)
             var imageList = []
             imageList.push(succ.image)
+            var priceList = []
+            price.push(succ.price)
             new_basket = {
               'name': nameList,
               'quantity': quantityList,
-              'image': imageList
+              'image': imageList,
+              'price': priceList
             }
           }
           kart.insert(new_basket, username, (error, suc) => {
