@@ -9,10 +9,10 @@ function AddToBasket(name, quantity, username, price, id) {
       if(succ){
         kart.get(username, (error, success) => {  //on recupère le panier
           if(success){  //si le panier existe deja
-            var index = success.name.findIndex(x => x === name)
+            var index = success.name.indexOf(name)
             console.log(index)
             console.log("cetait l'index")
-            if (index === undefined || index === -1){  //si l'objet n'est pas déja dans la db
+            if (index <= -1){  //si l'objet n'est pas déja dans la db
               success.name.push(name)
               success.quantity.push(quantity)
               success.image.push(succ.image)
@@ -30,13 +30,11 @@ function AddToBasket(name, quantity, username, price, id) {
               console.log("tests sur les qtitess")
               console.log(index)
               console.log(success.quantity[index])
-              var qtity = quantity + success.quantity[index]
-              var qtit = []
-              qtit.push(qtity)
+              success.quantity[index] = quantity + success.quantity[index]
               new_basket = {
                 '_rev':  success._rev,
                 'name': success.name,
-                'quantity': qtit,
+                'quantity': success.quantity,
                 'image': success.image,
                 'price': success.price,
                 'id': success.id
