@@ -33,7 +33,7 @@ app.post('/catalog', (req, res) => {
   var price = req.body.price
   var image = req.body.image
   var category = req.body.category
-  var id = req.body.category
+  var id = req.body.id
   //var id = req.body.id
   log(`Adding a new item (${name}) identified in category "${category}"`)
   return db.AddProduct(name, price, image, category, id)
