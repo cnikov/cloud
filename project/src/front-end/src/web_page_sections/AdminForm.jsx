@@ -4,8 +4,9 @@ import { Redirect } from 'react-router-dom'
 class AdminForm extends Component {
   componentWillMount() {
     this.state = {
-      catalog: this.props.products.doc,
-      categories: Object.keys(this.props.products.doc),
+      catalog: this.props.products,
+
+      categories: Object.keys(this.props.products),
       products: [],
       selectedProd: undefined,
       selectedCate: undefined,
@@ -79,6 +80,7 @@ class AdminForm extends Component {
     e.preventDefault()
   }
   render() {
+    console.log(this.props.products)
     const { products, selectedProd, logOut } = this.state
     return logOut ? <Redirect to='/' /> : <div >
       <header>
