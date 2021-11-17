@@ -20,7 +20,7 @@ ENV DEBUG catalog-db
 # database name
 ENV DB_NAME_C catalogs
 ENV DB_NAME_F allitems
-ENV DB_NAME_F myformat
+ENV DB_NAME_L myformat
 # name of container running CouchDB
 ENV DB_HOST_C catalog-db
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
