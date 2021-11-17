@@ -54,13 +54,13 @@ function RemoveTheList(name) {
       if (success) {
         const index = success.list.indexOf(name)
         console.log(index)
-        if (index > 0) {
-          success.list.splice(index, 1)
-          newFill = {
-            '_rev': success._rev,
-            'list': success.list
-          }
+
+        success.list.splice(index, 1)
+        newFill = {
+          '_rev': success._rev,
+          'list': success.list
         }
+
 
       }
       const id = "allItems"
