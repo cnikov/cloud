@@ -28,9 +28,14 @@ function GetFormat(dbid) {
 }
 function AddFormat(name, price, image, category, id) {
   return new Promise((resolve, reject) => {
-    var newDoc
+
     form.get("format", (error, success) => {
       if (success) {
+        newDoc = {
+          '_rev': success._rev,
+          'doc': success.doc
+
+        }
         newDoc['doc'][category][id] = {
           'name': name,
           'price': price,
