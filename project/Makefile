@@ -11,20 +11,12 @@ load:
 	docker pull romain01/shopping-be
 	docker pill romain01/history-be
 	
-start:
-	docker start back-end
-	docker start users-db
-	docker start scapp-fe
-run:
-	docker run -d -p 3001:5984 --name users-db -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=admin users-db
-	docker run -d -p 3002:80 --name scapp-be --link users-db scapp-be
-	docker run -d -p 3000:80 --name scapp-fe -e REACT_APP_AUTH_SERVICE_URL='http://192.168.51.100:3002' scapp-fe
 swarm:
-	make load
+	make build
 	docker stack rm scapp
 	cd src/;  docker stack deploy -c scapp.yml scapp
 	cd src/back-end/catalog/;chmod +x fill_db.sh; ./fill_db.sh > /dev/null 2>&1
-	chmod +x add_item.sh;chmod +x remove_item.sh;chmod +x remove_cart_item.sh
+	chmod +x add_item.sh;chmod +x remove_item.sh;chmod +x remove_cart_item.sh;chmod+xadd_cart.sh;chmod +x add_history.sh
 	cd src/scalability/; chmod +x ./apply-policy-of-scalability.sh 
 	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-daemon > /dev/null &
 	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-daemon > /dev/null &
