@@ -2,8 +2,12 @@ load:
 	echo "Connecting to docker hub ... \n"
 	docker login
 	echo "Loading images ... \n"
-	docker pull chlohest/back-end
-	docker pull chlohest/storage
+	docker pull romain01/shopping-db
+	docker pull romain01/catalog-db
+	docker pull romain01/users-db
+	docker pull romain01/scapp-fe
+	docker pull romain01/catalog
+	docker pull romain01/shopping-kart
 start:
 	docker start back-end
 	docker start users-db
