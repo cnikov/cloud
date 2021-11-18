@@ -2,12 +2,23 @@ load:
 	echo "Connecting to docker hub ... \n"
 	docker login
 	echo "Loading images ... \n"
+	docker tag shopping-db romain01/shopping-db
 	docker pull romain01/shopping-db
+	docker tag catalog-db romain01/catalog-db
 	docker pull romain01/catalog-db
+	docker tag users-db romain01/users-db
 	docker pull romain01/users-db
+	docker tag history-db romain01/history-db
+	docker pull romain01/history-db
+	docker tag scapp-fe romain01/scapp-fe
 	docker pull romain01/scapp-fe
-	docker pull romain01/catalog
-	docker pull romain01/shopping-kart
+	docker tag catalog-be romain01/catalog-be
+	docker pull romain01/catalog-be
+	docker tag shopping-be romain01/shopping-be
+	docker pull romain01/shopping-be
+	docker tag history-be romain01/history-be
+	docker pull romain01/history-be
+	
 start:
 	docker start back-end
 	docker start users-db
@@ -21,10 +32,15 @@ swarm:
 	docker stack rm scapp
 	cd src/;  docker stack deploy -c scapp.yml scapp
 	cd src/back-end/catalog/;chmod +x fill_db.sh; ./fill_db.sh > /dev/null 2>&1
-	chmod +x add_item.sh;chmod +x remove_item.sh
+	chmod +x add_item.sh;chmod +x remove_item.sh;chmod +x remove_cart_item.sh
 	cd src/scalability/; chmod +x ./apply-policy-of-scalability.sh 
 	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-daemon > /dev/null &
 	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-daemon > /dev/null &
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp catalog-db > /dev/null &
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-db > /dev/null &
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-db > /dev/null &
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp history-db > /dev/null &
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp front-end > /dev/null &
 	cd src/scalability/; ./apply-policy-of-scalability.sh scapp catalog-daemon > /dev/null &
 	cd src/scalability/; ./apply-policy-of-scalability.sh scapp history-daemon > /dev/null &
 remove:
@@ -43,7 +59,3 @@ build:
 
 stop:
 	docker stop $$(docker ps -aq)
-
-artillery:
-	cd src/scalability/artillery; docker build -t artillery .
-	docker run -d --name load-test --network scapp-net artillery
