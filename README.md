@@ -52,7 +52,7 @@ You can see the updates on the website if you reload the page<br />
 you can remove an item that you have add with the command <br />
 ```bash
 ./remove_item $item_name
-```bash
+```
 <br />
 you can remove a shopping cart with the command<br />
 ```bash
