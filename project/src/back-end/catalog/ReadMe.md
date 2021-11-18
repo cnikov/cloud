@@ -74,6 +74,6 @@ The get return the entire document with no argument because it gets the _id form
 The delete takes the name as argument and get the catalog database to have more information about the product and remove it in the database format. If the item is the last of its category the category is also removed.<br />
 The database with the list of all names is useful to know how much items we have in the catalog. The catalog is useful to get the informations of each product if we know its name and the format is useful for the front-end view.<br />
 This service is used by the shopping cart service to get every detail about each products that are adds in the shopping cart<br />
-In the post function we check if the databse already exist and if it succeed we update the database with the values and if it does not exist we insert a new document 
+In the post functions, we check if the databse already exist and if it succeed we update the database with the values and if it does not exist we insert a new document 
 
 
