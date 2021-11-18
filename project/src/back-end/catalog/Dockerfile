@@ -12,10 +12,6 @@ RUN npm install
 ADD gulpfile.js .
 ADD src src
 ADD boot-in-order.sh .
-ADD func_to_string.js .
-ADD fill_db.sh .
-ADD post_db.sh .
-ADD catalog.json .
 # header for loggining messages
 ENV DEBUG catalog-db
 # database name
