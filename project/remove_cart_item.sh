@@ -1,2 +1,3 @@
 #!/bin/bash -
-curl -X DELETE http://admin:admin@cloud-romtourpe.westeurope.cloudapp.azure.com:3006/shopping-kart/$1/$2
+ip4=$(hostname -I | awk '{print $1}' )
+curl -X DELETE http://admin:admin@$ip4:3006/shopping-kart/$1/$2
