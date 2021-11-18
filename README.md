@@ -30,7 +30,7 @@ This service is destined to a future implementation of checkout function. When t
 
 # HOW TO RUN...
 To run the project you have to follow those instructions : <br />
-First of all you need to modify the lines 118,119 and 120 in the [´scapp.yml´](src/scapp.yml) by replacing cloud-romtourpe.westeurope.cloudapp.azure.com by your VM ip address
+First of all you need to modify the lines 118,119 and 120 in the [`scapp.yml`](src/scapp.yml) by replacing cloud-romtourpe.westeurope.cloudapp.azure.com by your VM ip address
 
 ```javascrip
  environment:
