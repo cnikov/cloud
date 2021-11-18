@@ -30,6 +30,15 @@ This service is destined to a future implementation of checkout function. When t
 
 # HOW TO RUN...
 To run the project you have to follow those instructions : <br />
+First of all you need to modify the lines 118,119 and 120 in the [´scapp.yml´](src/scapp.yml) by replacing cloud-romtourpe.westeurope.cloudapp.azure.com by your VM ip address
+
+```javascrip
+ environment:
+      REACT_APP_AUTH_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002
+      REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005
+      REACT_APP_SHOPKART_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006
+```
+
 Open a shell comand and type :
 
 ```bash
