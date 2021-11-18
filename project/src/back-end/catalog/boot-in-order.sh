@@ -101,7 +101,6 @@ done
 #POSTMAN -- generer les requetes get et app sans passer via frontend
 echo "DB (${DB_NAME_F}) was created!"
 echo "Start users service..."
-source post_db.sh ${DB_URL_C}
 npm start
 
 
