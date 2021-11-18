@@ -14,9 +14,9 @@ function PostHistory(name) {
               'quantity': succ.quantity
             }
             success.purchase.push(newFile)
-            var amount = 0
+
             for (var i = 0; i < succ.name.length; i++) {
-              amount = amount + succ.quantity[i] * parseFloat(succ.price[i])
+
               var index = success.items.indexOf(succ.name[i])
               console.log(index)
               console.log("cetait l'index")
@@ -26,7 +26,7 @@ function PostHistory(name) {
 
               }
             }
-            success.totalAmount.push(amount)
+
 
 
           }
@@ -35,7 +35,7 @@ function PostHistory(name) {
             'purchase': success.purchase,
             'items': success.items,
             'quantity': success.quantity,
-            'totalAmount': success.totalAmount
+
 
           }
           hist.insert(newDoc, name, (error, success) => {
@@ -55,15 +55,12 @@ function PostHistory(name) {
               'product': succ.name,
               'quantity': succ.quantity
             }
-            var amount
-            for (var i = 0; i < succ.name.length; i++) {
-              amount = amount + succ.quantity[i] * parseFloat(succ.price[i])
-            }
+
             newDoc = {
               'purchase': [newFile],
               'items': succ.name,
               'quantity': succ.quantity,
-              'totalAmount': [amount]
+
             }
           }
 
