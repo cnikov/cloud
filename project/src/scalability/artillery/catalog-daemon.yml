@@ -1,0 +1,10 @@
+config:
+  # Replace (if needed) IP address of VM [node]
+  target: http://scapp_catalog-daemon
+  phases:
+    - duration: 120
+      arrivalRate: 5000
+scenarios:
+  - flow:
+    - get:
+        url: /catalog/Brocolli
