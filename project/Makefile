@@ -20,7 +20,7 @@ run:
 	docker run -d -p 3002:80 --name scapp-be --link users-db scapp-be
 	docker run -d -p 3000:80 --name scapp-fe -e REACT_APP_AUTH_SERVICE_URL='http://192.168.51.100:3002' scapp-fe
 swarm:
-	make build
+	make load
 	docker stack rm scapp
 	cd src/;  docker stack deploy -c scapp.yml scapp
 	cd src/back-end/catalog/;chmod +x fill_db.sh; ./fill_db.sh > /dev/null 2>&1
