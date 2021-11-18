@@ -8,4 +8,4 @@ The Microservices are :
 - Shopping-cart Service
 - Catalog Service 
 - History Service
-Each microservices are described in detail in their folder [`backend`](../src/back-end/)
+Each microservices are described in detail in their folder [`backend`](project/src/back-end/)
