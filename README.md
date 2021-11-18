@@ -30,8 +30,34 @@ This service is destined to a future implementation of checkout function. When t
 
 # HOW TO RUN...
 To run the project you have to follow those instructions : <br />
-Open a shell comand and type cd project<br />
-make swarm<br />
+Open a shell comand and type :
+
+```bash
+cd project
+```
+<br />
+At first we ask you to create manually a swarm manager by typping 
+
+```bash
+docker swarm init --advertise-addr IP_OF_VM_LEADER
+```
+Then in others vms you can create workers by typing
+
+```bash
+ docker swarm join --token YOUR_TOKEN
+```
+Then on your manager type
+
+```bash
+docker network create --driver overlay --attachable scapp-net
+
+```
+After that you can enter the final command :
+
+```bash
+make swarm
+```
+<br />
 The database and microservices have to load so wait about 1 min <br />
 Once it is done you can acces the website by typing http://${YOUR_IP_ADDRESS}:3000 <br />
 The couch db are accessible with the username admin and password admin on the ports:
