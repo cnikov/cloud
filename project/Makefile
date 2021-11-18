@@ -43,3 +43,7 @@ build:
 
 stop:
 	docker stop $$(docker ps -aq)
+
+artillery:
+	cd src/scalability/artillery; docker build -t artillery .
+	docker run -d --name load-test --network scapp-net artillery
