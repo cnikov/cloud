@@ -13,7 +13,7 @@ load:
 	
 swarm:
 	make build
-	export VM= $(hostname -I | awk '{print $1}' )
+	export VM=$(hostname -I | awk '{print $1}' )
 	docker stack rm scapp
 	cd src/;  docker stack deploy -c scapp.yml scapp
 	cd src/back-end/catalog/;chmod +x fill_db.sh; ./fill_db.sh > /dev/null 2>&1
