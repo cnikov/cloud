@@ -17,13 +17,10 @@ appS.post('/shopping-kart', (req, res) => {
   .catch((err) => {
     res.status(409).json({ status: 'error', message: String(err) })
   })
-  
-  //log(`Adding a new item (${item}) identified in basket "${id}"`)
 })
 
-appS.get('/shopping-kart/:username', (req, res) => {  //id est le username
+appS.get('/shopping-kart/:username', (req, res) => { 
   var username = req.params.username
-  //log(`Getting basket (${id})`)
   return db.getBasket(username)
     .then((token) => {
       res.status(200).json({ status: 'success', token })

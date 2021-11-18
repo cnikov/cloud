@@ -1,7 +1,8 @@
 var kart = require('nano')(process.env.DB_URL_SK)
 var catalog = require('nano')(process.env.DB_URL_C)
 
-function AddToBasket(name, quantity, username, price, id) {
+//Add an item to the user's basket
+function AddToBasket(name, quantity, username, price, id) { 
 
   return new Promise((resolve, reject) => {
     catalog.get(name, (err, succ)=>{  //on récupère le catalogue
@@ -76,7 +77,7 @@ function AddToBasket(name, quantity, username, price, id) {
     
   })
 }
-
+//Recuperer le panier d'un user
 function getBasket(username) {
   console.log(username)
   return new Promise((resolve, reject) => {
@@ -89,6 +90,7 @@ function getBasket(username) {
     })
   })
 }
+//Retirer un item d'un user, name est de nom de l'item a retirer
 function removeFromBasket(username, name){
   return new Promise((resolve, reject) =>{
     kart.get(username, (error, succes) => {
