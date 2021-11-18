@@ -50,13 +50,24 @@ you can add product by executing the script add_item with the command <br />
 where each $ fields are an argument<br />
 You can see the updates on the website if you reload the page<br />
 you can remove an item that you have add with the command <br />
-./remove_item $item_name<br />
+```bash
+./remove_item $item_name
+```bash
+<br />
 you can remove a shopping cart with the command<br />
-./remove_cart_item $item_name $username<br />
+```bash
+./remove_cart_item $item_name $username
+```bash
+<br />
 You can add item in the shopping cart with the command<br />
-./add_cart.sh $item_name $quantity $username $price $item_id<br />
+```bash
+./add_cart.sh $item_name $quantity $username $price $item_id
+```bash
+<br />
 You can add history with the command<br />
+```bash
 ./add_history.sh $item_name $quantity $username $price $item_id
+```bash
 
 # REMARKS
 All our back-end is functional but we had some problems to link it to the front-end because there is some concurency problems that we could not resolved. Furthermore we didn't create a logs service because we forget this part so we will create this service for the next part of the project. We also want to connect the front-end and the back-end properly for the end of the project. We tried to put our images on the dockerfile but when running the yml file with swarm some container were not created so we prefer to keep images locally and deploy it with a local build awaiting to find a solution to our problem.
