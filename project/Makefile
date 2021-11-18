@@ -13,11 +13,11 @@ load:
 	
 swarm:
 	make build
-	export VM=$(hostname -I | awk '{print $1}' )
+	export VM= $(hostname -I | awk '{print $1}' )
 	docker stack rm scapp
 	cd src/;  docker stack deploy -c scapp.yml scapp
 	cd src/back-end/catalog/;chmod +x fill_db.sh; ./fill_db.sh > /dev/null 2>&1
-	chmod +x add_item.sh;chmod +x remove_item.sh;chmod +x remove_cart_item.sh;chmod+xadd_cart.sh;chmod +x add_history.sh
+	chmod +x add_item.sh;chmod +x remove_item.sh;chmod +x remove_cart_item.sh;chmod +x add_cart.sh;chmod +x add_history.sh
 #	cd src/scalability/; chmod +x ./apply-policy-of-scalability.sh 
 #	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-daemon > /dev/null &
 #	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-daemon > /dev/null &
