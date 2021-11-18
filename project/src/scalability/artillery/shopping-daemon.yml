@@ -1,0 +1,10 @@
+config:
+  # Replace (if needed) IP address of VM [node]
+  target: http://scapp_shopping-daemon
+  phases:
+    - duration: 120
+      arrivalRate: 200
+scenarios:
+  - flow:
+    - get:
+        url: /shopping-kart/bob
