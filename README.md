@@ -101,6 +101,10 @@ You can add history with the command<br />
 ```bash
 ./add_history.sh $item_name $quantity $username $price $item_id
 ```
+# TESTING SCALABILITY
+ You can test the scalability of two containers with the command "make artillery"
+ It will, if the load is superior to 70% of the capacity, increase the number of replicas of the service by 3.
+ The tests take place on two services: the authentification service and the catalog service, but all the daemon support the scalability.
 
 # REMARKS
 All our back-end is functional but we had some problems to link it to the front-end because there is some concurency problems that we could not resolved. Furthermore we didn't create a logs service because we forget this part so we will create this service for the next part of the project. We also want to connect the front-end and the back-end properly for the end of the project. We tried to put our images on the dockerfile but when running the yml file with swarm some container were not created so we prefer to keep images locally and deploy it with a local build awaiting to find a solution to our problem.If there is any problem the website and all the services are running on our vm that you can access with ssh

@@ -14,6 +14,6 @@ In App.js, you can found the GET, POST and DELETE operations. You can use them a
     -DELETE : you have to give him as argument a username and a product (who already is in the basket). It will remove the given product from the basket.
 # SOME EXAMPLE
 
-- POST : curl -X POST "name=Apple&quantity=3&price=2.34&username=bob&id=6" 
-- GET : curl -X GET "username=bob" 
-- DELETE : curl -X DELETE "username=bob&name=Apple"
+- POST : curl -X POST "name=Apple&quantity=3&price=2.34&username=bob&id=6" http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006/shoppin-kart
+- GET : curl -X GET "username=bob" http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006/shoppin-kart
+- DELETE : curl -X DELETE "username=bob&name=Apple" http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006/shoppin-kart

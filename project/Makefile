@@ -17,16 +17,11 @@ swarm:
 	cd src/;  docker stack deploy -c scapp.yml scapp
 	cd src/back-end/catalog/;chmod +x fill_db.sh; ./fill_db.sh > /dev/null 2>&1
 	chmod +x add_item.sh;chmod +x remove_item.sh;chmod +x remove_cart_item.sh;chmod+xadd_cart.sh;chmod +x add_history.sh
-#	cd src/scalability/; chmod +x ./apply-policy-of-scalability.sh 
-#	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-daemon > /dev/null &
-#	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-daemon > /dev/null &
-#	cd src/scalability/; ./apply-policy-of-scalability.sh scapp catalog-db > /dev/null &
-#	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-db > /dev/null &
-#	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-db > /dev/null &
-#	cd src/scalability/; ./apply-policy-of-scalability.sh scapp history-db > /dev/null &
-#	cd src/scalability/; ./apply-policy-of-scalability.sh scapp front-end > /dev/null &
-#	cd src/scalability/; ./apply-policy-of-scalability.sh scapp catalog-daemon > /dev/null &
-#	cd src/scalability/; ./apply-policy-of-scalability.sh scapp history-daemon > /dev/null &
+	cd src/scalability/; chmod +x ./apply-policy-of-scalability.sh 
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-daemon > /dev/null &
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-daemon > /dev/null &
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp catalog-daemon > /dev/null &
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp history-daemon > /dev/null &
 remove:
 	docker rm $$(docker ps -aq)
 build:
@@ -39,7 +34,11 @@ build:
 	cd src/back-end/catalog/; docker build -t catalog-be .
 	cd src/back-end/history/; docker build -t history-be .
 	cd src/back-end/shopping-kart/; docker build -t shopping-be .
+	cd src/scalability/artillery; docker build -t artillery .
 	
 
 stop:
 	docker stop $$(docker ps -aq)
+
+artillery:
+	docker run -d --name load-test --network scapp-net artillery
