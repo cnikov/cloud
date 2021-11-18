@@ -1,25 +1,29 @@
+//nano url to couchdb databases 
+//history database
 var hist = require('nano')(process.env.DB_URL_H)
+// shopping cart database
 var cart = require('nano')(process.env.DB_URL_SK)
 
-
+//post function to create document or update
 function PostHistory(name) {
   return new Promise((resolve, reject) => {
+    //check if history already exists for a specific user
     hist.get(name, (error, success) => {
       var newDoc
       if (success) {
+        //get the shopping cart
         cart.get(name, (error, succ) => {
           if (succ) {
             var newFile = {
               'product': succ.name,
               'quantity': succ.quantity
             }
+
             success.purchase.push(newFile)
-
             for (var i = 0; i < succ.name.length; i++) {
-
               var index = success.items.indexOf(succ.name[i])
-              console.log(index)
-              console.log("cetait l'index")
+
+              //if the product has never been bought
               if (index <= -1) {
                 success.items.push(succ.name[i])
                 success.quantity.push(succ.quantity[i])
@@ -42,13 +46,14 @@ function PostHistory(name) {
             if (success) {
               resolve(name)
             } else {
-              reject(new Error("Erreur d'ajout a la db"))
+              reject(new Error("Error to insert history"))
             }
           })
 
         })
 
       } else {
+        //case if history does not exist
         cart.get(name, (error, succ) => {
           if (succ) {
             var newFile = {
@@ -68,7 +73,7 @@ function PostHistory(name) {
             if (success) {
               resolve(name)
             } else {
-              reject(new Error("Erreur d'ajout a la db"))
+              reject(new Error("Error to insert history"))
             }
           })
         })
@@ -81,10 +86,10 @@ function getHistory(name) {
   return new Promise((resolve, reject) => {
     hist.get(name, (error, success) => {
       if (success) {
-        //console.log(success)
+
         resolve(success)
       } else {
-        reject(new Error(`To fetch information of basket. Reason: ${error.reason}.`))
+        reject(new Error(`To get history. Reason: ${error.reason}.`))
       }
 
     })
