@@ -2,22 +2,14 @@ load:
 	echo "Connecting to docker hub ... \n"
 	docker login
 	echo "Loading images ... \n"
-	docker tag shopping-db:latest romain01/shopping-db
-	docker push romain01/shopping-db
-	docker tag catalog-db:latest romain01/catalog-db
-	docker push romain01/catalog-db
-	docker tag history-db:latest romain01/history-db
-	docker push romain01/history-db
-	docker tag users-db:latest romain01/users-db
-	docker push romain01/users-db
-	docker tag scapp-fe:latest romain01/scapp-fe
-	docker push romain01/scapp-fe
-	docker tag catalog-be:latest romain01/catalog-be
-	docker push romain01/catalog-be
-	docker tag shopping-be:latest romain01/shopping-be
-	docker push romain01/shopping-be
-	docker tag history-be:latest romain01/history-be
-	docker push romain01/history-be
+	docker pull romain01/shopping-db
+	docker pull romain01/catalog-db
+	docker pull romain01/history-db
+	docker pull romain01/users-db
+	docker pull romain01/scapp-fe
+	docker pull romain01/catalog-be
+	docker pull romain01/shopping-be
+	docker pill romain01/history-be
 	
 start:
 	docker start back-end
