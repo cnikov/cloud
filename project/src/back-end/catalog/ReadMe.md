@@ -72,6 +72,7 @@ The last databse create only one document which correspond to the expected forma
 The post take the same arguments of the catalog database and put the item in the right category to match the good format <br />
 The get return the entire document with no argument because it gets the _id format <br />
 The delete takes the name as argument and get the catalog database to have more information about the product and remove it in the database format. If the item is the last of its category the category is also removed.<br />
-
+The database with the list of all names is useful to know how much items we have in the catalog. The catalog is useful to get the informations of each product if we know its name and the format is useful for the front-end view.<br />
+This service is used by the shopping cart service to get every detail about each products that are adds in the shopping cart
 
 
