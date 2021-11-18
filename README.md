@@ -50,21 +50,28 @@ you can add product by executing the script add_item with the command <br />
 where each $ fields are an argument<br />
 You can see the updates on the website if you reload the page<br />
 you can remove an item that you have add with the command <br />
+
 ```bash
 ./remove_item $item_name
 ```
+
 <br />
 you can remove a shopping cart with the command<br />
+
 ```bash
 ./remove_cart_item $item_name $username
 ```
+
 <br />
 You can add item in the shopping cart with the command<br />
+
 ```bash
 ./add_cart.sh $item_name $quantity $username $price $item_id
 ```
+
 <br />
 You can add history with the command<br />
+
 ```bash
 ./add_history.sh $item_name $quantity $username $price $item_id
 ```
