@@ -16,11 +16,12 @@ ADD boot-in-order.sh .
 ENV DEBUG history-db
 # database name
 ENV DB_NAME_H historic
-ENV DB_HOST_SK shopping-db
 
+ENV DB_NAME_SK shopping-kart
 
 # name of container running CouchDB
 ENV DB_HOST_C history-db
+ENV DB_HOST_SK shopping-db
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
 ENV ADMIN_NAME admin
 ENV ADMIN_PASSW admin
