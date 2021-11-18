@@ -65,7 +65,5 @@ The last databse create only one document which correspond to the expected forma
       }
     }
   }
-
-
-
 ```
+The post take the same id's of the 
