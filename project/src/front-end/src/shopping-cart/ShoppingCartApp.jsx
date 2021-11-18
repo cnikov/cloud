@@ -5,7 +5,7 @@ import QuickView from './components/QuickView'
 import Checkout from './components/Checkout'
 import LocalPurchases from '../interfaces/LocalPurchases'
 import axios from 'axios' // we use this library as HTTP client
-const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006" || 'http://localhost:3006'
+const url = process.env.REACT_APP_SHOPKART_SERVICE_URL || 'http://localhost:3006'
 const PurchasesService = LocalPurchases
 
 
@@ -58,7 +58,7 @@ class ShoppingCartApp extends Component {
         purService: new PurchasesService()
       }
       this.state.purService.setHandlers(
-        
+
         (list) => { this.setState({ products: list }) },
         (hist) => { this.setState({ oldPurchases: hist }) }
       )
@@ -84,24 +84,24 @@ class ShoppingCartApp extends Component {
     this.state.purService.fetchHistory()
     let username = JSON.parse(window.localStorage.getItem('username'))
     axios.get(`${url}/shopping-kart/${username}`)
-        .then((res) =>{
-          var prod = res.data.token
-          for (var i = 0; i < prod.name.length; i++){
-            let n = prod.name[i]
-            let p = prod.price[i]
-            let q = prod.quantity[i]
-            let id = prod.id[i]
-            let add = {
-              'name': n,
-              'price': p,
-              'quantity': q,
-              'id': id
-            }
-            this.state.cart.push(add)
+      .then((res) => {
+        var prod = res.data.token
+        for (var i = 0; i < prod.name.length; i++) {
+          let n = prod.name[i]
+          let p = prod.price[i]
+          let q = prod.quantity[i]
+          let id = prod.id[i]
+          let add = {
+            'name': n,
+            'price': p,
+            'quantity': q,
+            'id': id
           }
-          console.log(res)
-          this.state.cart = res.data.token
-          console.log(this.state.cart)
+          this.state.cart.push(add)
+        }
+        console.log(res)
+        this.state.cart = res.data.token
+        console.log(this.state.cart)
       })
       .catch((err) => {
         console.log("Not yet connected")
@@ -178,7 +178,7 @@ class ShoppingCartApp extends Component {
     })
   }
 
-  sumTotalItems () {
+  sumTotalItems() {
     let total = 0
     let cart = this.state.cart
     total = cart.length
