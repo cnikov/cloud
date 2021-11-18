@@ -9,7 +9,7 @@ load:
 	docker pull romain01/scapp-fe
 	docker pull romain01/catalog-be
 	docker pull romain01/shopping-be
-	docker pill romain01/history-be
+	docker pull romain01/history-be
 	
 swarm:
 	make build
