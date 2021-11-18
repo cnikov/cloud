@@ -1,3 +1,5 @@
 # History Service
 This service will be used in the second part of the project to handle closure of the shopping cart and procceed checkout. This service is hardly depedent to the shopping cart service.<br />
-It use a single database with a post and a get method. <br />
+It uses a single database history with a post and a get method. The database create a document for each user where there is an history of all the shopping cart that they purchased, an history of every item that they ever purchased and the quantity of each item those items are stocred in lists.Each history is a list and is updated at each checkout. For example if the item Apple is stored in the 'items' list at position 1 the the total quantity is stored in the 'quantity' list and is updated at every checkout.<br />
+The post method will take a username in argument and will get the shopping cart of the user.The service check if the user has already an history. If it succeed the cart is push in the shopping cart history and if he buys a new item that he never bought this item is added to the list 'items' or the quantity is updated if it was already bought.<br />
+The get method takes a user as argument and return the whole history document corresponding to the correct user <br />
