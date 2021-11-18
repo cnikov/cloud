@@ -123,7 +123,7 @@ function updateAvg {
   fi
 }
 
-TRESHOLD="90.0"
+TRESHOLD="70.0"
 #---  FUNCTION  ----------------------------------------------------------------
 #          NAME:  tresholdNotReached
 #   DESCRIPTION:  Prints 1 if the CPU threshold was reached or 0 otherwise.

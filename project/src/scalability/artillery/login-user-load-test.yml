@@ -3,7 +3,7 @@ config:
   target: http://scapp_users-daemon
   phases:
     - duration: 120
-      arrivalRate: 200
+      arrivalRate: 80
 scenarios:
   - flow:
     - get:

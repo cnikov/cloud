@@ -22,6 +22,16 @@ swarm:
 	cd src/;  docker stack deploy -c scapp.yml scapp
 	cd src/back-end/catalog/;chmod +x fill_db.sh; ./fill_db.sh > /dev/null 2>&1
 	chmod +x add_item.sh;chmod +x remove_item.sh
+	cd src/scalability/; chmod +x ./apply-policy-of-scalability.sh
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-daemon
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-daemon
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp catalog-db
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-db
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-db
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp history-db
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp front-end
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp catalog-daemon
+	cd src/scalability/; ./apply-policy-of-scalability.sh scapp history-daemon
 remove:
 	docker rm $$(docker ps -aq)
 build:
