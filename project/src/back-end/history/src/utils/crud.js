@@ -16,7 +16,7 @@ function PostHistory(name) {
             success.purchase.push(newFile)
             var amount = 0
             for (var i = 0; i < succ.name.length; i++) {
-              amount = amount + succ.quantity[i] * parseFloat(succ.price[i], 10)
+              amount = amount + succ.quantity[i] * parseFloat(succ.price[i])
               var index = success.items.indexOf(succ.name[i])
               console.log(index)
               console.log("cetait l'index")
@@ -57,7 +57,7 @@ function PostHistory(name) {
             }
             var amount
             for (var i = 0; i < succ.name.length; i++) {
-              amount = amount + succ.quantity[i] * parseFloat(succ.price[i], 10)
+              amount = amount + succ.quantity[i] * parseFloat(succ.price[i])
             }
             newDoc = {
               'purchase': [newFile],
