@@ -34,15 +34,15 @@ Open a shell comand and type cd project<br />
 make swarm<br />
 The database and microservices have to load so wait about 1 min <br />
 Once it is done you can acces the website by typing http://${YOUR_IP_ADDRESS}:3000 <br />
-On the website you can register log in and add product in your shopping cart. (PLEASE DO NOT TRY TO DELETE AN ITEM OF YOUR SHOPPING CART it is not yet implemented in the front end).
-you can add product by executing the script add_item with the command 
-./add_item $name $price $image_url $category $id
-where each $ fields are an argument
-You can see the updates on the website if you reload the page
-you can remove an item that you have add with the command 
-./remove_item $item_name
-you can remove a shopping cart with the command
-................................
-...............................
+On the website you can register log in and add product in your shopping cart. (PLEASE DO NOT TRY TO DELETE AN ITEM OF YOUR SHOPPING CART it is not yet implemented in the front end). <br />
+you can add product by executing the script add_item with the command <br />
+./add_item $name $price $image_url $category $id<br />
+where each $ fields are an argument<br />
+You can see the updates on the website if you reload the page<br />
+you can remove an item that you have add with the command <br />
+./remove_item $item_name<br />
+you can remove a shopping cart with the command<br />
+................................<br />
+...............................<br />
 
 
