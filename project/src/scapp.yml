@@ -101,7 +101,7 @@ services:     # list all services for your application
     networks: [ "scapp-net" ]
   # server that listens HTTP requests
   catalog-daemon:
-    image: romain01/catalog-be:latest
+    image: romain01/catalog:latest
     # link both services (same effect of option --link in docker run)
     depends_on: [ "catalog-db" ]
     # expose port number 3005 of host running this service
