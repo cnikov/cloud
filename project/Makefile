@@ -25,8 +25,10 @@ build:
 	cd src/back-end/storage/; docker build -t users-db .
 	cd src/back-end/storage/; docker build -t catalog-db .
 	cd src/back-end/storage/; docker build -t shopping-db .
+	cd src/back-end/storage/; docker build -t history-db .
 	cd src/back-end/users/; docker build -t scapp-be .
 	cd src/back-end/catalog/; docker build -t catalog-be .
+	cd src/back-end/history/; docker build -t history-be .
 	cd src/back-end/shopping-kart/; docker build -t shopping-be .
 	
 

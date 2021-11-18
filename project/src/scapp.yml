@@ -46,6 +46,33 @@ services:     # list all services for your application
         condition: on-failure
     networks: [ "scapp-net" ]
   # server that listens HTTP requests
+  history-db:
+    # image name
+    image: history-db:latest
+    environment: 
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=admin
+    ports: ["3008:5984"]
+    deploy:
+      # deploy only one instance of this service
+      replicas: 1
+      restart_policy:
+        # restart if something went wrong
+        condition: on-failure
+    networks: [ "scapp-net" ]
+  # server that listens HTTP requests
+  history-daemon:
+    image: history-be:latest
+    # link both services (same effect of option --link in docker run)
+    depends_on: [ "history-db" ]
+    # expose port number 3002 of host running this service
+    ports: [ "3007:80" ]
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks: [ "scapp-net" ]
+  # server that listens HTTP requests
   users-daemon:
     image: scapp-be:latest
     # link both services (same effect of option --link in docker run)
