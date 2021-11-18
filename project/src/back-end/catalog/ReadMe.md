@@ -77,5 +77,5 @@ This service is used by the shopping cart service to get every detail about each
 In the post functions, we check if the databse already exist and if it succeed we update the database with the values and if it does not exist we insert a new document 
 
 ## Link withe the front-end
-The catalog service is used in the LocalPurchase.js [`LocalPurchase.js`]../../front-end/src/interfaces/LocalPurchases.js to get the format document and put it in the fetchitem to display all the catalog. We also tried to load the document in App.jsx but there is a problem of concurency that we could not resolve.
+The catalog service is used in the LocalPurchase.js [`LocalPurchase.js`](../../front-end/src/interfaces/LocalPurchases.js) to get the format document and put it in the fetchitem to display all the catalog. We also tried to load the document in App.jsx but there is a problem of concurency that we could not resolve.
 
