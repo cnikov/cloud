@@ -25,11 +25,6 @@ swarm:
 	cd src/scalability/; chmod +x ./apply-policy-of-scalability.sh 
 	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-daemon > /dev/null &
 	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-daemon > /dev/null &
-	cd src/scalability/; ./apply-policy-of-scalability.sh scapp catalog-db > /dev/null &
-	cd src/scalability/; ./apply-policy-of-scalability.sh scapp users-db > /dev/null &
-	cd src/scalability/; ./apply-policy-of-scalability.sh scapp shopping-db > /dev/null &
-	cd src/scalability/; ./apply-policy-of-scalability.sh scapp history-db > /dev/null &
-	cd src/scalability/; ./apply-policy-of-scalability.sh scapp front-end > /dev/null &
 	cd src/scalability/; ./apply-policy-of-scalability.sh scapp catalog-daemon > /dev/null &
 	cd src/scalability/; ./apply-policy-of-scalability.sh scapp history-daemon > /dev/null &
 remove:
