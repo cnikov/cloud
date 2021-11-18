@@ -1,7 +1,12 @@
+//variables to get the couchdb databases using nano
+//catalog
 var catalog = require('nano')(process.env.DB_URL_C)
+//list of name
 var fill = require('nano')(process.env.DB_URL_F)
+//format db
 var form = require('nano')(process.env.DB_URL_L)
 
+//this function delete an item in the format database
 function DeleteInFormat(name) {
   return new Promise((resolve, reject) => {
     form.get("format", (error, success) => {
@@ -11,6 +16,7 @@ function DeleteInFormat(name) {
           if (succ) {
             delete success['doc'][succ.category][succ.id]
             var size = Object.keys(success['doc'][succ.category]).length;
+            //case if last one in the category
             if (size == 0) {
               delete success['doc'][succ.category]
             }
@@ -20,11 +26,12 @@ function DeleteInFormat(name) {
             }
           }
           var iddb = "format"
+          //insert with the _id format
           form.insert(newDoc, iddb, (error, success) => {
             if (success) {
               resolve(name)
             } else {
-              reject(new Error("Erreur d'ajout a la db"))
+              reject(new Error("Erreur to delete product"))
             }
           })
         })
@@ -33,6 +40,7 @@ function DeleteInFormat(name) {
     })
   })
 }
+//remove an item from the catalog only delete the entire document which has name as id
 function RemoveItem(name) {
   return new Promise((resolve, reject) => {
     catalog.get(name, (error, success) => {
@@ -41,67 +49,63 @@ function RemoveItem(name) {
           if (success) {
             resolve(name)
           } else {
-            reject(new Error("Erreur d'ajout a la db"))
+            reject(new Error("Erreur to remove item"))
           }
         })
       }
     })
   })
 }
+//remove a name from the list of name
 function RemoveTheList(name) {
   return new Promise((resolve, reject) => {
-    console.log("delete correctement appelé")
     fill.get("allItems", (error, success) => {
-      console.log("dans le get")
-      console.log(success)
+
       var newFill
       if (success) {
         const index = success.list.indexOf(name)
-        console.log(index)
-
         success.list.splice(index, 1)
         newFill = {
           '_rev': success._rev,
           'list': success.list
         }
-
-
       }
       const id = "allItems"
       fill.insert(newFill, id, (error, success) => {
         if (success) {
           resolve(name)
         } else {
-          reject(new Error("Erreur d'ajout a la db"))
+          reject(new Error("Erreur to remove from the list"))
         }
       })
     })
   })
 }
+//Get the list of name
 function GetList(dbid) {
   return new Promise((resolve, reject) => {
     fill.get(dbid, (error, success) => {
       if (success) {
-        //console.log(success)
         resolve(success)
       } else {
-        reject(new Error(`To fetch information of basket. Reason: ${error.reason}.`))
+        reject(new Error(`To get from the list. Reason: ${error.reason}.`))
       }
     })
   })
 }
+//Get the document in the right format for the front end
 function GetFormat(dbid) {
   return new Promise((resolve, reject) => {
     form.get(dbid, (error, success) => {
       if (success) {
-        //console.log(success)
         resolve(success)
       } else {
-        reject(new Error(`To fetch information of basket. Reason: ${error.reason}.`))
+        reject(new Error(`To get the format file: ${error.reason}.`))
       }
     })
   })
 }
+//Add an element in the document with the right format
 function AddFormat(name, price, image, category, id) {
   return new Promise((resolve, reject) => {
 
@@ -110,8 +114,8 @@ function AddFormat(name, price, image, category, id) {
         newDoc = {
           '_rev': success._rev,
           'doc': success.doc
-
         }
+        //check if the category exist
         try {
           newDoc['doc'][category][id] = {
             'name': name,
@@ -149,13 +153,14 @@ function AddFormat(name, price, image, category, id) {
         if (success) {
           resolve(name)
         } else {
-          reject(new Error("Erreur d'ajout a la db"))
+          reject(new Error("Erreur to add the item in format file"))
         }
       })
     })
 
   })
 }
+//Add a name of product in the list of name
 function FillTheList(name) {
   return new Promise((resolve, reject) => {
     var newDoc
@@ -167,9 +172,7 @@ function FillTheList(name) {
           'name': "allmytables",
           'list': success.list
         }
-
       }
-
       else {
         var newList = [name]
         newDoc = {
@@ -182,136 +185,59 @@ function FillTheList(name) {
         if (success) {
           resolve(name)
         } else {
-          reject(new Error("Erreur d'ajout a la db"))
+          reject(new Error("Error to add item in the list of name"))
         }
       })
     })
   })
 }
-
+//Add a product document in the catalog
 function AddProduct(name, price, image, category, id) {
-  //faire un getBasket puis ajouter l'item pour ecraser le tout
-  //lol si ca marche (aucun espoir)
-  //const nproduct = {
-  //brackets pour recuperer le nom de champ et pas "name"
-  //   '_rev': product._rev,
-  // 'name': name,
-  // 'price': price,
-  // 'image': image,
-  // 'category': category
-
 
   return new Promise((resolve, reject) => {
-    //const id_db = 'catalog/catalog'
     catalog.get(name, (error, success) => {
-
       var new_product
       if (success) {
         new_product = {
-          //brackets pour recuperer le nom de champ et pas "name"
           '_rev': success._rev,
           'name': name,
           'price': price,
           'image': image,
           'category': category,
           'id': id
-
         }
       } else {
         new_product = {
-          //brackets pour recuperer le nom de champ et pas "name" get puis contenu.push pour ajouter a une liste et reinsert
           'name': name,
           'price': price,
           'image': image,
           'category': category,
           'id': id
-
         }
       }
-
       catalog.insert(new_product, name, (error, success) => {
         if (success) {
           resolve(name)
         } else {
-          reject(new Error("Erreur d'ajout a la db"))
+          reject(new Error("Error to add item in catalog"))
         }
       })
     })
   })
 }
-
-/*var catalogs = 'catalog'
-try {
-  const doc = catalog.get(id_db)
-  console.log("hey")
-  doc.add(new_product)
-  //catalog.destroy(id_db)
-  catalog.insert(doc)
-}
-catch (exception) {
-  catalog.insert(
-    // 1st argument of nano.insert()
-    {
-      "catalog": {
-        category: {
-          id: {
-            'name': name,
-            'price': price,
-            'image': image,
-            'category': category
-          }
-        }
-      }
-    }, 'catalog',
-    (error, success) => {
-      if (success) {
-        resolve(name)  //quand on fera le log, c'est ce qui va apparaitre?
-      } else {
-        reject(
-          new Error(`In adding (${name}). Reason: ${error.reason}.`)
-        )
-      }
-    }
-  )
-}*/
-//   catalog.get(catalog, function (err, doc) {
-//     doc.catalog.category.id['name'] = name;
-//     doc.catalog.category.id['price'] = price;
-//     doc.catalog.category.id['image'] = image;
-//     doc.catalog.category.id['category'] = category;
-//     catalog.insert(doc, function (err, body, header) {
-//       if (!err) {
-//         console.log(body);
-//         res.send('update website succeed');
-//       }
-//       else {
-//         console.log(err.error);
-//       }
-//     })
-//   })
-// })
-
-//})
-//}
-
+//Get a product from the catalog
 function getProduct(dbid) {
   return new Promise((resolve, reject) => {
     catalog.get(dbid, (error, success) => {
       if (success) {
-        //console.log(success)
         resolve(success)
       } else {
-        reject(new Error(`To fetch information of basket. Reason: ${error.reason}.`))
+        reject(new Error(`To get product. Reason: ${error.reason}.`))
       }
     })
   })
 }
-//catalog.get(product, (error, success) = > {
-//if(success){
-//catalog.destroy(success._id, catalog._rev)
-//}
-//})
-//
+
 module.exports = {
   AddProduct,
   getProduct,
@@ -322,5 +248,5 @@ module.exports = {
   RemoveTheList,
   RemoveItem,
   DeleteInFormat,
-  //getcatalog
+
 }
