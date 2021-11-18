@@ -116,5 +116,6 @@ then access to the project with the command
 cd cloud/project
 ```
 And execute any command of you choice that we describe above<br />
-When running command to add items in shopping cart or to add item in catalog please give a non existing id when adding a product in the catalog and a product name that is already stored in the catalog when adding the product in the shopping cart
+When running command to add items in shopping cart or to add item in catalog please give a non existing id when adding a product in the catalog and a product name that is already stored in the catalog when adding the product in the shopping cart<br />
+you can access to the website by clicking on this url (http://cloud-romtourpe.westeurope.cloudapp.azure.com:3000/)
 
