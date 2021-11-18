@@ -3,7 +3,7 @@ services:     # list all services for your application
   # database of users
   users-db:
     # image name
-    image: romain01/users-db:latest
+    image: users-db:latest
     environment: 
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
@@ -18,7 +18,7 @@ services:     # list all services for your application
   # database of catalog
   catalog-db:
     # image name
-    image: romain01/catalog-db:latest
+    image: catalog-db:latest
     environment: 
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
@@ -33,7 +33,7 @@ services:     # list all services for your application
   # database of shopping-kart
   shopping-db:
     # image name
-    image: romain01/shopping-db:latest
+    image: shopping-db:latest
     environment: 
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
@@ -77,7 +77,7 @@ services:     # list all services for your application
     networks: [ "scapp-net" ]
   # server that listens HTTP requests
   users-daemon:
-    image: romain01/scapp-be:latest
+    image: scapp-be:latest
     # link both services (same effect of option --link in docker run)
     depends_on: [ "users-db" ]
     # expose port number 3002 of host running this service
@@ -89,7 +89,7 @@ services:     # list all services for your application
     networks: [ "scapp-net" ]
   # server that listens HTTP requests
   shopping-daemon:
-    image: romain01/shopping-kart:latest
+    image: shopping-be:latest
     # link both services (same effect of option --link in docker run)
     depends_on: [ "shopping-db" ]
     # expose port number 3004 of host running this service
@@ -101,7 +101,7 @@ services:     # list all services for your application
     networks: [ "scapp-net" ]
   # server that listens HTTP requests
   catalog-daemon:
-    image: romain01/catalog-be:latest
+    image: catalog-be:latest
     # link both services (same effect of option --link in docker run)
     depends_on: [ "catalog-db" ]
     # expose port number 3005 of host running this service
@@ -113,7 +113,7 @@ services:     # list all services for your application
     networks: [ "scapp-net" ]
   front-end:
     # image name
-    image: romain01/scapp-fe:latest
+    image: scapp-fe:latest
     environment:
       REACT_APP_AUTH_SERVICE_URL: ${REACT_APP_AUTH_SERVICE_URL:-http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002}
       REACT_APP_CATALOG_SERVICE_URL: ${REACT_APP_CATALOG_SERVICE_URL:-http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005}
