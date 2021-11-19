@@ -29,7 +29,8 @@ This service stores all the item of the catalog with a name a price an image a c
 This service is destined to a future implementation of checkout function. When the user checkout an history of his purchase is uploaded to the database by the history service. It gets the actual shopping cart of the user and store for the user a list of each shopping cart that he bought.It also has a list of each items that the user has ever bought and the quantity of each of those product.
 
 # HOW TO RUN...
-To run the project you have to follow those instructions : <br />
+The project is already running on our machine so you can access by clicking on this link http://cloud-romtourpe.westeurope.cloudapp.azure.com:3000 you can make some curl manually to each address or download the project on your machine and follow those instructions.<br />
+To run the project on your virtual machine you have to follow those instructions : <br />
 First of all you need to modify the lines 118,119 and 120 in the [`scapp.yml`](src/scapp.yml) by replacing cloud-romtourpe.westeurope.cloudapp.azure.com by your VM ip address
 
 ```javascrip

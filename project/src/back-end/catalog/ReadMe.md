@@ -2,13 +2,13 @@
 
 This service use 3 databases. One is a list of every name of items in the catalog it is called allitems in couchdb and listitem in the back-end <br />
 The post method takes the name of the item and add it in the list by getting the id allItems or creating a new list with the product name if the database does not exist.<br />
-The get method need an id which has to be allItems because it is the id of the database file. It returns the list of all the product's name<br />
-The delete method takes the name of item that has to be removed and remove it to the list by getting it and re inserting it into the database.<br />
-The other database is a database which stores every items individually in order to make some get name easily in the shopping cart service it is the catalog database.<br />
+The get method needs an id which has to be "allItems" because it is the id of the database file. It returns the list of all the product's name<br />
+The delete method takes the name of item that has to be removed and remove it from the list by getting it and re inserting it into the database.<br />
+The other database is a database which stores every items individually in order to make some get method on the name easily in the shopping cart service it is called the catalog database.<br />
 The post takes 5 arguments which are name,price,image_url,category and id of each product and it create a document where the _id field is the name of the product<br />
 The get method takes the name of the product as argument and give all the information about the product<br />
-The delete method also take the name of the product in argument and erase the right document in the database because the _id = name<br />
-The last databse create only one document which correspond to the expected format that the front end need to display each items it is called the format database.
+The delete method also takes the name of the product in argument and erase the right document in the database by getting the '_id' fild which is the name of the product<br />
+The last databse create only one document which correspond to the expected format that the front end needs to display each items it is called the format database.
 ```json
 {
   "_id": "format",
