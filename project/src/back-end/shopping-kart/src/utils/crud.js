@@ -28,7 +28,6 @@ function AddToBasket(name, quantity, username, price, id) {
                 'id': success.id
               }
             }else{
-              console.log(success.quantity[index])
               success.quantity[index] = quantity + success.quantity[index]
               new_basket = {
                 '_rev':  success._rev,
@@ -72,80 +71,8 @@ function AddToBasket(name, quantity, username, price, id) {
         reject(new Error("Erreur"))
       }
     })
-      })}
-/*
-    catalog.get(name, (err, succ)=>{  //on récupère le catalogue
-      var new_basket
-      if(succ){
-        kart.get(username, (error, success) => {  //on recupère le panier
-          if(success){  //si le panier existe deja
-            var index = success.name.indexOf(name)
-            console.log(index)
-            console.log("cetait l'index")
-            if (index <= -1){  //si l'objet n'est pas déja dans la db
-              success.name.push(name)
-              success.quantity.push(quantity)
-              success.image.push(succ.image)
-              success.price.push(price)
-              success.id.push(id)
-              new_basket = {
-                '_rev': success._rev,
-                'name': success.name,
-                'quantity': success.quantity,
-                'image': success.image,
-                'price': success.price,
-                'id': success.id
-              }
-            }else{
-              console.log("tests sur les qtitess")
-              console.log(index)
-              console.log(success.quantity[index])
-              success.quantity[index] = quantity + success.quantity[index]
-              new_basket = {
-                '_rev':  success._rev,
-                'name': success.name,
-                'quantity': success.quantity,
-                'image': success.image,
-                'price': success.price,
-                'id': success.id
-              }
-
-            }
-          }else{  //sinon, on crée le panier
-            var nameList = []
-            nameList.push(name)
-            var quantityList = []
-            quantityList.push(quantity)
-            var imageList = []
-            imageList.push(succ.image)
-            var priceList = []
-            priceList.push(succ.price)
-            var idList = []
-            idList.push(succ.id)
-            new_basket = {
-              'name': nameList,
-              'quantity': quantityList,
-              'image': imageList,
-              'price': priceList,
-              'id': idList
-            }
-          }
-          kart.insert(new_basket, username, (error, suc) => {
-            if(suc){
-              resolve(username)
-            }else{
-              reject(new Error("Erreur d'ajout a la db"))
-            }
-          })
-
-        })
-      }else{
-        reject(new Error("Erreur"))
-      }
-    })
-    
   })
-}*/
+}
 //Recuperer le panier d'un user
 function getBasket(username) {
   console.log(username)
