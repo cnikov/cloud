@@ -81,6 +81,7 @@ class ShoppingCartApp extends Component {
           var n = prod.name[i]
           var q = prod.quantity[i]
           let index = this.state.products.findIndex(x => x.name === n)
+          console.log(index)
           var p = this.state.products[index].price
           var id = this.state.products[index].id
           var im = this.state.products[index].image
