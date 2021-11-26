@@ -16,10 +16,7 @@ function AddToBasket(name, quantity, username, price, id) {
             if (index <= -1){  //si l'objet n'est pas déja dans la db
               success.name.push(name)
               success.quantity.push(quantity)
-              //console.log(res)
-              console.log(res.image)
-              console.log(res.data.token.image)
-              success.image.push(res.image)
+              success.image.push(res.data.token.image)
               success.price.push(price)
               success.id.push(id)
               new_basket = {
@@ -49,11 +46,11 @@ function AddToBasket(name, quantity, username, price, id) {
             var quantityList = []
             quantityList.push(quantity)
             var imageList = []
-            imageList.push(res.image)
+            imageList.push(res.data.token.image)
             var priceList = []
-            priceList.push(res.price)
+            priceList.push(res.data.token.price)
             var idList = []
-            idList.push(res.id)
+            idList.push(res.data.token.id)
             new_basket = {
               'name': nameList,
               'quantity': quantityList,
