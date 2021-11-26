@@ -80,7 +80,7 @@ class ShoppingCartApp extends Component {
         for (var i = 0; i < prod.name.length; i++) {
           var n = prod.name[i]
           var q = prod.quantity[i]
-          axios.get(`${url}/catalog/${n}`)
+          axios.get(`${urlProducts}/catalog/${n}`)
               .then((res) => {
                   var p = res.data.token.price
                   var id = res.data.token.id
