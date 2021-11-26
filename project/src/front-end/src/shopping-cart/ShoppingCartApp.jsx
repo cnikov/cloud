@@ -80,7 +80,19 @@ class ShoppingCartApp extends Component {
         for (var i = 0; i < prod.name.length; i++) {
           var n = prod.name[i]
           var q = prod.quantity[i]
-          axios.get(`${urlProducts}/catalog/${n}`)
+          let index = this.state.products.findIndex(x => x.name === n)
+          var p = this.state.products[index].price
+          var id = this.state.products[index].id
+          var im = this.state.products[index].image
+          let add = {
+          'name': n,
+          'price': p,
+          'quantity': q,
+          'id': id,
+          'image': im
+          }
+          this.state.cart.push(add)
+          /*axios.get(`${urlProducts}/catalog/${n}`)
               .then((res) => {
                   var p = res.data.token.price
                   var id = res.data.token.id
@@ -93,7 +105,7 @@ class ShoppingCartApp extends Component {
                     'image': im
                   }
                   this.state.cart.push(add)
-              })
+              })*/
 
         }
         //this.state.cart = res.data.token  --> WTF ?
