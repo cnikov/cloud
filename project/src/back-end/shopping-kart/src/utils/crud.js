@@ -93,6 +93,7 @@ function removeFromBasket(username, name){
         if(succes){
           let index = succes.name.indexOf(name)
           succes.name.splice(index,1)
+          succes.price.splice(index, 1)
           succes.quantity.splice(index,1)
           succes.image.splice(index,1)
           succes.id.splice(index,1)
