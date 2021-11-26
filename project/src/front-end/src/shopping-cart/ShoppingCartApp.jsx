@@ -6,6 +6,7 @@ import Checkout from './components/Checkout'
 import LocalPurchases from '../interfaces/LocalPurchases'
 import axios from 'axios' // we use this library as HTTP client
 const url = process.env.REACT_APP_SHOPKART_SERVICE_URL || 'http://localhost:3006'
+const urlProducts = process.env.REACT_APP_CATALOG_SERVICE_URL || 'http://localhost:3005'
 const PurchasesService = LocalPurchases
 
 
@@ -77,19 +78,23 @@ class ShoppingCartApp extends Component {
       .then((res) => {
         var prod = res.data.token
         for (var i = 0; i < prod.name.length; i++) {
-          let n = prod.name[i]
-          let p = prod.price[i]
-          let q = prod.quantity[i]
-          let id = prod.id[i]
-          let im = prod.image[i]
-          let add = {
-            'name': n,
-            'price': p,
-            'quantity': q,
-            'id': id,
-            'image': im
-          }
-          this.state.cart.push(add)
+          var n = prod.name[i]
+          var q = prod.quantity[i]
+          axios.get(`${url}/catalog/${n}`)
+              .then((res) => {
+                  var p = res.data.token.price
+                  var id = res.data.token.id
+                  var im = res.data.token.image
+                  let add = {
+                    'name': n,
+                    'price': p,
+                    'quantity': q,
+                    'id': id,
+                    'image': im
+                  }
+                  this.state.cart.push(add)
+              })
+
         }
         //this.state.cart = res.data.token  --> WTF ?
         this.sumTotalItems(this.state.cart)
