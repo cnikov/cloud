@@ -28,7 +28,7 @@ function AddToBasket(name, quantity, username, price, id) {
                 'id': success.id
               }
             }else{
-              console.log(succes.quantity[index])
+              console.log(success.quantity[index])
               success.quantity[index] = quantity + success.quantity[index]
               new_basket = {
                 '_rev':  success._rev,
