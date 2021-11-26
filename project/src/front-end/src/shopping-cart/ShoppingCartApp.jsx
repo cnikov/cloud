@@ -148,18 +148,18 @@ class ShoppingCartApp extends Component {
   }
 
   handleRemoveProduct(id, e) { //relier back-end
-    let cart = this.state.cart
-    let index = cart.findIndex(x => x.id === id)
-    let productName = cart[index].name
+    let mycart = this.state.cart
+    let index = mycart.findIndex(x => x.id === id)
+    let productName = mycart[index].name
     let username = JSON.parse(window.localStorage.getItem('username'))
     
     axios.delete(`${url}/shopping-kart/${productName}/${username}`)  /*
       .then((res) => {
         window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
       })*/
-    cart.splice(index, 1)
+    mycart.splice(index, 1)
     this.setState({
-      cart: cart
+      cart: mycart
     })
     this.sumTotalItems(this.state.cart)
     this.sumTotalAmount(this.state.cart)
