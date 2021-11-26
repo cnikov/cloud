@@ -6,7 +6,7 @@ var url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005"
 function AddToBasket(name, quantity, username, price, id) { 
 
   return new Promise((resolve, reject) => {
-    axios.get(`/catalog/${name}`)
+    axios.get(`${url}/catalog/${name}`)
       .then((res) => {
         var new_basket
       if(res){
