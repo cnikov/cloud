@@ -81,7 +81,7 @@ class ShoppingCartApp extends Component {
       })
     }
     this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
-    this.state.purService.fetchHistory()
+    this.state.purService.fetchHistory()    // est ce que c'est pas ce qui est fait les lignes d'apres ?
     let username = JSON.parse(window.localStorage.getItem('username'))
     axios.get(`${url}/shopping-kart/${username}`)
       .then((res) => {
@@ -101,7 +101,9 @@ class ShoppingCartApp extends Component {
           }
           this.state.cart.push(add)
         }
-        this.state.cart = res.data.token
+        //this.state.cart = res.data.token  --> WTF ?
+        this.sumTotalItems(this.state.cart)
+        this.sumTotalAmount(this.state.cart)
       })
       .catch((err) => {
         console.log("Not yet connected")
