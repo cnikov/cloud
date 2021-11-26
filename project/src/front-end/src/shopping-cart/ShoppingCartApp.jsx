@@ -91,11 +91,13 @@ class ShoppingCartApp extends Component {
           let p = prod.price[i]
           let q = prod.quantity[i]
           let id = prod.id[i]
+          let im = prod.image[i]
           let add = {
             'name': n,
             'price': p,
             'quantity': q,
-            'id': id
+            'id': id,
+            'image': im
           }
           this.state.cart.push(add)
         }
