@@ -1,4 +1,4 @@
-import axios from 'axios'
+const axios = require('axios')
 var kart = require('nano')(process.env.DB_URL_SK)
 var catalog = require('nano')(process.env.DB_URL_C) // Appeler avec axios :(
 var url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005"
@@ -6,7 +6,7 @@ var url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005"
 function AddToBasket(name, quantity, username, price, id) { 
 
   return new Promise((resolve, reject) => {
-    axios.get(`${url}/catalog/${name}`)
+    axios.get(`/catalog/${name}`)
       .then((res) => {
         var new_basket
       if(res){
