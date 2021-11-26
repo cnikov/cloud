@@ -101,14 +101,11 @@ class ShoppingCartApp extends Component {
           }
           this.state.cart.push(add)
         }
-        console.log(res)
         this.state.cart = res.data.token
-        console.log(this.state.cart)
       })
       .catch((err) => {
         console.log("Not yet connected")
       })
-    //console.log(this.state.cart)
   }
 
   handleCategory(event) { // Filter by Category
@@ -155,15 +152,11 @@ class ShoppingCartApp extends Component {
     let index = cart.findIndex(x => x.id === id)
     let productName = cart[index].name
     let username = JSON.parse(window.localStorage.getItem('username'))
-    //var data = {
-    //  'name': productName,
-    //  'username': username,
-    //}
-    //console.log(data)
-    axios.delete(`${url}/shopping-kart/name/username`)
+    
+    axios.delete(`${url}/shopping-kart/${productName}/${username}`)  /*
       .then((res) => {
         window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
-      })
+      })*/
     cart.splice(index, 1)
     this.setState({
       cart: cart
