@@ -14,16 +14,7 @@ const PurchasesService = LocalPurchases
 
 class ShoppingCartApp extends Component {
 
-  componentWillMount() { //gerer si un user a deja un panier ou non
-    /*console.log(JSON.parse(window.localStorage.getItem('username')))
-    var user = JSON.parse(window.localStorage.getItem('username'))
-    if(user == null){
-      console.log("Not connected, creating an empty basket")
-      this.initialiseState(true)
-    }else{
-      console.log("well connected, loading your basket")
-      this.initialiseState(false)
-    }*/
+  componentWillMount() {
     this.initialiseState(true)
   }
   constructor(props) {
@@ -41,7 +32,6 @@ class ShoppingCartApp extends Component {
   }
   initialiseState(firstCall) {
     if (firstCall) {
-      console.log("je passe toujours par ici")
       this.state = {
         products: [],
         cart: [],
@@ -64,7 +54,7 @@ class ShoppingCartApp extends Component {
       )
       console.log(this.state.purService)
     } else {
-      console.log("mais je ne passe jamais ici")
+      console.log("je ne passe jamais ici?")
       this.setState({
         products: [],
         cart: [],
@@ -155,10 +145,7 @@ class ShoppingCartApp extends Component {
     let productName = mycart[index].name
     let username = JSON.parse(window.localStorage.getItem('username'))
     
-    axios.delete(`${url}/shopping-kart/${productName}/${username}`)  /*
-      .then((res) => {
-        window.localStorage.setItem('name', JSON.stringify(res.chosenproduct.name))
-      })*/
+    axios.delete(`${url}/shopping-kart/${productName}/${username}`)
     mycart.splice(index, 1)
     this.setState({
       cart: mycart
