@@ -31,7 +31,7 @@ class ShoppingCartApp extends Component {
     this.endCheckout = this.endCheckout.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
   }
-  initialiseState(firstCall) {
+  async initialiseState(firstCall) {
     if (firstCall) {
       this.state = {
         products: [],
@@ -71,7 +71,7 @@ class ShoppingCartApp extends Component {
         oldPurchases: []
       })
     }
-    this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
+    await this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
     this.state.purService.fetchHistory()    // est ce que c'est pas ce qui est fait les lignes d'apres ?
     let username = JSON.parse(window.localStorage.getItem('username'))
     axios.get(`${url}/shopping-kart/${username}`)

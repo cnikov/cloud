@@ -16,11 +16,25 @@ class LocalPurchases {
   }
   fetchProducts() {
 
+    return new Promise((resolve, reject) => {
+      var data
+      axios.get(`${url}/format`).then((res) => {
+        data = res
+        console.log(res.data.token.doc)
+        window.localStorage.setItem('products', JSON.stringify(res.data.token.doc))
+        this.setProducts(res.data.token.doc)  
+    });  
+    if(data){
+      resolve(data)
+    }
+    else{
+      reject("Error")
+    }
 
-    axios.get(`${url}/format`).then((res) => {
+    /*axios.get(`${url}/format`).then((res) => {
       console.log(res.data.token.doc)
       window.localStorage.setItem('products', JSON.stringify(res.data.token.doc))
-      this.setProducts(res.data.token.doc)
+      this.setProducts(res.data.token.doc)*/
 
     })
 
