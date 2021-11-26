@@ -1,4 +1,4 @@
-import axios from 'axios' // we use this library as HTTP client
+import axios from 'axios'
 var kart = require('nano')(process.env.DB_URL_SK)
 var catalog = require('nano')(process.env.DB_URL_C) // Appeler avec axios :(
 var url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005"
