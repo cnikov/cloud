@@ -103,7 +103,7 @@ function removeFromBasket(username, name){
             'quantity': succes.quantity,
             'image': succes.image,
             'id': succes.id,
-            'price': succes.priceList
+            'price': succes.price
           }
         }
         kart.insert(new_basket, username, (error, success) => {
