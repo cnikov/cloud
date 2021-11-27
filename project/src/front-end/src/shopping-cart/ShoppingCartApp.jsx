@@ -31,7 +31,7 @@ class ShoppingCartApp extends Component {
     this.endCheckout = this.endCheckout.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
   }
-  async initialiseState(firstCall) {
+  initialiseState(firstCall) {
     if (firstCall) {
       this.state = {
         products: [],
@@ -71,43 +71,27 @@ class ShoppingCartApp extends Component {
         oldPurchases: []
       })
     }
-    await this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
+    this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
     this.state.purService.fetchHistory()    // est ce que c'est pas ce qui est fait les lignes d'apres ?
     let username = JSON.parse(window.localStorage.getItem('username'))
+    
     axios.get(`${url}/shopping-kart/${username}`)
       .then((res) => {
         var prod = res.data.token
         for (var i = 0; i < prod.name.length; i++) {
           var n = prod.name[i]
-          var q = prod.quantity[i]
-          let index = this.state.products.findIndex(x => x.name === n)
-          console.log(index)
-          var p = this.state.products[index].price
-          var id = this.state.products[index].id
-          var im = this.state.products[index].image
+          var q = prod.quantity[i]      
+          var p = prod.price[i]
+          var id = prod.id[i]
+          var im = prod.image[i]
           let add = {
-          'name': n,
-          'price': p,
-          'quantity': q,
-          'id': id,
-          'image': im
+            'name': n,
+            'price': p,
+            'quantity': q,
+            'id': id,
+            'image': im
           }
           this.state.cart.push(add)
-          /*axios.get(`${urlProducts}/catalog/${n}`)
-              .then((res) => {
-                  var p = res.data.token.price
-                  var id = res.data.token.id
-                  var im = res.data.token.image
-                  let add = {
-                    'name': n,
-                    'price': p,
-                    'quantity': q,
-                    'id': id,
-                    'image': im
-                  }
-                  this.state.cart.push(add)
-              })*/
-
         }
         //this.state.cart = res.data.token  --> WTF ?
         this.sumTotalItems(this.state.cart)
