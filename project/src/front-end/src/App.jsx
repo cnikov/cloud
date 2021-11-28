@@ -37,12 +37,13 @@ class App extends Component {
       var products = res.data.token
       console.log(products)
       //a modifier pour mettre les products de la db
-      this.forceUpdate(console.log('bonjour'),
+      this.setState(
+        console.log('bonjour'),
         {
           products: products ? products : catalog
         },
         console.log('hello')
-        , console.log(products),
+        , console.log(this.state.products),
       )
 
     })
@@ -96,6 +97,7 @@ class App extends Component {
       showAdm: showAdm
     })
   }
+
   render() {
     const { flashMessages, showRegis, authenticated, showLogin, showAdm, products } = this.state
     return (
