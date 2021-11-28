@@ -98,65 +98,67 @@ class App extends Component {
   }
   render() {
     const { flashMessages, showRegis, authenticated, showLogin, showAdm, products } = this.state
-    console.log(products)
-    return (
+    axios.get(`${url}/format`).then((res) => {
+      return (
 
-      <div >
-        <FlashMessages
-          deleteFlashMessage={this.deleteFlashMessage}
-          messages={flashMessages} />
-        <br />
-        <Switch>
-          <Route exact path='/admin' render={() => {
-            return <AdminForm
-              products={products}
-              createFlashMessage={this.createFlashMessage}
-              setAuthStatus={this.setAuthStatus}
-              logoutUser={this.logoutUser} />
-          }} />
-          <Route exact path='/register' render={() => {
-            return <RegisterForm
-              createFlashMessage={this.createFlashMessage}
-              setAuthStatus={this.setAuthStatus}
-              registerUser={this.registerUser} />
-          }} />
-          <Route exact path='/login' render={() => {
-            return <LoginForm
-              createFlashMessage={this.createFlashMessage}
-              setAuthStatus={this.setAuthStatus}
-              loginUser={this.loginUser} />
-          }} />
-          <Route exact path='/' render={() => {
-            if (authenticated) {
-              if (JSON.parse(window.localStorage.getItem('username')) === 'admin') {
-                return <AdminForm
-                  products={products}
-                  createFlashMessage={this.createFlashMessage}
-                  setAuthStatus={this.setAuthStatus}
-                  logoutUser={this.logoutUser}
-                />
+        <div >
+          <FlashMessages
+            deleteFlashMessage={this.deleteFlashMessage}
+            messages={flashMessages} />
+          <br />
+          <Switch>
+            <Route exact path='/admin' render={() => {
+              return <AdminForm
+                products={res.data.token}
+                createFlashMessage={this.createFlashMessage}
+                setAuthStatus={this.setAuthStatus}
+                logoutUser={this.logoutUser} />
+            }} />
+            <Route exact path='/register' render={() => {
+              return <RegisterForm
+                createFlashMessage={this.createFlashMessage}
+                setAuthStatus={this.setAuthStatus}
+                registerUser={this.registerUser} />
+            }} />
+            <Route exact path='/login' render={() => {
+              return <LoginForm
+                createFlashMessage={this.createFlashMessage}
+                setAuthStatus={this.setAuthStatus}
+                loginUser={this.loginUser} />
+            }} />
+            <Route exact path='/' render={() => {
+              if (authenticated) {
+                if (JSON.parse(window.localStorage.getItem('username')) === 'admin') {
+                  return <AdminForm
+                    products={products}
+                    createFlashMessage={this.createFlashMessage}
+                    setAuthStatus={this.setAuthStatus}
+                    logoutUser={this.logoutUser}
+                  />
+                } else {
+                  return <ShoppingCartApp
+                    setAuthStatus={this.setAuthStatus}
+                    authenticated={authenticated}
+                    logoutUser={this.logoutUser} />
+                }
+              } else if (showRegis) {
+                return <Redirect to='/register' />
+              } else if (showLogin) {
+                return <Redirect to='/login' />
+              } else if (showAdm) {
+                return <Redirect to='/admin' />
               } else {
                 return <ShoppingCartApp
                   setAuthStatus={this.setAuthStatus}
-                  authenticated={authenticated}
-                  logoutUser={this.logoutUser} />
+                  authenticated={authenticated} />
               }
-            } else if (showRegis) {
-              return <Redirect to='/register' />
-            } else if (showLogin) {
-              return <Redirect to='/login' />
-            } else if (showAdm) {
-              return <Redirect to='/admin' />
-            } else {
-              return <ShoppingCartApp
-                setAuthStatus={this.setAuthStatus}
-                authenticated={authenticated} />
-            }
-          }} />
-          <Redirect to='/' />
-        </Switch>
-      </div>
-    )
+            }} />
+            <Redirect to='/' />
+          </Switch>
+        </div>
+      )
+    })
+
   }
 }
 
