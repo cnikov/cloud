@@ -108,6 +108,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/admin' render={() => {
             return <AdminForm
+              componentWillMount
               products={this.state.products}
               createFlashMessage={this.createFlashMessage}
               setAuthStatus={this.setAuthStatus}
