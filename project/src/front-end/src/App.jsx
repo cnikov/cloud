@@ -39,7 +39,7 @@ class App extends Component {
       //a modifier pour mettre les products de la db
       this.setState({
         products: products ? JSON.parse(res.data.token) : catalog
-      })
+      }, this.render())
       console.log("hey")
       console.log(this.props.products)
     })
@@ -96,6 +96,7 @@ class App extends Component {
   render() {
     const { flashMessages, showRegis, authenticated, showLogin, showAdm, products } = this.state
     return (
+
       <div >
         <FlashMessages
           deleteFlashMessage={this.deleteFlashMessage}
