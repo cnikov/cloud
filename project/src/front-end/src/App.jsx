@@ -40,7 +40,7 @@ class App extends Component {
           products: data
         },
         console.log('hello')
-        , console.log(this.state.products),
+        , console.log(data),
       )
     })
     var products = res.data.token
