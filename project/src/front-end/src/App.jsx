@@ -33,19 +33,35 @@ class App extends Component {
       (newState) => { this.setState({ authenticated: newState }) },
       (route) => { this.props.history.push(route) }
     )
-    axios.get(`${url}/format`).then((res) => {
-      var products = res.data.token
-      console.log(products)
-      //a modifier pour mettre les products de la db
+    this.loadData.then((data) => {
       this.setState(
         console.log('bonjour'),
         {
-          products: products ? products : catalog
+          products: data
         },
         console.log('hello')
         , console.log(this.state.products),
       )
+    })
+    var products = res.data.token
+    console.log(products)
+    //a modifier pour mettre les products de la db
 
+
+
+  }
+  loadData() {
+    var promise = new Promise((resolve, reject) => {
+      axios.get(`${url}/format`).then((res) => {
+        resolve(res.data.token)
+        console.log(products)
+        //a modifier pour mettre les products de la db
+
+      });
+
+      console.log('This happens 4th.');
+
+      return promise;
     })
   }
   constructor(props) {
