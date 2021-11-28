@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios' // we use this library as HTTP client
+import catalog from '../shopping-cart/components/catalog'
 // you can overwrite the URI of the authentication microservice
 // with this environment variable
 const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
@@ -13,12 +14,15 @@ class AdminForm extends Component {
 
       catalog: this.props.products,
 
+
       categories: Object.keys(this.props.products),
       products: [],
       selectedProd: undefined,
       selectedCate: undefined,
       logOut: false
     }
+    console.log('admin')
+    console.log(catalog)
 
 
   }

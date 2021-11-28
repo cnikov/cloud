@@ -42,9 +42,9 @@ class App extends Component {
           products: products ? products : catalog
         },
         console.log('hello')
-        , console.log(products))
-      console.log("hey")
-      console.log(this.props.products)
+        , console.log(products),
+        this.render())
+
     })
   }
   constructor(props) {
