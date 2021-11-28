@@ -43,8 +43,8 @@ class App extends Component {
         , console.log(data),
       )
     })
-    var products = res.data.token
-    console.log(products)
+
+    console.log(this.state.products)
     //a modifier pour mettre les products de la db
 
 
@@ -54,7 +54,7 @@ class App extends Component {
     var promise = new Promise((resolve, reject) => {
       axios.get(`${url}/format`).then((res) => {
         resolve(res.data.token)
-        console.log(products)
+
         //a modifier pour mettre les products de la db
 
       });
