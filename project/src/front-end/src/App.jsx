@@ -43,7 +43,7 @@ class App extends Component {
         },
         console.log('hello')
         , console.log(products),
-        this.render())
+      )
 
     })
   }
@@ -98,6 +98,7 @@ class App extends Component {
   }
   render() {
     const { flashMessages, showRegis, authenticated, showLogin, showAdm, products } = this.state
+    console.log(products)
     return (
 
       <div >
