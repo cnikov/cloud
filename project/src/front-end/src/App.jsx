@@ -38,7 +38,7 @@ class App extends Component {
       console.log(products)
       //a modifier pour mettre les products de la db
       this.setState({
-        products: products ? JSON.parse(res.data.token) : catalog
+        products: products ? products : catalog
       }, this.render())
       console.log("hey")
       console.log(this.props.products)
