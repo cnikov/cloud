@@ -60,9 +60,9 @@ class App extends Component {
       });
 
       console.log('This happens 4th.');
-
-      return promise;
     })
+    return promise;
+
   }
   constructor(props) {
     super(props)
