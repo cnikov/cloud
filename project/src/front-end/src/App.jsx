@@ -37,7 +37,7 @@ class App extends Component {
       var products = res.data.token
       console.log(products)
       //a modifier pour mettre les products de la db
-      this.setState(console.log('bonjour'),
+      this.forceUpdate(console.log('bonjour'),
         {
           products: products ? products : catalog
         },
