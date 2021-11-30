@@ -33,14 +33,9 @@ class App extends Component {
       (newState) => { this.setState({ authenticated: newState }) },
       (route) => { this.props.history.push(route) }
     )
-    this.loadData.then((data) => {
+    axios.get(`${url}/format`).then((res) => {
       this.setState(
-        console.log('bonjour'),
-        {
-          products: data
-        },
-        console.log('hello')
-        , console.log(data),
+        products = res.data.token
       )
     })
 
