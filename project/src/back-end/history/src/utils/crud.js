@@ -57,17 +57,20 @@ function PostHistory(name) {
 
       } else {
         //case if history does not exist
-        cart.get(name, (error, succ) => {
-          if (succ) {
+        axios.get(`${url}/shopping-kart/${name}`)  //call sk microservice
+          .then((res) => {
+          if (res) {
+            let names = res.data.token.name
+            let qtity = res.data.token.quantity
             var newFile = {
-              'product': succ.name,
-              'quantity': succ.quantity
+              'product': names,
+              'quantity': qtity
             }
 
             newDoc = {
               'purchase': [newFile],
-              'items': succ.name,
-              'quantity': succ.quantity,
+              'items': names,
+              'quantity': qtity,
 
             }
           }
@@ -102,5 +105,5 @@ function getHistory(name) {
 module.exports = {
   PostHistory,
   getHistory
-  //getcatalog
+  
 }
