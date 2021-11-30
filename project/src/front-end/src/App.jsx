@@ -35,7 +35,7 @@ class App extends Component {
     )
     axios.get(`${url}/format`).then((res) => {
       this.setState(
-        products = res.data.token
+        this.products = res.data.token
       )
     })
 
