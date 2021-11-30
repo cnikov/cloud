@@ -2,7 +2,9 @@
 //history database
 var hist = require('nano')(process.env.DB_URL_H)
 // shopping cart database
-var cart = require('nano')(process.env.DB_URL_SK)
+//var cart = require('nano')(process.env.DB_URL_SK)
+var axios = require('axios')
+const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006"
 
 //post function to create document or update
 function PostHistory(name) {
@@ -12,23 +14,24 @@ function PostHistory(name) {
       var newDoc
       if (success) {
         //get the shopping cart
-        cart.get(name, (error, succ) => {
-          if (succ) {
-            var newFile = {
-              'product': succ.name,
-              'quantity': succ.quantity
-            }
-
-            success.purchase.push(newFile)
-            for (var i = 0; i < succ.name.length; i++) {
-              var index = success.items.indexOf(succ.name[i])
+        axios.get(`${url}/shopping-kart/${name}`)  //call sk microservice
+          .then((res) => {
+            if (res) {
+              let names = res.data.token.name
+              var newFile = {
+                'product': names,
+                'quantity': res.data.token.quantity
+              }
+              success.purchase.push(newFile)
+              for (var i = 0; i < names.length; i++) {
+                var index = success.items.indexOf(names[i])
 
               //if the product has never been bought
-              if (index <= -1) {
-                success.items.push(succ.name[i])
-                success.quantity.push(succ.quantity[i])
+                if (index <= -1) {
+                  success.items.push(names[i])
+                  success.quantity.push(res.data.token.quantity[i])
 
-              }
+                }
             }
 
 
