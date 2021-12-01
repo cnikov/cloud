@@ -9,21 +9,19 @@ const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http
 class AdminForm extends Component {
 
   componentWillMount() {
-    try {
-      this.state = {
 
-        catalog: this.props.products,
+    this.state = {
+
+      catalog: this.props.products,
 
 
-        categories: Object.keys(this.props.products),
-        products: [],
-        selectedProd: undefined,
-        selectedCate: undefined,
-        logOut: false
-      }
-    } catch (e) {
-      console.log("error")
+      categories: Object.keys(this.props.products),
+      products: [],
+      selectedProd: undefined,
+      selectedCate: undefined,
+      logOut: false
     }
+
 
 
 

@@ -33,11 +33,14 @@ class App extends Component {
       (newState) => { this.setState({ authenticated: newState }) },
       (route) => { this.props.history.push(route) }
     )
-    axios.get(`${url}/format`).then((res) => {
-      this.setState(
-        this.products = res.data.token
-      )
-    })
+
+    var products = window.localStorage.getItem('products')
+    this.setState({
+      products: products ? JSON.parse(products) : catalog
+    }
+
+    )
+
 
     console.log(this.state.products)
     //a modifier pour mettre les products de la db
