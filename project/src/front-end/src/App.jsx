@@ -45,20 +45,7 @@ class App extends Component {
 
 
   }
-  loadData() {
-    var promise = new Promise((resolve, reject) => {
-      axios.get(`${url}/format`).then((res) => {
-        resolve(res.data.token)
 
-        //a modifier pour mettre les products de la db
-
-      });
-
-      console.log('This happens 4th.');
-    })
-    return promise;
-
-  }
   constructor(props) {
     super(props)
     this.logoutUser = this.logoutUser.bind(this)
