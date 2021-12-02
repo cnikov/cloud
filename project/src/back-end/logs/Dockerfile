@@ -21,12 +21,12 @@ ENV DB_NAME_L log
 ENV DB_NAME_SK shopping-kart
 
 # name of container running CouchDB
-ENV DB_HOST_C logs-db
+ENV DB_HOST_L logs-db
 ENV DB_HOST_SK shopping-db
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
 ENV ADMIN_NAME admin
 ENV ADMIN_PASSW admin
-ENV DB_URL_H http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_H}
+ENV DB_URL_L http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_L}:5984/${DB_NAME_L}
 ENV DB_URL_SK http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_SK}:5984/${DB_NAME_SK}
 
 
