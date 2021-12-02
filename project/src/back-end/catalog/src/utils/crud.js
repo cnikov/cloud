@@ -5,6 +5,8 @@ var catalog = require('nano')(process.env.DB_URL_C)
 var fill = require('nano')(process.env.DB_URL_F)
 //format db
 var form = require('nano')(process.env.DB_URL_L)
+var axios = require('axios')
+const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
 
 //this function delete an item in the format database
 function DeleteInFormat(name) {
@@ -108,6 +110,7 @@ function GetFormat(dbid) {
 //Add an element in the document with the right format
 function AddFormat(name, price, image, category, id) {
   return new Promise((resolve, reject) => {
+    
 
     form.get("format", (error, success) => {
       if (success) {
@@ -149,13 +152,23 @@ function AddFormat(name, price, image, category, id) {
         }
       }
       const nid = "format"
-      form.insert(newDoc, nid, (error, success) => {
-        if (success) {
-          resolve(name)
-        } else {
-          reject(new Error("Erreur to add the item in format file"))
-        }
+      var data = {
+        'name':name,
+        'price':price,
+        'image':image,
+        'category':category,
+        'id':id
+    }
+      axios.post(`${url}/logs/product`,data).then((res)=>{
+        form.insert(newDoc, nid, (error, success) => {
+          if (success) {
+            resolve(name)
+          } else {
+            reject(new Error("Erreur to add the item in format file"))
+          }
+        })
       })
+      
     })
 
   })
