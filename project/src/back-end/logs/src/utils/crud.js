@@ -49,16 +49,67 @@ function PostlogsUser(name) {
 }
 function PostlogsProduct(name,price,image,category,id){
   return new Promise((resolve, reject) => {
-    log.insert({
+    var newDoc
+    log.get('product',(error,success)=>{
+      if(success){
+      newDoc = {
+      '_rev':success._rev,
+      'type': 'product',
+      'value': success.value,
+          }
+          //update
+      try {
+        newDoc['value'][name] = {
+          'name':name, 
+          'price':price,
+          'image':image,
+          'category':category,
+          'id':id
+        }
+      }
+      //add new item 
+      catch (error) {
+        newDoc['value'][name] = {
+          'name':name, 
+          'price':price,
+          'image':image,
+          'category':category,
+          'id':id
+        }
+      }
+      log.insert(newDoc, 'product', (error, success) => {
+        if (success) {
+          resolve(name)
+        } else {
+          reject(new Error("Error to insert history"))
+        }
+      })
+      }
+      else{
+        newDoc = {
       'type': 'product',
       'value':{
-        'name':name, 
-        'price':price,
-        'image':image,
-        'category':category,
-        'id':id
+        'name':{
+          'name':name, 
+          'price':price,
+          'image':image,
+          'category':category,
+          'id':id
+        }
+        
       }
-    },'product')
+        }
+        log.insert(newDoc, 'product', (error, success) => {
+          if (success) {
+            resolve(name)
+          } else {
+            reject(new Error("Error to insert history"))
+          }
+        })
+
+      }
+    })
+   
   })
 }
 
