@@ -13,7 +13,8 @@ function PostlogsId(id){
       var newDoc
       if(success){
         var current = parseInt(success.value.index,10)
-        if(id>current){
+        console.log(current)
+        if(parseInt(id)>current){
           newDoc = {
             '_rev':success._rev,
             'type':'id',
