@@ -6,7 +6,6 @@ const db = require('./utils/crud')
 
 app.post('/history/:name', (req, res) => {
   var name = req.params.name
-  console.log("avant")
   return db.PostHistory(name).then((token) => {
     res.status(200).json({ status: 'success', token })
   }).catch((err) => {
