@@ -3,10 +3,51 @@
 var log = require('nano')(process.env.DB_URL_L)
 // shopping cart database
 //var cart = require('nano')(process.env.DB_URL_SK)
-var axios = require('axios')
-const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002"
+
+
 
 //post function to create document or update
+function PostlogsId(id){
+  return new Promise((resolve, reject) => {
+    log.get("id",(error,success) =>{
+      var newDoc
+      if(success){
+        var current = parseInt(success.value.index,10)
+        if(id>current){
+          newDoc = {
+            '_rev':success._rev,
+            'type':'id',
+            'value':{
+              'index':index
+            }
+          }
+          log.insert(newDoc, 'id', (error, success) => {
+            if (success) {
+              resolve(id)
+            } else {
+              reject(new Error("Error to insert history"))
+            }
+          })
+        }
+      }else{
+        newDoc = {
+          'type':'id',
+          'value':{
+            'index':index
+          }
+      }
+      log.insert(newDoc, 'id', (error, success) => {
+        if (success) {
+          resolve(id)
+        } else {
+          reject(new Error("Error to insert history"))
+        }
+      })
+    }
+  })
+
+  })
+}
 function PostlogsUser(name) {
   return new Promise((resolve, reject) => {
     //check if history already exists for a specific user
@@ -131,6 +172,7 @@ function getlogs(type) {
 module.exports = {
   PostlogsUser,
   PostlogsProduct,
+  PostlogsId,
   getlogs
 
 }

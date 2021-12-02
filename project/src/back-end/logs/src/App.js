@@ -12,6 +12,14 @@ app.post('/logs/user', (req, res) => {
     res.status(409).json({ status: 'error', message: String(err) })
   })
 })
+app.post('/logs/id', (req, res) => {
+  var namide = req.body.id
+  return db.PostlogsId(id).then((token) => {
+    res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(409).json({ status: 'error', message: String(err) })
+  })
+})
 
 app.post('/logs/product', (req, res) => {
   var name = req.body.name
