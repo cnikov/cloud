@@ -152,25 +152,22 @@ function AddFormat(name, price, image, category, id) {
         }
       }
       const nid = "format"
-      var data = {
-        'name':name,
-        'price':price,
-        'image':image,
-        'category':category,
-        'id':id
-    }
-      axios.post(`${url}/logs/product`,data).then(()=>{
-        axios.post(`${url}/logs/product`,{'id':id}).then(()=>{
           form.insert(newDoc, nid, (error, success) => {
             if (success) {
-              resolve(name)
+              var data = {
+                'name':name,
+                'price':price,
+                'image':image,
+                'category':category,
+                'id':id
+            }
+              axios.post(`${url}/logs/product`,data).then(()=>{
+              axios.post(`${url}/logs/product`,{'id':id}).then(()=>{
+              resolve(name)})})
             } else {
               reject(new Error("Erreur to add the item in format file"))
             }
-          })
         })
-        })
-        
       })
 
   })

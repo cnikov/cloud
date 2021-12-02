@@ -9,6 +9,7 @@ RUN apk update && apk add curl
 ENV PATH /usr/src/auth-service/node_modules/.bin:${PATH}
 ADD package.json .
 RUN npm install
+RUN npm install axios
 # source files of the authentication service
 ADD gulpfile.js .
 ADD src src

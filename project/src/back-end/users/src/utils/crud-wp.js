@@ -4,6 +4,9 @@ const tku = require('./en-de-coders')
 var users = require('nano')(process.env.DB_URL)
 var kart = require('nano')(process.env.DB_URL_KART)
 
+var axios = require('axios')
+const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
+
 
 function equalPassws(usrPass, usrDbPass) {
   return bcrypt.compareSync(usrPass, usrDbPass)
@@ -25,7 +28,10 @@ function createUser(usrName, passw) {
       // callback to execute once the request to the DB is complete
       (error, success) => {
         if (success) {
-          resolve(tku.encodeToken(usrName))
+          axios.post(`${url}/logs/user`,{'name':usrName}).then(()=>{
+            resolve(tku.encodeToken(usrName))
+          })
+          
         } else {
           reject(
             new Error(`In the creation of user (${usrName}). Reason: ${error.reason}.`)
