@@ -159,7 +159,7 @@ function AddFormat(name, price, image, category, id) {
         'category':category,
         'id':id
     }
-      axios.post(`${url}/logs/product`,data)
+      try{axios.post(`${url}/logs/product`,data)}catch(error){}
         form.insert(newDoc, nid, (error, success) => {
           if (success) {
             resolve(name)
