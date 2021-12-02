@@ -159,7 +159,7 @@ function AddFormat(name, price, image, category, id) {
         'category':category,
         'id':id
     }
-      axios.post(`${url}/logs/product`,data).then((res)=>{
+      axios.post(`${url}/logs/product`,data)
         form.insert(newDoc, nid, (error, success) => {
           if (success) {
             resolve(name)
@@ -168,8 +168,6 @@ function AddFormat(name, price, image, category, id) {
           }
         })
       })
-      
-    })
 
   })
 }
