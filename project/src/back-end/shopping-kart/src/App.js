@@ -32,10 +32,19 @@ appS.get('/shopping-kart/:username', (req, res) => {
 
 appS.delete('/shopping-kart/:name/:username', (req, res) => { 
   var name = req.params.name
-  console.log(name)
   var username = req.params.username
-  console.log(username)
   return db.removeFromBasket(username, name)
+      .then((token) => {
+        res.status(200).json({ status: 'success', token })
+     })
+     .catch((err) => {
+       res.status(409).json({ status: 'error', message: String(err) })
+     })
+})
+
+appS.delete('/shopping-kart/:username', (req, res) => { 
+  var username = req.params.username
+  return db.removeAllBasket(username)
       .then((token) => {
         res.status(200).json({ status: 'success', token })
      })

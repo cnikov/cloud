@@ -55,7 +55,6 @@ class ShoppingCartApp extends Component {
       )
       console.log(this.state.purService)
     } else {
-      console.log("je ne passe jamais ici?")
       this.setState({
         products: [],
         cart: [],
@@ -205,6 +204,8 @@ class ShoppingCartApp extends Component {
 
   endCheckout() {
     console.log('END of CHECKOUT')
+    let username = JSON.parse(window.localStorage.getItem('username'))
+    axios.delete(`${url}/shopping-kart/${username}`)
     this.initialiseState(false)
     // TODO
     // this.getPurHistory()

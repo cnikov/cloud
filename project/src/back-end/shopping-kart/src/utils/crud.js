@@ -118,8 +118,40 @@ function removeFromBasket(username, name){
 })
 }
 
+//Retirer tous les items du panier d'un user.
+function removeAllBasket(username){
+  return new Promise((resolve, reject) =>{
+    kart.get(username, (error, succes) => {
+        if(succes){
+          let n = []
+          let q = []
+          let i = []
+          let id = []
+          let price = []
+          var new_basket = {
+            '_rev': succes._rev,
+            'name': n,
+            'quantity': q,
+            'image': q,
+            'id': id,
+            'price': price
+          }
+        }
+        kart.insert(new_basket, username, (error, success) => {
+          if(success){
+            resolve(username)
+          }else{
+            reject(new Error("Erreur d'ajout a la db"))
+          }
+          
+    })
+  })
+})
+}
+
 module.exports = {
   AddToBasket,
   getBasket,
-  removeFromBasket
+  removeFromBasket,
+  removeAllBasket
 }
