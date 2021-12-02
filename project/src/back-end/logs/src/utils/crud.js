@@ -18,7 +18,7 @@ function PostlogsId(id){
             '_rev':success._rev,
             'type':'id',
             'value':{
-              'index':index
+              'index':id
             }
           }
           log.insert(newDoc, 'id', (error, success) => {
