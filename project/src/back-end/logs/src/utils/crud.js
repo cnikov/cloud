@@ -7,7 +7,7 @@ var axios = require('axios')
 const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002"
 
 //post function to create document or update
-function PostlogsUser(name,) {
+function PostlogsUser(name) {
   return new Promise((resolve, reject) => {
     //check if history already exists for a specific user
     log.get("user", (error, success) => {
