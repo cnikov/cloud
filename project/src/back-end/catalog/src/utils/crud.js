@@ -162,7 +162,7 @@ function AddFormat(name, price, image, category, id) {
                 'id':id
             }
               axios.post(`${url}/logs/product`,data).then(()=>{
-              axios.post(`${url}/logs/product`,{'id':id}).then(()=>{
+              axios.post(`${url}/logs/id`,{'id':id}).then(()=>{
               resolve(name)})})
             } else {
               reject(new Error("Erreur to add the item in format file"))
