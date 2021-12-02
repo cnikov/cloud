@@ -26,63 +26,64 @@ function PostHistory(name) {
               for (var i = 0; i < names.length; i++) {
                 var index = success.items.indexOf(names[i])
 
-              //if the product has never been bought
+                //if the product has never been bought
                 if (index <= -1) {
                   success.items.push(names[i])
                   success.quantity.push(res.data.token.quantity[i])
 
                 }
+              }
+
+
+
             }
+            newDoc = {
+              '_rev': success._rev,
+              'purchase': success.purchase,
+              'items': success.items,
+              'quantity': success.quantity,
 
 
-
-          }
-          newDoc = {
-            '_rev': success._rev,
-            'purchase': success.purchase,
-            'items': success.items,
-            'quantity': success.quantity,
-
-
-          }
-          hist.insert(newDoc, name, (error, success) => {
-            if (success) {
-              resolve(name)
-            } else {
-              reject(new Error("Error to insert history"))
             }
+            hist.insert(newDoc, name, (error, success) => {
+              if (success) {
+                resolve(name)
+              } else {
+                reject(new Error("Error to insert history"))
+              }
+            })
+
           })
-
-        })
 
       } else {
         //case if history does not exist
         axios.get(`${url}/shopping-kart/${name}`)  //call sk microservice
           .then((res) => {
-          if (res) {
-            let names = res.data.token.name
-            let qtity = res.data.token.quantity
-            var newFile = {
-              'product': names,
-              'quantity': qtity
+            if (res) {
+              console.log(res.data.token)
+              let names = res.data.token.name
+              let qtity = res.data.token.quantity
+              var newFile = {
+                'product': names,
+                'quantity': qtity
+              }
+
+              newDoc = {
+                'purchase': [newFile],
+                'items': names,
+                'quantity': qtity,
+
+              }
             }
 
-            newDoc = {
-              'purchase': [newFile],
-              'items': names,
-              'quantity': qtity,
-
-            }
-          }
-
-          hist.insert(newDoc, name, (error, success) => {
-            if (success) {
-              resolve(name)
-            } else {
-              reject(new Error("Error to insert history"))
-            }
+            hist.insert(newDoc, name, (error, success) => {
+              if (success) {
+                resolve(name)
+              } else {
+                reject(new Error("Error to insert history"))
+              }
+            })
           })
-        })
 
       }
     })
@@ -105,5 +106,5 @@ function getHistory(name) {
 module.exports = {
   PostHistory,
   getHistory
-  
+
 }
