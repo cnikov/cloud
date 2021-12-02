@@ -56,7 +56,7 @@ function PostlogsUser(name) {
       var newDoc
       if (success) {
         var userlist = success.value.list
-        userlist.puts(name)
+        userlist.push(name)
         newDoc = {
           '_rev': success._rev,
           "type": "user",
