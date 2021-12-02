@@ -31,6 +31,21 @@ services:     # list all services for your application
         condition: on-failure
     networks: [ "scapp-net" ]
   # database of shopping-kart
+  logs-db:
+    # image name
+    image: logs-db:latest
+    environment: 
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=admin
+    ports: ["3009:5984"]
+    deploy:
+      # deploy only one instance of this service
+      replicas: 1
+      restart_policy:
+        # restart if something went wrong
+        condition: on-failure
+    networks: [ "scapp-net" ]
+  # database of shopping-kart
   shopping-db:
     # image name
     image: shopping-db:latest
@@ -70,6 +85,18 @@ services:     # list all services for your application
     depends_on: [ "history-db" ]
     # expose port number 3002 of host running this service
     ports: [ "3008:80" ]
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks: [ "scapp-net" ]
+  # server that listens HTTP requests
+  logs-daemon:
+    image: logs-be:latest
+    # link both services (same effect of option --link in docker run)
+    depends_on: [ "logs-db" ]
+    # expose port number 3002 of host running this service
+    ports: [ "3010:80" ]
     deploy:
       replicas: 1
       restart_policy:
