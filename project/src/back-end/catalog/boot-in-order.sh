@@ -34,6 +34,10 @@ until curl --request PUT ${DB_URL_L} ; do
   echo -e "\t DB (${DB_NAME_L}) wasn't created - trying again later..."
   sleep 2
 done
+until curl --request GET ${DB_URL_LOGS} ; do
+  echo -e "\t DB (${DB_NAME_LOGS}) wasn't created - trying again later..."
+  sleep 2
+done
 echo "DB (${DB_NAME_F}) was created!"
 echo "Start users service..."
 npm start
