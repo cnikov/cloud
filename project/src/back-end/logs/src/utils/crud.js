@@ -22,7 +22,7 @@ function PostlogsUser(name) {
             "list":userlist
           }
         }
-        log.insert(newDoc, success._id, (error, success) => {
+        log.insert(newDoc, 'user', (error, success) => {
           if (success) {
             resolve(name)
           } else {
@@ -36,7 +36,7 @@ function PostlogsUser(name) {
             "list":[name]
           }
         }
-        log.insert(newDoc, (error, success) => {
+        log.insert(newDoc,'user', (error, success) => {
           if (success) {
             resolve(name)
           } else {
@@ -58,7 +58,7 @@ function PostlogsProduct(name,price,image,category,id){
         'category':category,
         'id':id
       }
-    })
+    },'product')
   })
 }
 
