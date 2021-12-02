@@ -89,7 +89,7 @@ function PostlogsProduct(name,price,image,category,id){
         newDoc = {
       'type': 'product',
       'value':{
-        'name':{
+        [name]:{
           'name':name, 
           'price':price,
           'image':image,
