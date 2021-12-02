@@ -8,10 +8,12 @@ const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006"
 
 //post function to create document or update
 function PostHistory(name) {
+  console.log("dedans")
   return new Promise((resolve, reject) => {
     //check if history already exists for a specific user
     hist.get(name, (error, success) => {
       var newDoc
+
       if (success) {
         //get the shopping cart
         axios.get(`${url}/shopping-kart/${name}`)  //call sk microservice
