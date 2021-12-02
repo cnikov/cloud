@@ -13,7 +13,7 @@ app.post('/logs/user', (req, res) => {
   })
 })
 app.post('/logs/id', (req, res) => {
-  var namide = req.body.id
+  var id = req.body.id
   return db.PostlogsId(id).then((token) => {
     res.status(200).json({ status: 'success', token })
   }).catch((err) => {
@@ -26,7 +26,7 @@ app.post('/logs/product', (req, res) => {
   var price = req.body.price
   var image = req.body.image
   var category = req.body.category
-  var id = req.body.category
+  var id = req.body.id
 
   return db.PostlogsProduct(name,price,image,category,id).then((token) => {
     res.status(200).json({ status: 'success', token })

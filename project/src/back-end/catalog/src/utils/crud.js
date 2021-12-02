@@ -159,14 +159,14 @@ function AddFormat(name, price, image, category, id) {
         'category':category,
         'id':id
     }
-      try{axios.post(`${url}/logs/product`,data)}catch(error){}
-        form.insert(newDoc, nid, (error, success) => {
-          if (success) {
-            resolve(name)
-          } else {
-            reject(new Error("Erreur to add the item in format file"))
-          }
-        })
+      axios.post(`${url}/logs/product`,data).then(()=>{form.insert(newDoc, nid, (error, success) => {
+        if (success) {
+          resolve(name)
+        } else {
+          reject(new Error("Erreur to add the item in format file"))
+        }
+      })})
+        
       })
 
   })
