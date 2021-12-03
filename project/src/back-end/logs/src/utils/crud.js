@@ -9,6 +9,7 @@ var log = require('nano')(process.env.DB_URL_L)
 //post function to create document or update
 function PostlogsRec(item, list1, list2) {
   return new Promise((resolve, reject) => {
+    console.log("here")
     var newDoc
     const index = list1.indexOf(item)
     list1.splice(index, 1)
