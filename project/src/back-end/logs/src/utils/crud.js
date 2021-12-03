@@ -62,7 +62,7 @@ function PostlogsRec(item, list1, list2) {
         }
         log.insert(newDoc, 'recommendation', (error, success) => {
           if (success) {
-            resolve(id)
+            resolve(item)
           } else {
             reject(new Error("Error to insert history"))
           }
