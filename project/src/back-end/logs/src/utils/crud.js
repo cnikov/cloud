@@ -7,19 +7,82 @@ var log = require('nano')(process.env.DB_URL_L)
 
 
 //post function to create document or update
-function PostlogsId(id){
+function PostlogsRec(item, list1, list2) {
   return new Promise((resolve, reject) => {
-    log.get("id",(error,success) =>{
+    var newDoc
+    const index = list1.indexOf(item)
+    list1.splice(index, 1)
+    list2.splice(index, 1)
+    log.get("recommendation", (error, success) => {
+      if (success) {
+        try {
+          var ToUpdate = success['value'][item]['with']
+          for (var i = 0; i < list1.length; i++) {
+            var updIndex = ToUpdate.indexOf(list1[i])
+            if (updIndex < 0) {
+              ToUpdate.push(list1[i])
+              success['value'][item]['quantity'].push(list2[i])
+            }
+            else {
+              ToUpdate[updIndex] = ToUpdate[updIndex] + list2[i]
+            }
+          }
+          success['value'][item]['with'] = ToUpdate
+
+        } catch (error) {
+          success['value'][item] = {
+            'with': list1,
+            'quantity': list2
+          }
+        }
+        newDoc = {
+          '_rev': success._rev,
+          'type': success.type,
+          'value': success.value
+        }
+        //update db
+        log.insert(newDoc, 'recommendation', (error, success) => {
+          if (success) {
+            resolve(item)
+          } else {
+            reject(new Error("Error to insert history"))
+          }
+        })
+      }
+      else {
+        newDoc = {
+          'type': 'recommendation',
+          'value': {
+            [item]: {
+              'with': list1,
+              'quantity': list2
+            }
+          }
+        }
+        log.insert(newDoc, 'recommendation', (error, success) => {
+          if (success) {
+            resolve(id)
+          } else {
+            reject(new Error("Error to insert history"))
+          }
+        })
+      }
+    })
+  })
+}
+function PostlogsId(id) {
+  return new Promise((resolve, reject) => {
+    log.get("id", (error, success) => {
       var newDoc
-      if(success){
-        var current = parseInt(success.value.index,10)
+      if (success) {
+        var current = parseInt(success.value.index, 10)
         console.log(current)
-        if(parseInt(id)>current){
+        if (parseInt(id) > current) {
           newDoc = {
-            '_rev':success._rev,
-            'type':'id',
-            'value':{
-              'index':id
+            '_rev': success._rev,
+            'type': 'id',
+            'value': {
+              'index': id
             }
           }
           log.insert(newDoc, 'id', (error, success) => {
@@ -30,22 +93,22 @@ function PostlogsId(id){
             }
           })
         }
-      }else{
+      } else {
         newDoc = {
-          'type':'id',
-          'value':{
-            'index':id
+          'type': 'id',
+          'value': {
+            'index': id
           }
-      }
-      log.insert(newDoc, 'id', (error, success) => {
-        if (success) {
-          resolve(id)
-        } else {
-          reject(new Error("Error to insert history"))
         }
-      })
-    }
-  })
+        log.insert(newDoc, 'id', (error, success) => {
+          if (success) {
+            resolve(id)
+          } else {
+            reject(new Error("Error to insert history"))
+          }
+        })
+      }
+    })
 
   })
 }
@@ -61,7 +124,7 @@ function PostlogsUser(name) {
           '_rev': success._rev,
           "type": "user",
           "value": {
-            "list":userlist
+            "list": userlist
           }
         }
         log.insert(newDoc, 'user', (error, success) => {
@@ -75,10 +138,10 @@ function PostlogsUser(name) {
         newDoc = {
           "type": "user",
           "value": {
-            "list":[name]
+            "list": [name]
           }
         }
-        log.insert(newDoc,'user', (error, success) => {
+        log.insert(newDoc, 'user', (error, success) => {
           if (success) {
             resolve(name)
           } else {
@@ -89,57 +152,57 @@ function PostlogsUser(name) {
     })
   })
 }
-function PostlogsProduct(name,price,image,category,id){
+function PostlogsProduct(name, price, image, category, id) {
   return new Promise((resolve, reject) => {
     var newDoc
-    log.get('product',(error,success)=>{
-      if(success){
-      newDoc = {
-      '_rev':success._rev,
-      'type': 'product',
-      'value': success.value,
-          }
-          //update
-      try {
-        newDoc['value'][name] = {
-          'name':name, 
-          'price':price,
-          'image':image,
-          'category':category,
-          'id':id
-        }
-      }
-      //add new item 
-      catch (error) {
-        newDoc['value'][name] = {
-          'name':name, 
-          'price':price,
-          'image':image,
-          'category':category,
-          'id':id
-        }
-      }
-      log.insert(newDoc, 'product', (error, success) => {
-        if (success) {
-          resolve(name)
-        } else {
-          reject(new Error("Error to insert history"))
-        }
-      })
-      }
-      else{
+    log.get('product', (error, success) => {
+      if (success) {
         newDoc = {
-      'type': 'product',
-      'value':{
-        [name]:{
-          'name':name, 
-          'price':price,
-          'image':image,
-          'category':category,
-          'id':id
+          '_rev': success._rev,
+          'type': 'product',
+          'value': success.value,
         }
-        
+        //update
+        try {
+          newDoc['value'][name] = {
+            'name': name,
+            'price': price,
+            'image': image,
+            'category': category,
+            'id': id
+          }
+        }
+        //add new item 
+        catch (error) {
+          newDoc['value'][name] = {
+            'name': name,
+            'price': price,
+            'image': image,
+            'category': category,
+            'id': id
+          }
+        }
+        log.insert(newDoc, 'product', (error, success) => {
+          if (success) {
+            resolve(name)
+          } else {
+            reject(new Error("Error to insert history"))
+          }
+        })
       }
+      else {
+        newDoc = {
+          'type': 'product',
+          'value': {
+            [name]: {
+              'name': name,
+              'price': price,
+              'image': image,
+              'category': category,
+              'id': id
+            }
+
+          }
         }
         log.insert(newDoc, 'product', (error, success) => {
           if (success) {
@@ -151,7 +214,7 @@ function PostlogsProduct(name,price,image,category,id){
 
       }
     })
-   
+
   })
 }
 
@@ -172,6 +235,7 @@ function getlogs(type) {
 }
 module.exports = {
   PostlogsUser,
+  PostlogsRec,
   PostlogsProduct,
   PostlogsId,
   getlogs

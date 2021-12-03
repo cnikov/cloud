@@ -12,6 +12,16 @@ app.post('/logs/user', (req, res) => {
     res.status(409).json({ status: 'error', message: String(err) })
   })
 })
+app.post('/logs/recommendation', (req, res) => {
+  var item = req.body.item
+  var list1 = req.body.list1
+  var list2 = req.body.list2
+  return db.PostlogsRec(item, list1, list2).then((token) => {
+    res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(409).json({ status: 'error', message: String(err) })
+  })
+})
 app.post('/logs/id', (req, res) => {
   var id = req.body.id
   return db.PostlogsId(id).then((token) => {
@@ -28,7 +38,7 @@ app.post('/logs/product', (req, res) => {
   var category = req.body.category
   var id = req.body.id
 
-  return db.PostlogsProduct(name,price,image,category,id).then((token) => {
+  return db.PostlogsProduct(name, price, image, category, id).then((token) => {
     res.status(200).json({ status: 'success', token })
   }).catch((err) => {
     res.status(409).json({ status: 'error', message: String(err) })
