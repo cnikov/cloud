@@ -13,6 +13,7 @@ app.post('/logs/user', (req, res) => {
   })
 })
 app.post('/logs/recommendation', (req, res) => {
+  console.log("ici")
   var item = req.body.item
   var list1 = req.body.list1
   var list2 = req.body.list2
