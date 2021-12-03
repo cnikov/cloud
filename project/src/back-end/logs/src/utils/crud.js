@@ -25,7 +25,7 @@ function PostlogsRec(item, list1, list2) {
               success['value'][item]['quantity'].push(list2[i])
             }
             else {
-              success['value'][item]['quantity'] = success['value'][item]['quantity'] + list2[i]
+              success['value'][item]['quantity'] = parseInt(success['value'][item]['quantity'], 10) + parseInt(list2[i], 10)
             }
           }
           success['value'][item]['with'] = ToUpdate
