@@ -35,7 +35,7 @@ class QuickView extends Component {
     let price = product.price
 
     return (
-      console.log(this.state.recomm),
+
       <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
         <div className='modal' ref='modal'>
           <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
@@ -52,10 +52,17 @@ class QuickView extends Component {
             <p>{name}</p>
             <br />
             <h3>Customers who bought this item also bought</h3>
-            <p>{this.state.recomm}</p>
+            {
+              axios.get(`${url}/logs/recommendation`)
+                .then(res => {
+                  var recom = res['data']['value'][this.props.product]['with'];
+                  console.log(recom),
+                    <p> {recom}</p>
+                })
+            }
           </center>
         </div>
-      </div>
+      </div >
     )
 
 
