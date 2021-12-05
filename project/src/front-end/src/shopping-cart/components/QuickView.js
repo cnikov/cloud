@@ -50,7 +50,7 @@ class QuickView extends Component {
             <p>{name}</p>
             <br />
             <h3>Customers who bought this item also bought</h3>
-            <p>{this.state.recomm.map(item => <li>{item[name]['with']}</li>)}</p>
+            <ul>{this.state.recomm.map(item => <li>{item[name]['with']}</li>)}</ul>
           </center>
         </div>
       </div >
