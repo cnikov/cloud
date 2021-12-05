@@ -34,12 +34,14 @@ class App extends Component {
       (route) => { this.props.history.push(route) }
     )
 
-    var products = window.localStorage.getItem('products')
-    this.setState({
-      products: products ? JSON.parse(products) : catalog
-    }
+    axios.get(`${url}/format`).then((res) => {
+      this.setState({
+        products: products ? JSON.parse(products) : catalog
+      })
+    })
 
-    )
+
+
 
 
     console.log(this.state.products)
@@ -132,12 +134,21 @@ class App extends Component {
           <Route exact path='/' render={() => {
             if (authenticated) {
               if (JSON.parse(window.localStorage.getItem('username')) === 'admin') {
-                return <AdminForm
-                  products={products}
-                  createFlashMessage={this.createFlashMessage}
-                  setAuthStatus={this.setAuthStatus}
-                  logoutUser={this.logoutUser}
-                />
+                if (typeof products !== 'undefined') {
+                  return <AdminForm
+                    products={products}
+                    createFlashMessage={this.createFlashMessage}
+                    setAuthStatus={this.setAuthStatus}
+                    logoutUser={this.logoutUser} />
+                } else {
+                  return <AdminForm
+                    products={catalog}
+                    createFlashMessage={this.createFlashMessage}
+                    setAuthStatus={this.setAuthStatus}
+                    logoutUser={this.logoutUser} />
+                }
+
+
               } else {
                 return <ShoppingCartApp
                   setAuthStatus={this.setAuthStatus}
