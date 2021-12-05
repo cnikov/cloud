@@ -49,11 +49,9 @@ class QuickView extends Component {
             <h2>About the product</h2>
             <p>{name}</p>
             <br />
-            {console.log(this.state.recomm)}
+            {console.log(this.state.recomm.Apple)}
             <h3>Customers who bought this item also bought</h3>
-            <ul>{
-
-              this.state.recomm.Apple.with}</ul>
+            <p> not working </p>
           </center>
         </div>
       </div >
