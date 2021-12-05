@@ -6,6 +6,11 @@ import catalog from '../shopping-cart/components/catalog'
 // with this environment variable
 const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
 
+function PostProduct(data) {
+  console.log("my product is ")
+  console.log(data)
+}
+
 class AdminForm extends Component {
 
   componentWillMount() {
@@ -140,7 +145,7 @@ class AdminForm extends Component {
           </div>
           <h3 className='blank-space' />
           <button className='btn btn-primary'
-            onClick={this.confirmCheckout}>Add product</button>
+            onClick={PostProduct(selectedProd)}>Add product</button>
           <h3 className='blank-space' />
           <button className='btn'
             onClick={this.cancelCheckout}>Remove product</button>
