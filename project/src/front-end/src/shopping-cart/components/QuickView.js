@@ -19,11 +19,8 @@ class QuickView extends Component {
   componentDidMount() {
     axios.get(`${url}/logs/recommendation`)
       .then(res => {
-        const recomm = res['data']['value'][this.props.product]['with'];
-        this.setState({ recomm });
-        console.log('myrecomm')
-        console.log(recomm)
-        console.log(res['data'])
+        console.log(res)
+        this.setState({ recomm: res['data']['value'][this.props.product]['with'] });
 
       })
   }
@@ -52,7 +49,7 @@ class QuickView extends Component {
             <p>{name}</p>
             <br />
             <h3>Customers who bought this item also bought</h3>
-            <p>{name}</p>
+            <p>{recomm}</p>
           </center>
         </div>
       </div >
