@@ -8,8 +8,13 @@ const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http
 
 function PostProduct(data, cat, id) {
   if (typeof data !== 'undefined') {
-    console.log("my product is ")
-    console.log(data[cat][id])
+    if (typeof data[cat] !== 'undefined') {
+      if (typeof data[cat][id] !== 'undefined') {
+        console.log("my product is ")
+        console.log(data[cat][id])
+      }
+    }
+
   }
 }
 
