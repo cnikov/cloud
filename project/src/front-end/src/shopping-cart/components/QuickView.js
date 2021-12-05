@@ -28,7 +28,7 @@ class QuickView extends Component {
     var list = []
 
     for (var i = 0; i < 3; i++) {
-      max = 0
+      var max = 0
       var index = -1
       for (var j = 0; j < data.with.length; j++) {
         if (list.indexOf(data.with[j]) < 0 && data.quantity[j] >= max) {
