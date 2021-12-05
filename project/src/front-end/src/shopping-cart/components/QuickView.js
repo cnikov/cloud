@@ -32,36 +32,66 @@ class QuickView extends Component {
     let price = product.price
     let recomm = this.state.recomm
 
+    if (typeof recomm[name] !== 'undefined') {
+      return (
 
-    return (
-
-      <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
-        <div className='modal' ref='modal'>
-          <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
-          <center>
-            <div className='product'>
-              <span className='product-name'>{name}</span>
-              <br />
-              <span className='product-price'>{price}</span>
-              <div className='product-image'>
-                <img src={image} alt={name} />
+        <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+          <div className='modal' ref='modal'>
+            <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+            <center>
+              <div className='product'>
+                <span className='product-name'>{name}</span>
+                <br />
+                <span className='product-price'>{price}</span>
+                <div className='product-image'>
+                  <img src={image} alt={name} />
+                </div>
               </div>
-            </div>
-            <h2>About the product</h2>
-            <p>{name}</p>
-            <br />
-            {console.log(recomm[name])}
-            <h3>Customers who bought this item also bought</h3>
-            try {
-              <p> {recomm} </p>
-            } catch (error) {
-              <p>No recommendations</p>
-            }
+              <h2>About the product</h2>
+              <p>{name}</p>
+              <br />
+              {console.log(recomm[name])}
+              <h3>Customers who bought this item also bought</h3>
 
-          </center>
-        </div>
-      </div >
-    )
+              <p> {recomm[name][0]} </p>
+
+
+            </center>
+          </div>
+        </div >
+      )
+    }
+    else {
+      return (
+
+        <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+          <div className='modal' ref='modal'>
+            <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+            <center>
+              <div className='product'>
+                <span className='product-name'>{name}</span>
+                <br />
+                <span className='product-price'>{price}</span>
+                <div className='product-image'>
+                  <img src={image} alt={name} />
+                </div>
+              </div>
+              <h2>About the product</h2>
+              <p>{name}</p>
+              <br />
+              {console.log(recomm[name])}
+              <h3>Customers who bought this item also bought</h3>
+
+              <p>No recommendations</p>
+
+
+            </center>
+          </div>
+        </div >
+      )
+
+    }
+
 
 
 
