@@ -7,8 +7,10 @@ import catalog from '../shopping-cart/components/catalog'
 const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
 
 function PostProduct(data, cat, id) {
-  console.log("my product is ")
-  console.log(data[cat][id])
+  if (typeof data !== 'undefined') {
+    console.log("my product is ")
+    console.log(data[cat][id])
+  }
 }
 
 class AdminForm extends Component {
