@@ -23,6 +23,7 @@ class QuickView extends Component {
         this.setState({ recomm });
         console.log('myrecomm')
         console.log(recomm)
+        console.log(res['data'])
 
       })
   }
