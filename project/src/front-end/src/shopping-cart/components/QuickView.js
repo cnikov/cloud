@@ -53,7 +53,7 @@ class QuickView extends Component {
               {console.log(recomm[name])}
               <h3>Customers who bought this item also bought</h3>
 
-              <p> {recomm[name]['with'][0]} </p>
+              <p> {recomm[name]['with'][0]} {recomm[name]['with'][1]} {recomm[name]['with'][2]}</p>
 
 
             </center>
