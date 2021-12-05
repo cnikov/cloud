@@ -13,8 +13,8 @@ class QuickView extends Component {
     this.props.closeModal()
   }
   state = {
-    recomm: []
-  }
+    recomm: [],
+  };
 
   componentDidMount() {
     axios.get(`${url}/logs/recommendation`)
@@ -50,7 +50,7 @@ class QuickView extends Component {
             <p>{name}</p>
             <br />
             <h3>Customers who bought this item also bought</h3>
-            <p>{this.state.recomm[name]['with']}</p>
+            <p>{this.state.recomm.map(item => <li>{item[name]['with']}</li>)}</p>
           </center>
         </div>
       </div >
