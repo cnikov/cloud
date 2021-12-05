@@ -49,7 +49,7 @@ class QuickView extends Component {
             <p>{name}</p>
             <br />
             <h3>Customers who bought this item also bought</h3>
-            <p>{recomm}</p>
+            <p>{this.state.recomm}</p>
           </center>
         </div>
       </div >
