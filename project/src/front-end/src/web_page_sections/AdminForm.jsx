@@ -6,17 +6,6 @@ import catalog from '../shopping-cart/components/catalog'
 // with this environment variable
 const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
 
-function PostProduct(data, cat, id) {
-  if (typeof data !== 'undefined') {
-    if (typeof data[cat] !== 'undefined') {
-      if (typeof data[cat][id] !== 'undefined') {
-        console.log("my product is ")
-        console.log(data[cat][id])
-      }
-    }
-
-  }
-}
 
 class AdminForm extends Component {
 
@@ -25,8 +14,6 @@ class AdminForm extends Component {
       this.state = {
 
         catalog: this.props.products,
-
-
         categories: Object.keys(this.props.products),
         products: [],
         selectedProd: undefined,
@@ -61,6 +48,13 @@ class AdminForm extends Component {
     this.renderProductInf = this.renderProductInf.bind(this)
     this.logOut = this.logOut.bind(this)
     this.handleProductChange = this.handleProductChange.bind(this)
+  }
+  PostProduct(data, cat, id) {
+    if (typeof data !== 'undefined') {
+      console.log("my product is ")
+      console.log(data[cat])
+
+    }
   }
   renderCategories() {
     return this.state.categories.map((c) => {
@@ -152,7 +146,7 @@ class AdminForm extends Component {
           </div>
           <h3 className='blank-space' />
           <button className='btn btn-primary'
-            onClick={PostProduct(selectedProd, this.state.selectedCate, this.state.selectedProd)}>Add product</button>
+            onClick={this.PostProduct(this.props.products, this.state.selectedCate, this.state.selectedProd)}>Add product</button>
           <h3 className='blank-space' />
           <button className='btn'
             onClick={this.cancelCheckout}>Remove product</button>
