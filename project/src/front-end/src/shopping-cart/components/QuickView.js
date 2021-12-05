@@ -30,6 +30,7 @@ class QuickView extends Component {
     let name = product.name
     let image = product.image
     let price = product.price
+    let recomm = this.state.recomm
 
 
     return (
@@ -49,7 +50,7 @@ class QuickView extends Component {
             <h2>About the product</h2>
             <p>{name}</p>
             <br />
-            {console.log(this.state.recomm.Apple)}
+            {console.log(recomm)}
             <h3>Customers who bought this item also bought</h3>
             <p> not working </p>
           </center>
