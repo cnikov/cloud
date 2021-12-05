@@ -19,8 +19,9 @@ class QuickView extends Component {
   componentDidMount() {
     axios.get(`${url}/logs/recommendation`)
       .then(res => {
-        console.log(res)
-        this.setState({ recomm: res['data']['token']['value'][this.props.product]['with'] });
+        var product = this.props.product
+        console.log(res['data']['token']['value'][product.name]['with'])
+        this.setState({ recomm: res['data']['token']['value'][product.name]['with'] });
 
       })
   }
