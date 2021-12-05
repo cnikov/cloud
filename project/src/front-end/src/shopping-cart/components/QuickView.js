@@ -52,14 +52,7 @@ class QuickView extends Component {
             <p>{name}</p>
             <br />
             <h3>Customers who bought this item also bought</h3>
-            {
-              axios.get(`${url}/logs/recommendation`)
-                .then(res => {
-                  var recom = res['data']['value'][this.props.product]['with'];
-                  console.log(recom),
-                    <p> {recom}</p>
-                })
-            }
+            <p>{name}</p>
           </center>
         </div>
       </div >
