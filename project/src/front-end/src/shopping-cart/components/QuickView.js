@@ -18,31 +18,34 @@ class QuickView extends Component {
     let name = product.name
     let image = product.image
     let price = product.price
+    let recomm = []
     axios.get(`${url}/logs/recommendation`).then((succ) => {
-      return (
-        <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
-          <div className='modal' ref='modal'>
-            <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
-            <center>
-              <div className='product'>
-                <span className='product-name'>{name}</span>
-                <br />
-                <span className='product-price'>{price}</span>
-                <div className='product-image'>
-                  <img src={image} alt={name} />
-                </div>
-              </div>
-              <h2>About the product</h2>
-              <p>{name}</p>
-              <br />
-              <h3>Customers who bought this item also bought</h3>
-              <p>{succ['value'][name]['with']}</p>
-            </center>
-          </div>
-        </div>
-      )
-
+      recomm = succ['value'][name]['with']
     })
+    return (
+      <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+        <div className='modal' ref='modal'>
+          <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+          <center>
+            <div className='product'>
+              <span className='product-name'>{name}</span>
+              <br />
+              <span className='product-price'>{price}</span>
+              <div className='product-image'>
+                <img src={image} alt={name} />
+              </div>
+            </div>
+            <h2>About the product</h2>
+            <p>{name}</p>
+            <br />
+            <h3>Customers who bought this item also bought</h3>
+            <p>{recomm}</p>
+          </center>
+        </div>
+      </div>
+    )
+
+
 
 
   }
