@@ -24,7 +24,25 @@ class QuickView extends Component {
 
       })
   }
+  sortTheList(data) {
+    var list = []
 
+    for (var i = 0; i < 3; i++) {
+      max = 0
+      var index = -1
+      for (var j = 0; j < data.with.length; j++) {
+        if (list.indexOf(data.with[j]) < 0 && data.quantity[j] >= max) {
+          max = data.quantity[j]
+          index = j
+        }
+      }
+      if (index != -1) {
+        list.push(data.with[index])
+      }
+
+    }
+    return list
+  }
   render() {
     let product = this.props.product
     let name = product.name
@@ -33,6 +51,7 @@ class QuickView extends Component {
     let recomm = this.state.recomm
 
     if (typeof recomm[name] !== 'undefined') {
+      var list = sortTheList(recomm[name])
       return (
 
         <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
@@ -53,7 +72,7 @@ class QuickView extends Component {
               {console.log(recomm[name])}
               <h3>Customers who bought this item also bought</h3>
 
-              <p> {recomm[name]['with'][0]} {recomm[name]['with'][1]} {recomm[name]['with'][2]}</p>
+              <p> {list[0]} {list[1]} {list[2]}</p>
 
 
             </center>
