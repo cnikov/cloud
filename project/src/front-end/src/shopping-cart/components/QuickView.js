@@ -21,6 +21,7 @@ class QuickView extends Component {
       .then(res => {
         const recomm = res['data']['value'][this.props.product]['with'];
         this.setState({ recomm });
+        console.log('myrecomm')
         console.log(recomm)
 
       })
@@ -31,7 +32,6 @@ class QuickView extends Component {
     let name = product.name
     let image = product.image
     let price = product.price
-    let recomm = []
 
     return (
       console.log(this.state.recomm),
