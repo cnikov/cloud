@@ -50,9 +50,8 @@ class AdminForm extends Component {
     this.handleProductChange = this.handleProductChange.bind(this)
   }
   PostProduct(data, cat, id) {
-    if (typeof data !== 'undefined') {
-      console.log("my product is ")
-      console.log(data[cat])
+    if (typeof id !== 'undefined') {
+      console.log(data[cat] + " my product is ")
 
     }
   }
