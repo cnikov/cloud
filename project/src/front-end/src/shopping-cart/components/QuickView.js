@@ -12,6 +12,19 @@ class QuickView extends Component {
   handleClose() {
     this.props.closeModal()
   }
+  state = {
+    recomm: []
+  }
+
+  componentDidMount() {
+    axios.get(`${url}/logs/recommendation`)
+      .then(res => {
+        const recomm = res['data']['value'][this.props.product]['with'];
+        this.setState({ recomm });
+        console.log(recomm)
+
+      })
+  }
 
   render() {
     let product = this.props.product
@@ -19,11 +32,9 @@ class QuickView extends Component {
     let image = product.image
     let price = product.price
     let recomm = []
-    axios.get(`${url}/logs/recommendation`).then((succ) => {
-      recomm = succ['value'][name]['with']
-      console.log(recomm)
-    })
+
     return (
+      console.log(this.state.recomm),
       <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
         <div className='modal' ref='modal'>
           <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
@@ -40,7 +51,7 @@ class QuickView extends Component {
             <p>{name}</p>
             <br />
             <h3>Customers who bought this item also bought</h3>
-            <p>{recomm}</p>
+            <p>{this.state.recomm}</p>
           </center>
         </div>
       </div>
