@@ -52,7 +52,7 @@ class QuickView extends Component {
             <br />
             {console.log(recomm[name])}
             <h3>Customers who bought this item also bought</h3>
-            <p> not working </p>
+            <p> {recomm[name]['with'][0]} </p>
           </center>
         </div>
       </div >
