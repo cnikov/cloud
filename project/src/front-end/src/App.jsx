@@ -36,15 +36,9 @@ class App extends Component {
 
     axios.get(`${url}/format`).then((res) => {
       this.setState({
-        products: products ? JSON.parse(products) : catalog
+        products: res.data.token.doc
       })
     })
-
-
-
-
-
-    console.log(this.state.products)
     //a modifier pour mettre les products de la db
 
 
