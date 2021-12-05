@@ -21,6 +21,7 @@ class QuickView extends Component {
     let recomm = []
     axios.get(`${url}/logs/recommendation`).then((succ) => {
       recomm = succ['value'][name]['with']
+      console.log(recomm)
     })
     return (
       <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
