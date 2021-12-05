@@ -59,7 +59,7 @@ class AdminForm extends Component {
   renderProducts(e) {
     var category = e.target.id
     this.setState({ selectedCate: category })
-    var products = this.props.products['doc'][category]
+    var products = this.props.products[category]
     var prodIds = Object.keys(products)
     this.setState({
       products: prodIds.map((id) => {
@@ -74,7 +74,7 @@ class AdminForm extends Component {
   renderProductInf(e, category, id) {
     var produId = id
     this.setState({ selectedProd: produId })
-    var product = this.props.products['doc'][category][produId]
+    var product = this.props.products[category][produId]
     var p = (<fieldset>
       <h1 className='welcome'>{`${product.name}`}</h1>Price:<br />
       <input style={{ width: '50%' }} type='text' name='price'
