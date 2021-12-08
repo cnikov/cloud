@@ -48,11 +48,11 @@ function AddToBasket(name, quantity, username, price, id) {
             var quantityList = []
             quantityList.push(quantity)
             var imageList = []
-            imageList.push(res.data.token.image)
+            imageList.push(product.image)
             var priceList = []
-            priceList.push(res.data.token.price)
+            priceList.push(product.price)
             var idList = []
-            idList.push(res.data.token.id)
+            idList.push(product.id)
             new_basket = {
               'name': nameList,
               'quantity': quantityList,
