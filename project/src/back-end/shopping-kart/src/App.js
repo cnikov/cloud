@@ -18,6 +18,16 @@ appS.post('/shopping-kart', (req, res) => {
     res.status(409).json({ status: 'error', message: String(err) })
   })
 })
+appS.post('/shopping-kart/:username', (req, res) => { 
+  var username = req.params.username
+  return db.createBasket(username)
+  .then((token) => {
+    res.status(200).json({ status: 'success', token })
+  })
+  .catch((err) => {
+    res.status(409).json({ status: 'error', message: String(err) })
+  })
+})
 
 appS.get('/shopping-kart/:username', (req, res) => { 
   var username = req.params.username
