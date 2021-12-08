@@ -22,18 +22,17 @@ function sortTheList(data) {
   }
   return list
 }
-function GetImages(list) {
+function GetImages(list, data) {
   var MyList = []
-  axios.get(`${url}/logs/product`).then((res) => {
-    var data = res.data.token.value
-    console.log(data)
-    for (var i = 0; i < list.length; i++) {
 
-      MyList.push(data[list[i]]['image'])
 
-    }
-    return MyList
-  })
+  console.log(data)
+  for (var i = 0; i < list.length; i++) {
+
+    MyList.push(data[list[i]]['image'])
+
+  }
+  return MyList
 
 }
 
@@ -47,11 +46,18 @@ class QuickView extends Component {
   }
   state = {
     recomm: [],
+    img: []
   };
 
   componentDidMount() {
     axios.get(`${url}/logs/recommendation`)
       .then(res => {
+        axios.get(`${url}/logs/product`).then((res) => {
+          this.setState({
+            recomm: res['data']['token']['value'],
+            img: res['data']['token']['value']
+          });
+        })
         console.log(res['data']['token']['value'])
         this.setState({ recomm: res['data']['token']['value'] });
 
@@ -64,72 +70,42 @@ class QuickView extends Component {
     let image = product.image
     let price = product.price
     let recomm = this.state.recomm
+    let imglst = this.state.img
 
-    if (typeof recomm[name] !== 'undefined') {
+    if (typeof recomm[name] !== 'undefined' && typeof imglst[name] !== 'undefined') {
 
       var list = sortTheList(recomm[name])
-
-      var ImageList = await GetImages(list)
+      var ImageList = GetImages(list, imglst[name])
       console.log(ImageList)
-      if (typeof ImageList !== 'undefined') {
-        return (
 
-          <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
-            <div className='modal' ref='modal'>
-              <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
-              <center>
-                <div className='product'>
-                  <span className='product-name'>{name}</span>
-                  <br />
-                  <span className='product-price'>{price}</span>
-                  <div className='product-image'>
-                    <img src={image} alt={name} />
-                  </div>
-                </div>
-                <h2>About the product</h2>
-                <p>{name}</p>
+      return (
+
+        <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+          <div className='modal' ref='modal'>
+            <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+            <center>
+              <div className='product'>
+                <span className='product-name'>{name}</span>
                 <br />
-                {console.log(recomm[name])}
-                <h3>Customers who bought this item also bought</h3>
-
-                <img src={ImageList[0]} />
-
-
-              </center>
-            </div>
-          </div >
-        )
-
-      } else {
-        return (
-
-          <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
-            <div className='modal' ref='modal'>
-              <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
-              <center>
-                <div className='product'>
-                  <span className='product-name'>{name}</span>
-                  <br />
-                  <span className='product-price'>{price}</span>
-                  <div className='product-image'>
-                    <img src={image} alt={name} />
-                  </div>
+                <span className='product-price'>{price}</span>
+                <div className='product-image'>
+                  <img src={image} alt={name} />
                 </div>
-                <h2>About the product</h2>
-                <p>{name}</p>
-                <br />
-                {console.log(recomm[name])}
-                <h3>Customers who bought this item also bought</h3>
+              </div>
+              <h2>About the product</h2>
+              <p>{name}</p>
+              <br />
+              {console.log(recomm[name])}
+              <h3>Customers who bought this item also bought</h3>
 
-                <p> {list[0]} {list[1]} {list[2]}</p>
+              <img src={ImageList[0]} />
 
 
-              </center>
-            </div>
-          </div >
-        )
+            </center>
+          </div>
+        </div >
+      )
 
-      }
 
     }
     else {
