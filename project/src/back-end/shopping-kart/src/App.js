@@ -5,7 +5,6 @@ const appS = express.Router()
 const db = require('./utils/crud')
 
 appS.post('/shopping-kart', (req, res) => { 
-  console.log("fonctionne  4 ?")
   var name = req.body.name
   var quantity = req.body.quantity
   var username = req.body.username
