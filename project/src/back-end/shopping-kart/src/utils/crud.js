@@ -123,17 +123,13 @@ function removeAllBasket(username){
     kart.get(username, (error, succes) => {
         if(succes){
           let n = []
-          let q = []
-          let i = []
-          let id = []
-          let price = []
           var new_basket = {
             '_rev': succes._rev,
             'name': n,
-            'quantity': q,
-            'image': q,
-            'id': id,
-            'price': price
+            'quantity': n,
+            'image': n,
+            'id': n,
+            'price': n
           }
         }
         kart.insert(new_basket, username, (error, success) => {
@@ -152,5 +148,6 @@ module.exports = {
   AddToBasket,
   getBasket,
   removeFromBasket,
-  removeAllBasket
+  removeAllBasket,
+
 }
