@@ -73,31 +73,6 @@ function AddToBasket(name, quantity, username, price, id) {
   })
 }
 //Recuperer le panier d'un user
-function createBasket(username){
-  return new Promise((resolve, reject) => {
-      //sinon, on crée le panier
-      var nameList = []
-      var new_basket
-      var quantityList = []
-      var imageList = []
-      var priceList = []
-      var idList = []
-      new_basket = {
-        'name': nameList,
-        'quantity': quantityList,
-        'image': imageList,
-        'price': priceList,
-        'id': idList
-      }
-    kart.insert(new_basket, username, (error, suc) => {
-      if(suc){
-        resolve(username)
-      }else{
-        reject(new Error("Erreur d'ajout a la db"))
-      }
-    })
-  })
-}
 function getBasket(username) {
   console.log(username)
   return new Promise((resolve, reject) => {
@@ -177,6 +152,5 @@ module.exports = {
   AddToBasket,
   getBasket,
   removeFromBasket,
-  removeAllBasket,
-  createBasket
+  removeAllBasket
 }
