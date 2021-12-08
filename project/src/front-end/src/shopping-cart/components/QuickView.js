@@ -26,7 +26,9 @@ function GetImages(list) {
   var MyList = []
   axios.get(`${url}/logs/product`).then((res) => {
     var data = res.data.token.value
+    console.log(data)
     for (var i = 0; i < list.length; i++) {
+
       MyList.push(data[list[i]]['image'])
 
     }
@@ -45,7 +47,6 @@ class QuickView extends Component {
   }
   state = {
     recomm: [],
-    imgs: []
   };
 
   componentDidMount() {
@@ -65,10 +66,11 @@ class QuickView extends Component {
     let recomm = this.state.recomm
 
     if (typeof recomm[name] !== 'undefined') {
-      var list = []
-      list = sortTheList(recomm[name])
 
-      ImageList = GetImages(list)
+      var list = sortTheList(recomm[name])
+
+      var ImageList = await GetImages(list)
+      console.log(ImageList)
       if (typeof ImageList !== 'undefined') {
         return (
 
