@@ -11,6 +11,7 @@ function AddToBasket(name, quantity, username, price, id) {
       if(res){
         kart.get(username, (error, success) => {  //on recupère le panier
           if(success){  //si le panier existe deja
+            console.log("fonctionne 2 ?")
             var index = success.name.indexOf(name)
             if (index <= -1){  //si l'objet n'est pas déja dans la db
               success.name.push(name)
@@ -39,6 +40,7 @@ function AddToBasket(name, quantity, username, price, id) {
 
             }
           }else{  //sinon, on crée le panier
+            console.log("fonctionne ?")
             var nameList = []
             nameList.push(name)
             var quantityList = []
@@ -59,6 +61,7 @@ function AddToBasket(name, quantity, username, price, id) {
           }
           kart.insert(new_basket, username, (error, suc) => {
             if(suc){
+              console.log("fonctionne 3 ?")
               resolve(username)
             }else{
               reject(new Error("Erreur d'ajout a la db"))
