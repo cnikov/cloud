@@ -75,7 +75,7 @@ class QuickView extends Component {
       var list = sortTheList(recomm[name])
       console.log(list)
       if (typeof imglst[name] != 'undefined') {
-        var ImageList = GetImages(list, imglst[name])
+        var ImageList = GetImages(list, imglst)
         console.log(ImageList)
         return (
 
