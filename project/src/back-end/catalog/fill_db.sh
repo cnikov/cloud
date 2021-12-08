@@ -33,35 +33,35 @@ until curl -X POST --data "name=Mango&price=6.80&image=https://res.cloudinary.co
   echo "En attente de la creation de la db"
   sleep 1
 done
-until curl -X POST --data '{"item":"Brocolli","list1":['Brocolli','Banana','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/recommendation ;do
+until curl -X POST --data '{"item":"Brocolli","list1":['Brocolli','Banana','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
   echo "En attente de la creation de la db"
   sleep 1
 done
-until curl -X POST --data '{"item":"Cauliflower","list1":['Cauliflower','Banana','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/recommendation ;do
+until curl -X POST --data '{"item":"Cauliflower","list1":['Cauliflower','Banana','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
   echo "En attente de la creation de la db"
   sleep 1
 done
-until curl -X POST --data '{"item":"Cucumber","list1":['Cucumber','Banana','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/recommendation ;do
+until curl -X POST --data '{"item":"Cucumber","list1":['Cucumber','Banana','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
   echo "En attente de la creation de la db"
   sleep 1
 done
-until curl -X POST --data '{"item":"Beetroot","list1":['Beetroot','Banana','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/recommendation ;do
+until curl -X POST --data '{"item":"Beetroot","list1":['Beetroot','Banana','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
   echo "En attente de la creation de la db"
   sleep 1
 done
-until curl -X POST --data '{"item":"Apple","list1":['Apple','Banana','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/recommendation ;do
+until curl -X POST --data '{"item":"Apple","list1":['Apple','Banana','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
   echo "En attente de la creation de la db"
   sleep 1
 done
-until curl -X POST --data '{"item":"Banana","list1":['Banana','Apple','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/recommendation ;do
+until curl -X POST --data '{"item":"Banana","list1":['Banana','Apple','Mango','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
   echo "En attente de la creation de la db"
   sleep 1
 done
-until curl -X POST --data '{"item":"Mango","list1":['Mango','Banana','Apple','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/recommendation ;do
+until curl -X POST --data '{"item":"Mango","list1":['Mango','Banana','Apple','Grapes'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
   echo "En attente de la creation de la db"
   sleep 1
 done
-until curl -X POST --data '{"item":"Grapes","list1":['Grapes','Banana','Mango','Apple'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/recommendation ;do
+until curl -X POST --data '{"item":"Grapes","list1":['Grapes','Banana','Mango','Apple'],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
   echo "En attente de la creation de la db"
   sleep 1
 done
