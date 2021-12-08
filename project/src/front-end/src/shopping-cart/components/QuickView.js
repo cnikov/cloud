@@ -69,7 +69,7 @@ class QuickView extends Component {
 
       var list = sortTheList(recomm[name])
 
-      var ImageList = GetImages(list)
+      var ImageList = await GetImages(list)
       console.log(ImageList)
       if (typeof ImageList !== 'undefined') {
         return (
