@@ -65,8 +65,10 @@ class QuickView extends Component {
     let recomm = this.state.recomm
 
     if (typeof recomm[name] !== 'undefined') {
-      var list = sortTheList(recomm[name])
-      var ImageList = GetImages(list)
+      var list = []
+      list = sortTheList(recomm[name])
+      var ImageList = []
+      ImageList = GetImages(list)
       if (ImageList.length != list.length) {
         return (
 
