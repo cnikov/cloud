@@ -203,6 +203,7 @@ class ShoppingCartApp extends Component {
   }
 
   endCheckout() {
+    //post tout avec tout super :) 
     console.log('END of CHECKOUT')
     let username = JSON.parse(window.localStorage.getItem('username'))
     axios.delete(`${url}/shopping-kart/${username}`)
