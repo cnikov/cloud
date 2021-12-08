@@ -2,10 +2,10 @@ const bcrypt = require('bcryptjs')
 const tku = require('./en-de-coders')
 
 var users = require('nano')(process.env.DB_URL)
-var kart = require('nano')(process.env.DB_URL_KART)
 
 var axios = require('axios')
 const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
+var urlSK = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3004"
 
 
 function equalPassws(usrPass, usrDbPass) {
@@ -29,6 +29,7 @@ function createUser(usrName, passw) {
       (error, success) => {
         if (success) {
           axios.post(`${url}/logs/user`,{'name':usrName}).then(()=>{
+            axios.post(`${urlSK}/shopping-kart/${usrName}`)
             resolve(tku.encodeToken(usrName))
           })
           
