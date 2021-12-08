@@ -1,14 +1,16 @@
 const axios = require('axios')
 var kart = require('nano')(process.env.DB_URL_SK)
-var url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005"
+var url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
 //Add an item to the user's basket
 function AddToBasket(name, quantity, username, price, id) { 
 
   return new Promise((resolve, reject) => {
-    axios.get(`${url}/catalog/${name}`)
+    axios.get(`${url}/logs/product`)
       .then((res) => {
         var new_basket
       if(res){
+        var data = res.data.token.value
+        var product = data[name]
         kart.get(username, (error, success) => {  //on recupère le panier
           if(success){  //si le panier existe deja
             console.log("fonctionne 2 ?")
@@ -16,7 +18,7 @@ function AddToBasket(name, quantity, username, price, id) {
             if (index <= -1){  //si l'objet n'est pas déja dans la db
               success.name.push(name)
               success.quantity.push(quantity)
-              success.image.push(res.data.token.image)
+              success.image.push(product.image)
               success.price.push(price)
               success.id.push(id)
               new_basket = {
