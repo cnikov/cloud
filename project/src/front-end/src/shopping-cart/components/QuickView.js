@@ -67,37 +67,9 @@ class QuickView extends Component {
     if (typeof recomm[name] !== 'undefined') {
       var list = []
       list = sortTheList(recomm[name])
-      var ImageList = []
+
       ImageList = GetImages(list)
-      if (ImageList.length != list.length) {
-        return (
-
-          <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
-            <div className='modal' ref='modal'>
-              <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
-              <center>
-                <div className='product'>
-                  <span className='product-name'>{name}</span>
-                  <br />
-                  <span className='product-price'>{price}</span>
-                  <div className='product-image'>
-                    <img src={image} alt={name} />
-                  </div>
-                </div>
-                <h2>About the product</h2>
-                <p>{name}</p>
-                <br />
-                {console.log(recomm[name])}
-                <h3>Customers who bought this item also bought</h3>
-
-                <p> {list[0]} {list[1]} {list[2]}</p>
-
-
-              </center>
-            </div>
-          </div >
-        )
-      } else {
+      if (typeof ImageList.length !== 'undefined') {
         return (
 
           <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
@@ -125,6 +97,36 @@ class QuickView extends Component {
             </div>
           </div >
         )
+
+      } else {
+        return (
+
+          <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+            <div className='modal' ref='modal'>
+              <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+              <center>
+                <div className='product'>
+                  <span className='product-name'>{name}</span>
+                  <br />
+                  <span className='product-price'>{price}</span>
+                  <div className='product-image'>
+                    <img src={image} alt={name} />
+                  </div>
+                </div>
+                <h2>About the product</h2>
+                <p>{name}</p>
+                <br />
+                {console.log(recomm[name])}
+                <h3>Customers who bought this item also bought</h3>
+
+                <p> {list[0]} {list[1]} {list[2]}</p>
+
+
+              </center>
+            </div>
+          </div >
+        )
+
       }
 
     }
