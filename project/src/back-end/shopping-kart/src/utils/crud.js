@@ -42,7 +42,7 @@ function AddToBasket(name, quantity, username, price, id) {
 
             }
           }else{  //sinon, on crée le panier
-            console.log("fonctionne ?")
+            console.log(product)
             var nameList = []
             nameList.push(name)
             var quantityList = []
