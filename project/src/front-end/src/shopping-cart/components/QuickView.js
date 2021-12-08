@@ -69,7 +69,7 @@ class QuickView extends Component {
       list = sortTheList(recomm[name])
 
       ImageList = GetImages(list)
-      if (typeof ImageList.length !== 'undefined') {
+      if (typeof ImageList !== 'undefined') {
         return (
 
           <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
