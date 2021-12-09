@@ -538,7 +538,7 @@ header {
   width: 200px;
   border-radius: 2px; }
   .product .product-image {
-    overflow: hidden;
+   
     border-radius: 2px 2px 0 0;
     max-height: 200px; }
     .product .product-image img {
