@@ -98,9 +98,8 @@ class QuickView extends Component {
                 <h3>Customers who bought this item also bought</h3>
                 <div className='product'>
                   <div className='product-image'>
-                    <img src={ImageList[0]} />
-                    <img src={ImageList[1]} />
-                    <img src={ImageList[2]} />
+                    <img src={ImageList[0]} src={ImageList[1]} src={ImageList[2]} />
+
                   </div>
                 </div>
 
