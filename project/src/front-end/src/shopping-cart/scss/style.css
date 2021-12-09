@@ -537,12 +537,13 @@ header {
   margin: 16px;
   width: 200px;
   border-radius: 2px; }
+
   .product .product-image {
-    align-self: center;
     overflow: hidden;
     border-radius: 2px 2px 0 0;
     max-height: 200px; }
     .product .product-image img {
+      float:left;
       cursor: zoom-in;
       width: 100%;
       height: auto;
