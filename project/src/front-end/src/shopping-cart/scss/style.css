@@ -377,7 +377,7 @@ header {
   animation-name: tada;
   animation-duration: 300ms;
   animation-fill-mode: both; }
-
+  
 .products-wrapper {
   padding-top: 98px;
   animation: slideUp 300ms linear;
@@ -389,6 +389,9 @@ header {
     .products-wrapper {
       padding-top: 52px; } }
 
+.image-allign {
+  text-align: center
+      }
 .products {
   display: flex;
   display: -webkit-flex;

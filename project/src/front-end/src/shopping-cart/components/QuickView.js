@@ -98,7 +98,7 @@ class QuickView extends Component {
                 <h3>Customers who bought this item also bought</h3>
                 <div className='product'>
                   <div className='product-image'>
-                    <div style={"text-align: center;"}>
+                    <div className='image-allign'>
                       <img src={ImageList[0]} />
                       <img src={ImageList[1]} />
                       <img src={ImageList[2]} />
