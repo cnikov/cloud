@@ -83,64 +83,68 @@ class QuickView extends Component {
             <div className='modal' ref='modal'>
               <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
               <center>
-                <div className='product'>
-                  <span className='product-name'>{name}</span>
-                  <br />
-                  <span className='product-price'>{price}</span>
-                  <div className='product-image'>
-                    <img src={image} alt={name} />
-                  </div>
-                </div>
-                <h2>About the product</h2>
-                <p>{name}</p>
-                <br />
-                {console.log(recomm[name])}
-                <h3>Customers who bought this item also bought</h3>
-                <div className='product'>
-                  <div className='product-image'>
+              <div className='product'>
+              <span className='product-name'>{name}</span>
+              <br />
+              <span className='product-price'>{price}</span>
+              <div className='product-image'>
+              <img src={image} alt={name} />
+              </div>
+              </div>
+              <h2>About the product</h2>
+              <p>{name}</p>
+              <br />
+            {console.log(recomm[name])}
+              <h3>Customers who bought this item also bought</h3>
+              <div className='product'>
+              <div className='product-image'>
 
-                    <img src={ImageList[0]} />
-                    <img src={ImageList[1]} />
-                    <img src={ImageList[2]} />
+              <img src={ImageList[0]} />
+              <div className='child'>
+              <div className='product'>
+              <div className='product-image'>
 
-                  </div>
+              <img src={ImageList[0]} />
+              </div>
 
-                </div>
+              </div>
+
+              </div>
 
 
 
               </center>
-            </div>
-          </div >
-        )
+              </div>
+            </div >
+            )
       } else {
         return (
 
-          <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
-            <div className='modal' ref='modal'>
-              <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
-              <center>
-                <div className='product'>
-                  <span className='product-name'>{name}</span>
-                  <br />
-                  <span className='product-price'>{price}</span>
-                  <div className='product-image'>
-                    <img src={image} alt={name} />
+            <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+              <div className='modal' ref='modal'>
+                <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+                <center>
+                  <div className='product'>
+                    <span className='product-name'>{name}</span>
+                    <br />
+                    <span className='product-price'>{price}</span>
+                    <div className='product-image'>
+                      <img src={image} alt={name} />
+                    </div>
                   </div>
-                </div>
-                <h2>About the product</h2>
-                <p>{name}</p>
-                <br />
-                {console.log(recomm[name])}
-                <h3>Customers who bought this item also bought</h3>
+                  <h2>About the product</h2>
+                  <p>{name}</p>
+                  <br />
+                  {console.log(recomm[name])}
+                  <h3>Customers who bought this item also bought</h3>
 
-                <img src={list[0]} />
+                  <img src={list[0]} />
 
 
-              </center>
-            </div>
-          </div >
-        )
+                </center>
+              </div>
+            </div >
+            )
       }
 
 
@@ -150,34 +154,34 @@ class QuickView extends Component {
 
 
     }
-    else {
+            else {
       return (
 
-        <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
-          <div className='modal' ref='modal'>
-            <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
-            <center>
-              <div className='product'>
-                <span className='product-name'>{name}</span>
-                <br />
-                <span className='product-price'>{price}</span>
-                <div className='product-image'>
-                  <img src={image} alt={name} />
-                </div>
+            <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+              <div className='modal' ref='modal'>
+                <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+                <center>
+                  <div className='product'>
+                    <span className='product-name'>{name}</span>
+                    <br />
+                    <span className='product-price'>{price}</span>
+                    <div className='product-image'>
+                      <img src={image} alt={name} />
+                    </div>
+                  </div>
+                  <h2>About the product</h2>
+                  <p>{name}</p>
+                  <br />
+                  {console.log(recomm[name])}
+                  <h3>Customers who bought this item also bought</h3>
+
+                  <p>No recommendations</p>
+
+
+                </center>
               </div>
-              <h2>About the product</h2>
-              <p>{name}</p>
-              <br />
-              {console.log(recomm[name])}
-              <h3>Customers who bought this item also bought</h3>
-
-              <p>No recommendations</p>
-
-
-            </center>
-          </div>
-        </div >
-      )
+            </div >
+            )
 
     }
 
@@ -188,4 +192,4 @@ class QuickView extends Component {
   }
 }
 
-export default QuickView
+            export default QuickView
