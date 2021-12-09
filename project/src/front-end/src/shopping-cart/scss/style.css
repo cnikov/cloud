@@ -493,6 +493,7 @@ header {
     height: 168px;
     width: 168px;
     margin: 16px;
+    text-align: center;
     background: rgba(255, 255, 255, 0.25); }
     @media (max-width: 768px) {
       .product.loading .product-image {
