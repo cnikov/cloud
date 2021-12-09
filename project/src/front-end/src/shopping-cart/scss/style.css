@@ -531,6 +531,9 @@ header {
     color: #666; }
   .no-results p {
     color: #999; }
+  .child{
+    float:left;
+  }
 
 .product {
   background: #fff;
