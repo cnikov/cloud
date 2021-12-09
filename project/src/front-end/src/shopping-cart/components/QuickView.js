@@ -97,19 +97,20 @@ class QuickView extends Component {
                 {console.log(recomm[name])}
                 <h3>Customers who bought this item also bought</h3>
                 <div className='product'>
-                <div className='product-image'>
+                  <div className='product-image'>
 
-                <img src={ImageList[0]} />
-                <div className='child'>
-                <div className='product'>
-                <div className='product-image'>
+                    <img src={ImageList[0]} />
+                    <div className='child'>
+                      <div className='product'>
+                        <div className='product-image'>
 
-                <img src={ImageList[0]} />
-                </div>
+                          <img src={ImageList[0]} />
+                        </div>
 
-                </div>
+                      </div>
 
-                </div>
+                    </div>
+                  </div>
                 </div>
 
 
