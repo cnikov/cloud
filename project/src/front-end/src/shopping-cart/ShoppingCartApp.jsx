@@ -36,6 +36,7 @@ function post(l1,l2,l3,N){
       N--
       console.log('post')
       console.log(l3,N)
+      console.log(l1)
       return post(l1,l2,l3,N)
     })
   }
@@ -239,15 +240,17 @@ class ShoppingCartApp extends Component {
     let username = JSON.parse(window.localStorage.getItem('username'))
     var l1 = []
     var l2 = []
+    var l3 = []
     console.log("my cart is :")
     console.log(this.state.cart)
     for(var item of this.state.cart){
       l1.push(item.name)
       l2.push(item.quantity)
+      l3.push(item.name)
 
     }
-    var l3 = l1
-    console.log(l1,l2,l1.length)
+    
+    console.log(l1,l2,l3,l1.length)
      post(l1,l2,l3,l1.length)
      
       
