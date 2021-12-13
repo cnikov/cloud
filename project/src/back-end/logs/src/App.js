@@ -16,7 +16,9 @@ app.post('/logs/recommendation', (req, res) => {
   console.log("ici")
   var list1 = req.body.list1
   var list2 = req.body.list2
-  for(var i= 0; i<list1.length; i++) {
+  for(var i= 0; i<list1.length-1; i++) {
+    console.log('mon product')
+    console.log(i)
     console.log(list1[i])
     db.PostlogsRec(list1[i],list1, list2).then((token) => {
       res.status(200).json({ status: 'success', token })
@@ -24,7 +26,7 @@ app.post('/logs/recommendation', (req, res) => {
       res.status(409).json({ status: 'error', message: String(err) })
     })
   }
-  return db.PostlogsRec(list[list1.length-1],list1, list2).then((token) => {
+  return db.PostlogsRec(list1[list1.length-1],list1, list2).then((token) => {
     res.status(200).json({ status: 'success', token })
   }).catch((err) => {
     res.status(409).json({ status: 'error', message: String(err) })
