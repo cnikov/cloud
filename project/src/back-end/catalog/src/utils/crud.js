@@ -1,8 +1,7 @@
 //variables to get the couchdb databases using nano
 //catalog
 var catalog = require('nano')(process.env.DB_URL_C)
-//list of name
-var fill = require('nano')(process.env.DB_URL_F)
+
 //format db
 var form = require('nano')(process.env.DB_URL_L)
 var axios = require('axios')
@@ -42,59 +41,7 @@ function DeleteInFormat(name) {
     })
   })
 }
-//remove an item from the catalog only delete the entire document which has name as id
-function RemoveItem(name) {
-  return new Promise((resolve, reject) => {
-    catalog.get(name, (error, success) => {
-      if (success) {
-        catalog.destroy(name, success._rev, (error, success) => {
-          if (success) {
-            resolve(name)
-          } else {
-            reject(new Error("Erreur to remove item"))
-          }
-        })
-      }
-    })
-  })
-}
-//remove a name from the list of name
-function RemoveTheList(name) {
-  return new Promise((resolve, reject) => {
-    fill.get("allItems", (error, success) => {
 
-      var newFill
-      if (success) {
-        const index = success.list.indexOf(name)
-        success.list.splice(index, 1)
-        newFill = {
-          '_rev': success._rev,
-          'list': success.list
-        }
-      }
-      const id = "allItems"
-      fill.insert(newFill, id, (error, success) => {
-        if (success) {
-          resolve(name)
-        } else {
-          reject(new Error("Erreur to remove from the list"))
-        }
-      })
-    })
-  })
-}
-//Get the list of name
-function GetList(dbid) {
-  return new Promise((resolve, reject) => {
-    fill.get(dbid, (error, success) => {
-      if (success) {
-        resolve(success)
-      } else {
-        reject(new Error(`To get from the list. Reason: ${error.reason}.`))
-      }
-    })
-  })
-}
 //Get the document in the right format for the front end
 function GetFormat(dbid) {
   return new Promise((resolve, reject) => {
@@ -110,8 +57,6 @@ function GetFormat(dbid) {
 //Add an element in the document with the right format
 function AddFormat(name, price, image, category, id) {
   return new Promise((resolve, reject) => {
-    
-
     form.get("format", (error, success) => {
       if (success) {
         newDoc = {
@@ -161,6 +106,7 @@ function AddFormat(name, price, image, category, id) {
                 'category':category,
                 'id':id
             }
+            //logs call
               axios.post(`${url}/logs/product`,data).then(()=>{
               axios.post(`${url}/logs/id`,{'id':id}).then(()=>{
               resolve(name)})})
@@ -170,83 +116,6 @@ function AddFormat(name, price, image, category, id) {
         })
       })
 
-  })
-}
-//Add a name of product in the list of name
-function FillTheList(name) {
-  return new Promise((resolve, reject) => {
-    var newDoc
-    fill.get("allItems", (error, success) => {
-      if (success) {
-        var newList = success.list.push(name)
-        newDoc = {
-          '_rev': success._rev,
-          'name': "allmytables",
-          'list': success.list
-        }
-      }
-      else {
-        var newList = [name]
-        newDoc = {
-          'name': "allmytables",
-          'list': newList
-        }
-      }
-      const id = "allItems"
-      fill.insert(newDoc, id, (error, success) => {
-        if (success) {
-          resolve(name)
-        } else {
-          reject(new Error("Error to add item in the list of name"))
-        }
-      })
-    })
-  })
-}
-//Add a product document in the catalog
-function AddProduct(name, price, image, category, id) {
-
-  return new Promise((resolve, reject) => {
-    catalog.get(name, (error, success) => {
-      var new_product
-      if (success) {
-        new_product = {
-          '_rev': success._rev,
-          'name': name,
-          'price': price,
-          'image': image,
-          'category': category,
-          'id': id
-        }
-      } else {
-        new_product = {
-          'name': name,
-          'price': price,
-          'image': image,
-          'category': category,
-          'id': id
-        }
-      }
-      catalog.insert(new_product, name, (error, success) => {
-        if (success) {
-          resolve(name)
-        } else {
-          reject(new Error("Error to add item in catalog"))
-        }
-      })
-    })
-  })
-}
-//Get a product from the catalog
-function getProduct(dbid) {
-  return new Promise((resolve, reject) => {
-    catalog.get(dbid, (error, success) => {
-      if (success) {
-        resolve(success)
-      } else {
-        reject(new Error(`To get product. Reason: ${error.reason}.`))
-      }
-    })
   })
 }
 
