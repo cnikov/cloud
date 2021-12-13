@@ -228,7 +228,7 @@ class ShoppingCartApp extends Component {
         'list2':l2
       }
       console.log(data)
-      await post(data)
+      post(data)
     }
     axios.delete(`${url}/shopping-kart/${username}`)
     this.initialiseState(false)
