@@ -229,7 +229,7 @@ class ShoppingCartApp extends Component {
       }
       console.log(data)
       post(data)
-      sleep(1000)
+      setTimeout(function(){},1000)
     }
     axios.delete(`${url}/shopping-kart/${username}`)
     this.initialiseState(false)
