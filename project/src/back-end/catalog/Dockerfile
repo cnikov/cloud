@@ -16,8 +16,7 @@ ADD boot-in-order.sh .
 # header for loggining messages
 ENV DEBUG catalog-db
 # database name
-ENV DB_NAME_C catalogs
-ENV DB_NAME_F allitems
+
 ENV DB_NAME_L myformat
 ENV DB_NAME_LOGS log
 # name of container running CouchDB
@@ -26,8 +25,6 @@ ENV DB_HOST_LOGS logs-db
 # authentication information to CRUD (create/remove/update/delete) objects in our DB
 ENV ADMIN_NAME admin
 ENV ADMIN_PASSW admin
-ENV DB_URL_C http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_C}
-ENV DB_URL_F http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_F}
 ENV DB_URL_L http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_L}
 ENV DB_URL_LOGS http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_LOGS}:5984/${DB_NAME_LOGS}
 
