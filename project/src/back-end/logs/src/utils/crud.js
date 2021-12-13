@@ -237,6 +237,7 @@ function getlogs(type) {
 }
 function deleteProd(product){
   //first product
+  return new Promise((resolve, reject) => {
   log.get("product",(error, success) => {
     var newDoc
     if(success){
@@ -271,7 +272,7 @@ function deleteProd(product){
                 '_rev': succ._rev,
                 'value': succ.value
               }
-              console.log(newDoc2)
+           
               log.insert(newDoc2,"recommendation",(error, successe) => {
                 if (successe) {
                     resolve(product)
@@ -293,6 +294,7 @@ function deleteProd(product){
       })
     }
   })
+})
 }
 module.exports = {
   deleteProd,
