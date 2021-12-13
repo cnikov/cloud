@@ -36,7 +36,7 @@ function post(l1,l2,l3,N){
       N--
       console.log('post')
       console.log(l3,N)
-      post(l1,l2,l3,N)
+      return post(l1,l2,l3,N)
     })
   }
 
