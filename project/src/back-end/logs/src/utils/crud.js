@@ -17,16 +17,21 @@ function PostlogsRec(item, list1, list2) {
     list2.splice(index, 1)
     log.get("recommendation", (error, success) => {
       if (success) {
+        //check if an item is already in the recommendations
         try {
           var ToUpdate = success['value'][item]['with']
           for (var i = 0; i < list1.length; i++) {
+            // check if the item isq in the list 
             var updIndex = ToUpdate.indexOf(list1[i])
+            //if the item is not already in the "with" associations
             if (updIndex < 0) {
+              //push the item in the list
               ToUpdate.push(list1[i])
               success['value'][item]['quantity'].push(list2[i])
             }
+            //if the item already exists...
             else {
-              success['value'][item]['quantity'] = parseInt(success['value'][item]['quantity'], 10) + parseInt(list2[i], 10)
+              success['value'][item]['quantity'][updIndex] = parseInt(success['value'][item]['quantity'], 10) + parseInt(list2[i], 10)
             }
           }
           success['value'][item]['with'] = ToUpdate
