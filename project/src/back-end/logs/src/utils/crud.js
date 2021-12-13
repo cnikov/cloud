@@ -268,12 +268,16 @@ function deleteProd(product){
                 }
               }
               newDoc2 = {
-                '_rev': success._rev,
-                'value': success.value
+                '_rev': succ._rev,
+                'value': succ.value
               }
+              console.log(newDoc2)
               log.insert(newDoc2,"recommendation",(error, successe) => {
                 if (successe) {
                     resolve(product)
+              }
+              else {
+                reject(new Error("Error to insert history"))
               }
              
 
@@ -281,6 +285,11 @@ function deleteProd(product){
           }
         })
         }
+         else {
+          reject(new Error("Error to insert history"))
+        }
+        
+
       })
     }
   })
