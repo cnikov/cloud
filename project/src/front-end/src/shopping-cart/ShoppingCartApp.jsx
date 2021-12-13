@@ -32,7 +32,7 @@ function post(l1,l2,l3,N){
       'list2':l2
     }
     axios.post(`${url2}/logs/recommendation`,data).then(()=>{
-      l3.strip(0,1)
+      l3.splice(0,1)
       N--
       console.log('post')
       console.log(l3,N)
