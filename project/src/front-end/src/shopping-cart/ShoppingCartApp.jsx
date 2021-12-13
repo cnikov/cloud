@@ -221,7 +221,7 @@ class ShoppingCartApp extends Component {
       l2.push(item.quantity)
 
     }
-    data = {
+    var data = {
       'list1':l1,
       'list2':l2
     }
