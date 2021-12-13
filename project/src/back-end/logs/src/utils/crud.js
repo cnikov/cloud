@@ -254,7 +254,7 @@ function deleteProd(product){
               delete succ['value'][product]
               var data =succ.value
               console.log(data)
-              for(var item of data){
+              for(var item in data){
                 console.log(item)
                 var list1 = item.with
                 console.log(list1)
