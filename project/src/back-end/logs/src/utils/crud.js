@@ -47,7 +47,7 @@ function PostlogsRec(list1, list2) {
         //update db
         log.insert(newDoc, 'recommendation', (error, success) => {
           if (success) {
-            resolve(item)
+           
           } else {
             reject(new Error("Error to insert history"))
           }
@@ -65,7 +65,7 @@ function PostlogsRec(list1, list2) {
         }
         log.insert(newDoc, 'recommendation', (error, success) => {
           if (success) {
-            resolve(item)
+           
           } else {
             reject(new Error("Error to insert history"))
           }
@@ -73,8 +73,10 @@ function PostlogsRec(list1, list2) {
       }
     })
   }
+  resolve(list1)
 
   })
+
 }
 function PostlogsId(id) {
   return new Promise((resolve, reject) => {
