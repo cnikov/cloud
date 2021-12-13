@@ -21,8 +21,10 @@ function post(l1,l2,l3,N){
   console.log("l3")
   console.log(l3)
   console.log(N)
-  if (N==0)
+  if (N==0){
     return
+  }
+   
   else{
     var data = {
       'item':l3[0],
