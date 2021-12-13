@@ -29,7 +29,10 @@ function DeleteInFormat(name) {
           //insert with the _id format
           form.insert(newDoc, iddb, (error, success) => {
             if (success) {
-              resolve(name)
+              axios.delete(`${url}/logs/${name}`).then(()=>{
+                resolve(name)
+              })
+              
             } else {
               reject(new Error("Erreur to delete product"))
             }
