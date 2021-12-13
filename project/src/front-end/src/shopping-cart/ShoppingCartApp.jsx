@@ -233,6 +233,7 @@ class ShoppingCartApp extends Component {
       console.log(data)
       post(data)
       while(status == false){}
+      status = false
       
     }
     axios.delete(`${url}/shopping-kart/${username}`)
