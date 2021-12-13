@@ -6,6 +6,7 @@ import Checkout from './components/Checkout'
 import LocalPurchases from '../interfaces/LocalPurchases'
 import axios from 'axios' // we use this library as HTTP client
 const url = process.env.REACT_APP_SHOPKART_SERVICE_URL || 'http://localhost:3006'
+const url2 = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
 const urlProducts = process.env.REACT_APP_CATALOG_SERVICE_URL || 'http://localhost:3005'
 const PurchasesService = LocalPurchases
 
@@ -204,8 +205,25 @@ class ShoppingCartApp extends Component {
 
   endCheckout() {
     //post tout avec tout super :) 
+
     console.log('END of CHECKOUT')
     let username = JSON.parse(window.localStorage.getItem('username'))
+    var l1 = []
+    var l2 = []
+    for(var item of this.state.cart){
+      l1.push(item.name)
+      l2.push(item.quantity)
+
+    }
+    for(var i of l1){
+      var data = {
+        'item':i,
+        'list1':l1,
+        'list2':l2
+
+      }
+      axios.post(`${url2}/logs/recommendation`,data)
+    }
     axios.delete(`${url}/shopping-kart/${username}`)
     this.initialiseState(false)
     // TODO
