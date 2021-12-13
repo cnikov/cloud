@@ -13,7 +13,9 @@ const PurchasesService = LocalPurchases
 
 
 
-
+async function post(data){
+  axios.post(`${url2}/logs/recommendation`,data)
+}
 class ShoppingCartApp extends Component {
 
   componentWillMount() {
@@ -226,7 +228,7 @@ class ShoppingCartApp extends Component {
         'list2':l2
       }
       console.log(data)
-      axios.post(`${url2}/logs/recommendation`,data)
+      await post(data)
     }
     axios.delete(`${url}/shopping-kart/${username}`)
     this.initialiseState(false)
