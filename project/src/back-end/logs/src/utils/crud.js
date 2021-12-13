@@ -10,6 +10,7 @@ var log = require('nano')(process.env.DB_URL_L)
 function PostlogsRec(list11, list22) {
   return new Promise((resolve, reject) => {
     var themegalist = list1
+    console.log(themegalist)
     for(var i = 0; i<themegalist.length; i++) {
       var item = themegalist[i]
       var list1 = list11
