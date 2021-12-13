@@ -120,14 +120,9 @@ function AddFormat(name, price, image, category, id) {
 }
 
 module.exports = {
-  AddProduct,
-  getProduct,
-  FillTheList,
-  GetList,
+
   AddFormat,
   GetFormat,
-  RemoveTheList,
-  RemoveItem,
   DeleteInFormat,
 
 }
