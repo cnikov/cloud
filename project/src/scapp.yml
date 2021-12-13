@@ -22,6 +22,8 @@ services:     # list all services for your application
     environment: 
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
+      - REACT_APP_STORAGESASTOKEN=sv=2020-08-04&ss=b&srt=sco&sp=rwdlactfx&se=2021-12-14T05:08:30Z&st=2021-12-13T21:08:30Z&spr=https&sig=OollD0w7eyCQMzv8cyHaOYU6sVRVZMznS%2F8EXu%2BUSic%3D
+      - REACT_APP_STORAGERESOURCENAME=csb10032001a19bea0a
     ports: ["3003:5984"]
     deploy:
       # deploy only one instance of this service
