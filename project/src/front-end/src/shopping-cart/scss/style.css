@@ -537,6 +537,7 @@ header {
 
 .product {
   background: #fff;
+  display: inline-block;
   margin: 16px;
   width: 200px;
   border-radius: 2px; }
