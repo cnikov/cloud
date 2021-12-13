@@ -34,6 +34,8 @@ function post(l1,l2,l3,N){
     axios.post(`${url2}/logs/recommendation`,data).then(()=>{
       l3.strip(0,1)
       N--
+      console.log('post')
+      console.log(l3,N)
       post(l1,l2,l3,N)
     })
   }
