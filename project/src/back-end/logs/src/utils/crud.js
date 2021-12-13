@@ -256,9 +256,9 @@ function deleteProd(product){
               console.log(data)
               for(var item in data){
                 console.log(item)
-                var list1 = item.with
+                var list1 = data[item]['with']
                 console.log(list1)
-                var list2 = item.quantity
+                var list2 = data[item]['quantity']
                 var index = list1.indexOf(product)
                 if(index >=0){
                   list1.splice(index,1)
