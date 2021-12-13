@@ -547,6 +547,7 @@ header {
     border-radius: 2px 2px 0 0;
     max-height: 200px; }
     .product .product-image img {
+      display: inline-block;
       float:left;
       cursor: zoom-in;
       width: 100%;
