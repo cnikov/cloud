@@ -53,7 +53,7 @@ app.get('/logs/:type', (req, res) => {
     res.status(409).json({ status: 'error', message: String(err) })
   })
 })
-app.get('/logs/:name',(req, res) => {
+app.delete('/logs/:name',(req, res) => {
   var product = req.params.name
   return db.deleteProd(product).then((token) => {
     res.status(200).json({ status: 'success', token })
