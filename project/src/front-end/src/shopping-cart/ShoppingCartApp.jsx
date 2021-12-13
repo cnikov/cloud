@@ -14,8 +14,10 @@ const PurchasesService = LocalPurchases
 
 
 async function post(data){
-  axios.post(`${url2}/logs/recommendation`,data)
+  axios.post(`${url2}/logs/recommendation`,data).then(()=>{ status = true})
+
 }
+var status = false
 class ShoppingCartApp extends Component {
 
   componentWillMount() {
@@ -220,6 +222,7 @@ class ShoppingCartApp extends Component {
 
     }
     for(var i of l1){
+      
       console.log("my info are :")
       console.log(i)
       var data = {
@@ -229,7 +232,8 @@ class ShoppingCartApp extends Component {
       }
       console.log(data)
       post(data)
-      setTimeout(function(){},20000)
+      while(status == false){}
+      
     }
     axios.delete(`${url}/shopping-kart/${username}`)
     this.initialiseState(false)
