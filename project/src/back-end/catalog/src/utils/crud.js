@@ -1,6 +1,4 @@
 //variables to get the couchdb databases using nano
-//catalog
-var catalog = require('nano')(process.env.DB_URL_C)
 
 //format db
 var form = require('nano')(process.env.DB_URL_L)
@@ -57,8 +55,11 @@ function GetFormat(dbid) {
 //Add an element in the document with the right format
 function AddFormat(name, price, image, category, id) {
   return new Promise((resolve, reject) => {
+    console.log("log1")
     form.get("format", (error, success) => {
+      console.log("log2")
       if (success) {
+        console.log("log3")
         newDoc = {
           '_rev': success._rev,
           'doc': success.doc
@@ -82,6 +83,7 @@ function AddFormat(name, price, image, category, id) {
           }
         }
       } else {
+        console.log("log4")
         newDoc = {
           'doc': {
             [category]: {
@@ -97,8 +99,11 @@ function AddFormat(name, price, image, category, id) {
         }
       }
       const nid = "format"
+      console.log("log5")
           form.insert(newDoc, nid, (error, success) => {
+            console.log("log6")
             if (success) {
+              console.log("log7")
               var data = {
                 'name':name,
                 'price':price,
