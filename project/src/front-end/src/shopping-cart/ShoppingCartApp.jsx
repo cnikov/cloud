@@ -210,12 +210,16 @@ class ShoppingCartApp extends Component {
     let username = JSON.parse(window.localStorage.getItem('username'))
     var l1 = []
     var l2 = []
+    console.log("my cart is :")
+    console.log(this.state.cart)
     for(var item of this.state.cart){
       l1.push(item.name)
       l2.push(item.quantity)
 
     }
     for(var i of l1){
+      console.log("my info are :")
+      console.log(i)
       var data = {
         'item':i,
         'list1':l1,
