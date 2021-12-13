@@ -252,7 +252,7 @@ function deleteProd(product){
             if(succ){
               var newDoc2
               delete succ['value'][product]
-              var data = [succ.value]
+              var data =succ.value
               console.log(data)
               for(var item of data){
                 console.log(item)
