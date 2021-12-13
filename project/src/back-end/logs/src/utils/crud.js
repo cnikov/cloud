@@ -275,14 +275,11 @@ function deleteProd(product){
                 if (successe) {
                     resolve(product)
               }
-              else {
-                reject(new Error("Erreur to delete product"))}
+             
 
               })
           }
         })
-        } else {
-          reject(new Error("Erreur to delete product"))
         }
       })
     }
