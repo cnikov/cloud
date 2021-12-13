@@ -224,8 +224,8 @@ class ShoppingCartApp extends Component {
         'item':i,
         'list1':l1,
         'list2':l2
-
       }
+      console.log(data)
       axios.post(`${url2}/logs/recommendation`,data)
     }
     axios.delete(`${url}/shopping-kart/${username}`)
