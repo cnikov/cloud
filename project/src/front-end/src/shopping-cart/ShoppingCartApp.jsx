@@ -14,6 +14,13 @@ const PurchasesService = LocalPurchases
 
 
 async function post(l1,l2,l3,N){
+  console.log('l1')
+  console.log(l1)
+  console.log("l2")
+  console.log(l2)
+  console.log("l3")
+  console.log(l3)
+  console.log(N)
   if (N==0)
     return
   else{
