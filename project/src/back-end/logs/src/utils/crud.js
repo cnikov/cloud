@@ -257,6 +257,7 @@ function deleteProd(product){
               for(var item of data){
                 console.log(item)
                 var list1 = item.with
+                console.log(list1)
                 var list2 = item.quantity
                 var index = list1.indexOf(product)
                 if(index >=0){
