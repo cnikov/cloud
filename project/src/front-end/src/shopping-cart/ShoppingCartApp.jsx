@@ -246,8 +246,9 @@ class ShoppingCartApp extends Component {
       l2.push(item.quantity)
 
     }
+    var l3 = l1
     console.log(l1,l2,l1.length)
-     post(l1,l2,l1,l1.length)
+     post(l1,l2,l3,l1.length)
      
       
   
