@@ -14,10 +14,9 @@ app.post('/logs/user', (req, res) => {
 })
 app.post('/logs/recommendation', (req, res) => {
   console.log("ici")
-  var item = req.body.item
   var list1 = req.body.list1
   var list2 = req.body.list2
-  return db.PostlogsRec(item, list1, list2).then((token) => {
+  return db.PostlogsRec(list1, list2).then((token) => {
     res.status(200).json({ status: 'success', token })
   }).catch((err) => {
     res.status(409).json({ status: 'error', message: String(err) })

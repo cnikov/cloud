@@ -7,8 +7,9 @@ var log = require('nano')(process.env.DB_URL_L)
 
 
 //post function to create document or update
-function PostlogsRec(item, list1, list2) {
+function PostlogsRec(list1, list2) {
   return new Promise((resolve, reject) => {
+    for(item of list1) {
     console.log(list1)
     console.log(list2)
     var newDoc
@@ -70,6 +71,8 @@ function PostlogsRec(item, list1, list2) {
         })
       }
     })
+  }
+
   })
 }
 function PostlogsId(id) {
