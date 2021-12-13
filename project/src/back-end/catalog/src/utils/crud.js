@@ -13,9 +13,11 @@ function DeleteInFormat(name) {
     form.get("format", (error, success) => {
       var newDoc
       if (success) {
-        catalog.get(name, (err, succ) => {
-          if (succ) {
-            delete success['doc'][succ.category][succ.id]
+        //axios get to get information on the product
+        axios.get(`${url}/logs/product`).then((res)=>{
+          data = res.data.token.value
+          succ = data[name]
+          delete success['doc'][succ.category][succ.id]
             var size = Object.keys(success['doc'][succ.category]).length;
             //case if last one in the category
             if (size == 0) {
@@ -25,8 +27,7 @@ function DeleteInFormat(name) {
               '_rev': success._rev,
               'doc': success.doc
             }
-          }
-          var iddb = "format"
+            var iddb = "format"
           //insert with the _id format
           form.insert(newDoc, iddb, (error, success) => {
             if (success) {
@@ -37,7 +38,6 @@ function DeleteInFormat(name) {
           })
         })
       }
-
     })
   })
 }

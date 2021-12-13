@@ -235,7 +235,60 @@ function getlogs(type) {
   })
 
 }
+function deleteProd(product){
+  //first product
+  log.get("product",(error, success) => {
+    var newDoc
+    if(success){
+      delete success['value'][product]
+      newDoc = {
+        '_rev': success._rev,
+        'value': success.value
+      }
+      log.insert(newDoc,"product",(error, succes) => {
+        if (succes) {
+          // delete in recommendations.
+          log.get('recommendation',(error, succ)=>{
+            if(succ){
+              var newDoc2
+              delete succ['value'][product]
+              var data = [succ.value]
+              console.log(data)
+              for(var item of data){
+                console.log(item)
+                var list1 = item.with
+                var list2 = item.quantity
+                var index = list1.indexOf(product)
+                if(index >=0){
+                  list1.splice(index,1)
+                  list2.splice(index,1)
+                  succ['value'][item]['with'] = list1
+                  succ['value'][item]['quantity'] = list2
+                }
+              }
+              newDoc2 = {
+                '_rev': success._rev,
+                'value': success.value
+              }
+              log.insert(newDoc2,"recommendation",(error, successe) => {
+                if (successe) {
+                    resolve(product)
+              }
+              else {
+                reject(new Error("Erreur to delete product"))}
+
+              })
+          }
+        })
+        } else {
+          reject(new Error("Erreur to delete product"))
+        }
+      })
+    }
+  })
+}
 module.exports = {
+  deleteProd,
   PostlogsUser,
   PostlogsRec,
   PostlogsProduct,
