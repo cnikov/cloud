@@ -99,10 +99,8 @@ class QuickView extends Component {
                 <div className='product'>
                   <div className='product-image'>
 
-                    <img src={ImageList[0]} 
-                    style="display: inline-block;"/>
-                    <img src={ImageList[1]} 
-                    style="display: inline-block;"/>
+                    <img src={ImageList[0]} />
+                    <img src={ImageList[1]} />
                     <div className='child'>
                       <div className='product'>
                         <div className='product-image'>
