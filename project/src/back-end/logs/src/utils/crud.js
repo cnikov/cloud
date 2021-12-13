@@ -31,7 +31,7 @@ function PostlogsRec(item, list1, list2) {
             }
             //if the item already exists...
             else {
-              success['value'][item]['quantity'][updIndex] = parseInt(success['value'][item]['quantity'], 10) + parseInt(list2[i], 10)
+              success['value'][item]['quantity'][updIndex] = parseInt(success['value'][item]['quantity'][updIndex], 10) + parseInt(list2[i], 10)
             }
           }
           success['value'][item]['with'] = ToUpdate
