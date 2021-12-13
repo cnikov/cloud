@@ -10,7 +10,8 @@ var log = require('nano')(process.env.DB_URL_L)
 function PostlogsRec(list1, list2) {
   return new Promise((resolve, reject) => {
     var themegalist = list1
-    for(item of themegalist) {
+    for(item in themegalist) {
+      console.log(item)
     console.log(list1)
     console.log(list2)
     var newDoc
