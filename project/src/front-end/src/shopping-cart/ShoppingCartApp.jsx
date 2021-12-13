@@ -13,8 +13,22 @@ const PurchasesService = LocalPurchases
 
 
 
-async function post(data){
-  axios.post(`${url2}/logs/recommendation`,data)
+async function post(l1,l2,l3,N){
+  if (N==0)
+    return
+  else{
+    var data = {
+      'item':l3[0],
+      'list1':l1,
+      'list2':l2
+    }
+    axios.post(`${url2}/logs/recommendation`,data).then(()=>{
+      l3.strip(0,1)
+      N--
+      return post(l1,l2,l3,N)
+    })
+  }
+
 }
 
 
@@ -221,12 +235,9 @@ class ShoppingCartApp extends Component {
       l2.push(item.quantity)
 
     }
-    var data = {
-      'list1':l1,
-      'list2':l2
-    }
+    
   
-      post(data)
+      post(l1,l2,l1,l1.length)
      
       
   
