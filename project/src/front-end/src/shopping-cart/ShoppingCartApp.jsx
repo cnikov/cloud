@@ -13,7 +13,7 @@ const PurchasesService = LocalPurchases
 
 
 
-async function post(l1,l2,l3,N){
+function post(l1,l2,l3,N){
   console.log('l1')
   console.log(l1)
   console.log("l2")
@@ -32,7 +32,7 @@ async function post(l1,l2,l3,N){
     axios.post(`${url2}/logs/recommendation`,data).then(()=>{
       l3.strip(0,1)
       N--
-      return post(l1,l2,l3,N)
+      post(l1,l2,l3,N)
     })
   }
 
@@ -242,9 +242,7 @@ class ShoppingCartApp extends Component {
       l2.push(item.quantity)
 
     }
-    
-  
-      post(l1,l2,l1,l1.length)
+     post(l1,l2,l1,l1.length)
      
       
   
