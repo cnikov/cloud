@@ -7,15 +7,8 @@ var log = require('nano')(process.env.DB_URL_L)
 
 
 //post function to create document or update
-function PostlogsRec(list11, list22) {
+function PostlogsRec(item, list1, list2) {
   return new Promise((resolve, reject) => {
-    var themegalist = list11
-    console.log(themegalist)
-    for(var i = 0; i<themegalist.length; i++) {
-      var item = themegalist[i]
-      var list1 = list11
-      var list2 = list22
-      console.log(item)
     console.log(list1)
     console.log(list2)
     var newDoc
@@ -52,7 +45,7 @@ function PostlogsRec(list11, list22) {
         //update db
         log.insert(newDoc, 'recommendation', (error, success) => {
           if (success) {
-           
+            resolve(item)
           } else {
             reject(new Error("Error to insert history"))
           }
@@ -70,18 +63,14 @@ function PostlogsRec(list11, list22) {
         }
         log.insert(newDoc, 'recommendation', (error, success) => {
           if (success) {
-           
+            resolve(item)
           } else {
             reject(new Error("Error to insert history"))
           }
         })
       }
     })
-  }
-  resolve(list1)
-
   })
-
 }
 function PostlogsId(id) {
   return new Promise((resolve, reject) => {
