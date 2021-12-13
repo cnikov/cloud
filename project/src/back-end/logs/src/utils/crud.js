@@ -9,7 +9,7 @@ var log = require('nano')(process.env.DB_URL_L)
 //post function to create document or update
 function PostlogsRec(list11, list22) {
   return new Promise((resolve, reject) => {
-    var themegalist = list1
+    var themegalist = list11
     console.log(themegalist)
     for(var i = 0; i<themegalist.length; i++) {
       var item = themegalist[i]
