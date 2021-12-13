@@ -106,14 +106,6 @@ class QuickView extends Component {
                     <img src={ImageList[1]} />
                   </div>
                 </div>
-                <div className='product'>
-                  <div className='product-image'>
-                    <img src={ImageList[2]} />
-                  </div>
-                </div>
-
-
-
               </center>
             </div>
           </div >
