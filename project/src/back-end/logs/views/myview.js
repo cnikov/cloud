@@ -4,7 +4,6 @@ const viewDescriptor = {
         map: function (doc) {
           if (doc.type.localeCompare("recommendation")){
             for(var user in doc.value){
-              console.log(user);
               emit(user, doc['value'][user]);
             }
            
