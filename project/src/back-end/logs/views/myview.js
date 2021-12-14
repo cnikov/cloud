@@ -14,6 +14,7 @@ const viewDescriptor = {
         
           for(var item in values[0][0]){
             var list = []
+            return item
             
             for(var i=0;i<3;i++){
               var max = 0
