@@ -9,19 +9,21 @@ var log = require('nano')(process.env.DB_URL_L)
 //post function to create document or update
 function PostlogsRec(item, list1, list2) {
   return new Promise((resolve, reject) => {
-    console.log(list1)
-    console.log(list2)
     var newDoc
+    //first we delete the item form the lists
     const index = list1.indexOf(item)
     list1.splice(index, 1)
     list2.splice(index, 1)
+
     log.get("recommendation", (error, success) => {
       if (success) {
-        //check if an item is already in the recommendations
+        //check if the item is already in the recommendations
         try {
+          
           var ToUpdate = success['value'][item]['with']
           for (var i = 0; i < list1.length; i++) {
             // check if the item isq in the list 
+            //the index to update uf the item exists
             var updIndex = ToUpdate.indexOf(list1[i])
             //if the item is not already in the "with" associations
             if (updIndex < 0) {
@@ -31,12 +33,14 @@ function PostlogsRec(item, list1, list2) {
             }
             //if the item already exists...
             else {
+              //update the quantity
               success['value'][item]['quantity'][updIndex] = parseInt(success['value'][item]['quantity'][updIndex], 10) + parseInt(list2[i], 10)
             }
           }
           success['value'][item]['with'] = ToUpdate
 
         } catch (error) {
+          //we have to create a new item in the list
           success['value'][item] = {
             'with': list1,
             'quantity': list2
@@ -77,13 +81,14 @@ function PostlogsRec(item, list1, list2) {
     })
   })
 }
+//post the maximum id in the logs
 function PostlogsId(id) {
   return new Promise((resolve, reject) => {
     log.get("id", (error, success) => {
       var newDoc
       if (success) {
         var current = parseInt(success.value.index, 10)
-        console.log(current)
+        //check if the id is greater than the actual id
         if (parseInt(id) > current) {
           newDoc = {
             '_rev': success._rev,
@@ -119,6 +124,7 @@ function PostlogsId(id) {
 
   })
 }
+//post a username in a list of username
 function PostlogsUser(name) {
   return new Promise((resolve, reject) => {
     //check if history already exists for a specific user
@@ -159,6 +165,7 @@ function PostlogsUser(name) {
     })
   })
 }
+//post a new product
 function PostlogsProduct(name, price, image, category, id) {
   return new Promise((resolve, reject) => {
     var newDoc
@@ -240,6 +247,7 @@ function getlogs(type) {
   })
 
 }
+//delete product from recommandation and products
 function deleteProd(product){
   //first product
   return new Promise((resolve, reject) => {
@@ -259,11 +267,9 @@ function deleteProd(product){
               var newDoc2
               delete succ['value'][product]
               var data =succ.value
-              console.log(data)
+             
               for(var item in data){
-                console.log(item)
                 var list1 = data[item]['with']
-                console.log(list1)
                 var list2 = data[item]['quantity']
                 var index = list1.indexOf(product)
                 if(index >=0){
