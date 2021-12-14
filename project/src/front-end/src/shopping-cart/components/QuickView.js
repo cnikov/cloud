@@ -58,7 +58,8 @@ class QuickView extends Component {
         
           console.log(res.data.token.rows)
           for(var data of res.data.token.rows){
-            if(data.key == username){
+            console.log(data['key'],username)
+            if(data['key'].localeCompare(username) == 0){
               recommendation = data.value
               console.log(recommendation)
             }
@@ -67,7 +68,7 @@ class QuickView extends Component {
         
         axios.get(`${url}/logs/product`).then((result) => {
           this.setState({
-            recomm: recommendation,
+            //recomm: recommendation,
             img: result['data']['token']['value']
           });
         })
