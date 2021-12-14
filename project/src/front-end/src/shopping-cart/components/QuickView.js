@@ -55,7 +55,7 @@ class QuickView extends Component {
     axios.get(`${url}/views`)
       .then(res => {
         try{
-          console.log(res.data.token[0].values[0])
+          console.log(res.data.token.rows[0].value[0])
         }catch(e){}
         
         axios.get(`${url}/logs/product`).then((result) => {
