@@ -56,14 +56,15 @@ class QuickView extends Component {
       .then(res => {
         try{
           console.log(res.data.token.rows[0].value[0])
-        }catch(e){}
+        
         
         axios.get(`${url}/logs/product`).then((result) => {
           this.setState({
-            recomm: res['data']['token']['value'][username],
+            recomm: res['data']['token']['rows'][0]['value'][0][2][username],
             img: result['data']['token']['value']
           });
         })
+      }catch(e){}
 
 
       })
