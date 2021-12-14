@@ -81,6 +81,7 @@ class ShoppingCartApp extends Component {
       console.log(this.state.purService)
     } else {
       this.setState({
+        username:'',
         products: [],
         cart: [],
         totalItems: 0,
