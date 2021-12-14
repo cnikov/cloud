@@ -40,7 +40,7 @@ echo -e "\tDONE"
 cd formatter_output
 echo "Creation of views for movielens DB"
 for view in `ls *.js`; do
-  curl -X PUT "${COUCHDB_L}/_design/queries" --upload-file ${view}
+  curl -X PUT "${{DB_URL_L}/_design/queries" --upload-file ${view}
   if [[ ${?} != 0 ]]; then
     echo -e "ERROR: during the creation of view ${view}\nEND OF ${0}"
     exit 1
