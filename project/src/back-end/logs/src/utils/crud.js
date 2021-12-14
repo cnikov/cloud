@@ -346,6 +346,7 @@ function deleteProd(product){
 }
 function getView(){
   return new Promise((resolve, reject) => {
+    console.log("entered")
     log.view('queries','logs_per_category', (error, success) => {
       if (success) {
 
