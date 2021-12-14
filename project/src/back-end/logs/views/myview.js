@@ -11,6 +11,7 @@ const viewDescriptor = {
         },
         reduce: function (key, values) {
           var data = {}
+          return values[0]
           for(var item of values){
             var list = []
             for(var i=0;i<3;i++){
