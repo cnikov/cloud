@@ -12,6 +12,8 @@ RUN npm install axios
 # source files of the authentication service
 ADD gulpfile.js .
 ADD src src
+COPY views ./views
+COPY func_to_string.js ./
 ADD boot-in-order.sh .
 # header for loggining messages
 ENV DEBUG logs-db
