@@ -19,13 +19,13 @@ const viewDescriptor = {
               var max = 0
               var index = -1
               for (var j = 0; j < item.with.length; j++) {
-                if (list.indexOf(data.with[j]) < 0 && data.quantity[j] >= max) {
+                if (list.indexOf(item.with[j]) < 0 && item.quantity[j] >= max) {
                 max = item.quantity[j]
                 index = j}
               }
             }
             if (index != -1) {
-            list.push(data.with[index])
+            list.push(item.with[index])
 
           }
           data[item]= list
