@@ -52,7 +52,7 @@ class QuickView extends Component {
   componentDidMount() {
     var recommendation
     var username = this.props.username
-    console.log("username   ",username)
+    console.log("username   ",JSON.parse(window.localStorage.getItem('username')))
     axios.get(`${url}/views`)
       .then(res => {
         
