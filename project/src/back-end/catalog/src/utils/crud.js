@@ -4,8 +4,8 @@ var form = require('nano')(process.env.DB_URL_L)
 var axios = require('axios')
 //const { BlobServiceClient } = require('@azure/storage-blob')
 const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
-const storageSasToken = "sv=2020-08-04&ss=b&srt=sco&sp=rwdlactfx&se=2022-02-01T01:07:03Z&st=2021-12-14T17:07:03Z&spr=https&sig=0F34OLet3mNjKL9gpYm1ZH%2FC2cRvYdi7lqNtP%2FtBLSM%3D"
-const storageResourceName = "image"
+//const storageSasToken = "sv=2020-08-04&ss=b&srt=sco&sp=rwdlactfx&se=2022-02-01T01:07:03Z&st=2021-12-14T17:07:03Z&spr=https&sig=0F34OLet3mNjKL9gpYm1ZH%2FC2cRvYdi7lqNtP%2FtBLSM%3D"
+//const storageResourceName = "image"
 // storage name = csb10032001a19bea0a
 // chaine de connection : BlobEndpoint=https://csb10032001a19bea0a.blob.core.windows.net/;QueueEndpoint=https://csb10032001a19bea0a.queue.core.windows.net/;FileEndpoint=https://csb10032001a19bea0a.file.core.windows.net/;TableEndpoint=https://csb10032001a19bea0a.table.core.windows.net/;SharedAccessSignature=sv=2020-08-04&ss=b&srt=sco&sp=rwdlactfx&se=2022-02-01T01:07:03Z&st=2021-12-14T17:07:03Z&spr=https&sig=0F34OLet3mNjKL9gpYm1ZH%2FC2cRvYdi7lqNtP%2FtBLSM%3D
 // URL de la signature d'accès partagé du service BLOB : https://csb10032001a19bea0a.blob.core.windows.net/?sv=2020-08-04&ss=b&srt=sco&sp=rwdlactfx&se=2022-02-01T01:07:03Z&st=2021-12-14T17:07:03Z&spr=https&sig=0F34OLet3mNjKL9gpYm1ZH%2FC2cRvYdi7lqNtP%2FtBLSM%3D
@@ -62,7 +62,7 @@ function GetFormat(dbid) {
 //Add an element in the document with the right format
 function AddFormat(name, price, image, category, id) {
   return new Promise((resolve, reject) => {
-    const blobServiceClient = BlobServiceClient.fromConnectionString(AZURE_STORAGE_CONNECTION_STRING);
+    /*const blobServiceClient = BlobServiceClient.fromConnectionString(AZURE_STORAGE_CONNECTION_STRING);
     // Make sure your container was created
     const containerName = storageResourceName
     // Get a reference to the container
@@ -79,7 +79,7 @@ function AddFormat(name, price, image, category, id) {
     blockBlobClient.upload(data1, data1.length);
     
     console.log("Blob was uploaded successfully. requestId: ");
-    console.log("Blob URL: ", bloburl)
+    console.log("Blob URL: ", bloburl)*/
     console.log("log1")
     form.get("format", (error, success) => {
       console.log("log2")
