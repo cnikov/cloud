@@ -28,7 +28,7 @@ const viewDescriptor = {
             list.push(item.with[index])
 
           }
-          data[item]= list
+          data[item.name]= list
         }
         return data
         }

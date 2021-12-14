@@ -44,6 +44,7 @@ function PostlogsRec(user,item, list1, list2) {
         } catch (error) {
           //we have to create a new item in the list
           success['value'][user][item] = {
+            'name':item,
             'with': list1,
             'quantity': list2
           }
@@ -63,6 +64,7 @@ function PostlogsRec(user,item, list1, list2) {
         })}catch (error) {
           success['value'][user] = {
             [item]:{
+              'name':item,
               'with':list1,
               'quantity':list2
             }
