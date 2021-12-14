@@ -7,7 +7,7 @@ var log = require('nano')(process.env.DB_URL_L)
 
 
 //post function to create document or update
-function PostlogsRec(item, list1, list2) {
+function PostlogsRec(user,item, list1, list2) {
   return new Promise((resolve, reject) => {
     var newDoc
     //first we delete the item form the lists
@@ -18,9 +18,11 @@ function PostlogsRec(item, list1, list2) {
     log.get("recommendation", (error, success) => {
       if (success) {
         //check if the item is already in the recommendations
-        try {
-          
-          var ToUpdate = success['value'][item]['with']
+        //check first if the user is already in recomendaitons
+        try{
+          var updatingUser = success['value'][user][item]
+        try{
+          var ToUpdate = success['value'][user][item]['with']
           for (var i = 0; i < list1.length; i++) {
             // check if the item isq in the list 
             //the index to update uf the item exists
@@ -29,19 +31,19 @@ function PostlogsRec(item, list1, list2) {
             if (updIndex < 0) {
               //push the item in the list
               ToUpdate.push(list1[i])
-              success['value'][item]['quantity'].push(list2[i])
+              success['value'][user][item]['quantity'].push(list2[i])
             }
             //if the item already exists...
             else {
               //update the quantity
-              success['value'][item]['quantity'][updIndex] = parseInt(success['value'][item]['quantity'][updIndex], 10) + parseInt(list2[i], 10)
+              success['value'][user][item]['quantity'][updIndex] = parseInt(success['value'][user][item]['quantity'][updIndex], 10) + parseInt(list2[i], 10)
             }
           }
-          success['value'][item]['with'] = ToUpdate
+          success['value'][user][item]['with'] = ToUpdate
 
         } catch (error) {
           //we have to create a new item in the list
-          success['value'][item] = {
+          success['value'][user][item] = {
             'with': list1,
             'quantity': list2
           }
@@ -58,17 +60,38 @@ function PostlogsRec(item, list1, list2) {
           } else {
             reject(new Error("Error to insert history"))
           }
-        })
+        })}catch (error) {
+          success['value'][user] = {
+            [item]:{
+              'with':list1,
+              'quantity':list2
+            }
+          }
+          newDoc = {
+            '_rev': success._rev,
+            'type': success.type,
+            'value': success.value
+          }
+          //update db
+          log.insert(newDoc, 'recommendation', (error, success) => {
+            if (success) {
+              resolve(item)
+            } else {
+              reject(new Error("Error to insert history"))
+            }
+          })
+        }
       }
       else {
         newDoc = {
           'type': 'recommendation',
-          'value': {
+          'value': {[user]:{
             [item]: {
               'with': list1,
               'quantity': list2
             }
           }
+        }
         }
         log.insert(newDoc, 'recommendation', (error, success) => {
           if (success) {

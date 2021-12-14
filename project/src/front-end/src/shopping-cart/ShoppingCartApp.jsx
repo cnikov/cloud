@@ -13,7 +13,7 @@ const PurchasesService = LocalPurchases
 
 
 
-function post(l1,l2,l3,N){
+function post(user,l1,l2,l3,N){
 
   if (N==0){
     return
@@ -21,6 +21,7 @@ function post(l1,l2,l3,N){
    
   else{
     var data = {
+      'user':user,
       'item':l3[0],
       'list1':l1,
       'list2':l2
@@ -239,9 +240,10 @@ class ShoppingCartApp extends Component {
       l1.push(item.name)
       l2.push(item.quantity)
       l3.push(item.name)
+      
 
     }
-     post(l1,l2,l3,l1.length)
+     post(username,l1,l2,l3,l1.length)
      
       
   

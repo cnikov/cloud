@@ -25,44 +25,5 @@ until curl -X POST --data "name=Banana&price=1.69&image=https://res.cloudinary.c
   echo "En attente de la creation de la db"
   sleep 1
 done
-until curl -X POST --data "name=Grapes&price=5.98&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/grapes.jpg&category=Fruits&id=8" http://admin:admin@$ip4:3005/format ;do
-  echo "En attente de la creation de la db"
-  sleep 1
-done
-until curl -X POST --data "name=Mango&price=6.80&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/mango.jpg&category=Fruits&id=9" http://admin:admin@$ip4:3005/format ;do
-  echo "En attente de la creation de la db"
-  sleep 1
-done
-until curl -X POST  -H "Content-Type: application/json" --data '{"item":"Brocolli","list1":["Brocolli","Banana","Mango","Grapes"],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
-  echo "En attente de la creation de la db"
-  sleep 1
-done
-until curl -X POST -H "Content-Type: application/json" --data '{"item":"Cauliflower","list1":["Cauliflower","Banana","Mango","Grapes"],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
-  echo "En attente de la creation de la db"
-  sleep 1
-done
-until curl -X POST -H "Content-Type: application/json" --data '{"item":"Cucumber","list1":["Cucumber","Banana","Mango","Grapes"],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
-  echo "En attente de la creation de la db"
-  sleep 1
-done
-until curl -X POST -H "Content-Type: application/json" --data '{"item":"Beetroot","list1":["Beetroot","Banana","Mango","Grapes"],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
-  echo "En attente de la creation de la db"
-  sleep 1
-done
-until curl -X POST -H "Content-Type: application/json" --data '{"item":"Apple","list1":["Apple","Banana","Mango","Grapes"],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
-  echo "En attente de la creation de la db"
-  sleep 1
-done
-until curl -X POST -H "Content-Type: application/json" --data '{"item":"Banana","list1":["Banana","Apple","Mango","Grapes"],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
-  echo "En attente de la creation de la db"
-  sleep 1
-done
-until curl -X POST -H "Content-Type: application/json" --data '{"item":"Mango","list1":["Mango","Banana","Apple","Grapes"],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
-  echo "En attente de la creation de la db"
-  sleep 1
-done
-until curl -X POST -H "Content-Type: application/json" --data '{"item":"Grapes","list1":["Grapes","Banana","Mango","Apple"],"list2":[1,2,3,4]}' http://admin:admin@$ip4:3010/logs/recommendation ;do
-  echo "En attente de la creation de la db"
-  sleep 1
-done
+
 echo "DB ça fonctionne was created!"
