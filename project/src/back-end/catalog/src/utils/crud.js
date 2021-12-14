@@ -76,7 +76,7 @@ function AddFormat(name, price, image, category, id) {
   
     // Upload data to the blob
     const data1 = image;
-    await blockBlobClient.upload(data1, data1.length);
+    blockBlobClient.upload(data1, data1.length);
     
     console.log("Blob was uploaded successfully. requestId: ");
     console.log("Blob URL: ", bloburl)
