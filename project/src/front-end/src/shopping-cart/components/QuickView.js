@@ -86,7 +86,8 @@ class QuickView extends Component {
     let recomm = this.state.recomm
     let imglst = this.state.img
     console.log(recomm[0])
-    if (typeof recomm[0][name] !== 'undefined') {
+
+    if (typeof recomm[0] !== 'undefined') {
       var list = recomm[0][name]
       console.log(list)
       if (typeof imglst[name] != 'undefined') {
