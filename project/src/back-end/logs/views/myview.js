@@ -10,11 +10,18 @@ const viewDescriptor = {
           }
         },
         reduce: function (key, values) {
-          var data = {}
+          var data = []
+          var ok = values[0]
+          return values[0]
+         for(var item in values[0]){
+           data.push(values[0][item])
+           
+         }
+         return data
         
-          for(var item in values[0][0]){
+          for(var item in values[0]){
+           
             var list = []
-            return item
             
             for(var i=0;i<3;i++){
               var max = 0
