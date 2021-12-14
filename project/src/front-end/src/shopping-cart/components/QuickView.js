@@ -83,9 +83,9 @@ class QuickView extends Component {
     let name = product.name
     let image = product.image
     let price = product.price
-    let recomm = this.state.recomm
+    let recomm = this.state.recomm[0]
     let imglst = this.state.img
-    console.log(recomm[0])
+    console.log(typeof recomm)
 
     if (typeof recomm[name] !== 'undefined') {
       var list = recomm
