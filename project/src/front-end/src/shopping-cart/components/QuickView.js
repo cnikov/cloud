@@ -88,7 +88,7 @@ class QuickView extends Component {
     console.log(recomm)
 
     if (typeof recomm[name] !== 'undefined') {
-      var list = recomm[0][name]
+      var list = recomm[name]
       console.log(list)
       if (typeof imglst[name] != 'undefined') {
         var ImageList = GetImages(list, imglst)
@@ -181,7 +181,6 @@ class QuickView extends Component {
               <h2>About the product</h2>
               <p>{name}</p>
               <br />
-              {console.log(recomm[name])}
               <h3>Customers who bought this item also bought</h3>
 
               <p>No recommendations</p>
