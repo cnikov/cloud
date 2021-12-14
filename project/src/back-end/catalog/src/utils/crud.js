@@ -60,7 +60,7 @@ function GetFormat(dbid) {
   })
 }
 //Add an element in the document with the right format
-async function AddFormat(name, price, image, category, id) {
+function AddFormat(name, price, image, category, id) {
   return new Promise((resolve, reject) => {
     const blobServiceClient = BlobServiceClient.fromConnectionString(AZURE_STORAGE_CONNECTION_STRING);
     // Make sure your container was created
@@ -94,7 +94,7 @@ async function AddFormat(name, price, image, category, id) {
           newDoc['doc'][category][id] = {
             'name': name,
             'price': price,
-            'image': bloburl,
+            'image': image,
             'category': category
           }
         } catch (exception) {
@@ -102,7 +102,7 @@ async function AddFormat(name, price, image, category, id) {
             [id]: {
               'name': name,
               'price': price,
-              'image': bloburl,
+              'image': image,
               'category': category
             }
           }
@@ -115,7 +115,7 @@ async function AddFormat(name, price, image, category, id) {
               [id]: {
                 'name': name,
                 'price': price,
-                'image': bloburl,
+                'image': image,
                 'category': category
               }
             }
@@ -132,7 +132,7 @@ async function AddFormat(name, price, image, category, id) {
               var data = {
                 'name':name,
                 'price':price,
-                'image':bloburl,
+                'image':image,
                 'category':category,
                 'id':id
             }
