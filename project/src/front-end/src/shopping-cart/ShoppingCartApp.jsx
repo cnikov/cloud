@@ -58,6 +58,7 @@ class ShoppingCartApp extends Component {
   initialiseState(firstCall) {
     if (firstCall) {
       this.state = {
+        username:'',
         products: [],
         cart: [],
         totalItems: 0,
@@ -173,6 +174,7 @@ class ShoppingCartApp extends Component {
     axios.delete(`${url}/shopping-kart/${productName}/${username}`)
     mycart.splice(index, 1)
     this.setState({
+      username:username,
       cart: mycart
     })
     this.sumTotalItems(this.state.cart)
@@ -289,7 +291,7 @@ class ShoppingCartApp extends Component {
               openModal={this.openModal}
               authenticated={this.props.authenticated} />
             <QuickView
-              username={JSON.parse(window.localStorage.getItem('username'))}
+              username={this.state.username}
               product={this.state.quickViewProduct}
               openModal={this.state.modalActive}
               closeModal={this.closeModal} />
