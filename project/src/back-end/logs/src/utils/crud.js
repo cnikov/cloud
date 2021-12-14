@@ -346,7 +346,7 @@ function deleteProd(product){
 }
 function getView(){
   return new Promise((resolve, reject) => {
-    log.get('_design/queries/_view/movies_per_category?group=true', (error, success) => {
+    log.view('queries','logs_per_category', (error, success) => {
       if (success) {
 
         resolve(success);
