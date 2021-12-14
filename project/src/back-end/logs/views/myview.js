@@ -2,8 +2,8 @@ const viewDescriptor = {
     views: {
       logs_per_category: {
         map: function (doc) {
-          if (doc.category && doc.value) {
-            emit(doc.category, doc.value);
+          if (doc._id && doc.value) {
+            emit(doc._id, doc.value);
           }
         },
         reduce: function (key, values) {
