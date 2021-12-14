@@ -11,10 +11,10 @@ const viewDescriptor = {
         },
         reduce: function (key, values) {
           var data = {}
-          
-          for(var item of values[0]){
+          return values
+          for(var item in values[0]){
             var list = []
-            return item
+            
             for(var i=0;i<3;i++){
               var max = 0
               var index = -1
