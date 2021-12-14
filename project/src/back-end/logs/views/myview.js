@@ -1,13 +1,13 @@
 const viewDescriptor = {
     views: {
-      movies_per_category: {
+      logs_per_category: {
         map: function (doc) {
-          if (doc.category && doc.movieId) {
-            emit(doc.category, 1)
+          if (doc.category && doc.value) {
+            emit(doc.category, doc.value);
           }
         },
         reduce: function (key, values) {
-          return sum(values)
+          return values
         }
       }
     }

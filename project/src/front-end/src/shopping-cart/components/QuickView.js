@@ -52,8 +52,9 @@ class QuickView extends Component {
   componentDidMount() {
     var username = JSON.parse(window.localStorage.getItem('username'))
     console.log("username   ",username)
-    axios.get(`${url}/logs/recommendation`)
+    axios.get(`${url}/logs/_design/queries/_view/logs_per_category?group=true`)
       .then(res => {
+        console.log(res.data.token)
         axios.get(`${url}/logs/product`).then((result) => {
           this.setState({
             recomm: res['data']['token']['value'][username],
