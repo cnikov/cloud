@@ -170,6 +170,7 @@ class ShoppingCartApp extends Component {
     let index = mycart.findIndex(x => x.id === id)
     let productName = mycart[index].name
     let username = JSON.parse(window.localStorage.getItem('username'))
+    console.log(username)
     
     axios.delete(`${url}/shopping-kart/${productName}/${username}`)
     mycart.splice(index, 1)
