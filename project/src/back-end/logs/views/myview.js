@@ -7,6 +7,7 @@ const viewDescriptor = {
           }
         },
         reduce: function (key, values) {
+          console.log(key)
           return values
         }
       }
