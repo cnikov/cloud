@@ -289,6 +289,7 @@ class ShoppingCartApp extends Component {
               openModal={this.openModal}
               authenticated={this.props.authenticated} />
             <QuickView
+              username={JSON.parse(window.localStorage.getItem('username'))}
               product={this.state.quickViewProduct}
               openModal={this.state.modalActive}
               closeModal={this.closeModal} />
