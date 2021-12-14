@@ -14,13 +14,7 @@ const PurchasesService = LocalPurchases
 
 
 function post(l1,l2,l3,N){
-  console.log('l1')
-  console.log(l1)
-  console.log("l2")
-  console.log(l2)
-  console.log("l3")
-  console.log(l3)
-  console.log(N)
+
   if (N==0){
     return
   }
@@ -34,9 +28,7 @@ function post(l1,l2,l3,N){
     axios.post(`${url2}/logs/recommendation`,data).then(()=>{
       l3.splice(0,1)
       N--
-      console.log('post')
-      console.log(l3,N)
-      console.log(l1)
+
       return post(l1,l2,l3,N)
     })
   }
@@ -249,8 +241,6 @@ class ShoppingCartApp extends Component {
       l3.push(item.name)
 
     }
-    
-    console.log(l1,l2,l3,l1.length)
      post(l1,l2,l3,l1.length)
      
       
