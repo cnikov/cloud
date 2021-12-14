@@ -50,6 +50,7 @@ class QuickView extends Component {
   };
 
   componentDidMount() {
+    var recommendation
     var username = JSON.parse(window.localStorage.getItem('username'))
     console.log("username   ",username)
     axios.get(`${url}/views`)
@@ -57,13 +58,16 @@ class QuickView extends Component {
         
           console.log(res.data.token.rows)
           for(var data of res.data.token.rows){
-            console.log(data.key)
+            if(data.key == username){
+              recommendation = data.value
+              console.log(recommendation)
+            }
           }
         
         
         axios.get(`${url}/logs/product`).then((result) => {
           this.setState({
-            //recomm: res['data']['token']['rows'][0]['value'][0][2][username],
+            recomm: recommendation,
             img: result['data']['token']['value']
           });
         })
@@ -82,7 +86,7 @@ class QuickView extends Component {
     let imglst = this.state.img
 
     if (typeof recomm[name] !== 'undefined') {
-      var list = sortTheList(recomm[name])
+      var list = recomm
       console.log(list)
       if (typeof imglst[name] != 'undefined') {
         var ImageList = GetImages(list, imglst)
