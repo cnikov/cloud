@@ -54,7 +54,7 @@ class QuickView extends Component {
     console.log("username   ",username)
     axios.get(`${url}/views`)
       .then(res => {
-        try{
+        
           console.log(res.data.token.rows)
         
         
@@ -64,7 +64,7 @@ class QuickView extends Component {
             img: result['data']['token']['value']
           });
         })
-      }catch(e){}
+     
 
 
       })
