@@ -288,9 +288,10 @@ function deleteProd(product){
           log.get('user',(error,reusi)=>{
             if(reusi){
               log.get('recommendation',(error, succ)=>{
-                for(var user of reusi['value']){
+                if(succ){
+                for(var user of reusi.value.list){
                   try{
-                    if(succ){
+                    
                       var newDoc2
                       delete succ['value'][user][product]
                       var data =succ['value'][user]
@@ -307,10 +308,11 @@ function deleteProd(product){
                         }
                       }
                       
-                  }   
+                     
                   }catch(e){
                   }
                 }
+              
                 newDoc2 = {
                   '_rev': succ._rev,
                   'value': succ.value
@@ -325,10 +327,10 @@ function deleteProd(product){
                 }
                
   
-                })
+                })}else{resolve(product)}
                 
             })
-            }
+            }else{resolve(product)}
           })
           
         }
