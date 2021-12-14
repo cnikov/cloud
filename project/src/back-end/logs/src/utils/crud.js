@@ -344,8 +344,23 @@ function deleteProd(product){
   })
 })
 }
+function getView(){
+  return new Promise((resolve, reject) => {
+    log.get('_design/queries/_view/movies_per_category?group=true', (error, success) => {
+      if (success) {
+
+        resolve(success);
+      } else {
+        reject(new Error(`To get history. Reason: ${error.reason}.`))
+      }
+
+    })
+  })
+
+}
 module.exports = {
   deleteProd,
+  getView,
   PostlogsUser,
   PostlogsRec,
   PostlogsProduct,
