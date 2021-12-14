@@ -89,6 +89,7 @@ function PostlogsRec(user,item, list1, list2) {
           'type': 'recommendation',
           'value': {[user]:{
             [item]: {
+              'name':item,
               'with': list1,
               'quantity': list2
             }
