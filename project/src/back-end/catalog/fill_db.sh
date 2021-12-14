@@ -25,5 +25,13 @@ until curl -X POST --data "name=Banana&price=1.69&image=https://res.cloudinary.c
   echo "En attente de la creation de la db"
   sleep 1
 done
+until curl -X POST --data "name=Grapes&price=5.98&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/grapes.jpg&category=Fruits&id=8" http://admin:admin@$ip4:3005/format ;do
+  echo "En attente de la creation de la db"
+  sleep 1
+done
+until curl -X POST --data "name=Mango&price=6.80&image=https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/mango.jpg&category=Fruits&id=9" http://admin:admin@$ip4:3005/format ;do
+  echo "En attente de la creation de la db"
+  sleep 1
+done
 
 echo "DB ça fonctionne was created!"

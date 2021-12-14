@@ -30,7 +30,7 @@ function post(user,l1,l2,l3,N){
       l3.splice(0,1)
       N--
 
-      return post(l1,l2,l3,N)
+      return post(user,l1,l2,l3,N)
     })
   }
 
