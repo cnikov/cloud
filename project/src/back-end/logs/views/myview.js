@@ -2,7 +2,7 @@ const viewDescriptor = {
     views: {
       logs_per_category: {
         map: function (doc) {
-          if (doc.type.equals("recommendation")){
+          if (doc.type.localeCompare("recommendation")){
             for(var user in doc.value){
               console.log(user);
               emit(user, doc['value'][user]);
