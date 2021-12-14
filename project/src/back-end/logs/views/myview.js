@@ -13,7 +13,7 @@ const viewDescriptor = {
           var data = {}
           
           for(var item in values[0]){
-          
+          return item
             var list = []
             for(var i=0;i<3;i++){
               var max = 0
