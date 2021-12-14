@@ -68,7 +68,7 @@ class QuickView extends Component {
         
         axios.get(`${url}/logs/product`).then((result) => {
           this.setState({
-            recomm: recommendation[0],
+            recomm: recommendation[0][0],
             img: result['data']['token']['value']
           });
         })
@@ -85,9 +85,9 @@ class QuickView extends Component {
     let price = product.price
     let recomm = this.state.recomm
     let imglst = this.state.img
-    console.log(recomm[0])
+    console.log(recomm)
 
-    if (typeof recomm[0] !== 'undefined') {
+    if (typeof recomm[name] !== 'undefined') {
       var list = recomm[0][name]
       console.log(list)
       if (typeof imglst[name] != 'undefined') {
