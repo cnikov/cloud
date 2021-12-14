@@ -52,7 +52,7 @@ class QuickView extends Component {
   componentDidMount() {
     var username = JSON.parse(window.localStorage.getItem('username'))
     console.log("username   ",username)
-    axios.get(`${url}/logs/views`)
+    axios.get(`${url}/views`)
       .then(res => {
         console.log(res.data.token)
         axios.get(`${url}/logs/product`).then((result) => {
