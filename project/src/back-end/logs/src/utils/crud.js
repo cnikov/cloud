@@ -285,40 +285,52 @@ function deleteProd(product){
       log.insert(newDoc,"product",(error, succes) => {
         if (succes) {
           // delete in recommendations.
-          log.get('recommendation',(error, succ)=>{
-            if(succ){
-              var newDoc2
-              delete succ['value'][product]
-              var data =succ.value
-             
-              for(var item in data){
-                var list1 = data[item]['with']
-                var list2 = data[item]['quantity']
-                var index = list1.indexOf(product)
-                if(index >=0){
-                  list1.splice(index,1)
-                  list2.splice(index,1)
-                  succ['value'][item]['with'] = list1
-                  succ['value'][item]['quantity'] = list2
+          log.get('user',(error,reusi)=>{
+            if(reusi){
+              log.get('recommendation',(error, succ)=>{
+                for(var user of reusi['value']){
+                  try{
+                    if(succ){
+                      var newDoc2
+                      delete succ['value'][user][product]
+                      var data =succ['value'][user]
+                     
+                      for(var item in data){
+                        var list1 = data[item]['with']
+                        var list2 = data[item]['quantity']
+                        var index = list1.indexOf(product)
+                        if(index >=0){
+                          list1.splice(index,1)
+                          list2.splice(index,1)
+                          succ['value'][user][item]['with'] = list1
+                          succ['value'][user][item]['quantity'] = list2
+                        }
+                      }
+                      
+                  }   
+                  }catch(e){
+                  }
                 }
-              }
-              newDoc2 = {
-                '_rev': succ._rev,
-                'value': succ.value
-              }
-           
-              log.insert(newDoc2,"recommendation",(error, successe) => {
-                if (successe) {
-                    resolve(product)
-              }
-              else {
-                reject(new Error("Error to insert history"))
-              }
+                newDoc2 = {
+                  '_rev': succ._rev,
+                  'value': succ.value
+                }
              
-
-              })
-          }
-        })
+                log.insert(newDoc2,"recommendation",(error, successe) => {
+                  if (successe) {
+                      resolve(product)
+                }
+                else {
+                  reject(new Error("Error to insert history"))
+                }
+               
+  
+                })
+                
+            })
+            }
+          })
+          
         }
          else {
           reject(new Error("Error to insert history"))
