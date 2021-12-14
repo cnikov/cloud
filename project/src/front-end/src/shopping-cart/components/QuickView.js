@@ -56,6 +56,9 @@ class QuickView extends Component {
       .then(res => {
         
           console.log(res.data.token.rows)
+          for(var data of res.data.token.rows){
+            console.log(data.key)
+          }
         
         
         axios.get(`${url}/logs/product`).then((result) => {
