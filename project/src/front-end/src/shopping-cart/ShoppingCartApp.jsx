@@ -293,7 +293,7 @@ class ShoppingCartApp extends Component {
               openModal={this.openModal}
               authenticated={this.props.authenticated} />
             <QuickView
-              username={this.state.username}
+              cart={this.state.cart}
               product={this.state.quickViewProduct}
               openModal={this.state.modalActive}
               closeModal={this.closeModal} />
