@@ -2,8 +2,11 @@ const viewDescriptor = {
     views: {
       logs_per_category: {
         map: function (doc) {
-          if (doc.type && doc.value) {
-            emit(doc.type, doc.value);
+          if (doc.type.equals("recommendation")){
+            for(var user in doc.value){
+              emit(user, doc['value'][user]);
+            }
+           
           }
         },
         reduce: function (key, values) {
