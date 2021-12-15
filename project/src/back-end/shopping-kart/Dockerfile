@@ -7,7 +7,7 @@ RUN apk update && apk add curl
 # let NPM packages be called anywhere within the container
 ENV PATH /usr/src/shopping_kart/node_modules/.bin:${PATH}
 ADD package.json .
-RUN npm install n -g
+RUN npm install
 RUN npm install axios
 # source files of the authentication service
 ADD gulpfile.js .
