@@ -79,7 +79,7 @@ class QuickView extends Component {
     let cart = this.props.cart
     let recomm2 = this.state.recomm2
     console.log(cart)
-if(recomm2[name] !== 'undefined') {
+if(typeof recomm2[name] !== 'undefined') {
   console.log(recomm2[name])
   var list2 = recomm2[name]
 
