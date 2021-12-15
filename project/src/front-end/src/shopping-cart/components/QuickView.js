@@ -61,7 +61,6 @@ class QuickView extends Component {
         axios.get(`${url}/logs/product`).then((result) => {
           this.setState({
             recomm1: recommendation[0][0],
-            img: result['data']['token']['value']
           });
         })
      
