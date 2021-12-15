@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "gulp --gulpfile gulpfile.js"
+    "start": "node src App.js"
   },
   "dependencies": {
     "debug": "2.6.6",
