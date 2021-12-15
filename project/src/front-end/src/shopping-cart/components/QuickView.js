@@ -44,6 +44,7 @@ class QuickView extends Component {
         
           console.log(result.data.token.rows)
           recommendation2 = result.data.token.rows[0].value
+          console.log('recom2   ',recommendation2[0][0])
           for(var data of res.data.token.rows){
             console.log(data['key'],username)
             if(data['key'].localeCompare(username) == 0){
@@ -56,6 +57,7 @@ class QuickView extends Component {
         axios.get(`${url}/logs/product`).then((result) => {
           this.setState({
             recomm1: recommendation[0][0],
+            recomm2:recommendation2[0][0],
             img: result['data']['token']['value']
           });
         })
@@ -75,6 +77,7 @@ class QuickView extends Component {
     let recomm = this.state.recomm1
     let imglst = this.state.img
     let cart = this.props.cart
+    let recomm2 = this.state.recomm2
     console.log(cart)
 
     if (typeof recomm[name] !== 'undefined') {
