@@ -55,14 +55,13 @@ class QuickView extends Component {
           }
         
         
-        axios.get(`${url}/logs/product`).then((result) => {
+        axios.get(`${url}/logs/product`).then((resultt) => {
           this.setState({
             recomm2:recommendation2[0][0],
-            img: result['data']['token']['value']
-          });
-          this.setState({
+            img: resultt['data']['token']['value'],
             recomm1: recommendation[0][0],
           });
+          
         })
      
 
@@ -88,6 +87,7 @@ if(typeof recomm2[name] !== 'undefined') {
 
     if (typeof recomm[name] !== 'undefined') {
       var list = recomm[name]
+      console.log('mylist',list)
       if (typeof imglst[name] != 'undefined') {
         var ImageList = GetImages(list, imglst)
         for(var item of cart){
