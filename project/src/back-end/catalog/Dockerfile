@@ -1,5 +1,5 @@
 # this image relies on the nodejs image
-FROM node:6.11-alpine
+FROM node:latest
 # set working directory
 WORKDIR /usr/src/catalog
 # we need CURL to verify that the key-value storage is running (see boot-in-order.sh)
