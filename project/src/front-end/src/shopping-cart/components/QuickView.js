@@ -51,7 +51,6 @@ class QuickView extends Component {
     axios.get(`${url}/view2`).then((result)=>{
       axios.get(`${url}/view1`)
       .then(res => {
-        
           console.log(result.data.token.rows)
           recommendation2 = result.data.token.rows[0].value
           
@@ -63,8 +62,6 @@ class QuickView extends Component {
               console.log(recommendation)
             }
           }
-        
-        
         axios.get(`${url}/logs/product`).then((resultt) => {
           this.setState({
             recomm2:recommendation2[0][0],
@@ -73,11 +70,7 @@ class QuickView extends Component {
           this.setState({
             recomm1: recommendation[0][0],
           });
-          
         })
-     
-
-
       })
     })
   }
@@ -109,9 +102,14 @@ class QuickView extends Component {
             recomm2:recommendation2[0][0],
             img: resultt['data']['token']['value'],
           });
+          if(typeof username == 'string'){
           this.setState({
             recomm1: recommendation[0][0],
-          });
+          });}else{
+            this.setState({
+              recomm1:[],
+            })
+          }
           
         })
      
@@ -119,6 +117,7 @@ class QuickView extends Component {
 
       })
     })
+    
     
     let product = this.props.product
     let name = product.name
