@@ -13,12 +13,23 @@ app.post('/logs/user', (req, res) => {
   })
 })
 app.post('/logs/recommendation', (req, res) => {
-  console.log("ici")
+ 
   var user = req.body.user
   var item = req.body.item
   var list1 = req.body.list1
   var list2 = req.body.list2
   return db.PostlogsRec(user,item, list1, list2).then((token) => {
+    res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(409).json({ status: 'error', message: String(err) })
+  })
+})
+app.post('/logs/recommendation2', (req, res) => {
+  
+  var item = req.body.item
+  var list1 = req.body.list1
+  var list2 = req.body.list2
+  return db.PostlogsRec2(item, list1, list2).then((token) => {
     res.status(200).json({ status: 'success', token })
   }).catch((err) => {
     res.status(409).json({ status: 'error', message: String(err) })

@@ -26,11 +26,19 @@ function post(user,l1,l2,l3,N){
       'list1':l1,
       'list2':l2
     }
+    var data2 = {
+      'item':l3[0],
+      'list1':l1,
+      'list2':l2
+    }
     axios.post(`${url2}/logs/recommendation`,data).then(()=>{
-      l3.splice(0,1)
-      N--
-
-      return post(user,l1,l2,l3,N)
+      axios.post(`${url2}/logs/recommendation2`,data2).then(()=>{
+        l3.splice(0,1)
+        N--
+  
+        return post(user,l1,l2,l3,N)
+      })
+     
     })
   }
 
