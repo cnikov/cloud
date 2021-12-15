@@ -21,10 +21,20 @@ function GetImages(list, data) {
 
 class QuickView extends Component {
   componentWillUnmount() {
+    this.setState({
+      recomm2:[],
+      recomm1:[],
+      img: [],
+    });
     this.props.closeModal()
   }
 
   handleClose() {
+    this.setState({
+      recomm2:[],
+      recomm1:[],
+      img: [],
+    });
     this.props.closeModal()
   }
   state = {
