@@ -75,7 +75,6 @@ class QuickView extends Component {
       var list = recomm[name]
       console.log(list)
       if (typeof imglst[name] != 'undefined') {
-
         var ImageList = GetImages(list, imglst)
         for(var item of cart){
           var ind =list.indexOf(item.name)
@@ -84,8 +83,8 @@ class QuickView extends Component {
           }
         }
         console.log(ImageList)
-        return (
-
+        if(ImageList.length>0){
+          return (
           <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
             <div className='modal' ref='modal'>
               <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
@@ -116,7 +115,35 @@ class QuickView extends Component {
               </center>
             </div>
           </div >
-        )
+        )}else{
+          return (
+
+            <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+              <div className='modal' ref='modal'>
+                <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+                <center>
+                  <div className='product'>
+                    <span className='product-name'>{name}</span>
+                    <br />
+                    <span className='product-price'>{price}</span>
+                    <div className='product-image'>
+                      <img src={image} alt={name} />
+                    </div>
+                  </div>
+                  <h2>About the product</h2>
+                  <p>{name}</p>
+                  <br />
+                  <h3>Customers who bought this item also bought</h3>
+    
+                  <p>No recommendations</p>
+    
+    
+                </center>
+              </div>
+            </div >
+          )
+        }
+        
       } else {
         return (
 
