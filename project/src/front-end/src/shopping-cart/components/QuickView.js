@@ -76,6 +76,7 @@ class QuickView extends Component {
   }
 
   render() {
+    console.log(this.props.authenticated)
     var recommendation
     var recommendation2
     var username = JSON.parse(window.localStorage.getItem('username'))
