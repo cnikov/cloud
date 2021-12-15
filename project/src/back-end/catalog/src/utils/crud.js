@@ -2,7 +2,7 @@
 //format db
 var form = require('nano')(process.env.DB_URL_L)
 var axios = require('axios')
-//const { BlobServiceClient } = require('@azure/storage-blob')
+const { BlobServiceClient } = require('@azure/storage-blob')
 const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
 //const storageSasToken = "sv=2020-08-04&ss=b&srt=sco&sp=rwdlactfx&se=2022-02-01T01:07:03Z&st=2021-12-14T17:07:03Z&spr=https&sig=0F34OLet3mNjKL9gpYm1ZH%2FC2cRvYdi7lqNtP%2FtBLSM%3D"
 //const storageResourceName = "image"
