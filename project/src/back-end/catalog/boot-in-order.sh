@@ -19,7 +19,7 @@
 #       CREATED: 10/08/2018 09:20
 #      REVISION:  ---
 #===============================================================================
-
+/bin/bash
 echo "Wait (indefenitly) until the DB creation (name: ${DB_NAME_L})."
 echo "The DB URL is: ${DB_URL_L}"
 
