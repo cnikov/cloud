@@ -1,5 +1,5 @@
 # this image relies on the nodejs image
-FROM node:6.11-alpine
+FROM node:latest
 # set working directory
 WORKDIR /usr/src/shopping_kart
 # we need CURL to verify that the key-value storage is running (see boot-in-order.sh)
@@ -7,7 +7,7 @@ RUN apk update && apk add curl
 # let NPM packages be called anywhere within the container
 ENV PATH /usr/src/shopping_kart/node_modules/.bin:${PATH}
 ADD package.json .
-RUN npm install
+RUN npm install n -g
 RUN npm install axios
 # source files of the authentication service
 ADD gulpfile.js .
