@@ -80,7 +80,9 @@ class QuickView extends Component {
     let recomm2 = this.state.recomm2
     console.log(cart)
 if(recomm2[name] !== 'undefined') {
+  console.log(recomm2[name])
   var list2 = recomm2[name]
+
     if (typeof recomm[name] !== 'undefined') {
       var list = recomm[name]
       if (typeof imglst[name] != 'undefined') {
@@ -207,7 +209,6 @@ if(recomm2[name] !== 'undefined') {
             <h2>About the product</h2>
             <p>{name}</p>
             <br />
-            {console.log(recomm[name])}
             <h3>We suggest you to buy...</h3>
             <div className='product'>
               <div className='product-image'>
