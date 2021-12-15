@@ -115,7 +115,7 @@ function PostlogsRec2(item, list1, list2) {
     list1.splice(index, 1)
     list2.splice(index, 1)
 
-    log.get("recommendation", (error, success) => {
+    log.get("recommendation2", (error, success) => {
       if (success) {
         //check if the item is already in the recommendations
         //check first if the user is already in recomendaitons
@@ -154,7 +154,7 @@ function PostlogsRec2(item, list1, list2) {
           'value': success.value
         }
         //update db
-        log.insert(newDoc, 'recommendation', (error, success) => {
+        log.insert(newDoc, 'recommendation2', (error, success) => {
           if (success) {
             resolve(item)
           } else {
@@ -164,7 +164,7 @@ function PostlogsRec2(item, list1, list2) {
       }
       else {
         newDoc = {
-          'type': 'recommendation',
+          'type': 'recommendation2',
           'value': {
             [item]: {
               'name':item,
@@ -173,7 +173,7 @@ function PostlogsRec2(item, list1, list2) {
             }
         }
         }
-        log.insert(newDoc, 'recommendation', (error, success) => {
+        log.insert(newDoc, 'recommendation2', (error, success) => {
           if (success) {
             resolve(item)
           } else {
