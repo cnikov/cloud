@@ -79,10 +79,10 @@ class QuickView extends Component {
     let cart = this.props.cart
     let recomm2 = this.state.recomm2
     console.log(cart)
-
+if(recomm2[name] !== 'undefined') {
+  var list2 = recomm2[name]
     if (typeof recomm[name] !== 'undefined') {
       var list = recomm[name]
-      console.log(list)
       if (typeof imglst[name] != 'undefined') {
         var ImageList = GetImages(list, imglst)
         for(var item of cart){
@@ -92,7 +92,6 @@ class QuickView extends Component {
               ImageList = []
             }
             ImageList.splice(ind,1)
-            
           }
         }
         console.log(ImageList)
@@ -128,7 +127,8 @@ class QuickView extends Component {
               </center>
             </div>
           </div >
-        )}else{
+        )}
+        else{
           return (
 
             <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
@@ -157,9 +157,10 @@ class QuickView extends Component {
           )
         }
         
-      } else {
+      }
+      //case where there is no image
+      else {
         return (
-
           <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
             <div className='modal' ref='modal'>
               <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
@@ -175,25 +176,88 @@ class QuickView extends Component {
                 <h2>About the product</h2>
                 <p>{name}</p>
                 <br />
-                {console.log(recomm[name])}
                 <h3>Customers who bought this item also bought</h3>
 
-                <img src={list[0]} />
+                <p> {list[0]} </p>
 
 
               </center>
             </div>
           </div >
         )
-      }
-
-
-
-
-
+      }  
+  }
+  //not connected
+  else{
+    if(typeof imglst[name] != 'undefined'){
+    var ImageList2 = GetImages(list2, imglst)
+    return (
+      <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+        <div className='modal' ref='modal'>
+          <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+          <center>
+            <div className='product'>
+              <span className='product-name'>{name}</span>
+              <br />
+              <span className='product-price'>{price}</span>
+              <div className='product-image'>
+                <img src={image} alt={name} />
+              </div>
+            </div>
+            <h2>About the product</h2>
+            <p>{name}</p>
+            <br />
+            {console.log(recomm[name])}
+            <h3>We suggest you to buy...</h3>
+            <div className='product'>
+              <div className='product-image'>
+                <img src={ImageList2[0]} />
+              </div>
+            </div>
+            <div className='product'>
+              <div className='product-image'>
+                <img src={ImageList2[1]} />
+              </div>
+            </div>
+          </center>
+        </div>
+      </div >
+    )
 
 
     }
+    //no image
+    else{
+      return (
+        <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+          <div className='modal' ref='modal'>
+            <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+            <center>
+              <div className='product'>
+                <span className='product-name'>{name}</span>
+                <br />
+                <span className='product-price'>{price}</span>
+                <div className='product-image'>
+                  <img src={image} alt={name} />
+                </div>
+              </div>
+              <h2>About the product</h2>
+              <p>{name}</p>
+              <br />
+              <h3>Customers who bought this item also bought</h3>
+
+              <p> {list2[0]} </p>
+
+
+            </center>
+          </div>
+        </div >
+      )
+    }
+
+  }
+
+  }
     else {
       return (
 
