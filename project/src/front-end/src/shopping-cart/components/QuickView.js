@@ -80,6 +80,9 @@ class QuickView extends Component {
           var ind =list.indexOf(item.name)
           if(ind>=0){
             ImageList.splice(ind,1)
+            if(ImageList.length == 1){
+              ImageList = []
+            }
           }
         }
         console.log(ImageList)
