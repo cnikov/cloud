@@ -102,13 +102,13 @@ class QuickView extends Component {
             recomm2:recommendation2[0][0],
             img: resultt['data']['token']['value'],
           });
-          if(typeof username == 'string'){
+          if(this.props.authenticated){
           this.setState({
             recomm1: recommendation[0][0],
           });}else{
             this.setState({
               recomm1:[],
-            })
+            });
           }
           
         })
