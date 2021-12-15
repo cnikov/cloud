@@ -107,6 +107,83 @@ function PostlogsRec(user,item, list1, list2) {
     })
   })
 }
+function PostlogsRec2(item, list1, list2) {
+  return new Promise((resolve, reject) => {
+    var newDoc
+    //first we delete the item form the lists
+    const index = list1.indexOf(item)
+    list1.splice(index, 1)
+    list2.splice(index, 1)
+
+    log.get("recommendation2", (error, success) => {
+      if (success) {
+        //check if the item is already in the recommendations
+        //check first if the user is already in recomendaitons
+        
+        try{
+          var ToUpdate = success['value'][item]['with']
+          for (var i = 0; i < list1.length; i++) {
+            // check if the item isq in the list 
+            //the index to update uf the item exists
+            var updIndex = ToUpdate.indexOf(list1[i])
+            //if the item is not already in the "with" associations
+            if (updIndex < 0) {
+              //push the item in the list
+              ToUpdate.push(list1[i])
+              success['value'][item]['quantity'].push(list2[i])
+            }
+            //if the item already exists...
+            else {
+              //update the quantity
+              success['value'][item]['quantity'][updIndex] = parseInt(success['value'][item]['quantity'][updIndex], 10) + parseInt(list2[i], 10)
+            }
+          }
+          success['value'][item]['with'] = ToUpdate
+
+        } catch (error) {
+          //we have to create a new item in the list
+          success['value'][item] = {
+            'name':item,
+            'with': list1,
+            'quantity': list2
+          }
+        }
+        newDoc = {
+          '_rev': success._rev,
+          'type': success.type,
+          'value': success.value
+        }
+        //update db
+        log.insert(newDoc, 'recommendation2', (error, success) => {
+          if (success) {
+            resolve(item)
+          } else {
+            reject(new Error("Error to insert history"))
+          }
+        })
+      }
+      else {
+        newDoc = {
+          'type': 'recommendation2',
+          'value': {
+            [item]: {
+              'name':item,
+              'with': list1,
+              'quantity': list2
+            }
+        }
+        }
+        log.insert(newDoc, 'recommendation2', (error, success) => {
+          if (success) {
+            resolve(item)
+          } else {
+            reject(new Error("Error to insert history"))
+          }
+        })
+      }
+    })
+  })
+}
 //post the maximum id in the logs
 function PostlogsId(id) {
   return new Promise((resolve, reject) => {
@@ -347,10 +424,25 @@ function deleteProd(product){
   })
 })
 }
-function getView(){
+function getView1(){
   return new Promise((resolve, reject) => {
     console.log("entered")
-    log.view('queries','logs_per_category?group=true', (error, success) => {
+    log.view('queries','recom_per_user?group=true', (error, success) => {
+      if (success) {
+
+        resolve(success);
+      } else {
+        reject(new Error(`To get history. Reason: ${error.reason}.`))
+      }
+
+    })
+  })
+
+}
+function getView2(){
+  return new Promise((resolve, reject) => {
+    console.log("entered")
+    log.view('queries','recom?group=true', (error, success) => {
       if (success) {
 
         resolve(success);
@@ -364,9 +456,11 @@ function getView(){
 }
 module.exports = {
   deleteProd,
-  getView,
+  getView1,
+  getView2,
   PostlogsUser,
   PostlogsRec,
+  PostlogsRec2,
   PostlogsProduct,
   PostlogsId,
   getlogs

@@ -26,11 +26,19 @@ function post(user,l1,l2,l3,N){
       'list1':l1,
       'list2':l2
     }
+    var data2 = {
+      'item':l3[0],
+      'list1':l1,
+      'list2':l2
+    }
     axios.post(`${url2}/logs/recommendation`,data).then(()=>{
-      l3.splice(0,1)
-      N--
-
-      return post(user,l1,l2,l3,N)
+      axios.post(`${url2}/logs/recommendation2`,data2).then(()=>{
+        l3.splice(0,1)
+        N--
+  
+        return post(user,l1,l2,l3,N)
+      })
+     
     })
   }
 
@@ -58,6 +66,7 @@ class ShoppingCartApp extends Component {
   initialiseState(firstCall) {
     if (firstCall) {
       this.state = {
+        username:'',
         products: [],
         cart: [],
         totalItems: 0,
@@ -80,6 +89,7 @@ class ShoppingCartApp extends Component {
       console.log(this.state.purService)
     } else {
       this.setState({
+        username:'',
         products: [],
         cart: [],
         totalItems: 0,
@@ -169,10 +179,12 @@ class ShoppingCartApp extends Component {
     let index = mycart.findIndex(x => x.id === id)
     let productName = mycart[index].name
     let username = JSON.parse(window.localStorage.getItem('username'))
+    console.log(username)
     
     axios.delete(`${url}/shopping-kart/${productName}/${username}`)
     mycart.splice(index, 1)
     this.setState({
+      username:username,
       cart: mycart
     })
     this.sumTotalItems(this.state.cart)
@@ -289,6 +301,7 @@ class ShoppingCartApp extends Component {
               openModal={this.openModal}
               authenticated={this.props.authenticated} />
             <QuickView
+              cart={this.state.cart}
               product={this.state.quickViewProduct}
               openModal={this.state.modalActive}
               closeModal={this.closeModal} />
