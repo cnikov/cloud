@@ -59,7 +59,6 @@ class QuickView extends Component {
           this.setState({
             recomm2:recommendation2[0][0],
             img: resultt['data']['token']['value'],
-            recomm1: recommendation[0][0],
           });
           this.setState({
             recomm1: recommendation[0][0],
