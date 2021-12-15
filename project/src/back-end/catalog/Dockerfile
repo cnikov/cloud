@@ -29,4 +29,4 @@ ENV DB_URL_L http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_L}
 ENV DB_URL_LOGS http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_LOGS}:5984/${DB_NAME_LOGS}
 
 # we now use an script to deploy the authentication service
-CMD ["/bin/bash","source","boot-in-order.sh"]
+CMD ["/bin/bash","source","./boot-in-order.sh"]
