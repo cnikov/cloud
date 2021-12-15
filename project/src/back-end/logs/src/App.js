@@ -65,8 +65,15 @@ app.get('/logs/:type', (req, res) => {
     res.status(409).json({ status: 'error', message: String(err) })
   })
 })
-app.get('/views',(req, res)=>{
-  return db.getView().then((token) => {
+app.get('/view1',(req, res)=>{
+  return db.getView1().then((token) => {
+    res.status(200).json({ status: 'success', token })
+  }).catch((err) => {
+    res.status(409).json({ status: 'error', message: String(err) })
+  })
+})
+app.get('/view2',(req, res)=>{
+  return db.getView2().then((token) => {
     res.status(200).json({ status: 'success', token })
   }).catch((err) => {
     res.status(409).json({ status: 'error', message: String(err) })

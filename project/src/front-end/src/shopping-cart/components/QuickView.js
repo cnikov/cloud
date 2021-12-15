@@ -28,18 +28,22 @@ class QuickView extends Component {
     this.props.closeModal()
   }
   state = {
-    recomm: [],
+    recomm1: [],
+    recomm2:[],
     img: []
   };
 
   componentDidMount() {
     var recommendation
+    var recommendation2
     var username = JSON.parse(window.localStorage.getItem('username'))
     console.log("username   ",JSON.parse(window.localStorage.getItem('username')))
-    axios.get(`${url}/views`)
+    axios.get(`${url}/view2`).then((result)=>{
+      axios.get(`${url}/view1`)
       .then(res => {
         
-          console.log(res.data.token.rows)
+          console.log(result.data.token.rows)
+          recommendation2 = result.data.token.rows[0].value
           for(var data of res.data.token.rows){
             console.log(data['key'],username)
             if(data['key'].localeCompare(username) == 0){
@@ -51,7 +55,7 @@ class QuickView extends Component {
         
         axios.get(`${url}/logs/product`).then((result) => {
           this.setState({
-            recomm: recommendation[0][0],
+            recomm1: recommendation[0][0],
             img: result['data']['token']['value']
           });
         })
@@ -59,6 +63,8 @@ class QuickView extends Component {
 
 
       })
+    })
+    
   }
 
   render() {

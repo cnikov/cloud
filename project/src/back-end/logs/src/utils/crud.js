@@ -424,10 +424,25 @@ function deleteProd(product){
   })
 })
 }
-function getView(){
+function getView1(){
   return new Promise((resolve, reject) => {
     console.log("entered")
-    log.view('queries','logs_per_category?group=true', (error, success) => {
+    log.view('queries','recom_per_user?group=true', (error, success) => {
+      if (success) {
+
+        resolve(success);
+      } else {
+        reject(new Error(`To get history. Reason: ${error.reason}.`))
+      }
+
+    })
+  })
+
+}
+function getView2(){
+  return new Promise((resolve, reject) => {
+    console.log("entered")
+    log.view('queries','recom?group=true', (error, success) => {
       if (success) {
 
         resolve(success);
@@ -441,7 +456,8 @@ function getView(){
 }
 module.exports = {
   deleteProd,
-  getView,
+  getView1,
+  getView2,
   PostlogsUser,
   PostlogsRec,
   PostlogsRec2,
