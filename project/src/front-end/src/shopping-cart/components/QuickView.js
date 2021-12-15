@@ -75,7 +75,14 @@ class QuickView extends Component {
       var list = recomm[name]
       console.log(list)
       if (typeof imglst[name] != 'undefined') {
+
         var ImageList = GetImages(list, imglst)
+        for(var item of cart){
+          var ind =list.indexOf(item.name)
+          if(ind>=0){
+            ImageList.splice(ind,1)
+          }
+        }
         console.log(ImageList)
         return (
 
