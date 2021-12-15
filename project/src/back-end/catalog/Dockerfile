@@ -3,7 +3,7 @@ FROM node:latest
 # set working directory
 WORKDIR /usr/src/catalog
 # we need CURL to verify that the key-value storage is running (see boot-in-order.sh)
-RUN apt update && apt get curl
+RUN apt update && apt-get curl
 # let NPM packages be called anywhere within the container
 ENV PATH /usr/src/catalog/node_modules/.bin:${PATH}
 ADD package.json .
