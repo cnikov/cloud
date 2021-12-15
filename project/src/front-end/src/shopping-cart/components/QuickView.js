@@ -118,7 +118,7 @@ if(typeof recomm2[name] !== 'undefined') {
                 <p>{name}</p>
                 <br />
                 {console.log(recomm[name])}
-                <h3>We suggest you to buy...</h3>
+                <h3>You used to buy this item with</h3>
                 <div className='product'>
                   <div className='product-image'>
                     <img src={ImageList[0]} />
@@ -212,7 +212,7 @@ if(typeof recomm2[name] !== 'undefined') {
             <h2>About the product</h2>
             <p>{name}</p>
             <br />
-            <h3>We suggest you to buy...</h3>
+            <h3>Customers who bought this item also bought</h3>
             <div className='product'>
               <div className='product-image'>
                 <img src={ImageList2[0]} />
