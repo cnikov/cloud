@@ -72,7 +72,7 @@ class QuickView extends Component {
     let name = product.name
     let image = product.image
     let price = product.price
-    let recomm = this.state.recomm
+    let recomm = this.state.recomm1
     let imglst = this.state.img
     let cart = this.props.cart
     console.log(cart)
