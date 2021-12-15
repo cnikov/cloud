@@ -10,7 +10,7 @@ ADD package.json .
 RUN npm install
 RUN npm install axios
 # source files of the authentication service
-#ADD gulpfile.js .
+ADD gulpfile.js .
 ADD src src
 ADD boot-in-order.sh .
 # header for loggining messages
