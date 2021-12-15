@@ -33,7 +33,7 @@ class QuickView extends Component {
     img: []
   };
 
-  componentDidMount() {
+  componentWillMount() {
     var recommendation
     var recommendation2
     var username = JSON.parse(window.localStorage.getItem('username'))
@@ -74,7 +74,7 @@ class QuickView extends Component {
   }
 
   render() {
-    componentDidMount()
+    
     let product = this.props.product
     let name = product.name
     let image = product.image
