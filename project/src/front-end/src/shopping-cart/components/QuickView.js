@@ -74,6 +74,7 @@ class QuickView extends Component {
   }
 
   render() {
+    componentDidMount()
     let product = this.props.product
     let name = product.name
     let image = product.image
