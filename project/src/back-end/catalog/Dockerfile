@@ -1,9 +1,9 @@
 # this image relies on the nodejs image
-FROM node:latest
+FROM node:6.11-alpine
 # set working directory
 WORKDIR /usr/src/catalog
 # we need CURL to verify that the key-value storage is running (see boot-in-order.sh)
-RUN apt-get update && apt-get install curl
+RUN apk update && apk curl
 # let NPM packages be called anywhere within the container
 ENV PATH /usr/src/catalog/node_modules/.bin:${PATH}
 ADD package.json .
@@ -29,4 +29,4 @@ ENV DB_URL_L http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_C}:5984/${DB_NAME_L}
 ENV DB_URL_LOGS http://${ADMIN_NAME}:${ADMIN_PASSW}@${DB_HOST_LOGS}:5984/${DB_NAME_LOGS}
 
 # we now use an script to deploy the authentication service
-CMD ["/bin/sh","source","boot-in-order.sh"]
+CMD source boot-in-order.sh
