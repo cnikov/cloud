@@ -144,6 +144,7 @@ if(typeof recomm2[name] !== 'undefined') {
             if(ImageList.length == 1){
               ImageList = []
             }
+            list.splice(ind, 1)
             ImageList.splice(ind,1)
           }
         }
@@ -250,6 +251,7 @@ if(typeof recomm2[name] !== 'undefined') {
         if(ImageList2.length == 1){
           ImageList2 = []
         }
+        list2.splice(ind, 1)
         ImageList2.splice(ind,1)
       }
     }
