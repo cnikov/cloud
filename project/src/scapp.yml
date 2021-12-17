@@ -147,7 +147,7 @@ services:     # list all services for your application
     networks: [ "scapp-net" ]
   # server that listens HTTP requests
   url:
-    val: http://cloud-romtourpe.westeurope.cloudapp.azure.com
+    -val: http://cloud-romtourpe.westeurope.cloudapp.azure.com
   catalog-daemon:
     image: catalog-be:latest
     # link both services (same effect of option --link in docker run)
