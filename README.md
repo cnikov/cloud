@@ -31,7 +31,7 @@ This service is destined to a future implementation of checkout function. When t
 # HOW TO RUN...
 The project is already running on our machine so you can access by clicking on this link http://cloud-romtourpe.westeurope.cloudapp.azure.com:3000 you can make some curl manually to each address or download the project on your machine and follow those instructions.<br />
 To run the project on your virtual machine you have to follow those instructions : <br />
-First of all you need to modify the lines 118,119 and 120 in the [`scapp.yml`](src/scapp.yml) by replacing cloud-romtourpe.westeurope.cloudapp.azure.com by your VM ip address
+:warning:First of all you need to modify the environment variable in the [`scapp.yml`](src/scapp.yml) press ``[ctrl+H]`` then replace all cloud-romtourpe.westeurope.cloudapp.azure.com by your VM ip address :warning:
 
 ```javascrip
  environment:
