@@ -33,37 +33,7 @@ class QuickView extends Component {
     recomm2:[],
     img: []
   };
-  componentDidMount() { 
-    var recommendation
-    var recommendation2
-    var username = JSON.parse(window.localStorage.getItem('username'))
-    console.log("username   ",JSON.parse(window.localStorage.getItem('username')))
-    axios.get(`${url}/view2`).then((result)=>{
-      axios.get(`${url}/view1`)
-      .then(res => {
-          console.log(result.data.token.rows)
-          recommendation2 = result.data.token.rows[0].value
-          
-          console.log('recom2   ',recommendation2[0][0])
-          for(var data of res.data.token.rows){
-            console.log(data['key'],username)
-            if(data['key'].localeCompare(username) == 0){
-              recommendation = data.value
-              console.log(recommendation)
-            }
-          }
-        axios.get(`${url}/logs/product`).then((resultt) => {
-          this.setState({
-            recomm2:recommendation2[0][0],
-            img: resultt['data']['token']['value'],
-          });
-          this.setState({
-            recomm1: recommendation[0][0],
-          });
-        })
-      })
-    })
-  }
+  
   render() {
     console.log(this.props.authenticated)
     var recommendation
