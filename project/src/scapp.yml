@@ -1,4 +1,5 @@
 version: "3"
+url: 'http://cloud-romtourpe.westeurope.cloudapp.azure.com'
 services:     # list all services for your application
   # database of users
   users-db:
@@ -146,7 +147,7 @@ services:     # list all services for your application
         condition: on-failure
     networks: [ "scapp-net" ]
   # server that listens HTTP requests
-  url: http://cloud-romtourpe.westeurope.cloudapp.azure.com
+  
   catalog-daemon:
     image: catalog-be:latest
     # link both services (same effect of option --link in docker run)
@@ -167,10 +168,10 @@ services:     # list all services for your application
     # image name
     image: scapp-fe:latest
     environment:
-      REACT_APP_AUTH_SERVICE_URL: "{{.url}}:3002"
-      REACT_APP_CATALOG_SERVICE_URL: "{{.url}}:3005"
-      REACT_APP_SHOPKART_SERVICE_URL: "{{.url}}:3006"
-      REACT_APP_LOGS_SERVICE_URL: "{{.url}}:3010"
+      REACT_APP_AUTH_SERVICE_URL: "{{url}}:3002"
+      REACT_APP_CATALOG_SERVICE_URL: "{{url}}:3005"
+      REACT_APP_SHOPKART_SERVICE_URL: "{{url}}:3006"
+      REACT_APP_LOGS_SERVICE_URL: "{{url}}:3010"
     ports: ["3000:80"]
     deploy:
       # deploy only one instance of this service
