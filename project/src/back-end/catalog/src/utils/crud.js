@@ -2,7 +2,7 @@ var form = require('nano')(process.env.DB_URL_L)
 //for HTTP request
 var axios = require('axios')
 //link to the log db
-const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
+const url = process.env.REACT_APP_LOGS_SERVICE_URL||'http://localhost:3010'
 
 //delete a format from the db
 function DeleteInFormat(name) {

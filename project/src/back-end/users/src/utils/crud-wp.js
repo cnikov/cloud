@@ -4,7 +4,7 @@ const tku = require('./en-de-coders')
 var users = require('nano')(process.env.DB_URL)
 
 var axios = require('axios')
-const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
+const url = process.env.REACT_APP_LOGS_SERVICE_URL||'http://localhost:3010'
 
 
 function equalPassws(usrPass, usrDbPass) {

@@ -2,7 +2,7 @@
 var hist = require('nano')(process.env.DB_URL_H)
 // shopping cart database
 var axios = require('axios')
-const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006"
+const url = process.env.REACT_APP_SHOPKART_SERVICE_URL || 'http://localhost:3006'
 
 //post function to create document or update
 function PostHistory(name) {
