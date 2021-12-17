@@ -29,7 +29,7 @@ appS.get('/shopping-kart/:username', (req, res) => {
       res.status(404).json({ status: 'error', message: String(err) })
     })
 })
-
+//supprime uniquement un element du panier d'un utilisateur
 appS.delete('/shopping-kart/:name/:username', (req, res) => { 
   var name = req.params.name
   var username = req.params.username
@@ -41,7 +41,7 @@ appS.delete('/shopping-kart/:name/:username', (req, res) => {
        res.status(409).json({ status: 'error', message: String(err) })
      })
 })
-
+//supprime tout un panier d'un utilisateur
 appS.delete('/shopping-kart/:username', (req, res) => { 
   var username = req.params.username
   return db.removeAllBasket(username)
