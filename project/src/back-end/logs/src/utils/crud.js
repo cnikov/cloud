@@ -424,6 +424,7 @@ function deleteProd(product){
   })
 })
 }
+//view for user recommendation
 function getView1(){
   return new Promise((resolve, reject) => {
     console.log("entered")
@@ -439,6 +440,7 @@ function getView1(){
   })
 
 }
+//view for general recommendation
 function getView2(){
   return new Promise((resolve, reject) => {
     console.log("entered")
