@@ -103,10 +103,10 @@ services:     # list all services for your application
     depends_on: [ "logs-db" ]
     # expose port number 3002 of host running this service
     environment:
-      REACT_APP_AUTH_SERVICE_URL: $${{(hostname -I | awk '{print $1}' )}}:3002
-      REACT_APP_CATALOG_SERVICE_URL: $${{(hostname -I | awk '{print $1}' )}}:3005
-      REACT_APP_SHOPKART_SERVICE_URL: $${{(hostname -I | awk '{print $1}' )}}:3006
-      REACT_APP_LOGS_SERVICE_URL: $${{(hostname -I | awk '{print $1}' )}}:3010
+      REACT_APP_AUTH_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002
+      REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005
+      REACT_APP_SHOPKART_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006
+      REACT_APP_LOGS_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
     ports: [ "3010:80" ]
     deploy:
       replicas: 1
