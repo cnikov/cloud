@@ -9,12 +9,7 @@ The project is already running on our machine so you can access by clicking on t
 To run the project on your virtual machine you have to follow those instructions : <br />
 :warning:First of all you need to modify the environment variable in the [`scapp.yml`](src/scapp.yml) press ``[ctrl+H]`` then replace all cloud-romtourpe.westeurope.cloudapp.azure.com by your VM ip address :warning:
 
-```javascrip
- environment:
-      REACT_APP_AUTH_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002
-      REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005
-      REACT_APP_SHOPKART_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006
-```
+
 
 Open a shell comand and type :
 
@@ -51,6 +46,7 @@ The couch db are accessible with the username admin and password admin on the po
 - 3003 -> catalog service
 - 3004 -> shopping cart service
 - 3007 -> history service
+- 3009 -> logs service
 
 you can access them by typing http://${YOUR_IP_ADDRESS}:$YOUR_PORT/_utils <br />
 On the website you can register log in and add product in your shopping cart. (PLEASE DO NOT TRY TO DELETE AN ITEM OF YOUR SHOPPING CART it is not yet implemented in the front end). <br />
