@@ -170,6 +170,7 @@ services:     # list all services for your application
       REACT_APP_AUTH_SERVICE_URL: "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002"
       REACT_APP_CATALOG_SERVICE_URL: "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005"
       REACT_APP_SHOPKART_SERVICE_URL: "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006"
+      REACT_APP_HISTORY_SERVICE_URL: "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3008"
       REACT_APP_LOGS_SERVICE_URL: "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
     ports: ["3000:80"]
     deploy:
