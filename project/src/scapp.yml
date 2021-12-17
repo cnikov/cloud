@@ -87,7 +87,7 @@ services:     # list all services for your application
       REACT_APP_AUTH_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002
       REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005
       REACT_APP_SHOPKART_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006
-      REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
+      REACT_APP_LOGS_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
     ports: [ "3008:80" ]
     deploy:
       replicas: 1
@@ -104,7 +104,7 @@ services:     # list all services for your application
       REACT_APP_AUTH_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002
       REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005
       REACT_APP_SHOPKART_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006
-      REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
+      REACT_APP_LOGS_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
     ports: [ "3010:80" ]
     deploy:
       replicas: 1
@@ -121,7 +121,7 @@ services:     # list all services for your application
       REACT_APP_AUTH_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002
       REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005
       REACT_APP_SHOPKART_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006
-      REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
+      REACT_APP_LOGS_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
     ports: [ "3002:80" ]
     deploy:
       replicas: 1
@@ -138,7 +138,7 @@ services:     # list all services for your application
       REACT_APP_AUTH_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002
       REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005
       REACT_APP_SHOPKART_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006
-      REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
+      REACT_APP_LOGS_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
     ports: [ "3006:80" ]
     deploy:
       replicas: 1
@@ -155,7 +155,7 @@ services:     # list all services for your application
       REACT_APP_AUTH_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002
       REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005
       REACT_APP_SHOPKART_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006
-      REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
+      REACT_APP_LOGS_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
     ports: [ "3005:80" ]
     deploy:
       replicas: 1
@@ -169,7 +169,7 @@ services:     # list all services for your application
       REACT_APP_AUTH_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3002
       REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005
       REACT_APP_SHOPKART_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006
-      REACT_APP_CATALOG_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
+      REACT_APP_LOGS_SERVICE_URL: http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010
     ports: ["3000:80"]
     deploy:
       # deploy only one instance of this service
