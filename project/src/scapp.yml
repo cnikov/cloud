@@ -1,6 +1,4 @@
 version: "3"
-url_infos:
-  myIp: http://cloud-romtourpe.westeurope.cloudapp.azure.com
 services:     # list all services for your application
   # database of users
   users-db:
