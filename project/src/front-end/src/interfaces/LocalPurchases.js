@@ -4,8 +4,9 @@ import axios from 'axios' // we use this library as HTTP client
 // with this environment variable
 const url = process.env.REACT_APP_CATALOG_SERVICE_URL || 'http://localhost:3005'
 
-class LocalPurchases {
 
+
+class LocalPurchases {
   constructor() {
 
     window.localStorage.setItem('purchases', JSON.stringify([]))    //mettre les purchases du dernier panier
@@ -14,19 +15,14 @@ class LocalPurchases {
     this.setProducts = setProductsList
     this.setPurHistory = setPurHistory
   }
+  //fetching products in the right format in order to display the catalog on the main page.
   fetchProducts() {
-
     axios.get(`${url}/format`).then((res) => {
       console.log(res.data.token.doc)
       window.localStorage.setItem('products', JSON.stringify(res.data.token.doc))
       this.setProducts(res.data.token.doc)
 
     })
-
-
-
-
-
   }
   fetchHistory() {
     var purchases = JSON.parse(window.localStorage.getItem('purchases'))   //mettre les purchases du dernier panier?

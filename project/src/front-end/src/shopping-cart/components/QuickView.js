@@ -1,79 +1,70 @@
 import React, { Component } from 'react'
 import axios from 'axios' // we use this library as HTTP client
 // you can overwrite the URI of the authentication microservice
-// with this environment variable
-const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
+// environment variable to access log service
+const url = process.env.REACT_APP_LOGS_SERVICE_URL|| 'http://localhost:3010'
 
-
+//create a list with the image of each item of list where data is the catalog with all products info
 function GetImages(list, data) {
   var MyList = []
-
-
-  console.log(data)
   for (var i = 0; i < list.length; i++) {
-
+    //get the image of a specific product
     MyList.push(data[list[i]]['image'])
-
   }
   return MyList
-
 }
 
 class QuickView extends Component {
   componentWillUnmount() {
-    this.setState({
-      recomm2:[],
-      recomm1:[],
-      img: [],
-    });
+    
     this.props.closeModal()
   }
 
   handleClose() {
-    this.setState({
-      recomm2:[],
-      recomm1:[],
-      img: [],
-    });
+    
     this.props.closeModal()
   }
+
   state = {
+    //recomm1 state for the list of user recommendation
     recomm1: [],
+    //recomm2 state for the list of general recommendation
     recomm2:[],
+    //list of img url
     img: []
   };
-
-  componentDidMount() { 
-    var recommendation
-    var recommendation2
-    var username = JSON.parse(window.localStorage.getItem('username'))
-    console.log("username   ",JSON.parse(window.localStorage.getItem('username')))
-    axios.get(`${url}/view2`).then((result)=>{
-      axios.get(`${url}/view1`)
-      .then(res => {
-          console.log(result.data.token.rows)
-          recommendation2 = result.data.token.rows[0].value
+  //at launch 
+  // componentDidMount() { 
+  //   var recommendation
+  //   var recommendation2
+  //   var username = JSON.parse(window.localStorage.getItem('username'))
+  //   console.log("username   ",JSON.parse(window.localStorage.getItem('username')))
+  //   axios.get(`${url}/view2`).then((result)=>{
+  //     axios.get(`${url}/view1`)
+  //     .then(res => {
+  //         console.log(result.data.token.rows)
+  //         recommendation2 = result.data.token.rows[0].value
           
-          console.log('recom2   ',recommendation2[0][0])
-          for(var data of res.data.token.rows){
-            console.log(data['key'],username)
-            if(data['key'].localeCompare(username) == 0){
-              recommendation = data.value
-              console.log(recommendation)
-            }
-          }
-        axios.get(`${url}/logs/product`).then((resultt) => {
-          this.setState({
-            recomm2:recommendation2[0][0],
-            img: resultt['data']['token']['value'],
-          });
-          this.setState({
-            recomm1: recommendation[0][0],
-          });
-        })
-      })
-    })
-  }
+  //         console.log('recom2   ',recommendation2[0][0])
+  //         for(var data of res.data.token.rows){
+  //           console.log(data['key'],username)
+  //           if(data['key'].localeCompare(username) == 0){
+  //             recommendation = data.value
+  //             console.log(recommendation)
+  //           }
+  //         }
+  //       axios.get(`${url}/logs/product`).then((resultt) => {
+  //         this.setState({
+  //           recomm2:recommendation2[0][0],
+  //           img: resultt['data']['token']['value'],
+  //         });
+  //         this.setState({
+  //           recomm1: recommendation[0][0],
+  //         });
+  //       })
+  //     })
+  //   })
+  // }
 
   render() {
     console.log(this.props.authenticated)
