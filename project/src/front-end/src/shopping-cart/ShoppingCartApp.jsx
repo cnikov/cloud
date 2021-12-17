@@ -95,8 +95,8 @@ class ShoppingCartApp extends Component {
         oldPurchases: []
       })
     }
-    this.state.purService.fetchProducts()   //recherche tous les differents produits de la db
-    this.state.purService.fetchHistory()    // est ce que c'est pas ce qui est fait les lignes d'apres ?
+    this.state.purService.fetchProducts()   
+    this.state.purService.fetchHistory()   
     let username = JSON.parse(window.localStorage.getItem('username'))
     
     axios.get(`${url}/shopping-kart/${username}`)
@@ -117,7 +117,6 @@ class ShoppingCartApp extends Component {
           }
           this.state.cart.push(add)
         }
-        //this.state.cart = res.data.token  --> WTF ?
         this.sumTotalItems(this.state.cart)
         this.sumTotalAmount(this.state.cart)
       })
@@ -165,7 +164,7 @@ class ShoppingCartApp extends Component {
     this.sumTotalAmount(this.state.cart)
   }
 
-  handleRemoveProduct(id, e) { //relier back-end
+  handleRemoveProduct(id, e) { 
     let mycart = this.state.cart
     let index = mycart.findIndex(x => x.id === id)
     let productName = mycart[index].name
@@ -231,7 +230,6 @@ class ShoppingCartApp extends Component {
 
   endCheckout() {
     //post tout avec tout super :) 
-
     let username = JSON.parse(window.localStorage.getItem('username'))
     var l1 = []
     var l2 = []

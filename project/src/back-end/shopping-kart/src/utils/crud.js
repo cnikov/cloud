@@ -1,5 +1,6 @@
 const axios = require('axios')
 var kart = require('nano')(process.env.DB_URL_SK)
+//link to the log db
 var url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
 //Add an item to the user's basket
 function AddToBasket(name, quantity, username, price, id) { 

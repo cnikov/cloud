@@ -1,9 +1,6 @@
 //nano url to couchdb databases 
 //history database
 var log = require('nano')(process.env.DB_URL_L)
-// shopping cart database
-//var cart = require('nano')(process.env.DB_URL_SK)
-
 
 
 //post function to create document or update

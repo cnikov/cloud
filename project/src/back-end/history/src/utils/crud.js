@@ -1,8 +1,6 @@
-//nano url to couchdb databases 
 //history database
 var hist = require('nano')(process.env.DB_URL_H)
 // shopping cart database
-//var cart = require('nano')(process.env.DB_URL_SK)
 var axios = require('axios')
 const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3006"
 
