@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios' // we use this library as HTTP client
 // you can overwrite the URI of the authentication microservice
 // with this environment variable
-const url = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
+const url = process.env.REACT_APP_LOGS_SERVICE_URL || 'http://localhost:3010'
+//get image from items in list 
 function GetImages(list, data) {
   var MyList = []
   console.log(data)
@@ -13,19 +14,10 @@ function GetImages(list, data) {
 }
 class QuickView extends Component {
   componentWillUnmount() {
-    this.setState({
-      recomm2:[],
-      recomm1:[],
-      img: [],
-    });
+  
     this.props.closeModal()
   }
   handleClose() {
-    this.setState({
-      recomm2:[],
-      recomm1:[],
-      img: [],
-    });
     this.props.closeModal()
   }
   state = {
@@ -35,27 +27,21 @@ class QuickView extends Component {
   };
   
   render() {
-    console.log(this.props.authenticated)
+    
     var recommendation
     var recommendation2
     var username = JSON.parse(window.localStorage.getItem('username'))
-    console.log("username   ",JSON.parse(window.localStorage.getItem('username')))
+    //get the mapping to the general recommendation
     axios.get(`${url}/view2`).then((result)=>{
+      //get the mapping to the users recommendations
       axios.get(`${url}/view1`)
       .then(res => {
-        
-          console.log(result.data.token.rows)
           recommendation2 = result.data.token.rows[0].value
-          
-          console.log('recom2   ',recommendation2[0][0])
           for(var data of res.data.token.rows){
-            console.log(data['key'],username)
             if(data['key'].localeCompare(username) == 0){
               recommendation = data.value
-              console.log(recommendation)
             }
           }
-        
         
         axios.get(`${url}/logs/product`).then((resultt) => {
           this.setState({
@@ -69,14 +55,10 @@ class QuickView extends Component {
             this.setState({
               recomm1:[],
             });
-          }
-          
+          } 
         })
-     
       })
     })
-    
-    
     let product = this.props.product
     let name = product.name
     let image = product.image
@@ -85,15 +67,16 @@ class QuickView extends Component {
     let imglst = this.state.img
     let cart = this.props.cart
     let recomm2 = this.state.recomm2
-    console.log(cart)
-if(typeof recomm2[name] !== 'undefined') {
-  console.log(recomm2[name])
-  var list2 = recomm2[name]
+    //check for general recommendations
+    if(typeof recomm2[name] !== 'undefined') {
+    var list2 = recomm2[name]
+    //check for users recommendations
     if (typeof recomm[name] !== 'undefined') {
       var list = recomm[name]
-      console.log('mylist',list)
+      //check for images
       if (typeof imglst[name] != 'undefined') {
         var ImageList = GetImages(list, imglst)
+        //check if the item is in the shopping cart in order to remove it from the recomm
         for(var item of cart){
           var ind =list.indexOf(item.name)
           if(ind>=0){
@@ -104,7 +87,7 @@ if(typeof recomm2[name] !== 'undefined') {
             ImageList.splice(ind,1)
           }
         }
-        console.log(ImageList)
+        //check if there is items in recomm after splicing
         if(ImageList.length>0){
           return (
           <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
@@ -122,7 +105,6 @@ if(typeof recomm2[name] !== 'undefined') {
                 <h2>About the product</h2>
                 <p>{name}</p>
                 <br />
-                {console.log(recomm[name])}
                 <h3>You used to buy this item with</h3>
                 <div className='product'>
                   <div className='product-image'>
@@ -138,6 +120,7 @@ if(typeof recomm2[name] !== 'undefined') {
             </div>
           </div >
         )}
+        //no more recommendations
         else{
           return (
             <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
@@ -156,16 +139,12 @@ if(typeof recomm2[name] !== 'undefined') {
                   <p>{name}</p>
                   <br />
                   <h3>Customers who bought this item also bought</h3>
-    
-                  <p>No recommendations</p>
-    
-    
+                    <p>No recommendations</p>
                 </center>
               </div>
             </div >
           )
-        }
-        
+        } 
       }
       //case where there is no image
       else {
@@ -186,7 +165,7 @@ if(typeof recomm2[name] !== 'undefined') {
                 <p>{name}</p>
                 <br />
                 <h3>Customers who bought this item also bought</h3>
-                <p> {list[0]} </p>
+                <p> {list[0]},{list[1]},{list[2]} </p>
               </center>
             </div>
           </div >
@@ -283,7 +262,7 @@ if(typeof recomm2[name] !== 'undefined') {
               <p>{name}</p>
               <br />
               <h3>Customers who bought this item also bought</h3>
-              <p> {list2[0]} </p>
+              <p> {list2[0]},{list2[1]},{list2[2]} </p>
             </center>
           </div>
         </div >

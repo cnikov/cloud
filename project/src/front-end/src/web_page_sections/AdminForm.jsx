@@ -4,7 +4,7 @@ import axios from 'axios' // we use this library as HTTP client
 import catalog from '../shopping-cart/components/catalog'
 // you can overwrite the URI of the authentication microservice
 // with this environment variable
-const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
+const url = process.env.REACT_APP_CATALOG_SERVICE_URL || 'http://localhost:3005'
 
 
 class AdminForm extends Component {
@@ -23,10 +23,7 @@ class AdminForm extends Component {
     }
     else {
       this.state = {
-
         catalog: this.props.products,
-
-
         categories: [],
         products: [],
         selectedProd: undefined,
@@ -34,12 +31,6 @@ class AdminForm extends Component {
         logOut: false
       }
     }
-
-
-
-
-
-
   }
   constructor(props) {
     super(props)
@@ -51,8 +42,6 @@ class AdminForm extends Component {
   }
   PostProduct(data, cat, id) {
     if (typeof id !== 'undefined') {
-      console.log(data[cat] + " my product is ")
-
     }
   }
   renderCategories() {
@@ -114,7 +103,6 @@ class AdminForm extends Component {
     e.preventDefault()
   }
   render() {
-    console.log(this.props.products)
     const { products, selectedProd, logOut } = this.state
     return logOut ? <Redirect to='/' /> : <div >
       <header>

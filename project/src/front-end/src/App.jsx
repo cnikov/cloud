@@ -13,7 +13,7 @@ const catalog = require('./shopping-cart/components/catalog')
 import axios from 'axios' // we use this library as HTTP client
 // you can overwrite the URI of the authentication microservice
 // with this environment variable
-const url = 'http://cloud-romtourpe.westeurope.cloudapp.azure.com:3005' || 'http://localhost:3005'
+const url = process.env.REACT_APP_CATALOG_SERVICE_URL || 'http://localhost:3005'
 
 class App extends Component {
   componentWillMount() {
@@ -33,16 +33,11 @@ class App extends Component {
       (newState) => { this.setState({ authenticated: newState }) },
       (route) => { this.props.history.push(route) }
     )
-
     axios.get(`${url}/format`).then((res) => {
       this.setState({
         products: res.data.token.doc
       })
     })
-    //a modifier pour mettre les products de la db
-
-
-
   }
 
   constructor(props) {
@@ -129,6 +124,7 @@ class App extends Component {
             }} />
             <Route exact path='/' render={() => {
               if (authenticated) {
+                //redirect to admin
                 if (JSON.parse(window.localStorage.getItem('username')) === 'admin') {
                   return <AdminForm
                     products={products}

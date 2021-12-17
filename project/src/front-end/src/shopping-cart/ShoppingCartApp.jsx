@@ -6,19 +6,17 @@ import Checkout from './components/Checkout'
 import LocalPurchases from '../interfaces/LocalPurchases'
 import axios from 'axios' // we use this library as HTTP client
 const url = process.env.REACT_APP_SHOPKART_SERVICE_URL || 'http://localhost:3006'
-const url2 = "http://cloud-romtourpe.westeurope.cloudapp.azure.com:3010"
+const url2 = process.env.REACT_APP_LOGS_SERVICE_URL||'http://localhost:3010'
 const urlProducts = process.env.REACT_APP_CATALOG_SERVICE_URL || 'http://localhost:3005'
 const PurchasesService = LocalPurchases
 
 
 
-
+//function to post items in the logs 
 function post(user,l1,l2,l3,N){
-
   if (N==0){
     return
   }
-   
   else{
     var data = {
       'user':user,
@@ -35,16 +33,11 @@ function post(user,l1,l2,l3,N){
       axios.post(`${url2}/logs/recommendation2`,data2).then(()=>{
         l3.splice(0,1)
         N--
-  
         return post(user,l1,l2,l3,N)
       })
-     
     })
   }
-
 }
-
-
 class ShoppingCartApp extends Component {
 
   componentWillMount() {
@@ -82,11 +75,9 @@ class ShoppingCartApp extends Component {
         purService: new PurchasesService()
       }
       this.state.purService.setHandlers(
-
         (list) => { this.setState({ products: list }) },
         (hist) => { this.setState({ oldPurchases: hist }) }
       )
-      console.log(this.state.purService)
     } else {
       this.setState({
         username:'',
@@ -241,24 +232,17 @@ class ShoppingCartApp extends Component {
   endCheckout() {
     //post tout avec tout super :) 
 
-    console.log('END of CHECKOUT')
     let username = JSON.parse(window.localStorage.getItem('username'))
     var l1 = []
     var l2 = []
     var l3 = []
-    console.log("my cart is :")
-    console.log(this.state.cart)
     for(var item of this.state.cart){
       l1.push(item.name)
       l2.push(item.quantity)
       l3.push(item.name)
-      
-
     }
      post(username,l1,l2,l3,l1.length)
-     
-      
-  
+
     axios.delete(`${url}/shopping-kart/${username}`)
     this.initialiseState(false)
     // TODO
