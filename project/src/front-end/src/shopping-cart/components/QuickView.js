@@ -244,6 +244,16 @@ if(typeof recomm2[name] !== 'undefined') {
   else{
     if(typeof imglst[name] != 'undefined'){
     var ImageList2 = GetImages(list2, imglst)
+    for(var item of cart){
+      var ind =list2.indexOf(item.name)
+      if(ind>=0){
+        if(ImageList2.length == 1){
+          ImageList2 = []
+        }
+        ImageList2.splice(ind,1)
+      }
+    }
+    if(ImageList2.length>0){
     return (
       <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
         <div className='modal' ref='modal'>
@@ -274,7 +284,37 @@ if(typeof recomm2[name] !== 'undefined') {
           </center>
         </div>
       </div >
-    )
+    )}
+    else{
+      return (
+
+        <div className={this.props.openModal ? 'modal-wrapper active' : 'modal-wrapper'}>
+          <div className='modal' ref='modal'>
+            <button type='button' className='close' onClick={this.handleClose.bind(this)}>&times;</button>
+            <center>
+              <div className='product'>
+                <span className='product-name'>{name}</span>
+                <br />
+                <span className='product-price'>{price}</span>
+                <div className='product-image'>
+                  <img src={image} alt={name} />
+                </div>
+              </div>
+              <h2>About the product</h2>
+              <p>{name}</p>
+              <br />
+              <h3>Customers who bought this item also bought</h3>
+
+              <p>No recommendations</p>
+
+
+            </center>
+          </div>
+        </div >
+      )
+
+
+    }
 
 
     }
